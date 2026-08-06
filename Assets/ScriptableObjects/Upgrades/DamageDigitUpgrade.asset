@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: DamageDigitUpgrade
   m_EditorClassIdentifier: 
   m_Texture: {fileID: 2800000, guid: e46522e28efe3b849b09ef69fc569232, type: 3}
-  m_Description: INCREASE THE CHANCE OF DAMAGE DIGITS TO TURN INTO A BOMB
-  m_ExplosionChangeIncrease: 0.5
+  m_Description: INCREASE GUN ATTACK RANGE
+  m_BaseCost: 5
+  m_CostGrowth: 1.5
+  m_Rarity: 1
+  m_RollWeight: 30
+  m_RarityCostMultiplier: 1.2
+  m_RangeIncrease: 1

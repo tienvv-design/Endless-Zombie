@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: WeaponUpgrade
   m_EditorClassIdentifier: 
   m_Texture: {fileID: 2800000, guid: 75b002f5320d0204fbb110edd8b21bbd, type: 3}
-  m_Description: INCREASE DAMAGE OF ROTATING WEAPON BY 1
+  m_Description: INCREASE GUN DAMAGE BY 1
+  m_BaseCost: 5
+  m_CostGrowth: 1.5
+  m_Rarity: 0
+  m_RollWeight: 60
+  m_RarityCostMultiplier: 1

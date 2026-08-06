@@ -1,0 +1,5 @@
+PASS
+GameScene completed 35 seconds of runtime validation without errors.
+Verified: ECS singletons, mob spawning, auto-fire damage, kills, ammo/reload and combat metrics.
+Metrics: damage=8, kills=4, active=15, nearby=3, pressure=0.80, dps=4.00, avgTTK=7.61
+Weapon: ammo=5/12, reload=False, range=8.00, damage=2, fireRate=1.50
