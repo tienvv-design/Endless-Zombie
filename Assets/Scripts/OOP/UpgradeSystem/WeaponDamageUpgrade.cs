@@ -18,9 +18,12 @@ public class WeaponDamageUpgrade : CharUpgrade
 
     public override void ApplyUpgrade()
     {
-        Entity entity = m_EntityManager.CreateEntityQuery(typeof(GunModifiers)).GetSingletonEntity();
-        GunModifiers modifiers = m_EntityManager.GetComponentData<GunModifiers>(entity);
-        modifiers.DamageBonusPercent += 20f;
-        m_EntityManager.SetComponentData(entity, modifiers);
+        Entity weaponManagerEntity = m_EntityManager.CreateEntityQuery(typeof(WeaponManager)).GetSingletonEntity();
+        WeaponManager weaponManager = m_EntityManager.GetComponentData<WeaponManager>(weaponManagerEntity);
+
+        weaponManager.DamagePerHit += 1;
+        weaponManager.DamagePerHit = Mathf.Clamp(weaponManager.DamagePerHit, 0, 9);
+        
+        m_EntityManager.SetComponentData(weaponManagerEntity, weaponManager);
     }
 }

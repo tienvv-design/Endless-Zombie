@@ -13,9 +13,4 @@ MonoBehaviour:
   m_Name: WeaponSpeedUpgrade
   m_EditorClassIdentifier: 
   m_Texture: {fileID: 2800000, guid: c68838cd724d5cc4a89b38f46c68a7d1, type: 3}
-  m_Description: REDUCE TIME BETWEEN SHOTS
-  m_BaseCost: 6
-  m_CostGrowth: 1.6
-  m_Rarity: 2
-  m_RollWeight: 15
-  m_RarityCostMultiplier: 1.5
+  m_Description: INCREASE ROTATION SPEED OF WEAPON

@@ -7,8 +7,6 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.Play(SoundLabel.MainMenuMusic);
-        if (!TryGetComponent<MainMenuMetaShop>(out _))
-            gameObject.AddComponent<MainMenuMetaShop>();
     }
 
     private void OnDisable()

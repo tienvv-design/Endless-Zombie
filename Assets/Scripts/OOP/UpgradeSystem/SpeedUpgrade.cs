@@ -12,18 +12,27 @@ public class SpeedUpgrade : CharUpgrade
     
     public override UpgradeTypes GetUpgradeType()
     {
-        return UpgradeTypes.ProjectileSpeed;
+        return UpgradeTypes.Speed;
     }
 
     public override void Init() { }
 
     public override void ApplyUpgrade()
     {
-        Unity.Entities.EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-        Unity.Entities.Entity entity = entityManager.CreateEntityQuery(typeof(GunModifiers)).GetSingletonEntity();
-        GunModifiers modifiers = entityManager.GetComponentData<GunModifiers>(entity);
-        modifiers.ProjectileSpeedBonusPercent += MultiplierPerLevel * 100f;
-        entityManager.SetComponentData(entity, modifiers);
+        var playerCharacter = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerCharacter.TryGetComponent(out CharacterLogic characterLogic))
+        {
+            if (!characterLogic.CharacterStats)
+            {
+                Debug.Log("Say something!");
+            }
+            characterLogic.CharacterStats.MoveSpeed += characterLogic.CharacterStats.MoveSpeed * MultiplierPerLevel * m_UpgradeLevel;   
+        }
+        else
+        {
+            Debug.LogWarning("Couldn't find player character");
+        }
     }
     
 }

@@ -117,7 +117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 2
   targetObjectType: 1
-  KnockbackResistance: 0
 --- !u!114 &2803176911604712673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +145,6 @@ MonoBehaviour:
   TargetObjectType: 1
   Damage: 5
   HitDistanceSq: 2
-  AttackInterval: 1
 --- !u!114 &3138708986221907955
 MonoBehaviour:
   m_ObjectHideFlags: 0

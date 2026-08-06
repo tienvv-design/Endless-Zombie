@@ -4,6 +4,8 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
+using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 internal partial struct DamageDigitSystem : ISystem
 {
@@ -25,6 +27,8 @@ internal partial struct DamageDigitSystem : ISystem
         EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
             .CreateCommandBuffer(state.WorldUnmanaged);
 
+        SystemAPI.TryGetSingleton(out CharacterStatsComponent characterStats);
+        
         // var parentLookup = SystemAPI.GetComponentLookup<Parent>(true);
         // var transformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
         var entityReferences = SystemAPI.GetSingletonRW<EntityReferences>();
@@ -58,11 +62,13 @@ internal partial struct DamageDigitSystem : ISystem
             digitEcb.SetComponent(digitEntity, velocity);
             
             
-            // Damage digits are visual feedback only. AoE explosions belong to
-            // explosive weapon projectiles (Rocket Launcher), never to UI digits.
+            // Adjust the damage digit component to be explosive based on a random value.
             DamageDigit damageDigitComponent = SystemAPI.GetComponent<DamageDigit>(entityReferences.ValueRO.DamageDigitPrefabEntity);
+            Random random = entityReferences.ValueRO.Random;
             damageDigitComponent.DamageValue = damageTakenEvent.ValueRO.Amount;
-            damageDigitComponent.IsExplosive = false;
+            float explosionChance = random.NextFloat(0f, 1f);
+            damageDigitComponent.IsExplosive = explosionChance < characterStats.DamageDigitExplosionChance;
+            entityReferences.ValueRW.Random = random;
             digitEcb.SetComponent(digitEntity, damageDigitComponent);
             
             // Set the material property values.
@@ -84,7 +90,31 @@ internal partial struct DamageDigitSystem : ISystem
                 localTransform.ValueRW.Position.y = 0f;
                 velocity.ValueRW.Linear = float3.zero;
 
-                ecb.DestroyEntity(entity);
+                if (!damageDigit.ValueRO.IsExplosive)
+                {
+                    ecb.DestroyEntity(entity);
+                    return;
+                }
+
+                if (damageDigit.ValueRO.ExplosionTimer < damageDigit.ValueRO.ExplosionDelay)
+                {
+                    damageDigit.ValueRW.ExplosionTimer += SystemAPI.Time.DeltaTime;
+                }
+                else
+                {
+                    damageDigit.ValueRW.ExplosionTimer = 0f;
+
+                    Entity digitExplosionEvent = ecb.CreateEntity();
+                    
+                    ecb.AddComponent(digitExplosionEvent, new DigitExplosionEvent
+                    {
+                        Position = localTransform.ValueRO.Position,
+                        Radius = damageDigit.ValueRO.ExplosionRadius,
+                        Damage = damageDigit.ValueRO.DamageValue,
+                    });
+                    
+                    ecb.DestroyEntity(entity);
+                }
             }
         }
     }

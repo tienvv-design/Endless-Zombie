@@ -31,8 +31,6 @@ public class CharacterXPManager : MonoBehaviour
     private int m_CharacterLevel;
     
     public int CharacterLevel => m_CharacterLevel;
-    public int CurrentXP => m_CurrentXP;
-    public int NextLevelRequiredXP => GetXPRequiredForLevel(m_CharacterLevel + 1);
 
     private Dictionary<int, LevelDefinition> m_levelDefinitions = new();
 

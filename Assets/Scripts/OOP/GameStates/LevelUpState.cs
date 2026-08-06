@@ -16,7 +16,7 @@ namespace OOP.GameStates
         public override void EnterState()
         {
             // Debug.Log("Entered Level up state!");
-            Time.timeScale = 0f;
+            
             EnableMonoBehaviours<IGameLevelUp>(false);
             
             AudioManager.Instance.Play(SoundLabel.LevelUpSound);
@@ -37,7 +37,6 @@ namespace OOP.GameStates
         public override void ExitState()
         {
             LevelUpManager.Instance.OnUpgradeApplied -= OnUpgradeAppliedCallback;
-            Time.timeScale = 1f;
         }
 
         public override void CheckSwitchState()

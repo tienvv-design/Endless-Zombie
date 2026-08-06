@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [UpdateInGroup(typeof(LateSimulationSystemGroup))]
-public partial class XPBridge : SystemBase
+public partial class XPBrigde : SystemBase
 {
     protected override void OnCreate()
     {
@@ -16,8 +16,7 @@ public partial class XPBridge : SystemBase
     {
         foreach (var xpCollectedEvent in SystemAPI.Query<RefRO<XPCollectedEvent>>())
         {
-            if (CharacterXPManager.Instance)
-                CharacterXPManager.Instance.GainXP(xpCollectedEvent.ValueRO.XPAmount);
+            if(CharacterXPManager.Instance) CharacterXPManager.Instance.GainXP(xpCollectedEvent.ValueRO.XPAmount);
         }
     }
 }

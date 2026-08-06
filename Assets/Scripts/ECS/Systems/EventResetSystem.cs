@@ -11,6 +11,7 @@ internal partial struct EventResetSystem : ISystem
         state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
         state.RequireForUpdate<GameRunningTag>();
     }
+
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
@@ -21,13 +22,8 @@ internal partial struct EventResetSystem : ISystem
         {
             ecb.DestroyEntity(entity);
         }
-
+        
         foreach (var (digitExplosionEvent, entity) in SystemAPI.Query<RefRW<DigitExplosionEvent>>().WithEntityAccess())
-        {
-            ecb.DestroyEntity(entity);
-        }
-
-        foreach (var (chainEvent, entity) in SystemAPI.Query<RefRW<ChainLightningEvent>>().WithEntityAccess())
         {
             ecb.DestroyEntity(entity);
         }
@@ -41,11 +37,6 @@ internal partial struct EventResetSystem : ISystem
         {
             ecb.DestroyEntity(entity);
         }
-
-        foreach (var (goldCollectedEvent, entity) in SystemAPI.Query<RefRW<GoldCollectedEvent>>().WithEntityAccess())
-        {
-            ecb.DestroyEntity(entity);
-        }
         
         foreach (var (mobDamageGiven, entity) in SystemAPI.Query<RefRW<MobDamageGivenEvent>>().WithEntityAccess())
         {
@@ -53,3 +44,4 @@ internal partial struct EventResetSystem : ISystem
         }
     }
 }
+    

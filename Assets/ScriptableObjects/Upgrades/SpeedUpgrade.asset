@@ -13,11 +13,6 @@ MonoBehaviour:
   m_Name: SpeedUpgrade
   m_EditorClassIdentifier: 
   m_Texture: {fileID: 2800000, guid: b3176559611ec2a439a40524ddf69c26, type: 3}
-  m_Description: INCREASE PROJECTILE SPEED
-  m_BaseCost: 4
-  m_CostGrowth: 1.45
-  m_Rarity: 0
-  m_RollWeight: 60
-  m_RarityCostMultiplier: 1
+  m_Description: INCREASE MOVEMENT SPEED
   FirstLevelBuff: 0.2
   MultiplierPerLevel: 0.1

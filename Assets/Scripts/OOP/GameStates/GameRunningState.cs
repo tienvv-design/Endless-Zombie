@@ -27,13 +27,8 @@ namespace OOP.GameStates
             }
             AudioManager.Instance.SetMuffled(false);
             
-            World world = World.DefaultGameObjectInjectionWorld;
-            if (world != null && world.IsCreated)
-            {
-                world.QuitUpdate = false;
-                SimulationSystemGroup simulation = world.GetExistingSystemManaged<SimulationSystemGroup>();
-                if (simulation != null) simulation.Enabled = true;
-            }
+            World.DefaultGameObjectInjectionWorld.QuitUpdate = false;
+            // SystemsUtils.SetSystemsEnabled(World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<SimulationSystemGroup>(), true);
             
             CharacterXPManager.Instance.OnLevelUp += LevelUpCallback;
         }

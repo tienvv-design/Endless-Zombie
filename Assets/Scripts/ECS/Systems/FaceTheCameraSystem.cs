@@ -1,8 +1,10 @@
 ﻿using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 internal partial struct FaceTheCameraSystem : ISystem
 {
@@ -12,6 +14,7 @@ internal partial struct FaceTheCameraSystem : ISystem
         state.RequireForUpdate<GameRunningTag>();
     }
 
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         float3 cameraForward = float3.zero;

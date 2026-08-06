@@ -227,27 +227,6 @@ MonoBehaviour:
   RateIncrease: 0.15
   ElapsedTime: 0
   Timer: 0
-  WaveDuration: 60
-  WaveHealthMultiplier: 1.08
-  WaveDamageMultiplier: 1.05
-  EliteStartWave: 2
-  EliteBaseChance: 0.05
-  EliteChancePerWave: 0.025
-  EliteMaxChance: 0.25
-  EliteHealthMultiplier: 4
-  EliteDamageMultiplier: 2
-  EliteKnockbackResistance: 0.75
-  EliteScale: 1.4
-  EliteGoldMultiplier: 5
-  BossWaveInterval: 5
-  BossHealthMultiplier: 20
-  BossDamageMultiplier: 3
-  BossScale: 2
-  BossGoldMultiplier: 25
-  BossKnockbackResistance: 0.9
-  BossCrowdControlResistance: 0.85
-  BossPhaseSpeedMultiplier: 1.2
-  BossPhaseDamageMultiplier: 1.25
 --- !u!1 &778725616
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,22 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee3823bd9504abfa2f6e4917ab183b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunConfig: {fileID: 11400000, guid: 7723e3f33c514d4e9154b7ce79a0ce48, type: 2}
   WeaponObjectPrefab: {fileID: 184485202273541031, guid: a4d757049496aeb4d92148b28063c7f9, type: 3}
   NumberOfWeapons: 3
   DamagePerHit: 1
   Cooldown: 3
   ActiveDuration: 3
-  AttackRange: 6
-  ProjectileSpeed: 12
-  EnableOrbitingWeapons: 0
-  ProjectileCount: 1
-  CriticalChance: 0.1
-  CriticalDamage: 1.5
-  Pierce: 0
-  Knockback: 0.5
-  SpreadAngle: 10
-  MinimumFireInterval: 0.1
   Radius: 3
   RotateSpeed: 4
   ClockWise: 0

@@ -18,9 +18,8 @@ partial struct KamikazeUnitSystem : ISystem
         EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
             .CreateCommandBuffer(state.WorldUnmanaged);
         
-        float deltaTime = SystemAPI.Time.DeltaTime;
         foreach (var (localTransform, kamikaze, entity)
-                 in SystemAPI.Query<RefRO<LocalTransform>, RefRW<KamikazeUnit>>().WithEntityAccess())
+                 in SystemAPI.Query<RefRW<LocalTransform>, RefRO<KamikazeUnit>>().WithEntityAccess())
         {
             if (!SystemAPI.TryGetSingletonBuffer(out DynamicBuffer<GameObjectInfo> goInfoBuffer))
                 return;
@@ -45,27 +44,17 @@ partial struct KamikazeUnitSystem : ISystem
 
             if (distanceSq <= kamikaze.ValueRO.HitDistanceSq)
             {
-                if (SystemAPI.HasComponent<UnitMover>(entity) && SystemAPI.IsComponentEnabled<UnitMover>(entity))
-                    SystemAPI.SetComponentEnabled<UnitMover>(entity, false);
-
-                kamikaze.ValueRW.AttackTimer -= deltaTime;
-                if (kamikaze.ValueRO.AttackTimer <= 0f)
+                Entity e = ecb.CreateEntity();
+                ecb.AddComponent(e, new MobDamageGivenEvent
                 {
-                    Entity attackEvent = ecb.CreateEntity();
-                    ecb.AddComponent(attackEvent, new MobDamageGivenEvent
-                    {
-                        Id = target.ID,
-                        Amount = kamikaze.ValueRO.Damage,
-                    });
-                    kamikaze.ValueRW.AttackTimer = math.max(0.05f, kamikaze.ValueRO.AttackInterval);
-                }
-            }
-            else
-            {
-                if (SystemAPI.HasComponent<UnitMover>(entity) && !SystemAPI.IsComponentEnabled<UnitMover>(entity))
-                    SystemAPI.SetComponentEnabled<UnitMover>(entity, true);
+                    Id = target.ID,
+                    Amount = kamikaze.ValueRO.Damage,
+                });
+
+                ecb.DestroyEntity(entity);
             }
             
         }
     }
 }
+    

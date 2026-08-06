@@ -21,9 +21,6 @@ public partial struct WeaponOverlapSystem : ISystem
     [BurstCompile]
     public unsafe void OnUpdate(ref SystemState state)
     {
-        if (!SystemAPI.GetSingleton<WeaponManager>().EnableOrbitingWeapons)
-            return;
-
         var physicsWorldSingleton = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
         var collisionWorld = physicsWorldSingleton.PhysicsWorld.CollisionWorld;
         

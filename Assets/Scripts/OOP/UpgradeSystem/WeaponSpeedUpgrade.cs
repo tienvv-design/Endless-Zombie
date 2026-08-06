@@ -15,10 +15,12 @@ namespace OOP.UpgradeSystem
 
         public override void ApplyUpgrade()
         {
-            Entity entity = m_EntityManager.CreateEntityQuery(typeof(GunModifiers)).GetSingletonEntity();
-            GunModifiers modifiers = m_EntityManager.GetComponentData<GunModifiers>(entity);
-            modifiers.FireRateBonusPercent += 15f;
-            m_EntityManager.SetComponentData(entity, modifiers);
+            Entity weaponManagerEntity = m_EntityManager.CreateEntityQuery(typeof(WeaponManager)).GetSingletonEntity();
+            WeaponManager weaponManager = m_EntityManager.GetComponentData<WeaponManager>(weaponManagerEntity);
+
+            weaponManager.RotateSpeed += 1;
+        
+            m_EntityManager.SetComponentData(weaponManagerEntity, weaponManager);
         }
 
         public override UpgradeTypes GetUpgradeType()
