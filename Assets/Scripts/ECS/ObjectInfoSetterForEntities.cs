@@ -28,6 +28,15 @@ public class ObjectInfoSetterForEntities : MonoBehaviour
     {
         _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
+        // This buffer is created from a MonoBehaviour rather than a SubScene, so it
+        // must be cleaned explicitly between runs. Remove stale instances left by a
+        // previous GameScene before creating the current bridge entity.
+        EntityQuery staleBuffers = _entityManager.CreateEntityQuery(
+            ComponentType.ReadOnly<GameObjectInfo>());
+        if (!staleBuffers.IsEmptyIgnoreFilter)
+            _entityManager.DestroyEntity(staleBuffers);
+        staleBuffers.Dispose();
+
         _objectInfoEntity = _entityManager.CreateEntity();
         DynamicBuffer<GameObjectInfo> buffer = _entityManager.AddBuffer<GameObjectInfo>(_objectInfoEntity);
 
@@ -40,6 +49,17 @@ public class ObjectInfoSetterForEntities : MonoBehaviour
                 Position = float3.zero,
             });
         }
+    }
+
+    private void OnDestroy()
+    {
+        World world = World.DefaultGameObjectInjectionWorld;
+        if (world != null && world.IsCreated &&
+            _objectInfoEntity != Entity.Null && world.EntityManager.Exists(_objectInfoEntity))
+        {
+            world.EntityManager.DestroyEntity(_objectInfoEntity);
+        }
+        _objectInfoEntity = Entity.Null;
     }
 
     private void Update()

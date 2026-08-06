@@ -17,6 +17,9 @@ internal partial struct WeaponManagerSystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         RefRW<WeaponManager> weaponManager = SystemAPI.GetSingletonRW<WeaponManager>();
+
+        if (!weaponManager.ValueRO.EnableOrbitingWeapons)
+            return;
         
         EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
             .CreateCommandBuffer(state.WorldUnmanaged);
@@ -73,4 +76,3 @@ internal partial struct WeaponManagerSystem : ISystem
         }
     }
 }
-    

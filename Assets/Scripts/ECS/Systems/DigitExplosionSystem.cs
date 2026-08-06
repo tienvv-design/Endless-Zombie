@@ -3,6 +3,8 @@ using System;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 internal partial struct DigitExplosionSystem : ISystem
 {
@@ -25,6 +27,7 @@ internal partial struct DigitExplosionSystem : ISystem
         
         foreach (var explosionEvent in SystemAPI.Query<RefRO<DigitExplosionEvent>>())
         {
+            overlapHits.Clear();
 
             CollisionFilter colFilter = new CollisionFilter
             {
@@ -38,6 +41,13 @@ internal partial struct DigitExplosionSystem : ISystem
             {
                 foreach (DistanceHit hit in overlapHits)
                 {
+                    float3 knockbackDirection = float3.zero;
+                    if (SystemAPI.HasComponent<LocalTransform>(hit.Entity))
+                    {
+                        float3 mobPosition = SystemAPI.GetComponent<LocalTransform>(hit.Entity).Position;
+                        knockbackDirection = math.normalizesafe(mobPosition - explosionEvent.ValueRO.Position);
+                    }
+
                     Entity mobDamageEventEntity = ecb.CreateEntity();
                     
                     ecb.AddComponent(mobDamageEventEntity, new MobDamageTakenEvent
@@ -45,6 +55,9 @@ internal partial struct DigitExplosionSystem : ISystem
                         Entity = hit.Entity,
                         Id = hit.Entity.Index,
                         Amount = explosionEvent.ValueRO.Damage,
+                        KnockbackDirection = knockbackDirection,
+                        KnockbackDistance = explosionEvent.ValueRO.Knockback,
+                        IsCritical = explosionEvent.ValueRO.IsCritical,
                     });
                 }
             }

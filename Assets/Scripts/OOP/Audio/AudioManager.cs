@@ -40,21 +40,21 @@ public class AudioManager : MonoBehaviour
     public void Play(SoundLabel label)
     {
         Sound s = Array.Find(sounds, sound => sound.label == label);
-        if (s == null) return;
+        if (s == null || !EnsureSource(s)) return;
         s.source.Play();
     }
 
     public void Stop(SoundLabel label)
     {
         Sound s = Array.Find(sounds, sound => sound.label == label);
-        if (s == null) return;
+        if (s == null || s.source == null) return;
         s.source.Stop();
     }
 
     public bool IsPlaying(SoundLabel label)
     {
         Sound s = Array.Find(sounds, sound => sound.label == label);
-        if (s == null) return false;
+        if (s == null || s.source == null) return false;
         return s.source.isPlaying;
     }
 
@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
     public void SetLocalVolume(SoundLabel label, float value)
     {
         Sound s = Array.Find(sounds, sound => sound.label == label);
-        if (s == null) return;
+        if (s == null || !EnsureSource(s)) return;
         s.volume = value;
         s.source.volume = value;
     }
@@ -75,5 +75,17 @@ public class AudioManager : MonoBehaviour
     {
         // 500Hz makes it sound like it's behind a wall or underwater
         // lowPassFilter.cutoffFrequency = isMuffled ? 500f : 22000f;
+    }
+
+    private bool EnsureSource(Sound sound)
+    {
+        if (sound == null) return false;
+        if (sound.source != null) return true;
+        sound.source = gameObject.AddComponent<AudioSource>();
+        sound.source.clip = sound.clip;
+        sound.source.volume = sound.volume;
+        sound.source.pitch = sound.pitch;
+        sound.source.loop = sound.loop;
+        return true;
     }
 }

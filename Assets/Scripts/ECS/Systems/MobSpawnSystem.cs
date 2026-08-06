@@ -77,11 +77,74 @@ public partial struct MobSpawnSystem : ISystem
 
             Entity mob = ecb.Instantiate(prefab);
 
+            int waveIndex = (int)math.floor(spawner.ElapsedTime / math.max(1f, spawner.WaveDuration));
+            int waveNumber = waveIndex + 1;
+            bool isBossWave = spawner.BossWaveInterval > 0 &&
+                              waveNumber % spawner.BossWaveInterval == 0;
+            bool isBoss = isBossWave && spawner.LastBossWave != waveNumber;
+            if (isBoss)
+                spawner.LastBossWave = waveNumber;
+            float eliteChance = waveNumber >= spawner.EliteStartWave
+                ? math.min(spawner.EliteMaxChance,
+                    spawner.EliteBaseChance + (waveNumber - spawner.EliteStartWave) * spawner.EliteChancePerWave)
+                : 0f;
+            bool isElite = !isBoss && references.Random.NextFloat() < eliteChance;
+
+            Mob mobStats = SystemAPI.GetComponent<Mob>(prefab);
+            float healthMultiplier = math.pow(spawner.WaveHealthMultiplier, waveIndex) *
+                                     (isBoss ? spawner.BossHealthMultiplier :
+                                         isElite ? spawner.EliteHealthMultiplier : 1f);
+            mobStats.Health = math.max(1, (int)math.round(mobStats.Health * healthMultiplier));
+            mobStats.MaxHealth = mobStats.Health;
+            mobStats.SpawnTime = spawner.ElapsedTime;
+            mobStats.EnemyType = isBoss ? EnemyType.Boss : isElite ? EnemyType.Elite : EnemyType.Normal;
+            mobStats.GoldMultiplier = isBoss
+                ? math.max(1, spawner.BossGoldMultiplier)
+                : isElite ? math.max(1, spawner.EliteGoldMultiplier) : 1;
+            mobStats.XPReward = isBoss ? 100 : isElite ? 25 : 5;
+            mobStats.GoldReward = isBoss ? 20 : isElite ? 5 : 1;
+            mobStats.CrowdControlResistance = isBoss
+                ? math.saturate(spawner.BossCrowdControlResistance)
+                : 0f;
+            if (isBoss)
+                mobStats.KnockbackResistance = math.max(mobStats.KnockbackResistance,
+                    spawner.BossKnockbackResistance);
+            else if (isElite)
+                mobStats.KnockbackResistance = math.max(mobStats.KnockbackResistance,
+                    spawner.EliteKnockbackResistance);
+            ecb.SetComponent(mob, mobStats);
+
+            if (SystemAPI.HasComponent<KamikazeUnit>(prefab))
+            {
+                KamikazeUnit enemyAttack = SystemAPI.GetComponent<KamikazeUnit>(prefab);
+                float damageMultiplier = math.pow(spawner.WaveDamageMultiplier, waveIndex) *
+                                         (isBoss ? spawner.BossDamageMultiplier :
+                                             isElite ? spawner.EliteDamageMultiplier : 1f);
+                enemyAttack.Damage = math.max(1, (int)math.round(enemyAttack.Damage * damageMultiplier));
+                ecb.SetComponent(mob, enemyAttack);
+
+                if (isBoss)
+                {
+                    UnitMover mover = SystemAPI.GetComponent<UnitMover>(prefab);
+                    ecb.AddComponent(mob, new BossPhase
+                    {
+                        CurrentPhase = 1,
+                        PhaseTwoHealthRatio = 0.66f,
+                        PhaseThreeHealthRatio = 0.33f,
+                        SpeedMultiplierPerPhase = math.max(1f, spawner.BossPhaseSpeedMultiplier),
+                        DamageMultiplierPerPhase = math.max(1f, spawner.BossPhaseDamageMultiplier),
+                        BaseMoveSpeed = mover.moveSpeed,
+                        BaseDamage = enemyAttack.Damage,
+                    });
+                }
+            }
+
             ecb.SetComponent(mob, new LocalTransform
             {
                 Position = spawnPos,
                 Rotation = quaternion.identity,
-                Scale    = 1f
+                Scale = isBoss ? math.max(1f, spawner.BossScale) :
+                    isElite ? math.max(1f, spawner.EliteScale) : 1f
             });
         }
 

@@ -17,6 +17,8 @@ public partial class MobDeathBridge : SystemBase
         foreach (var mobDeathEvent in SystemAPI.Query<RefRO<MobDeathEvent>>())
         {
             AudioManager.Instance.Play(SoundLabel.MobDeathSound);
+            if (GoldWallet.Instance)
+                GoldWallet.Instance.AddRunReward(mobDeathEvent.ValueRO.GoldReward);
         }
     }
 }

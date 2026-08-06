@@ -4,8 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DamageDigitUpgrade", menuName = "Settings-Configs/Upgrades/DamageDigitUpgrade")]
 public class DamageDigitUpgrade : CharUpgrade
 {
-    [Header("The ratio of increase in the possibility of a damage digit turning into a bomb")]
-    [SerializeField] private float m_ExplosionChangeIncrease;
+    [SerializeField, Min(0.1f)] private float m_RangeIncrease = 1f;
     
     private EntityManager m_EntityManager;
 
@@ -16,19 +15,14 @@ public class DamageDigitUpgrade : CharUpgrade
     
     public override UpgradeTypes GetUpgradeType()
     {
-        return UpgradeTypes.DigitBomb;
+        return UpgradeTypes.AttackRange;
     }
 
     public override void ApplyUpgrade()
     {
-        Entity characterStatsEntity = m_EntityManager.CreateEntityQuery(typeof(CharacterStatsComponent)).GetSingletonEntity();
-        CharacterStatsComponent characterStats = m_EntityManager.GetComponentData<CharacterStatsComponent>(characterStatsEntity);
-
-        float increaseAmount = characterStats.DamageDigitExplosionChance * m_ExplosionChangeIncrease;
-        characterStats.DamageDigitExplosionChance += increaseAmount;
-        Debug.Log("Chance is: " + characterStats.DamageDigitExplosionChance);
-        
-        m_EntityManager.SetComponentData(characterStatsEntity, characterStats);
+        Entity entity = m_EntityManager.CreateEntityQuery(typeof(GunModifiers)).GetSingletonEntity();
+        GunModifiers modifiers = m_EntityManager.GetComponentData<GunModifiers>(entity);
+        modifiers.RangeBonusPercent += m_RangeIncrease * 10f;
+        m_EntityManager.SetComponentData(entity, modifiers);
     }
 }
-    

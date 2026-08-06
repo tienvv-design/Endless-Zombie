@@ -21,8 +21,12 @@ namespace OOP.GameStates
             
             AudioManager.Instance.SetMuffled(true);
 
-            World.DefaultGameObjectInjectionWorld.QuitUpdate = true;
-            // SystemsUtils.SetSystemsEnabled(World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<SimulationSystemGroup>(), false);
+            World world = World.DefaultGameObjectInjectionWorld;
+            if (world != null && world.IsCreated)
+            {
+                SimulationSystemGroup simulation = world.GetExistingSystemManaged<SimulationSystemGroup>();
+                if (simulation != null) simulation.Enabled = false;
+            }
             
             EnableMonoBehaviours<IGamePaused>();
         }
@@ -39,6 +43,12 @@ namespace OOP.GameStates
         {
             // Debug.Log("Exit paused state!");
             PlayerInput.Instance.InputActions.UI.Disable();
+            World world = World.DefaultGameObjectInjectionWorld;
+            if (world != null && world.IsCreated)
+            {
+                SimulationSystemGroup simulation = world.GetExistingSystemManaged<SimulationSystemGroup>();
+                if (simulation != null) simulation.Enabled = true;
+            }
         }
 
         public override void CheckSwitchState()

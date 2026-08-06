@@ -34,6 +34,10 @@ internal partial struct XPCoinSystem : ISystem
             LocalTransform localTransform = SystemAPI.GetComponent<LocalTransform>(entityReferences.XPCollectable);
             localTransform.Position = mobDeathEvent.ValueRO.LocalTransform.Position;
             xpSpawnEcb.SetComponent(xpCollectible, localTransform);
+
+            XPCoin xpPickup = SystemAPI.GetComponent<XPCoin>(entityReferences.XPCollectable);
+            xpPickup.XPAmount = math.max(1, mobDeathEvent.ValueRO.XPReward);
+            xpSpawnEcb.SetComponent(xpCollectible, xpPickup);
         }
         
         xpSpawnEcb.Playback(state.EntityManager);
