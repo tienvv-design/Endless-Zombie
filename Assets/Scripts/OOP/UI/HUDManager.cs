@@ -12,9 +12,14 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TMP_Text m_GoldText;
     private TMP_Text m_LevelText;
     private TMP_Text m_WeaponStatsText;
+    private TMP_Text m_WaveText;
     private EntityQuery m_WeaponQuery;
+    private EntityQuery m_StageQuery;
+    private EntityQuery m_MetricsQuery;
     private EntityManager m_EntityManager;
     private bool m_WeaponQueryCreated;
+    private bool m_StageQueryCreated;
+    private bool m_MetricsQueryCreated;
     private float m_StatsRefreshTimer;
     
     private CharacterHealthManager m_HealthManager;
@@ -28,6 +33,7 @@ public class HUDManager : MonoBehaviour
             m_GoldText = CreateGoldCounter();
         m_LevelText = CreateLevelText();
         m_WeaponStatsText = CreateWeaponStatsText();
+        m_WaveText = CreateWaveText();
 
         if (m_XPFillBar != null)
         {
@@ -151,6 +157,26 @@ public class HUDManager : MonoBehaviour
         return text;
     }
 
+    private TMP_Text CreateWaveText()
+    {
+        GameObject label = new GameObject("WaveStatus", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
+        label.transform.SetParent(transform, false);
+        RectTransform rect = label.GetComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.5f, 1f);
+        rect.anchorMax = new Vector2(0.5f, 1f);
+        rect.pivot = new Vector2(0.5f, 1f);
+        rect.anchoredPosition = new Vector2(0f, -24f);
+        rect.sizeDelta = new Vector2(520f, 44f);
+        TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
+        text.text = "Wave --";
+        text.fontSize = 24f;
+        text.fontStyle = FontStyles.Bold;
+        text.alignment = TextAlignmentOptions.Top;
+        text.color = new Color(1f, 0.9f, 0.55f, 1f);
+        text.raycastTarget = false;
+        return text;
+    }
+
     private void Update()
     {
         if (m_HealthManager != null)
@@ -158,6 +184,37 @@ public class HUDManager : MonoBehaviour
             SetFillBar(m_HealthFillBar, m_HealthManager.GetHealthPercentage(), m_HealthMaxWidth);
         }
         RefreshWeaponStats();
+        RefreshWaveStatus();
+    }
+
+    private void RefreshWaveStatus()
+    {
+        World world = World.DefaultGameObjectInjectionWorld;
+        if (world == null || !world.IsCreated || m_WaveText == null) return;
+        if (!m_StageQueryCreated)
+        {
+            m_StageQuery = world.EntityManager.CreateEntityQuery(typeof(StageRuntime));
+            m_StageQueryCreated = true;
+        }
+        if (!m_MetricsQueryCreated)
+        {
+            m_MetricsQuery = world.EntityManager.CreateEntityQuery(typeof(CombatMetrics));
+            m_MetricsQueryCreated = true;
+        }
+        if (m_StageQuery.CalculateEntityCount() != 1) return;
+        Entity stageEntity = m_StageQuery.GetSingletonEntity();
+        EntityManager manager = world.EntityManager;
+        StageRuntime stage = manager.GetComponentData<StageRuntime>(stageEntity);
+        DynamicBuffer<WaveRuntime> waves = manager.GetBuffer<WaveRuntime>(stageEntity);
+        DynamicBuffer<SpawnRequest> queue = manager.GetBuffer<SpawnRequest>(stageEntity);
+        int alive = 0;
+        if (m_MetricsQuery.CalculateEntityCount() == 1)
+            alive = m_MetricsQuery.GetSingleton<CombatMetrics>().ActiveEnemies;
+        int displayWave = stage.CurrentWaveIndex >= 0 ? stage.CurrentWaveIndex + 1 : 0;
+        string waveState = stage.CurrentWaveIndex >= 0 && stage.CurrentWaveIndex < waves.Length
+            ? waves[stage.CurrentWaveIndex].State.ToString()
+            : stage.State.ToString();
+        m_WaveText.text = $"Wave {displayWave}/{waves.Length}  |  {waveState}  |  Alive {alive}  |  Queue {queue.Length}";
     }
 
     private void RefreshWeaponStats()
@@ -184,6 +241,16 @@ public class HUDManager : MonoBehaviour
         {
             m_WeaponQuery.Dispose();
             m_WeaponQueryCreated = false;
+        }
+        if (m_StageQueryCreated)
+        {
+            m_StageQuery.Dispose();
+            m_StageQueryCreated = false;
+        }
+        if (m_MetricsQueryCreated)
+        {
+            m_MetricsQuery.Dispose();
+            m_MetricsQueryCreated = false;
         }
     }
 

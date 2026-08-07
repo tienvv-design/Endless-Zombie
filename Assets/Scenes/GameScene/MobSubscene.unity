@@ -188,8 +188,10 @@ GameObject:
   m_Component:
   - component: {fileID: 623872314}
   - component: {fileID: 623872315}
+  - component: {fileID: 623872316}
+  - component: {fileID: 623872317}
   m_Layer: 0
-  m_Name: MobEntitySpawner
+  m_Name: CombatMetrics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,35 +221,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 623872312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4701a2250eab43edbc98188d9e394534, type: 3}
+  m_Script: {fileID: 11500000, guid: c9f486386b754c3ca3fd985933ed34cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnRadius: 25
-  BaseSpawnRate: 1
-  RateIncrease: 0.15
-  ElapsedTime: 0
-  Timer: 0
-  WaveDuration: 60
-  WaveHealthMultiplier: 1.08
-  WaveDamageMultiplier: 1.05
-  EliteStartWave: 2
-  EliteBaseChance: 0.05
-  EliteChancePerWave: 0.025
-  EliteMaxChance: 0.25
-  EliteHealthMultiplier: 4
-  EliteDamageMultiplier: 2
-  EliteKnockbackResistance: 0.75
-  EliteScale: 1.4
-  EliteGoldMultiplier: 5
-  BossWaveInterval: 5
-  BossHealthMultiplier: 20
-  BossDamageMultiplier: 3
-  BossScale: 2
-  BossGoldMultiplier: 25
-  BossKnockbackResistance: 0.9
-  BossCrowdControlResistance: 0.85
-  BossPhaseSpeedMultiplier: 1.2
-  BossPhaseDamageMultiplier: 1.25
+--- !u!114 &623872316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623872312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6224de928edf434a84658a96fd36558e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _stage: {fileID: 11400000, guid: 148e93e9dab6479e8c93d58033c2dab0, type: 2}
+  _enemyCatalog: {fileID: 11400000, guid: e989f2056d58447db4b599c39fb986bf, type: 2}
+--- !u!114 &623872317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623872312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76c27046ddc43ee9adfc03f29563bce, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  GameplayRadius: 25
+  MinPlayerDistance: 10
+  MinClearance: 0.5
+  MaxPositionAttempts: 8
+  DeadZoneCenter: {x: 0, y: 0, z: 0}
+  DeadZoneSize: {x: 18, y: 10, z: 12}
+  Regions:
+  - GroupId: Outer
+    Center: {x: 0, y: 0.5, z: 18}
+    Size: {x: 20, y: 1, z: 8}
+  - GroupId: Outer
+    Center: {x: 0, y: 0.5, z: -18}
+    Size: {x: 20, y: 1, z: 8}
+  - GroupId: Outer
+    Center: {x: 18, y: 0.5, z: 0}
+    Size: {x: 8, y: 1, z: 20}
+  - GroupId: Outer
+    Center: {x: -18, y: 0.5, z: 0}
+    Size: {x: 8, y: 1, z: 20}
 --- !u!1 &778725616
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5052c39697734962921a9902e6554ea1, type: 3}
+  m_Name: EnemyCatalog
+  m_EditorClassIdentifier: 
+  Enemies:
+  - EnemyId: Normal
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 0
+    HealthMultiplier: 1
+    DamageMultiplier: 1
+    Scale: 1
+    XPReward: 5
+    GoldReward: 1
+  - EnemyId: Orbit
+    Prefab: {fileID: 1682824551111190682, guid: 89ab51157be1c174a8c7b16b84ab7be9, type: 3}
+    EnemyType: 0
+    HealthMultiplier: 1
+    DamageMultiplier: 1
+    Scale: 1
+    XPReward: 5
+    GoldReward: 1
+  - EnemyId: Elite
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 1
+    HealthMultiplier: 4
+    DamageMultiplier: 2
+    Scale: 1.4
+    XPReward: 25
+    GoldReward: 5
+  - EnemyId: Boss
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 2
+    HealthMultiplier: 20
+    DamageMultiplier: 3
+    Scale: 2
+    XPReward: 100
+    GoldReward: 20

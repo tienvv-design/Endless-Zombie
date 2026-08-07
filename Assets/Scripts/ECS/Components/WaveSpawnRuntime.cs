@@ -1,0 +1,89 @@
+using Unity.Collections;
+using Unity.Entities;
+
+public enum StageRuntimeState : byte
+{
+    NotStarted,
+    Running,
+    Completed,
+    Stopped,
+}
+
+public enum WaveRuntimeState : byte
+{
+    Pending,
+    Delay,
+    Active,
+    Completed,
+}
+
+public enum SpawnEntryRuntimeState : byte
+{
+    Pending,
+    Active,
+    Completed,
+    Failed,
+}
+
+public struct StageRuntime : IComponentData
+{
+    public FixedString64Bytes StageId;
+    public StageRuntimeState State;
+    public int CurrentWaveIndex;
+    public float DefaultWaveDelay;
+    public int MaxAliveEnemies;
+    public uint NextRequestSequence;
+}
+
+[InternalBufferCapacity(8)]
+public struct WaveRuntime : IBufferElementData
+{
+    public FixedString64Bytes WaveId;
+    public WaveType WaveType;
+    public WaveActivationCondition ActivationCondition;
+    public WaveRuntimeState State;
+    public float StateElapsedTime;
+    public float WaveDelay;
+    public int CompletionThreshold;
+    public int MaxAliveEnemies;
+    public int FirstSpawnEntryIndex;
+    public int SpawnEntryCount;
+}
+
+[InternalBufferCapacity(16)]
+public struct SpawnEntryRuntime : IBufferElementData
+{
+    public FixedString64Bytes EnemyId;
+    public Entity EnemyPrefab;
+    public EnemyType EnemyType;
+    public float HealthMultiplier;
+    public float DamageMultiplier;
+    public float Scale;
+    public int XPReward;
+    public int GoldReward;
+    public FixedString64Bytes SpawnArenaGroupId;
+    public SpawnEntryRuntimeState State;
+    public int WaveIndex;
+    public int Quantity;
+    public int EnqueuedCount;
+    public int SpawnedCount;
+    public float SpawnDelay;
+    public float SpawnInterval;
+    public float NextSpawnTime;
+}
+
+[InternalBufferCapacity(32)]
+public struct SpawnRequest : IBufferElementData
+{
+    public uint Sequence;
+    public int WaveIndex;
+    public int SpawnEntryIndex;
+    public Entity EnemyPrefab;
+    public EnemyType EnemyType;
+    public float HealthMultiplier;
+    public float DamageMultiplier;
+    public float Scale;
+    public int XPReward;
+    public int GoldReward;
+    public FixedString64Bytes SpawnArenaGroupId;
+}

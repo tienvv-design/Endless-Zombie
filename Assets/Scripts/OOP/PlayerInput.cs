@@ -7,8 +7,6 @@ public class PlayerInput : MonoBehaviour
     public static PlayerInput Instance;
     
     private PlayerInputActions _inputActions; 
-    [SerializeField] private CharacterLogic _characterLogic;
-
     public PlayerInputActions InputActions => _inputActions;
 
     void Awake()

@@ -67,6 +67,7 @@ namespace OOP.GameStates
 
         public void PlayerDeathCallback()
         {
+            WaveSpawnLifecycle.StopStage();
             GoldWallet.Instance?.BankRunReward();
             _gameState.SwitchState(_factory.GetGameState(GameStateType.GameOver));
         }

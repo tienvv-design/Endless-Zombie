@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CharacterLogic : MonoBehaviour, IGameRunning
 {
@@ -31,11 +30,6 @@ public class CharacterLogic : MonoBehaviour, IGameRunning
     {
         // The player is a stationary defender. Combat is handled automatically by ECS.
         _animator.SetBool(_isWalkingHash, false);
-    }
-
-    public void MoveInputCallback(InputAction.CallbackContext ctx)
-    {
-        // Intentionally ignored: this game mode does not allow player movement.
     }
 
     public DamageableType GetDamageableType()

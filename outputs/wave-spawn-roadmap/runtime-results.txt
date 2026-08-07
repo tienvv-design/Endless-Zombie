@@ -1,0 +1,9 @@
+state=Passed
+reason=time-budget-completed
+observedStage=True
+observedEnemies=True
+fifoValid=True
+maxAliveValid=True
+peakAlive=13
+peakQueue=0
+maxEditorFrameMs=5082,622

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f787873cab749dcb2312eebc75eb2b1, type: 3}
+  m_Name: Stage_01
+  StageId: Stage_01
+  DefaultWaveDelay: 3
+  MaxAliveEnemies: 20
+  Waves:
+  - WaveId: Wave_01
+    WaveType: 0
+    ActivationCondition: 0
+    WaveDelay: 1
+    CompletionThreshold: 4
+    MaxAliveEnemyOverride: 20
+    SpawnEntries:
+    - EnemyId: Normal
+      Quantity: 12
+      SpawnDelay: 0
+      SpawnInterval: 0.8
+      SpawnArenaGroupId: Outer
+    - EnemyId: Orbit
+      Quantity: 8
+      SpawnDelay: 2
+      SpawnInterval: 1.2
+      SpawnArenaGroupId: Outer
+  - WaveId: Wave_02
+    WaveType: 1
+    ActivationCondition: 1
+    WaveDelay: 3
+    CompletionThreshold: 2
+    MaxAliveEnemyOverride: 16
+    SpawnEntries:
+    - EnemyId: Normal
+      Quantity: 12
+      SpawnDelay: 0
+      SpawnInterval: 0.8
+      SpawnArenaGroupId: Outer
+    - EnemyId: Elite
+      Quantity: 6
+      SpawnDelay: 1
+      SpawnInterval: 1.5
+      SpawnArenaGroupId: Outer
+  - WaveId: Wave_03
+    WaveType: 3
+    ActivationCondition: 1
+    WaveDelay: 4
+    CompletionThreshold: 0
+    MaxAliveEnemyOverride: 8
+    SpawnEntries:
+    - EnemyId: Boss
+      Quantity: 1
+      SpawnDelay: 1
+      SpawnInterval: 0
+      SpawnArenaGroupId: Outer

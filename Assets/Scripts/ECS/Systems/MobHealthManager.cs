@@ -24,9 +24,7 @@ internal partial struct MobHealthManager : ISystem
         var mobs = SystemAPI.GetComponentLookup<Mob>(false);
         var transforms = SystemAPI.GetComponentLookup<LocalTransform>(false);
         var statusEffects = SystemAPI.GetComponentLookup<MobStatusEffects>(false);
-        float combatRadius = SystemAPI.TryGetSingleton(out MobSpawnSettings spawnSettings)
-            ? spawnSettings.SpawnRadius
-            : 25f;
+        const float combatRadius = 25f;
         RefRW<CombatMetrics> metrics = SystemAPI.GetSingletonRW<CombatMetrics>();
         
         foreach (var damageTakenEvent in SystemAPI.Query<RefRW<MobDamageTakenEvent>>())
@@ -73,7 +71,7 @@ internal partial struct MobHealthManager : ISystem
                 mobData.Health = 0;
                 metrics.ValueRW.KillCount++;
                 metrics.ValueRW.TotalTimeToKill += math.max(0f,
-                    spawnSettings.ElapsedTime - mobData.SpawnTime);
+                    (float)SystemAPI.Time.ElapsedTime - mobData.SpawnTime);
                 metrics.ValueRW.AverageTimeToKill = metrics.ValueRO.KillCount > 0
                     ? metrics.ValueRO.TotalTimeToKill / metrics.ValueRO.KillCount
                     : 0f;

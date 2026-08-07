@@ -40,6 +40,7 @@ public class SceneHandler : MonoBehaviour
 
         if (name == "GameScene")
         {
+            WaveSpawnLifecycle.ResetStage();
             // Debug.Log("Setting systems enabled!");
             // World.DefaultGameObjectInjectionWorld.QuitUpdate = false;
         }

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce1ca6457aa4de7ab6a12075ceb6a92, type: 3}
   m_Name: CharacterStats
   m_EditorClassIdentifier: 
-  MoveSpeed: 10
   Health: 100
   DamageDigitExplosionChance: 0.1
