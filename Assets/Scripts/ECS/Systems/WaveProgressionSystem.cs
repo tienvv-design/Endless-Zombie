@@ -9,6 +9,7 @@ public partial struct WaveProgressionSystem : ISystem
     {
         state.RequireForUpdate<StageRuntime>();
         state.RequireForUpdate<GameRunningTag>();
+        state.RequireForUpdate<GameplayStartedTag>();
     }
 
     [BurstCompile]

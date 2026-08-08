@@ -10,6 +10,7 @@ public partial struct WaveCompletionSystem : ISystem
         state.RequireForUpdate<StageRuntime>();
         state.RequireForUpdate<CombatMetrics>();
         state.RequireForUpdate<GameRunningTag>();
+        state.RequireForUpdate<GameplayStartedTag>();
     }
 
     [BurstCompile]

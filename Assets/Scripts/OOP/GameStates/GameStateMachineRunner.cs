@@ -10,6 +10,7 @@ namespace OOP.GameStates
     {
         private GameStateFactory _factory;
         private State _gameState;
+        private bool _gameplayStarted;
 
         void Awake()
         {
@@ -40,9 +41,6 @@ namespace OOP.GameStates
 
         private void Start()
         {
-            GoldWallet.Instance?.ResetRunReward();
-            State.EnterStates(_gameState);
-
             GameObject mainCharacter = GameObject.FindGameObjectWithTag("Player");
             if (mainCharacter != null && mainCharacter.TryGetComponent(out CharacterHealthManager healthManager))
             {
@@ -52,12 +50,28 @@ namespace OOP.GameStates
 
         private void Update()
         {
-            State.UpdateStates(_gameState);
+            if (_gameplayStarted)
+                State.UpdateStates(_gameState);
         }
 
         private void FixedUpdate()
         {
-            State.FixedUpdateStates(_gameState);
+            if (_gameplayStarted)
+                State.FixedUpdateStates(_gameState);
+        }
+
+        public void BeginGameplay()
+        {
+            if (_gameplayStarted)
+                return;
+
+            _gameplayStarted = true;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null && player.TryGetComponent(out CharacterHealthManager healthManager))
+                healthManager.ApplyMetaProgression();
+            GoldWallet.Instance?.ResetRunReward();
+            WaveSpawnLifecycle.BeginStage();
+            State.EnterStates(_gameState);
         }
 
         public void SetRunnerState(State state)

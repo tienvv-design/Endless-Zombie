@@ -17,6 +17,7 @@ public partial struct SpawnRequestProcessingSystem : ISystem
         state.RequireForUpdate<CombatMetrics>();
         state.RequireForUpdate<PhysicsWorldSingleton>();
         state.RequireForUpdate<GameRunningTag>();
+        state.RequireForUpdate<GameplayStartedTag>();
     }
 
     [BurstCompile]

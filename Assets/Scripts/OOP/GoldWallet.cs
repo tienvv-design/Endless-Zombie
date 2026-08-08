@@ -9,6 +9,7 @@ public class GoldWallet : MonoBehaviour
     public int Balance { get; private set; }
     public int RunReward { get; private set; }
     public int LastBankedReward { get; private set; }
+    private float m_RunRewardExact;
     public event Action<int> OnBalanceChanged;
     public event Action<int> OnRunRewardChanged;
 
@@ -43,8 +44,14 @@ public class GoldWallet : MonoBehaviour
 
     public void AddRunReward(int amount)
     {
+        AddRunReward((float)amount);
+    }
+
+    public void AddRunReward(float amount)
+    {
         if (amount <= 0) return;
-        RunReward += amount;
+        m_RunRewardExact += amount;
+        RunReward = Mathf.FloorToInt(m_RunRewardExact + 0.0001f);
         OnRunRewardChanged?.Invoke(RunReward);
     }
 
@@ -53,6 +60,7 @@ public class GoldWallet : MonoBehaviour
         int reward = RunReward;
         LastBankedReward = reward;
         RunReward = 0;
+        m_RunRewardExact = 0f;
         if (reward > 0) Add(reward);
         OnRunRewardChanged?.Invoke(RunReward);
         return reward;
@@ -61,6 +69,7 @@ public class GoldWallet : MonoBehaviour
     public void ResetRunReward()
     {
         RunReward = 0;
+        m_RunRewardExact = 0f;
         OnRunRewardChanged?.Invoke(0);
     }
 

@@ -50,6 +50,7 @@ public class SceneHandler : MonoBehaviour
             GoldWallet.Instance?.BankRunReward();
             PlayerInput.Instance?.InputActions.UI.Disable();
             PlayerInput.Instance?.InputActions.Player.Enable();
+            name = "GameScene";
         }
         
         SceneManager.LoadScene(name);

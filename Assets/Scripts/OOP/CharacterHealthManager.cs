@@ -18,9 +18,7 @@ public class CharacterHealthManager : Targetable
     {
         base.OnAwake();
 
-        m_MaxHealth = _characterStats.Health + MetaProgression.HealthBonus;
-        m_Armor = MetaProgression.Armor;
-        m_Health = m_MaxHealth;
+        ApplyMetaProgression();
         CreateWorldHealthBar();
         if (!TryGetComponent<AttackRangeIndicator>(out _))
             gameObject.AddComponent<AttackRangeIndicator>();
@@ -46,6 +44,17 @@ public class CharacterHealthManager : Targetable
     public float GetHealthPercentage()
     {
         return m_MaxHealth > 0 ? (float)m_Health / m_MaxHealth : 0f;
+    }
+
+    public int BaseHealth => _characterStats != null ? _characterStats.Health : 0;
+
+    public void ApplyMetaProgression()
+    {
+        m_MaxHealth = Mathf.Max(1, Mathf.RoundToInt(BaseHealth + MetaProgression.HealthBonus));
+        m_Armor = 0;
+        m_Health = m_MaxHealth;
+        if (m_WorldHealthFill != null)
+            m_WorldHealthFill.fillAmount = 1f;
     }
 
     private void CreateWorldHealthBar()

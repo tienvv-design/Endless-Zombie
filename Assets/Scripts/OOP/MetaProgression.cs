@@ -1,33 +1,114 @@
+using System;
 using UnityEngine;
+
+public enum StageUpgradeType
+{
+    Health,
+    Income
+}
+
+public readonly struct StageUpgradeSnapshot
+{
+    public readonly int Level;
+    public readonly int Progress;
+    public readonly bool IsBreakthrough;
+    public readonly int Cost;
+    public readonly float CurrentValue;
+    public readonly float NextValue;
+
+    public StageUpgradeSnapshot(int purchases, int cost, float currentValue, float nextValue)
+    {
+        Level = purchases + 1;
+        Progress = purchases % MetaProgression.PurchasesPerRank;
+        IsBreakthrough = Progress == MetaProgression.SmallPurchasesPerRank;
+        Cost = cost;
+        CurrentValue = currentValue;
+        NextValue = nextValue;
+    }
+}
 
 public static class MetaProgression
 {
-    private const string HealthLevelKey = "Meta.HealthLevel";
-    private const string ArmorLevelKey = "Meta.ArmorLevel";
+    public const int PurchasesPerRank = 10;
+    public const int SmallPurchasesPerRank = 9;
+    public const float HealthMarker = 10f;
+
+    private const string ActiveStageKey = "StageUpgrade.ActiveStage";
     private const string WeaponKey = "Meta.SelectedWeapon";
+    private static string s_StageId = "Stage1";
 
-    public static int HealthLevel => PlayerPrefs.GetInt(HealthLevelKey, 0);
-    public static int ArmorLevel => PlayerPrefs.GetInt(ArmorLevelKey, 0);
-    public static int HealthBonus => HealthLevel * 10;
-    public static int Armor => ArmorLevel;
+    public static event Action UpgradesChanged;
+    public static int HealthPurchases => GetPurchases(StageUpgradeType.Health);
+    public static int IncomePurchases => GetPurchases(StageUpgradeType.Income);
+    public static float HealthBonus => HealthValue(HealthPurchases) - HealthMarker;
+    public static float IncomeMultiplier => IncomeValue(IncomePurchases);
     public static int SelectedWeapon => PlayerPrefs.GetInt(WeaponKey, 0);
-    public static int HealthCost => 50 + HealthLevel * 35;
-    public static int ArmorCost => 75 + ArmorLevel * 50;
 
-    public static bool BuyHealth()
+    public static void BeginStageSession(string stageId)
     {
-        if (!GoldWallet.Instance || !GoldWallet.Instance.TrySpend(HealthCost)) return false;
-        PlayerPrefs.SetInt(HealthLevelKey, HealthLevel + 1);
+        s_StageId = string.IsNullOrWhiteSpace(stageId) ? "Stage1" : stageId.Trim();
+        string previousStage = PlayerPrefs.GetString(ActiveStageKey, string.Empty);
+        if (!string.IsNullOrEmpty(previousStage) && previousStage != s_StageId)
+        {
+            ClearStage(previousStage);
+            ClearStage(s_StageId);
+        }
+
+        PlayerPrefs.SetString(ActiveStageKey, s_StageId);
         PlayerPrefs.Save();
+        UpgradesChanged?.Invoke();
+    }
+
+    public static StageUpgradeSnapshot GetSnapshot(StageUpgradeType type)
+    {
+        int purchases = GetPurchases(type);
+        float current = type == StageUpgradeType.Health ? HealthValue(purchases) : IncomeValue(purchases);
+        float next = type == StageUpgradeType.Health ? HealthValue(purchases + 1) : IncomeValue(purchases + 1);
+        return new StageUpgradeSnapshot(purchases, UpgradeCost(purchases), current, next);
+    }
+
+    public static bool TryPurchase(StageUpgradeType type)
+    {
+        int purchases = GetPurchases(type);
+        if (GoldWallet.Instance == null || !GoldWallet.Instance.TrySpend(UpgradeCost(purchases)))
+            return false;
+
+        PlayerPrefs.SetInt(PurchaseKey(s_StageId, type), purchases + 1);
+        PlayerPrefs.Save();
+        UpgradesChanged?.Invoke();
         return true;
     }
 
-    public static bool BuyArmor()
+    public static void CompleteCurrentStage()
     {
-        if (!GoldWallet.Instance || !GoldWallet.Instance.TrySpend(ArmorCost)) return false;
-        PlayerPrefs.SetInt(ArmorLevelKey, ArmorLevel + 1);
+        ClearStage(s_StageId);
+        UpgradesChanged?.Invoke();
+    }
+
+    public static int UpgradeCost(int purchases) => Mathf.Max(1, Mathf.RoundToInt(20f * Mathf.Pow(1.2f, purchases)));
+
+    public static float HealthValue(int purchases)
+    {
+        int rank = purchases / PurchasesPerRank;
+        int progress = purchases % PurchasesPerRank;
+        return HealthMarker * Mathf.Pow(5f, rank) * (1f + 0.25f * progress);
+    }
+
+    public static float IncomeValue(int purchases)
+    {
+        int rank = purchases / PurchasesPerRank;
+        int progress = purchases % PurchasesPerRank;
+        return Mathf.Pow(2f, rank) * (1f + 0.05f * progress);
+    }
+
+    private static int GetPurchases(StageUpgradeType type) => PlayerPrefs.GetInt(PurchaseKey(s_StageId, type), 0);
+    private static string PurchaseKey(string stageId, StageUpgradeType type) => $"StageUpgrade.{stageId}.{type}";
+
+    private static void ClearStage(string stageId)
+    {
+        PlayerPrefs.DeleteKey(PurchaseKey(stageId, StageUpgradeType.Health));
+        PlayerPrefs.DeleteKey(PurchaseKey(stageId, StageUpgradeType.Income));
         PlayerPrefs.Save();
-        return true;
     }
 
     public static int WeaponCost(int weaponIndex) => weaponIndex == 0 ? 0 : 150 * weaponIndex;
@@ -37,47 +118,11 @@ public static class MetaProgression
     {
         if (!IsWeaponUnlocked(index))
         {
-            if (!GoldWallet.Instance || !GoldWallet.Instance.TrySpend(WeaponCost(index))) return false;
+            if (GoldWallet.Instance == null || !GoldWallet.Instance.TrySpend(WeaponCost(index))) return false;
             PlayerPrefs.SetInt($"Meta.Weapon.{index}", 1);
         }
         PlayerPrefs.SetInt(WeaponKey, index);
         PlayerPrefs.Save();
         return true;
-    }
-}
-
-public class MainMenuMetaShop : MonoBehaviour
-{
-    private readonly string[] m_Weapons = { "Pistol", "Shotgun", "Assault Rifle", "Rocket Launcher" };
-    private GUIStyle m_Title;
-    private GUIStyle m_Label;
-
-    private void OnGUI()
-    {
-        m_Title ??= new GUIStyle(GUI.skin.label) { fontSize = 25, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
-        m_Label ??= new GUIStyle(GUI.skin.label) { fontSize = 17 };
-        Rect safe = Screen.safeArea;
-        float panelWidth = Mathf.Min(420f, safe.width - 24f);
-        float guiSafeTop = Screen.height - safe.yMax;
-        Rect panel = new Rect(safe.xMax - panelWidth - 12f, guiSafeTop + 12f, panelWidth, Mathf.Min(500f, safe.height - 24f));
-        GUI.Box(panel, GUIContent.none);
-        GUILayout.BeginArea(new Rect(panel.x + 18f, panel.y + 12f, panel.width - 36f, panel.height - 24f));
-        GUILayout.Label("ARMORY & SURVIVOR", m_Title, GUILayout.Height(38f));
-        GUILayout.Label($"Gold: {(GoldWallet.Instance ? GoldWallet.Instance.Balance : 0)}", m_Label);
-        if (GUILayout.Button($"Upgrade Health  +10 HP   ({MetaProgression.HealthCost} Gold)", GUILayout.Height(48f)))
-            MetaProgression.BuyHealth();
-        if (GUILayout.Button($"Upgrade Armor  +1 reduction   ({MetaProgression.ArmorCost} Gold)", GUILayout.Height(48f)))
-            MetaProgression.BuyArmor();
-        GUILayout.Label($"Health bonus: +{MetaProgression.HealthBonus}   Armor: {MetaProgression.Armor}", m_Label);
-        GUILayout.Space(8f);
-        GUILayout.Label("Weapons", m_Label);
-        for (int i = 0; i < m_Weapons.Length; i++)
-        {
-            bool unlocked = MetaProgression.IsWeaponUnlocked(i);
-            string state = MetaProgression.SelectedWeapon == i ? "EQUIPPED" : unlocked ? "Select" : $"Buy {MetaProgression.WeaponCost(i)} Gold";
-            if (GUILayout.Button($"{m_Weapons[i]}  -  {state}", GUILayout.Height(44f)))
-                MetaProgression.BuyOrSelectWeapon(i);
-        }
-        GUILayout.EndArea();
     }
 }

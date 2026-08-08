@@ -7,6 +7,7 @@ public static class WaveSpawnLifecycle
 
     public static void StopStage()
     {
+        RemoveGameplayStartedTag();
         if (!TryGetStage(out EntityManager manager, out Entity stageEntity)) return;
         StageRuntime stage = manager.GetComponentData<StageRuntime>(stageEntity);
         stage.State = StageRuntimeState.Stopped;
@@ -19,6 +20,9 @@ public static class WaveSpawnLifecycle
         World world = World.DefaultGameObjectInjectionWorld;
         if (world == null || !world.IsCreated) return;
         EntityManager manager = world.EntityManager;
+        EntityQuery startGate = manager.CreateEntityQuery(typeof(GameplayStartedTag));
+        manager.DestroyEntity(startGate);
+        startGate.Dispose();
         EntityQuery mobs = manager.CreateEntityQuery(typeof(Mob));
         manager.DestroyEntity(mobs);
         mobs.Dispose();
@@ -52,6 +56,28 @@ public static class WaveSpawnLifecycle
         }
     }
 
+    public static void BeginStage()
+    {
+        ResetStage();
+        World world = World.DefaultGameObjectInjectionWorld;
+        if (world == null || !world.IsCreated) return;
+        EntityManager manager = world.EntityManager;
+        EntityQuery query = manager.CreateEntityQuery(typeof(GameplayStartedTag));
+        bool exists = !query.IsEmptyIgnoreFilter;
+        query.Dispose();
+        if (!exists)
+            manager.CreateEntity(typeof(GameplayStartedTag));
+    }
+
+    private static void RemoveGameplayStartedTag()
+    {
+        World world = World.DefaultGameObjectInjectionWorld;
+        if (world == null || !world.IsCreated) return;
+        EntityQuery query = world.EntityManager.CreateEntityQuery(typeof(GameplayStartedTag));
+        world.EntityManager.DestroyEntity(query);
+        query.Dispose();
+    }
+
     private static bool TryGetStage(out EntityManager manager, out Entity stageEntity)
     {
         World world = World.DefaultGameObjectInjectionWorld;
@@ -69,7 +95,11 @@ public static class WaveSpawnLifecycle
         return found;
     }
 
-    internal static void RaiseStageCompleted() => StageCompleted?.Invoke();
+    internal static void RaiseStageCompleted()
+    {
+        MetaProgression.CompleteCurrentStage();
+        StageCompleted?.Invoke();
+    }
 }
 
 [UpdateAfter(typeof(WaveCompletionSystem))]

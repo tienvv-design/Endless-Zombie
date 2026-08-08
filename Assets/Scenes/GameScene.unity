@@ -2591,6 +2591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 833957574}
   - component: {fileID: 833957575}
+  - component: {fileID: 833957576}
   m_Layer: 0
   m_Name: GameStateMachine
   m_TagString: Untagged
@@ -2623,8 +2624,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87c8e155385d4f9fb0cccbb13ed2e4a7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!114 &833957576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833957573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9e79f29f3b40f44a1b23d2b1d91786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuCameraPosition: {x: 0, y: 6.5, z: -5.2}
+  _menuCameraEuler: {x: 47, y: 0, z: 0}
+  _menuFieldOfView: 42
+  _gameCameraPosition: {x: 0, y: 15.5, z: -2.56}
+  _gameCameraEuler: {x: 81, y: 0, z: 0}
+  _gameFieldOfView: 80
+  _transitionDuration: 1.15
 --- !u!1 &895392384
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,8 @@ public partial class MobDeathBridge : SystemBase
         {
             AudioManager.Instance.Play(SoundLabel.MobDeathSound);
             if (GoldWallet.Instance)
-                GoldWallet.Instance.AddRunReward(mobDeathEvent.ValueRO.GoldReward);
+                GoldWallet.Instance.AddRunReward(Mathf.Max(0f,
+                    mobDeathEvent.ValueRO.GoldReward * MetaProgression.IncomeMultiplier));
         }
     }
 }

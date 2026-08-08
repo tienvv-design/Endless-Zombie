@@ -1,6 +1,8 @@
 using Unity.Collections;
 using Unity.Entities;
 
+public struct GameplayStartedTag : IComponentData { }
+
 public enum StageRuntimeState : byte
 {
     NotStarted,

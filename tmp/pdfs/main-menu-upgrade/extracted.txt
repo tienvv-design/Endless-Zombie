@@ -1,0 +1,265 @@
+--- PAGE 1 ---
+MAIN MENU UPGRADE / FDD v3.9
+FEATURE DESIGN DOCUMENT
+MAIN MENU UPGRADE
+Max HP • Income • Power Up
+Thông tin Nội dung
+Mục đích Giúp mọi người hiểu hệ thống hoạt động như thế nào.
+Loại feature Main Menu / Hero Upgrade
+Phiên bản Prototype
+Ngày cập nhật 06/08/2026
+Người thực hiện Phạm Minh Thắng
+Đọc nhanh trong 20 giây: Main Menu có 3 loại nâng cấp cho Hero: Max HP, Income và Power
+Up. Nâng cấp được giữ qua các run trong cùng Stage và reset khi Stage kết thúc. Main Menu
+Upgrade, Rank và Breakthrough chỉ là thuật ngữ mô tả trong tài liệu; game không bắt buộc hiển
+thị các chữ này.
+GAME DESIGN • SYSTEM LOGIC | 1
+
+--- PAGE 2 ---
+MAIN MENU UPGRADE / FDD v3.9
+1. FEATURE NÀY LÀ GÌ?
+Main Menu Upgrade là nơi người chơi nâng cấp Hero. Hero đã nâng cấp sẽ được người chơi sử
+dụng khi tham gia các Stage.
+Thông tin đã chốt Nội dung
+Đối tượng nâng cấp Hero
+Mục đích sử dụng Hero được dùng để tham gia các Stage.
+Điều kiện mở Hoàn thành run đầu tiên của Stage 1.
+Thời điểm mở Khi người chơi quay về Main Menu lần đầu sau run đó.
+Phạm vi tài liệu: Tài liệu này chỉ mô tả cách nâng cấp Hero ngoài Main Menu. Cách Hero chọn
+và tấn công mục tiêu trong Stage thuộc tài liệu Combat Design.
+Người chơi có thể chọn một trong ba loại nâng cấp:
+● Max HP: giúp Hero sống lâu hơn.
+● Income: tăng lượng Vàng rơi ra từ kẻ địch trong Stage.
+● Power Up: tăng Damage và số mục tiêu Hero có thể đánh cùng lúc.
+Ý chính: Người chơi luôn nhìn thấy mình đang ở Level nào, sắp nhận gì và cần bao nhiêu Vàng
+để nâng.
+2. MỤC TIÊU CỦA FEATURE
+● Cho người chơi một mục tiêu để tiếp tục mạnh lên.
+● Mỗi lần nâng đều có kết quả rõ ràng.
+● Breakthrough là mốc thưởng lớn và dễ nhớ.
+● Người chơi có thể hiểu phần thưởng kế tiếp mà không cần tính toán.
+3. CÁC TỪ CẦN BIẾT
+Từ Nghĩa đơn giản
+Level Cấp hiện tại của một loại nâng cấp.
+Rank Một nhóm gồm nhiều lần nâng nhỏ và một Breakthrough.
+Breakthrough Lần nâng cuối Rank. Phần thưởng lớn hơn lần nâng thường.
+Vàng (Gold) Loại tiền dùng để mua nâng cấp.
+Max HP Lượng máu tối đa của Hero.
+Income Hệ số nhân lượng Vàng rơi ra từ kẻ địch.
+GAME DESIGN • SYSTEM LOGIC | 2
+
+--- PAGE 3 ---
+MAIN MENU UPGRADE / FDD v3.9
+Từ Nghĩa đơn giản
+Damage Sức mạnh gây sát thương.
+Số mục tiêu khác nhau mà Hero đánh cùng lúc trong một hoạt ảnh tấn
+Attack Target công. Hero bắt đầu với 1 Attack Target. Chỉ hiện trên card Power Up khi
+Level tiếp theo tăng số mục tiêu.
+4. NGƯỜI CHƠI SỬ DỤNG FEATURE NHƯ THẾ NÀO?
+1. Người chơi mở Main Menu.
+2. Người chơi chọn mục Upgrade.
+3. Màn hình cho biết Level hiện tại và phần thưởng của Level tiếp theo.
+4. Nếu đủ Vàng, người chơi nhấn nút Upgrade.
+5. Game trừ số Vàng tương ứng và cộng phần thưởng.
+6. Màn hình cập nhật Level mới và cho người chơi thấy mình vừa nhận được gì.
+Nếu không đủ Vàng: Nút Upgrade không dùng được. Game phải nói rõ người chơi còn thiếu bao
+nhiêu Vàng.
+5. BA DANH MỤC NÂNG CẤP
+Danh mục Tác dụng Cấu trúc một Rank
+Tăng Max HP tạm thời của Hero trong
+Max HP 9 lần nâng nhỏ + 1 Breakthrough
+Stage.
+Income Tăng lượng Vàng rơi ra từ kẻ địch. 9 lần nâng nhỏ + 1 Breakthrough
+Tăng Damage; các Breakthrough đầu
+Power Up 5 lần tăng Damage + 1 Breakthrough
+tăng Attack Target.
+Quy tắc lưu theo Stage: Các nâng cấp được giữ khi một run kết thúc nhưng người chơi vẫn
+đang ở cùng Stage. Khi Stage kết thúc hoặc người chơi chuyển sang Stage khác, các nâng cấp
+này reset về ban đầu.
+Level không giới hạn: Max HP, Income và Power Up không có Level tối đa. Người chơi có thể
+tiếp tục nâng; chỉ số và giá tiếp tục tăng theo công thức của từng danh mục.
+6. NÂNG CẤP MAX HP
+Max HP giúp Hero bắt đầu run mới với nhiều máu hơn. Hệ thống dùng một giá trị riêng gọi là Mốc
+HP (M) để tính mức tăng. Mặc định M = 10 và có thể thay đổi trong config. M không phải HP gốc
+của Hero. Vì vậy, chỉnh HP gốc không làm thay đổi lượng HP nhận được sau mỗi lần nâng; chỉnh M
+sẽ thay đổi đường tăng Max HP nhưng không làm đổi HP gốc.
+GAME DESIGN • SYSTEM LOGIC | 3
+
+--- PAGE 4 ---
+MAIN MENU UPGRADE / FDD v3.9
+6.1. Cấu trúc Rank
+● Một Rank có 10 lần mua: 9 lần nâng nhỏ và 1 Breakthrough.
+● Sau Breakthrough, progress về 0/9; Level vẫn tiếp tục tăng.
+Quy tắc dễ nhớ: Mỗi lần nâng nhỏ cộng 25% Mốc HP đầu Rank. Breakthrough tạo Mốc HP
+đầu Rank mới bằng 5 lần mốc cũ. Công thức không dùng HP gốc của Hero.
+6.2. Công thức Max HP
+Giá trị Cách tính
+Số lần đã mua k = Level hiển thị - 1
+Rank hiện tại r = phần nguyên của k / 10
+Progress trong Rank p = phần dư của k / 10
+Mốc HP đầu Rank M × 5^r; M lấy từ config, mặc định 10
+Mốc HP hiện tại Mốc HP đầu Rank × (1 + 0.25 × p)
+Giá lần mua tiếp theo Làm tròn: 20 × 1.2^k
+6.3. Ví dụ nhanh
+Level trên card Progress Mốc HP trước → sau Giá
+1 0/9 10 → 12.5 20
+2 1/9 12.5 → 15 24
+10 9/9 32.5 → 50 (Breakthrough) 103
+11 0/9 50 → 62.5 124
+Giá trị trên card: Max HP cuối cùng = HP gốc của Hero + (Mốc HP hiện tại - M) + Max HP từ
+nguồn khác. M được lấy từ config. Ví dụ với M = 10, lần nâng đầu cho +2.5 HP: HP gốc 10
+hiển thị 10 → 12.5; HP gốc 20 hiển thị 20 → 22.5. Xem thêm mục 9.1.
+7. NÂNG CẤP INCOME
+Income là hệ số nhân lượng Vàng rơi ra từ kẻ địch trong Stage.
+7.1. Cấu trúc Rank
+● Một Rank có 10 lần mua: 9 lần nâng nhỏ và 1 Breakthrough.
+● Sau Breakthrough, progress về 0/9; Level vẫn tiếp tục tăng.
+GAME DESIGN • SYSTEM LOGIC | 4
+
+--- PAGE 5 ---
+MAIN MENU UPGRADE / FDD v3.9
+Quy tắc dễ nhớ: Mỗi lần nâng nhỏ cộng 5% Income đầu Rank. Breakthrough đưa Income đầu
+Rank mới lên gấp 2 lần.
+7.2. Công thức Income
+Giá trị Cách tính
+Số lần đã mua k = Level hiển thị - 1
+Rank hiện tại r = phần nguyên của k / 10
+Progress trong Rank p = phần dư của k / 10
+Income đầu Rank 2^r
+Income hiện tại Income đầu Rank × (1 + 0.05 × p)
+Vàng gốc của kẻ địch thường 2 Gold
+Vàng thô rơi ra Vàng gốc của kẻ địch × Income hiện tại
+Giá lần mua tiếp theo Làm tròn: 20 × 1.2^k
+7.3. Các mốc ví dụ
+Level trên card Progress Income trước → sau Giá
+1 0/9 x1.00 → x1.05 20
+10 9/9 x1.45 → x2.00 (Breakthrough) 103
+11 0/9 x2.00 → x2.10 124
+20 9/9 x2.90 → x4.00 (Breakthrough) 639
+Ví dụ dễ hiểu: Kẻ địch thường có 2 Gold gốc. Ở Income x1.00, kẻ địch rơi 2 Gold. Ở Income
+x1.30, lượng Vàng thô là 2 × 1.30 = 2.60 Gold.
+Mỗi loại kẻ địch có thể có lượng Vàng gốc riêng. Income luôn nhân vào lượng Vàng gốc đó. Quy tắc
+làm tròn lượng Vàng cuối cùng thuộc logic reward của Stage.
+8. NÂNG CẤP POWER UP
+8.1. Cấu trúc Rank
+Mỗi Rank có 6 Level: 5 Level đầu tăng Damage; Level thứ 6 là Breakthrough. Vì vậy, Breakthrough
+nằm ở Level 6, 12, 18, 24, 30, ...
+GAME DESIGN • SYSTEM LOGIC | 5
+
+--- PAGE 6 ---
+MAIN MENU UPGRADE / FDD v3.9
+8.2. Damage của Level thường
+Công thức: Ở Rank r, mỗi Level thường cho Damage +(r + 1). Năm Level thường cho tổng
+Damage +5 × (r + 1).
+Rank Level của Rank Damage mỗi Level thường Tổng Damage của 5 Level thường
+1 1 - 6 +2 +10
+2 7 - 12 +3 +15
+3 13 - 18 +4 +20
+4 19 - 24 +5 +25
+8.3. Breakthrough
+Ba Breakthrough đầu không cộng Damage. Mỗi mốc cho Attack Target +1, giúp Hero đánh thêm một
+mục tiêu khác trong cùng một hoạt ảnh tấn công.
+Level Phần thưởng Giá Breakthrough
+6 Attack Target +1: tổng mục tiêu 1 → 2 5K
+12 Attack Target +1: tổng mục tiêu 2 → 3 40K
+18 Attack Target +1: tổng mục tiêu 3 → 4 120K
+24 Damage +50 240K
+30 Damage +100 320K
+36 Damage +150 400K
+Giới hạn: Tổng Attack Target tối đa là 4. Sau Level 18, Breakthrough chuyển sang cộng Damage.
+Mỗi mốc mới cho thêm 50 Damage và có giá cao hơn mốc trước 80K.
+Ví dụ tổng: Sau Level 6: +10 Damage và 2 Attack Target. Sau Level 18: +45 Damage và 4 Attack
+Target. Sau Level 24: +120 Damage và vẫn có 4 Attack Target.
+8.4. Giá nâng cấp
+Gọi R là Rank và P là vị trí trong Rank. P từ 1 đến 5 là Level Damage; P = 6 là Breakthrough.
+Giá trị Cách tính
+Giá đầu Rank Rank 1: 1K; Rank 2: 20K; từ Rank 3: 80K × (R - 2)
+Giá Breakthrough Rank 1: 5K; Rank 2: 40K; Rank 3: 120K; từ Rank 4: 80K × (R - 1)
+GAME DESIGN • SYSTEM LOGIC | 6
+
+--- PAGE 7 ---
+MAIN MENU UPGRADE / FDD v3.9
+Giá trị Cách tính
+Giá tham chiếu của Level Damage Giá đầu Rank + (Giá Breakthrough - Giá đầu Rank) × (P - 1) / 5
+Giá Level Damage Làm tròn đẹp: Giá tham chiếu × 0.7
+Giá khi P = 6 Dùng đúng giá Breakthrough; không giảm 30%.
+Làm tròn đẹp: Dưới 10K làm tròn theo 250; từ 10K đến dưới 50K làm tròn theo 1K; từ 50K trở
+lên làm tròn theo 5K.
+Rank Giá 5 Level Damage Giá Breakthrough
+1 750 → 1.25K → 1.75K → 2.5K → 3K 5K
+2 14K → 17K → 20K → 22K → 25K 40K
+3 55K → 60K → 65K → 75K → 80K 120K
+4 110K → 125K → 135K → 145K → 155K 240K
+5 170K → 180K → 190K → 200K → 215K 320K
+6 225K → 235K → 245K → 260K → 270K 400K
+9. MÀN HÌNH CẦN CHO NGƯỜI CHƠI THẤY GÌ?
+● Ba danh mục: Max HP, Income và Power Up.
+● Level, tiến độ trong chuỗi nâng cấp và phần thưởng tiếp theo.
+● Giá trị trước → sau, giá nâng và số Vàng đang có.
+● Dấu hiệu rõ ràng khi Level tiếp theo là mốc thưởng lớn; không bắt buộc hiện chữ Breakthrough.
+Danh mục Thông tin chính trên card
+Max HP Level, progress 0/9 - 9/9, Max HP trước → sau, giá
+Income Level, progress 0/9 - 9/9, Income trước → sau, giá
+Level, progress trong 6 mốc và giá. Bình thường hiện Damage trước → sau;
+Power Up
+khi Level tiếp theo tăng mục tiêu, hiện Attack Target trước → sau.
+GAME DESIGN • SYSTEM LOGIC | 7
+
+--- PAGE 8 ---
+MAIN MENU UPGRADE / FDD v3.9
+Hình 1. Ảnh tham khảo cách hiển thị Level, chỉ số trước → sau, giá và tiến độ trên ba card nâng cấp. Chỉ tham khảo cách
+truyền đạt thông tin; hình ảnh và màu sắc cuối sẽ theo UI của game.
+9.1. Chỉ số trước và sau trên card
+Nếu chỉ số còn chịu ảnh hưởng từ Equipment, Talent hoặc nguồn khác, card phải hiển thị chỉ số sau
+cùng sau khi đã tính tất cả nguồn đang có hiệu lực.
+Giá trị Cách tính
+Tính chỉ số sau cùng với Level Main Menu hiện tại và các nguồn khác đang
+Chỉ số trước nâng cấp
+có.
+Tính lại chỉ số sau cùng với Level Main Menu tiếp theo và giữ nguyên các
+Chỉ số sau nâng cấp
+nguồn khác.
+Ví dụ Lv.11 (HP gốc Hero
+Không có nguồn ngoài Có nguồn ngoài +20 Max HP
+= 10)
+Trước nâng cấp 50 50 + 20 = 70
+Sau nâng cấp 62.5 62.5 + 20 = 82.5
+Card hiển thị 50 → 62.5 70 → 82.5
+Quy tắc quan trọng: Nguồn chỉ số khác không làm thay đổi lượng tăng của Main Menu. Trong ví
+dụ trên, cả hai trường hợp đều tăng đúng 12.5 Max HP.
+9.2. Phản hồi sau khi nâng
+Trường hợp Game cần làm
+Nâng thường Hiện rõ chỉ số cũ đổi thành chỉ số mới.
+Mốc tăng Attack Target Hiện Attack Target cũ đổi thành Attack Target mới trên card Power Up.
+Breakthrough Dùng phản hồi nổi bật hơn lần nâng thường.
+GAME DESIGN • SYSTEM LOGIC | 8
+
+--- PAGE 9 ---
+MAIN MENU UPGRADE / FDD v3.9
+Trường hợp Game cần làm
+Không đủ Vàng Không nâng; nói rõ người chơi còn thiếu bao nhiêu Vàng.
+10. CÁC QUY TẮC KHÔNG ĐƯỢC SAI
+● Max HP, Income và Power Up không có Level tối đa; chỉ số và giá tiếp tục tăng theo công thức.
+● Max HP và Income có 9 lần nâng nhỏ, sau đó là 1 Breakthrough.
+● Max HP: Mốc HP (M) là giá trị config riêng, mặc định là 10 và không phải HP gốc của Hero. Mỗi
+lần nâng nhỏ tăng 25% Mốc HP đầu Rank; Breakthrough đưa mốc này lên ×5 ở Rank mới.
+● Income: mỗi lần nhỏ tăng 5% Income đầu Rank; Breakthrough đưa Income đầu Rank mới lên
+×2.
+● Giá Max HP và Income được tính từ giá gốc 20 với hệ số ×1.2 theo tổng số lần đã mua; không
+nhân tiếp từ giá đã làm tròn.
+● Các nâng cấp được giữ qua nhiều run trong cùng Stage và reset khi Stage kết thúc hoặc chuyển
+Stage.
+● Power Up có 5 Level tăng Damage rồi đến 1 Breakthrough.
+● Giá của 5 Level Damage bằng 70% đường giá tham chiếu rồi làm tròn đẹp; giá Breakthrough
+không giảm 30%.
+● Ba Breakthrough Attack Target có giá 5K, 40K và 120K. Từ Rank 4, giá Breakthrough bắt đầu ở
+240K và tăng 80K mỗi Rank.
+● Level 6, 12 và 18 chỉ cho Attack Target +1; tổng Attack Target tối đa là 4.
+● Attack Target giúp Hero đánh nhiều mục tiêu trong cùng một hoạt ảnh, không tạo thêm đòn
+đánh.
+● Breakthrough Level 24 cho +50 Damage; mỗi Breakthrough sau đó nhiều hơn mốc trước 50
+Damage.
+● Chỉ số trước và sau trên card phải là chỉ số sau cùng sau khi tính cả Main Menu và các nguồn
+đang có hiệu lực.
+● Phần thưởng hiện trên màn hình phải giống phần thưởng người chơi thật sự nhận được.
+GAME DESIGN • SYSTEM LOGIC | 9

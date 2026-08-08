@@ -1924,6 +1924,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9e79f29f3b40f44a1b23d2b1d91786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterPreviewPrefab: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
+  _previewPosition: {x: 0, y: 0, z: 0}
+  _previewScale: {x: 1, y: 1, z: 1}
+  _menuCameraPosition: {x: 0, y: 6.5, z: -5.2}
+  _menuCameraEuler: {x: 47, y: 0, z: 0}
+  _menuFieldOfView: 42
+  _gameCameraPosition: {x: 0, y: 15.5, z: -2.56}
+  _gameCameraEuler: {x: 81, y: 0, z: 0}
+  _gameFieldOfView: 80
+  _transitionDuration: 1.15
 --- !u!4 &1486001067
 Transform:
   m_ObjectHideFlags: 0

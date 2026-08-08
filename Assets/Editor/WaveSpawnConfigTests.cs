@@ -80,6 +80,7 @@ public sealed class WaveSpawnConfigTests
 
         Entity gate = manager.CreateEntity();
         manager.AddComponent<GameRunningTag>(gate);
+        manager.AddComponent<GameplayStartedTag>(gate);
         simulation.Update();
 
         DynamicBuffer<SpawnRequest> requests = manager.GetBuffer<SpawnRequest>(stageEntity);
@@ -96,7 +97,9 @@ public sealed class WaveSpawnConfigTests
         using var world = new World("WaveSpawnStressTest");
         EntityManager manager = world.EntityManager;
         Entity stageEntity = CreateRuntimeStage(manager, entryCount: 100, quantityPerEntry: 100);
-        manager.AddComponent<GameRunningTag>(manager.CreateEntity());
+        Entity gate = manager.CreateEntity();
+        manager.AddComponent<GameRunningTag>(gate);
+        manager.AddComponent<GameplayStartedTag>(gate);
         SystemHandle scheduler = world.CreateSystem<SpawnEntrySchedulerSystem>();
         SimulationSystemGroup simulation = world.GetOrCreateSystemManaged<SimulationSystemGroup>();
         simulation.AddSystemToUpdateList(scheduler);

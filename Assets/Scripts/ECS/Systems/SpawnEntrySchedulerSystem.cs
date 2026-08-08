@@ -11,6 +11,7 @@ public partial struct SpawnEntrySchedulerSystem : ISystem
     {
         state.RequireForUpdate<StageRuntime>();
         state.RequireForUpdate<GameRunningTag>();
+        state.RequireForUpdate<GameplayStartedTag>();
     }
 
     [BurstCompile]
