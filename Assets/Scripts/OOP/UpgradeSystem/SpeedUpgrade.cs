@@ -8,8 +8,6 @@ public class SpeedUpgrade : CharUpgrade
     [Tooltip("The value to add to the multiplier per level, for example if value is 0.2 and upgrade level is 2 move speed will increase by 0.4")]
     public float MultiplierPerLevel;
     
-    private int m_UpgradeLevel = 1; 
-    
     public override UpgradeTypes GetUpgradeType()
     {
         return UpgradeTypes.ProjectileSpeed;

@@ -11,7 +11,6 @@ public class CharacterHealthManager : Targetable
     
     private int m_Health;
     private int m_MaxHealth;
-    private int m_Armor;
     private Image m_WorldHealthFill;
 
     protected override void OnAwake()
@@ -28,7 +27,7 @@ public class CharacterHealthManager : Targetable
 
     public override void TakeDamage(int damageAmount)
     {
-        m_Health -= Mathf.Max(1, damageAmount - m_Armor);
+        m_Health -= Mathf.Max(1, damageAmount);
         
         if (m_Health <= 0)
         {
@@ -51,7 +50,6 @@ public class CharacterHealthManager : Targetable
     public void ApplyMetaProgression()
     {
         m_MaxHealth = Mathf.Max(1, Mathf.RoundToInt(BaseHealth + MetaProgression.HealthBonus));
-        m_Armor = 0;
         m_Health = m_MaxHealth;
         if (m_WorldHealthFill != null)
             m_WorldHealthFill.fillAmount = 1f;

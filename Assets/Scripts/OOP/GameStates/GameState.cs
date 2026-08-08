@@ -5,7 +5,7 @@ namespace OOP.GameStates
 {
     public abstract class GameState : State
     {
-        protected GameStateMachineRunner _context;
+        protected new GameStateMachineRunner _context;
         protected GameStateFactory _factory;
 
         public static void EnableMonoBehaviours<T>( bool disableOthers = true) where T : IGameState

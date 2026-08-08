@@ -4,7 +4,6 @@ namespace OOP.HFSMScripts
 {
     public abstract class State 
     {
-        private bool _isRootState = true;
         protected IStateMachineRunner _context;
         protected State m_SubState;
         protected State m_SuperState;
@@ -72,7 +71,6 @@ namespace OOP.HFSMScripts
         }
 
         protected void SetSuperState(State superState){
-            _isRootState = false;
             m_SuperState = superState;
             superState.m_SubState = this;
         }
