@@ -23,4 +23,11 @@ public class WeaponSynergyUpgrade : CharUpgrade
     {
         return UpgradeTypes.WeaponSynergy;
     }
+
+    public override string GetValuePreview(int currentLevel)
+    {
+        if (!TryGetGunStats(out _, out GunModifiers modifiers))
+            return base.GetValuePreview(currentLevel);
+        return $"SYNERGY  {modifiers.SynergyLevel} → {modifiers.SynergyLevel + 1}";
+    }
 }

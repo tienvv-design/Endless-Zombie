@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bb60d727e34574a433cb5ad97f1ee2, type: 3}
   m_Name: RocketLauncher
   m_EditorClassIdentifier: 
+  WeaponId: rocket_launcher
+  DisplayName: Rocket Launcher
+  Icon: {fileID: 0}
+  HeldWeaponPrefab: {fileID: 0}
+  HeldLocalPosition: {x: 0, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 0, y: 0, z: 0}
+  HeldLocalScale: {x: 1, y: 1, z: 1}
   Archetype: 4
   BaseDamage: 4
   BaseShotsPerSecond: 0.6
@@ -24,8 +31,8 @@ MonoBehaviour:
   BaseKnockback: 1.2
   BaseSpreadAngle: 0
   MinimumFireInterval: 0.2
-  MagazineSize: 3
-  ReloadDuration: 2.4
+  BaseMagazineSize: 3
+  BaseReloadDuration: 2.4
   IsExplosive: 1
   ExplosionRadius: 2.5
   ExplosionDamageMultiplier: 1

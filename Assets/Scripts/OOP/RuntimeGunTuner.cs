@@ -61,8 +61,8 @@ public class RuntimeGunTuner : MonoBehaviour
         ShotsPerSecond = gun.BaseShotsPerSecond;
         AttackRange = gun.BaseAttackRange;
         ProjectileSpeed = gun.BaseProjectileSpeed;
-        MagazineSize = gun.MagazineSize;
-        ReloadDuration = gun.ReloadDuration;
+        MagazineSize = gun.BaseMagazineSize;
+        ReloadDuration = gun.BaseReloadDuration;
         ProjectileCount = gun.BaseProjectileCount;
         CriticalChance = gun.BaseCriticalChance;
         CriticalMultiplier = gun.BaseCriticalDamage;
@@ -75,9 +75,8 @@ public class RuntimeGunTuner : MonoBehaviour
         gun.BaseShotsPerSecond = Mathf.Max(0.01f, ShotsPerSecond);
         gun.BaseAttackRange = Mathf.Max(0.1f, AttackRange);
         gun.BaseProjectileSpeed = Mathf.Max(0.1f, ProjectileSpeed);
-        gun.MagazineSize = Mathf.Max(1, MagazineSize);
-        gun.AmmoInMagazine = Mathf.Min(gun.AmmoInMagazine, gun.MagazineSize);
-        gun.ReloadDuration = Mathf.Max(0.05f, ReloadDuration);
+        gun.BaseMagazineSize = Mathf.Max(1, MagazineSize);
+        gun.BaseReloadDuration = Mathf.Max(0.05f, ReloadDuration);
         gun.BaseProjectileCount = Mathf.Max(1, ProjectileCount);
         gun.BaseCriticalChance = Mathf.Clamp01(CriticalChance);
         gun.BaseCriticalDamage = Mathf.Max(1f, CriticalMultiplier);

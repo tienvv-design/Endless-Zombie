@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Entities;
 
 public enum UpgradeRarity
 {
@@ -57,4 +58,35 @@ public abstract class CharUpgrade : ScriptableObject
     public abstract void Init();
     public abstract void ApplyUpgrade();
     public abstract UpgradeTypes GetUpgradeType();
+
+    public virtual string GetValuePreview(int currentLevel)
+    {
+        return $"{currentLevel} → {currentLevel + 1}";
+    }
+
+    protected static bool TryGetGunStats(out WeaponManager gun, out GunModifiers modifiers)
+    {
+        gun = default;
+        modifiers = default;
+        World world = World.DefaultGameObjectInjectionWorld;
+        if (world == null || !world.IsCreated) return false;
+        EntityQuery query = world.EntityManager.CreateEntityQuery(
+            ComponentType.ReadOnly<WeaponManager>(), ComponentType.ReadOnly<GunModifiers>());
+        bool found = query.CalculateEntityCount() == 1;
+        if (found)
+        {
+            Entity entity = query.GetSingletonEntity();
+            gun = world.EntityManager.GetComponentData<WeaponManager>(entity);
+            modifiers = world.EntityManager.GetComponentData<GunModifiers>(entity);
+        }
+        query.Dispose();
+        return found;
+    }
+
+    protected static string FormatStat(float value)
+    {
+        return Mathf.Approximately(value, Mathf.Round(value))
+            ? Mathf.RoundToInt(value).ToString()
+            : value.ToString("0.##");
+    }
 }

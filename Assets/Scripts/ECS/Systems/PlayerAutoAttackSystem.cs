@@ -29,7 +29,7 @@ internal partial struct PlayerAutoAttackSystem : ISystem
             attack.ValueRW.ReloadTimer -= deltaTime;
             if (attack.ValueRO.ReloadTimer <= 0f)
             {
-                attack.ValueRW.AmmoInMagazine = math.max(1, attack.ValueRO.MagazineSize);
+                attack.ValueRW.AmmoInMagazine = attack.ValueRO.MagazineSize;
                 attack.ValueRW.ReloadTimer = 0f;
                 attack.ValueRW.IsReloading = false;
             }
@@ -39,7 +39,12 @@ internal partial struct PlayerAutoAttackSystem : ISystem
         if (attack.ValueRO.AmmoInMagazine <= 0)
         {
             attack.ValueRW.IsReloading = true;
-            attack.ValueRW.ReloadTimer = math.max(0.05f, attack.ValueRO.ReloadDuration);
+            attack.ValueRW.ReloadTimer = attack.ValueRO.ReloadDuration;
+            EntityCommandBuffer reloadEcb = SystemAPI
+                .GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
+                .CreateCommandBuffer(state.WorldUnmanaged);
+            Entity reloadEvent = reloadEcb.CreateEntity();
+            reloadEcb.AddComponent(reloadEvent, new WeaponReloadVfxEvent { Position = float3.zero });
             return;
         }
 
@@ -74,7 +79,6 @@ internal partial struct PlayerAutoAttackSystem : ISystem
             float distanceSq = math.distancesq(playerPosition, transform.ValueRO.Position);
             if (distanceSq > closestDistanceSq)
                 continue;
-
             closestDistanceSq = distanceSq;
             closestMob = entity;
             closestPosition = transform.ValueRO.Position;
@@ -88,6 +92,12 @@ internal partial struct PlayerAutoAttackSystem : ISystem
             .CreateCommandBuffer(state.WorldUnmanaged);
 
         float3 targetDirection = math.normalizesafe(closestPosition - playerPosition, new float3(0f, 0f, 1f));
+        Entity firedEvent = ecb.CreateEntity();
+        ecb.AddComponent(firedEvent, new WeaponFiredVfxEvent
+        {
+            Position = playerPosition + targetDirection * 0.75f + new float3(0f, 0.75f, 0f),
+            Direction = targetDirection,
+        });
         int projectileCount = attack.ValueRO.ProjectileCount;
         float totalSpreadRadians = math.radians(attack.ValueRO.SpreadAngle);
         float angleStep = projectileCount > 1 ? totalSpreadRadians / (projectileCount - 1) : 0f;
@@ -146,7 +156,9 @@ internal partial struct PlayerAutoAttackSystem : ISystem
         if (attack.ValueRO.AmmoInMagazine <= 0)
         {
             attack.ValueRW.IsReloading = true;
-            attack.ValueRW.ReloadTimer = math.max(0.05f, attack.ValueRO.ReloadDuration);
+            attack.ValueRW.ReloadTimer = attack.ValueRO.ReloadDuration;
+            Entity reloadEvent = ecb.CreateEntity();
+            ecb.AddComponent(reloadEvent, new WeaponReloadVfxEvent { Position = playerPosition });
         }
     }
 }

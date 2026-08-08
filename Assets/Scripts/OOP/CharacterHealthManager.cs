@@ -7,10 +7,11 @@ public class CharacterHealthManager : Targetable
     [SerializeField] private CharacterStats _characterStats;
 
     public Action<int> OnDamageTaken;
-    public Action OnDeath;
+    public event Action OnDeath;
     
     private int m_Health;
     private int m_MaxHealth;
+    private bool m_IsDead;
     private Image m_WorldHealthFill;
 
     protected override void OnAwake()
@@ -27,17 +28,16 @@ public class CharacterHealthManager : Targetable
 
     public override void TakeDamage(int damageAmount)
     {
-        m_Health -= Mathf.Max(1, damageAmount);
-        
-        if (m_Health <= 0)
-        {
-            // TO DO: die.
-            OnDeath?.Invoke();
-        }
-        
+        if (m_IsDead) return;
+        m_Health = Mathf.Max(0, m_Health - Mathf.Max(1, damageAmount));
         OnDamageTaken?.Invoke(damageAmount);
         if (m_WorldHealthFill != null)
             m_WorldHealthFill.fillAmount = GetHealthPercentage();
+        if (m_Health == 0)
+        {
+            m_IsDead = true;
+            OnDeath?.Invoke();
+        }
     }
 
     public float GetHealthPercentage()
@@ -46,11 +46,14 @@ public class CharacterHealthManager : Targetable
     }
 
     public int BaseHealth => _characterStats != null ? _characterStats.Health : 0;
+    public int CurrentHealth => m_Health;
+    public bool IsDead => m_IsDead;
 
     public void ApplyMetaProgression()
     {
         m_MaxHealth = Mathf.Max(1, Mathf.RoundToInt(BaseHealth + MetaProgression.HealthBonus));
         m_Health = m_MaxHealth;
+        m_IsDead = false;
         if (m_WorldHealthFill != null)
             m_WorldHealthFill.fillAmount = 1f;
     }

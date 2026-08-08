@@ -38,6 +38,7 @@ public static class MetaProgression
     private static string s_StageId = "Stage1";
 
     public static event Action UpgradesChanged;
+    public static event Action<int> SelectedWeaponChanged;
     public static int HealthPurchases => GetPurchases(StageUpgradeType.Health);
     public static int IncomePurchases => GetPurchases(StageUpgradeType.Income);
     public static float HealthBonus => HealthValue(HealthPurchases) - HealthMarker;
@@ -123,6 +124,7 @@ public static class MetaProgression
         }
         PlayerPrefs.SetInt(WeaponKey, index);
         PlayerPrefs.Save();
+        SelectedWeaponChanged?.Invoke(index);
         return true;
     }
 }

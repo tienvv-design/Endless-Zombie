@@ -76,12 +76,21 @@ internal partial struct PlayerProjectileSystem : ISystem
                 if (closestHit == Entity.Null)
                     break;
 
+                float3 impactPosition = math.lerp(start, end, closestT);
+                Entity impactVfxEvent = ecb.CreateEntity();
+                ecb.AddComponent(impactVfxEvent, new WeaponImpactVfxEvent
+                {
+                    Position = impactPosition,
+                    Direction = projectile.ValueRO.Direction,
+                    IsExplosion = projectile.ValueRO.IsExplosive,
+                });
+
                 if (projectile.ValueRO.IsExplosive && projectile.ValueRO.ExplosionRadius > 0f)
                 {
                     Entity explosionEvent = ecb.CreateEntity();
                     ecb.AddComponent(explosionEvent, new DigitExplosionEvent
                     {
-                        Position = math.lerp(start, end, closestT),
+                        Position = impactPosition,
                         Radius = projectile.ValueRO.ExplosionRadius,
                         Damage = math.max(1, (int)math.round(
                             projectile.ValueRO.Damage * projectile.ValueRO.ExplosionDamageMultiplier)),
@@ -129,7 +138,6 @@ internal partial struct PlayerProjectileSystem : ISystem
 
                 if (!projectile.ValueRO.IsExplosive && projectile.ValueRO.RemainingRicochets > 0)
                 {
-                    float3 impactPosition = math.lerp(start, end, closestT);
                     Entity ricochetTarget = FindClosestRicochetTarget(
                         mobEntities,
                         transforms,

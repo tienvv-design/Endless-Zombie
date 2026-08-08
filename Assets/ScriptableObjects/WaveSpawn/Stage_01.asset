@@ -21,7 +21,7 @@ MonoBehaviour:
       SpawnDelay: 0
       SpawnInterval: 0.8
       SpawnArenaGroupId: Outer
-    - EnemyId: Orbit
+    - EnemyId: ZombieDog
       Quantity: 8
       SpawnDelay: 2
       SpawnInterval: 1.2

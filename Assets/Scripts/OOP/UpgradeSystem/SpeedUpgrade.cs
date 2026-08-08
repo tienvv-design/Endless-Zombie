@@ -23,5 +23,14 @@ public class SpeedUpgrade : CharUpgrade
         modifiers.ProjectileSpeedBonusPercent += MultiplierPerLevel * 100f;
         entityManager.SetComponentData(entity, modifiers);
     }
+
+    public override string GetValuePreview(int currentLevel)
+    {
+        if (!TryGetGunStats(out WeaponManager gun, out GunModifiers modifiers))
+            return base.GetValuePreview(currentLevel);
+        float nextSpeed = gun.BaseProjectileSpeed *
+            (1f + (modifiers.ProjectileSpeedBonusPercent + MultiplierPerLevel * 100f) / 100f);
+        return $"PROJECTILE SPEED  {FormatStat(gun.ProjectileSpeed)} → {FormatStat(nextSpeed)}";
+    }
     
 }

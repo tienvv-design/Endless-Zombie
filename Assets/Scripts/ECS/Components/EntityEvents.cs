@@ -16,6 +16,24 @@ public struct ChainLightningEvent : IComponentData
     public float3 End;
 }
 
+public struct WeaponFiredVfxEvent : IComponentData
+{
+    public float3 Position;
+    public float3 Direction;
+}
+
+public struct WeaponImpactVfxEvent : IComponentData
+{
+    public float3 Position;
+    public float3 Direction;
+    public bool IsExplosion;
+}
+
+public struct WeaponReloadVfxEvent : IComponentData
+{
+    public float3 Position;
+}
+
 public struct XPCollectedEvent : IComponentData
 {
     public int XPAmount;

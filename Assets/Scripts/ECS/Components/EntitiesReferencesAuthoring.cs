@@ -5,7 +5,6 @@ using Random = Unity.Mathematics.Random;
 public struct EntityReferences : IComponentData
 {
     public Entity MobPrefabEntity;
-    public Entity MobOrbitingPrefabEntity;
     public Entity DamageDigitPrefabEntity;
     public Entity XPCollectable;
     public Entity DigitExplosionPrefab;
@@ -17,7 +16,6 @@ public struct EntityReferences : IComponentData
 public class EntitiesReferencesAuthoring : MonoBehaviour
 {
     public GameObject MobPrefabGameObject;
-    public GameObject MobOrbitingPrefabGameObject;
     public GameObject DamageDigitPrefabGameObject;
     public GameObject XPCollectable;
     public GameObject DigitExplosionPrefab;
@@ -31,7 +29,6 @@ public class EntitiesReferencesAuthoring : MonoBehaviour
             AddComponent(entity, new EntityReferences
             {
                 MobPrefabEntity = GetEntity(authoring.MobPrefabGameObject, TransformUsageFlags.Dynamic),
-                MobOrbitingPrefabEntity = GetEntity(authoring.MobOrbitingPrefabGameObject, TransformUsageFlags.Dynamic),
                 DamageDigitPrefabEntity = GetEntity(authoring.DamageDigitPrefabGameObject, TransformUsageFlags.Dynamic),
                 XPCollectable = GetEntity(authoring.XPCollectable, TransformUsageFlags.Dynamic),
                 DigitExplosionPrefab = GetEntity(authoring.DigitExplosionPrefab, TransformUsageFlags.Dynamic),

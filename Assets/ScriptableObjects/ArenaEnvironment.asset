@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16c52ef62c04f3382bba69562147a45, type: 3}
+  m_Name: ArenaEnvironment
+  m_EditorClassIdentifier: 
+  GroundSize: 60
+  GroundColor: {r: 0.22, g: 0.48, b: 0.18, a: 1}
+  GroundHeight: 0.03
+  ClearCombatRadius: 14
+  DecorationOuterRadius: 25
+  RandomSeed: 2408
+  TreePrefabs:
+  - {fileID: 649165938051307759, guid: d250af4848f51154f9a2bf6a85b60ac2, type: 3}
+  - {fileID: 1215182899609276316, guid: c6a512d95615f534cbe31aba1aaa354c, type: 3}
+  RockPrefabs:
+  - {fileID: 4140774597986965270, guid: 58cd8dc8c2359174baa15aa31e302c8b, type: 3}
+  GroundDetailPrefabs:
+  - {fileID: 1618558467530649374, guid: ef8374d642969b14baa54045236c5fb0, type: 3}
+  - {fileID: 221859553428198758, guid: 6cdd667aa0034cd4dadc8d58a65fb098, type: 3}
+  TreeCount: 16
+  RockCount: 10
+  GroundDetailCount: 24
+  TreeScaleRange: {x: 0.85, y: 1.2}
+  RockScaleRange: {x: 0.7, y: 1.35}
+  GroundDetailScaleRange: {x: 0.7, y: 1.15}

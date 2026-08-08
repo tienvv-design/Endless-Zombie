@@ -39,6 +39,8 @@ public struct WeaponManager : IComponentData
     public int BaseChainCount;
     public float BaseElementChance;
     public float BaseElementMagnitude;
+    public int BaseMagazineSize;
+    public float BaseReloadDuration;
 
     public float ShotsPerSecond;
     public int ProjectileCount;
@@ -81,6 +83,8 @@ public struct GunModifiers : IComponentData
     public int AdditionalPierce;
     public float KnockbackBonus;
     public int SynergyLevel;
+    public int AdditionalMagazineSize;
+    public float ReloadSpeedBonusPercent;
 }
 
 public class WeaponManagerAuthoring : MonoBehaviour
@@ -105,7 +109,7 @@ public class WeaponManagerAuthoring : MonoBehaviour
     [Min(0f)] public float Knockback = 0.5f;
     [Min(0f)] public float SpreadAngle = 10f;
     [Min(0.01f)] public float MinimumFireInterval = 0.1f;
-    [Header("Magazine")]
+    [Header("Automatic Magazine")]
     [Min(1)] public int MagazineSize = 12;
     [Min(0.05f)] public float ReloadDuration = 1.2f;
     [Header("Explosive Projectile")]
@@ -149,8 +153,8 @@ public class WeaponManagerAuthoring : MonoBehaviour
             float knockback = config != null ? config.BaseKnockback : authoring.Knockback;
             float spreadAngle = config != null ? config.BaseSpreadAngle : authoring.SpreadAngle;
             float minimumFireInterval = config != null ? config.MinimumFireInterval : authoring.MinimumFireInterval;
-            int magazineSize = config != null ? config.MagazineSize : authoring.MagazineSize;
-            float reloadDuration = config != null ? config.ReloadDuration : authoring.ReloadDuration;
+            int magazineSize = config != null ? config.BaseMagazineSize : authoring.MagazineSize;
+            float reloadDuration = config != null ? config.BaseReloadDuration : authoring.ReloadDuration;
             bool isExplosive = config != null ? config.IsExplosive : authoring.IsExplosive;
             float explosionRadius = config != null ? config.ExplosionRadius : authoring.ExplosionRadius;
             float explosionDamageMultiplier = config != null
@@ -174,7 +178,11 @@ public class WeaponManagerAuthoring : MonoBehaviour
             float elementMagnitude = config != null ? config.ElementMagnitude : authoring.ElementMagnitude;
             AddComponent(entity, new WeaponManager
             {
-                WeaponEntityPrefab = GetEntity(authoring.WeaponObjectPrefab, TransformUsageFlags.Dynamic),
+                WeaponEntityPrefab = GetEntity(
+                    config != null && config.ProjectilePrefab != null
+                        ? config.ProjectilePrefab
+                        : authoring.WeaponObjectPrefab,
+                    TransformUsageFlags.Dynamic),
                 NumberOfWeapons = authoring.NumberOfWeapons,
                 DamagePerHit = baseDamage,
                 Radius = authoring.Radius,
@@ -201,6 +209,8 @@ public class WeaponManagerAuthoring : MonoBehaviour
                 BaseChainCount = Mathf.Max(0, chainCount),
                 BaseElementChance = Mathf.Clamp01(elementChance),
                 BaseElementMagnitude = Mathf.Max(0f, elementMagnitude),
+                BaseMagazineSize = Mathf.Max(1, magazineSize),
+                BaseReloadDuration = Mathf.Max(0.05f, reloadDuration),
                 ShotsPerSecond = shotsPerSecond,
                 ProjectileCount = projectileCount,
                 CriticalChance = criticalChance,

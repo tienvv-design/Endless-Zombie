@@ -25,4 +25,13 @@ public class DamageDigitUpgrade : CharUpgrade
         modifiers.RangeBonusPercent += m_RangeIncrease * 10f;
         m_EntityManager.SetComponentData(entity, modifiers);
     }
+
+    public override string GetValuePreview(int currentLevel)
+    {
+        if (!TryGetGunStats(out WeaponManager gun, out GunModifiers modifiers))
+            return base.GetValuePreview(currentLevel);
+        float nextRange = gun.BaseAttackRange *
+            (1f + (modifiers.RangeBonusPercent + m_RangeIncrease * 10f) / 100f);
+        return $"RANGE  {FormatStat(gun.AttackRange)} → {FormatStat(nextRange)}";
+    }
 }

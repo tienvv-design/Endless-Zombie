@@ -408,7 +408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MobPrefabGameObject: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
-  MobOrbitingPrefabGameObject: {fileID: 1682824551111190682, guid: 89ab51157be1c174a8c7b16b84ab7be9, type: 3}
   DamageDigitPrefabGameObject: {fileID: 4419389155797982066, guid: 3b2c1e9c745b2294688c69efbe48d2c3, type: 3}
   XPCollectable: {fileID: 6283234276357592549, guid: 5bc8d77f1b5a66b4b835913fa3603804, type: 3}
   DigitExplosionPrefab: {fileID: 115286, guid: a29a1944573d3a9449a4bcc918412454, type: 3}

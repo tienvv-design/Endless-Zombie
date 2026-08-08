@@ -7,14 +7,16 @@ public sealed class MainMenuManager : MonoBehaviour
 {
     [Header("Stage Upgrades")]
     [SerializeField] private string _stageId = "Stage1";
+    [SerializeField] private GunConfig[] _gunConfigs;
+    [SerializeField] private ArenaEnvironmentConfig _arenaEnvironment;
 
     [Header("Camera Transition")]
-    [SerializeField] private Vector3 _menuCameraPosition = new(0f, 6.5f, -5.2f);
-    [SerializeField] private Vector3 _menuCameraEuler = new(47f, 0f, 0f);
-    [SerializeField] private float _menuFieldOfView = 42f;
-    [SerializeField] private Vector3 _gameCameraPosition = new(0f, 15.5f, -2.56f);
+    [SerializeField] private Vector3 _menuCameraPosition = new(0f, 9.5f, -7f);
+    [SerializeField] private Vector3 _menuCameraEuler = new(52f, 0f, 0f);
+    [SerializeField] private float _menuFieldOfView = 52f;
+    [SerializeField] private Vector3 _gameCameraPosition = new(0f, 20f, -3.5f);
     [SerializeField] private Vector3 _gameCameraEuler = new(81f, 0f, 0f);
-    [SerializeField] private float _gameFieldOfView = 80f;
+    [SerializeField] private float _gameFieldOfView = 85f;
     [SerializeField, Min(0.1f)] private float _transitionDuration = 1.15f;
 
     [Header("UI Icon Sprites")]
@@ -35,7 +37,6 @@ public sealed class MainMenuManager : MonoBehaviour
     private CanvasGroup _menuGroup;
     private Button _startButton;
     private Canvas _gameplayHud;
-    private Behaviour _cameraDriver;
     private OOP.GameStates.GameStateMachineRunner _gameStateMachine;
     private bool _starting;
     private TextMeshProUGUI _goldText;
@@ -63,12 +64,14 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        ArenaEnvironmentBuilder.EnsureBuilt(_arenaEnvironment);
         SetupGameplayPresentation();
     }
 
     private void Start()
     {
         MetaProgression.BeginStageSession(_stageId);
+        SetupHeldWeaponPreview();
         AudioManager.Instance?.Play(SoundLabel.MainMenuMusic);
         BuildMenu();
         MetaProgression.UpgradesChanged += RefreshUpgradeCards;
@@ -96,8 +99,7 @@ public sealed class MainMenuManager : MonoBehaviour
             {
                 if (behaviour != null && behaviour.GetType().Name.Contains("CinemachineBrain"))
                 {
-                    _cameraDriver = behaviour;
-                    _cameraDriver.enabled = false;
+                    behaviour.enabled = false;
                     break;
                 }
             }
@@ -191,8 +193,6 @@ public sealed class MainMenuManager : MonoBehaviour
             yield return null;
         }
 
-        if (_cameraDriver != null)
-            _cameraDriver.enabled = true;
         if (_gameplayHud != null)
             _gameplayHud.enabled = true;
         MetaProgression.UpgradesChanged -= RefreshUpgradeCards;
@@ -208,6 +208,23 @@ public sealed class MainMenuManager : MonoBehaviour
         GameObject settings = GameObject.Find("SettingsMenu");
         if (settings != null)
             settings.SetActive(true);
+    }
+
+    public bool SelectWeapon(int index)
+    {
+        if (_gunConfigs == null || index < 0 || index >= _gunConfigs.Length)
+            return false;
+        return MetaProgression.BuyOrSelectWeapon(index);
+    }
+
+    private void SetupHeldWeaponPreview()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+        HeldWeaponPresenter presenter = player.GetComponent<HeldWeaponPresenter>();
+        if (presenter == null)
+            presenter = player.AddComponent<HeldWeaponPresenter>();
+        presenter.SetGunConfigs(_gunConfigs);
     }
 
     private UpgradeCardView AddUpgradeCard(RectTransform root, float x, StageUpgradeType type, string title, Color accent, Sprite iconSprite)

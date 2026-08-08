@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bb60d727e34574a433cb5ad97f1ee2, type: 3}
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
+  WeaponId: assault_rifle
+  DisplayName: Assault Rifle
+  Icon: {fileID: 0}
+  HeldWeaponPrefab: {fileID: 0}
+  HeldLocalPosition: {x: 0, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 0, y: 0, z: 0}
+  HeldLocalScale: {x: 1, y: 1, z: 1}
   Archetype: 2
   BaseDamage: 1
   BaseShotsPerSecond: 5
@@ -24,5 +31,5 @@ MonoBehaviour:
   BaseKnockback: 0.25
   BaseSpreadAngle: 4
   MinimumFireInterval: 0.08
-  MagazineSize: 30
-  ReloadDuration: 1.6
+  BaseMagazineSize: 30
+  BaseReloadDuration: 1.6

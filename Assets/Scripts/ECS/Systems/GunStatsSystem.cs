@@ -42,6 +42,15 @@ internal partial struct GunStatsSystem : ISystem
         gun.ValueRW.Pierce = math.max(0, gun.ValueRO.BasePierce + modifiers.AdditionalPierce);
         gun.ValueRW.Knockback = math.max(0f, gun.ValueRO.BaseKnockback + modifiers.KnockbackBonus);
         gun.ValueRW.SpreadAngle = math.max(0f, gun.ValueRO.BaseSpreadAngle);
+        int previousMagazineSize = math.max(1, gun.ValueRO.MagazineSize);
+        gun.ValueRW.MagazineSize = math.max(1,
+            gun.ValueRO.BaseMagazineSize + modifiers.AdditionalMagazineSize);
+        if (gun.ValueRO.MagazineSize > previousMagazineSize && !gun.ValueRO.IsReloading)
+            gun.ValueRW.AmmoInMagazine += gun.ValueRO.MagazineSize - previousMagazineSize;
+        gun.ValueRW.AmmoInMagazine = math.clamp(
+            gun.ValueRO.AmmoInMagazine, 0, gun.ValueRO.MagazineSize);
+        gun.ValueRW.ReloadDuration = math.max(0.05f,
+            gun.ValueRO.BaseReloadDuration / (1f + math.max(0f, modifiers.ReloadSpeedBonusPercent) / 100f));
 
         gun.ValueRW.ExplosionRadius = gun.ValueRO.BaseExplosionRadius > 0f
             ? gun.ValueRO.BaseExplosionRadius * (1f + synergyLevel * 0.15f)

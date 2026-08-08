@@ -21,14 +21,14 @@ MonoBehaviour:
     Scale: 1
     XPReward: 5
     GoldReward: 1
-  - EnemyId: Orbit
-    Prefab: {fileID: 1682824551111190682, guid: 89ab51157be1c174a8c7b16b84ab7be9, type: 3}
+  - EnemyId: ZombieDog
+    Prefab: {fileID: 1001000000000000001, guid: a1cc56a57ca34c00b8a54df96bcf71d9, type: 3}
     EnemyType: 0
     HealthMultiplier: 1
     DamageMultiplier: 1
     Scale: 1
-    XPReward: 5
-    GoldReward: 1
+    XPReward: 7
+    GoldReward: 2
   - EnemyId: Elite
     Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
     EnemyType: 1

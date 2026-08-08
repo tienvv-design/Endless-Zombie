@@ -31,6 +31,13 @@ internal partial struct EventResetSystem : ISystem
         {
             ecb.DestroyEntity(entity);
         }
+
+        foreach (var (_, entity) in SystemAPI.Query<RefRW<WeaponFiredVfxEvent>>().WithEntityAccess())
+            ecb.DestroyEntity(entity);
+        foreach (var (_, entity) in SystemAPI.Query<RefRW<WeaponImpactVfxEvent>>().WithEntityAccess())
+            ecb.DestroyEntity(entity);
+        foreach (var (_, entity) in SystemAPI.Query<RefRW<WeaponReloadVfxEvent>>().WithEntityAccess())
+            ecb.DestroyEntity(entity);
         
         foreach (var (deathEvent, entity) in SystemAPI.Query<RefRW<MobDeathEvent>>().WithEntityAccess())
         {

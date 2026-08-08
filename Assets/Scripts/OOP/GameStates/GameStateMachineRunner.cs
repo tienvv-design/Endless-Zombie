@@ -11,6 +11,9 @@ namespace OOP.GameStates
         private GameStateFactory _factory;
         private State _gameState;
         private bool _gameplayStarted;
+        private bool _gameOverPending;
+        private bool _gameOverTriggered;
+        private CharacterHealthManager _healthManager;
 
         void Awake()
         {
@@ -37,19 +40,19 @@ namespace OOP.GameStates
             _factory.WireStates();
 
             _gameState = _factory.GetGameState(GameStateType.Running);
+            BindPlayerHealth();
         }
 
         private void Start()
         {
-            GameObject mainCharacter = GameObject.FindGameObjectWithTag("Player");
-            if (mainCharacter != null && mainCharacter.TryGetComponent(out CharacterHealthManager healthManager))
-            {
-                healthManager.OnDeath += PlayerDeathCallback;
-            }
+            BindPlayerHealth();
         }
 
         private void Update()
         {
+            if (_gameplayStarted && !_gameOverTriggered &&
+                (_gameOverPending || (_healthManager != null && _healthManager.IsDead)))
+                TriggerGameOver();
             if (_gameplayStarted)
                 State.UpdateStates(_gameState);
         }
@@ -66,9 +69,10 @@ namespace OOP.GameStates
                 return;
 
             _gameplayStarted = true;
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null && player.TryGetComponent(out CharacterHealthManager healthManager))
-                healthManager.ApplyMetaProgression();
+            _gameOverPending = false;
+            _gameOverTriggered = false;
+            BindPlayerHealth();
+            _healthManager?.ApplyMetaProgression();
             GoldWallet.Instance?.ResetRunReward();
             WaveSpawnLifecycle.BeginStage();
             State.EnterStates(_gameState);
@@ -81,16 +85,36 @@ namespace OOP.GameStates
 
         public void PlayerDeathCallback()
         {
+            _gameOverPending = true;
+        }
+
+        private void TriggerGameOver()
+        {
+            if (_gameOverTriggered) return;
+            _gameOverTriggered = true;
+            _gameOverPending = false;
             WaveSpawnLifecycle.StopStage();
             GoldWallet.Instance?.BankRunReward();
             _gameState.SwitchState(_factory.GetGameState(GameStateType.GameOver));
         }
 
+        private void BindPlayerHealth()
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null || !player.TryGetComponent(out CharacterHealthManager healthManager))
+                return;
+            if (_healthManager == healthManager) return;
+            if (_healthManager != null)
+                _healthManager.OnDeath -= PlayerDeathCallback;
+            _healthManager = healthManager;
+            _healthManager.OnDeath -= PlayerDeathCallback;
+            _healthManager.OnDeath += PlayerDeathCallback;
+        }
+
         private void OnDestroy()
         {
-            GameObject mainCharacter = GameObject.FindGameObjectWithTag("Player");
-            if (mainCharacter != null && mainCharacter.TryGetComponent(out CharacterHealthManager healthManager))
-                healthManager.OnDeath -= PlayerDeathCallback;
+            if (_healthManager != null)
+                _healthManager.OnDeath -= PlayerDeathCallback;
         }
 
         public void OpenUpgradeShop()

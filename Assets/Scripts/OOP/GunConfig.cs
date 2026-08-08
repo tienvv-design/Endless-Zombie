@@ -23,6 +23,24 @@ public enum ElementType : byte
 [CreateAssetMenu(fileName = "GunConfig", menuName = "Settings-Configs/Gun Config")]
 public class GunConfig : ScriptableObject
 {
+    [Header("Identity & Main Menu Visual")]
+    public string WeaponId;
+    public string DisplayName;
+    public Sprite Icon;
+    public GameObject HeldWeaponPrefab;
+    public GameObject ProjectilePrefab;
+    public Vector3 HeldLocalPosition;
+    public Vector3 HeldLocalEulerAngles;
+    public Vector3 HeldLocalScale = Vector3.one;
+
+    [Header("VFX")]
+    public GameObject MuzzleVfxPrefab;
+    public GameObject ImpactVfxPrefab;
+    public GameObject ExplosionVfxPrefab;
+    public GameObject ReloadVfxPrefab;
+    [Min(0.05f)] public float VfxLifetime = 1f;
+
+    [Header("Combat")]
     public GunArchetype Archetype;
     [Min(1)] public int BaseDamage = 1;
     [Min(0.01f)] public float BaseShotsPerSecond = 1f;
@@ -35,9 +53,9 @@ public class GunConfig : ScriptableObject
     [Min(0f)] public float BaseKnockback = 0.5f;
     [Min(0f)] public float BaseSpreadAngle;
     [Min(0.01f)] public float MinimumFireInterval = 0.05f;
-    [Header("Magazine")]
-    [Min(1)] public int MagazineSize = 12;
-    [Min(0.05f)] public float ReloadDuration = 1.2f;
+    [Header("Automatic Magazine")]
+    [Min(1)] public int BaseMagazineSize = 12;
+    [Min(0.05f)] public float BaseReloadDuration = 1.2f;
     [Header("Explosive Projectile")]
     public bool IsExplosive;
     [Min(0f)] public float ExplosionRadius;

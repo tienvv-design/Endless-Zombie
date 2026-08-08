@@ -19,9 +19,13 @@ public partial class DigitExplosionBridge : SystemBase
     {
         foreach (var (digitExplosionEvent, entity) in SystemAPI.Query<RefRO<DigitExplosionEvent>>().WithEntityAccess())
         {
-            var go = GameObject.Instantiate(VFXReferences.Instance.DigitExplosionEffect);
             AudioManager.Instance.Play(SoundLabel.DigitExplosionSound);
-            go.transform.position = digitExplosionEvent.ValueRO.Position;
+            if (WeaponVfxRuntime.CurrentConfig == null ||
+                WeaponVfxRuntime.CurrentConfig.ExplosionVfxPrefab == null)
+            {
+                GameObject go = GameObject.Instantiate(VFXReferences.Instance.DigitExplosionEffect);
+                go.transform.position = digitExplosionEvent.ValueRO.Position;
+            }
         }
     }
 }

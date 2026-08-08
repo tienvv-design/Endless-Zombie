@@ -25,5 +25,14 @@ namespace OOP.UpgradeSystem
         {
             return UpgradeTypes.WeaponSpeed;
         }
+
+        public override string GetValuePreview(int currentLevel)
+        {
+            if (!TryGetGunStats(out WeaponManager gun, out GunModifiers modifiers))
+                return base.GetValuePreview(currentLevel);
+            float nextBonus = modifiers.FireRateBonusPercent + 15f + Mathf.Max(0, modifiers.SynergyLevel) * 5f;
+            float nextValue = gun.BaseShotsPerSecond * (1f + nextBonus / 100f);
+            return $"FIRE RATE  {FormatStat(gun.ShotsPerSecond)} → {FormatStat(nextValue)} /s";
+        }
     }
 }

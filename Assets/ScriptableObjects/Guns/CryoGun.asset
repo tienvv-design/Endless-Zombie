@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bb60d727e34574a433cb5ad97f1ee2, type: 3}
   m_Name: CryoGun
   m_EditorClassIdentifier: 
+  WeaponId: cryo_gun
+  DisplayName: Cryo Gun
+  Icon: {fileID: 0}
+  HeldWeaponPrefab: {fileID: 0}
+  HeldLocalPosition: {x: 0, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 0, y: 0, z: 0}
+  HeldLocalScale: {x: 1, y: 1, z: 1}
   Archetype: 8
   BaseDamage: 2
   BaseShotsPerSecond: 1.5
@@ -24,8 +31,8 @@ MonoBehaviour:
   BaseKnockback: 0.4
   BaseSpreadAngle: 2
   MinimumFireInterval: 0.1
-  MagazineSize: 12
-  ReloadDuration: 1.6
+  BaseMagazineSize: 12
+  BaseReloadDuration: 1.6
   IsExplosive: 0
   ExplosionRadius: 0
   ExplosionDamageMultiplier: 1

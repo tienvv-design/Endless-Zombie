@@ -23,4 +23,13 @@ public class WeaponDamageUpgrade : CharUpgrade
         modifiers.DamageBonusPercent += 20f;
         m_EntityManager.SetComponentData(entity, modifiers);
     }
+
+    public override string GetValuePreview(int currentLevel)
+    {
+        if (!TryGetGunStats(out WeaponManager gun, out GunModifiers modifiers))
+            return base.GetValuePreview(currentLevel);
+        float nextBonus = modifiers.DamageBonusPercent + 20f + Mathf.Max(0, modifiers.SynergyLevel) * 5f;
+        int nextDamage = Mathf.Max(1, Mathf.CeilToInt(gun.BaseDamage * (1f + nextBonus / 100f)));
+        return $"DMG  {gun.DamagePerHit} → {nextDamage}";
+    }
 }

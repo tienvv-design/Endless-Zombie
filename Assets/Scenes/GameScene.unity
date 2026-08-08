@@ -2638,12 +2638,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9e79f29f3b40f44a1b23d2b1d91786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuCameraPosition: {x: 0, y: 6.5, z: -5.2}
-  _menuCameraEuler: {x: 47, y: 0, z: 0}
-  _menuFieldOfView: 42
-  _gameCameraPosition: {x: 0, y: 15.5, z: -2.56}
+  _stageId: Stage1
+  _gunConfigs:
+  - {fileID: 11400000, guid: 7723e3f33c514d4e9154b7ce79a0ce48, type: 2}
+  - {fileID: 11400000, guid: 9f0f0b0bd8674e58a498ff3062ad0620, type: 2}
+  - {fileID: 11400000, guid: 8ec9445f083945e596987d2c3b3a0756, type: 2}
+  - {fileID: 11400000, guid: 6ef120df7aac4829b544b259a8a86a24, type: 2}
+  - {fileID: 11400000, guid: 91bcb15406714dbfa3e94721dfbe4778, type: 2}
+  - {fileID: 11400000, guid: 5494800d30e74cb1a33b5e44ba58c0cf, type: 2}
+  - {fileID: 11400000, guid: 842184f2229849bdafc456cf1746fd6f, type: 2}
+  - {fileID: 11400000, guid: cfd7dd9f352744df8e31b9da640cb162, type: 2}
+  _arenaEnvironment: {fileID: 11400000, guid: c94d83904fdc49ea98ea8df541915fbb, type: 2}
+  _menuCameraPosition: {x: 0, y: 9.5, z: -7}
+  _menuCameraEuler: {x: 52, y: 0, z: 0}
+  _menuFieldOfView: 52
+  _gameCameraPosition: {x: 0, y: 20, z: -3.5}
   _gameCameraEuler: {x: 81, y: 0, z: 0}
-  _gameFieldOfView: 80
+  _gameFieldOfView: 85
   _transitionDuration: 1.15
 --- !u!1 &895392384
 GameObject:
