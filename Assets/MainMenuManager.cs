@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,6 +43,9 @@ public sealed class MainMenuManager : MonoBehaviour
     private TextMeshProUGUI _goldText;
     private UpgradeCardView _healthCard;
     private UpgradeCardView _incomeCard;
+    private RectTransform _weaponWindow;
+    private TextMeshProUGUI _weaponGoldText;
+    private readonly List<WeaponCardView> _weaponCards = new();
 
     private sealed class UpgradeCardView
     {
@@ -52,6 +56,16 @@ public sealed class MainMenuManager : MonoBehaviour
         public TextMeshProUGUI Progress;
         public TextMeshProUGUI Value;
         public TextMeshProUGUI Cost;
+        public Outline Outline;
+    }
+
+    private sealed class WeaponCardView
+    {
+        public int Index;
+        public Button ActionButton;
+        public TextMeshProUGUI ActionLabel;
+        public TextMeshProUGUI Price;
+        public Image Background;
         public Outline Outline;
     }
 
@@ -75,6 +89,7 @@ public sealed class MainMenuManager : MonoBehaviour
         AudioManager.Instance?.Play(SoundLabel.MainMenuMusic);
         BuildMenu();
         MetaProgression.UpgradesChanged += RefreshUpgradeCards;
+        MetaProgression.SelectedWeaponChanged += HandleSelectedWeaponChanged;
         if (GoldWallet.Instance != null)
             GoldWallet.Instance.OnBalanceChanged += HandleGoldChanged;
         RefreshUpgradeCards();
@@ -83,6 +98,7 @@ public sealed class MainMenuManager : MonoBehaviour
     private void OnDisable()
     {
         MetaProgression.UpgradesChanged -= RefreshUpgradeCards;
+        MetaProgression.SelectedWeaponChanged -= HandleSelectedWeaponChanged;
         if (GoldWallet.Instance != null)
             GoldWallet.Instance.OnBalanceChanged -= HandleGoldChanged;
         AudioManager.Instance?.Stop(SoundLabel.MainMenuMusic);
@@ -154,13 +170,15 @@ public sealed class MainMenuManager : MonoBehaviour
 
         RectTransform nav = AddPanel(root, "Navigation", new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 67f), new Vector2(0f, 134f), Navy);
         AddNavItem(nav, -300f, "PET", _petIcon);
-        AddNavItem(nav, -150f, "WEAPON", _weaponIcon);
+        Button weaponTab = AddNavItem(nav, -150f, "WEAPON", _weaponIcon);
+        weaponTab.onClick.AddListener(OpenWeaponWindow);
         RectTransform battle = AddPanel(nav, "Battle Tab", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(155f, 165f), Hex("536BE7"));
         AddIcon(battle, "Battle Icon", _battleIcon, new Vector2(0f, 25f), new Vector2(68f, 68f));
         AddText(battle, "BATTLE", 25, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0f), new Vector2(0f, 26f), new Vector2(145f, 40f), Color.white);
         AddNavItem(nav, 150f, "INVENTORY", _inventoryIcon);
         AddNavItem(nav, 300f, "SHOP", _shopIcon);
 
+        BuildWeaponWindow(root);
     }
 
     private void StartGame()
@@ -196,6 +214,7 @@ public sealed class MainMenuManager : MonoBehaviour
         if (_gameplayHud != null)
             _gameplayHud.enabled = true;
         MetaProgression.UpgradesChanged -= RefreshUpgradeCards;
+        MetaProgression.SelectedWeaponChanged -= HandleSelectedWeaponChanged;
         if (GoldWallet.Instance != null)
             GoldWallet.Instance.OnBalanceChanged -= HandleGoldChanged;
         AudioManager.Instance?.Stop(SoundLabel.MainMenuMusic);
@@ -215,6 +234,153 @@ public sealed class MainMenuManager : MonoBehaviour
         if (_gunConfigs == null || index < 0 || index >= _gunConfigs.Length)
             return false;
         return MetaProgression.BuyOrSelectWeapon(index);
+    }
+
+    private void BuildWeaponWindow(RectTransform root)
+    {
+        _weaponWindow = AddPanel(root, "Weapon Window", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero,
+            new Color(0.015f, 0.02f, 0.06f, 0.88f));
+
+        RectTransform panel = AddPanel(_weaponWindow, "Armory Panel", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+            new Vector2(0f, 25f), new Vector2(700f, 1110f), Navy);
+        Outline panelOutline = panel.gameObject.AddComponent<Outline>();
+        panelOutline.effectColor = Blue;
+        panelOutline.effectDistance = new Vector2(4f, -4f);
+
+        AddText(panel, "ARMORY", 45, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 1f), new Vector2(0f, -58f), new Vector2(390f, 70f), Color.white);
+        AddText(panel, "BUY AND EQUIP WEAPONS", 20, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 1f), new Vector2(0f, -105f), new Vector2(420f, 38f), Hex("9DCFFF"));
+
+        RectTransform wallet = AddPanel(panel, "Armory Gold", new Vector2(0f, 1f), new Vector2(0f, 1f),
+            new Vector2(104f, -58f), new Vector2(165f, 52f), new Color(0.04f, 0.05f, 0.1f, 0.95f));
+        AddIcon(wallet, "Gold Icon", _goldIcon, new Vector2(-55f, 0f), new Vector2(32f, 32f));
+        _weaponGoldText = AddText(wallet, "0", 22, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 0.5f), new Vector2(15f, 0f), new Vector2(110f, 42f), Yellow);
+
+        Button close = AddButton(panel, "X", new Vector2(1f, 1f), new Vector2(-50f, -55f),
+            new Vector2(66f, 66f), Hex("D9435F"), Color.white, 30);
+        close.onClick.AddListener(CloseWeaponWindow);
+
+        RectTransform scrollRoot = AddPanel(panel, "Weapon Scroll", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+            new Vector2(0f, -85f), new Vector2(638f, 850f), new Color(0.03f, 0.05f, 0.12f, 0.8f));
+        ScrollRect scroll = scrollRoot.gameObject.AddComponent<ScrollRect>();
+        scroll.horizontal = false;
+        scroll.vertical = true;
+        scroll.movementType = ScrollRect.MovementType.Clamped;
+        scroll.scrollSensitivity = 34f;
+
+        RectTransform viewport = AddPanel(scrollRoot, "Viewport", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, Color.clear);
+        viewport.gameObject.AddComponent<RectMask2D>();
+        RectTransform content = AddPanel(viewport, "Content", new Vector2(0f, 1f), new Vector2(1f, 1f), Vector2.zero, Vector2.zero, Color.clear);
+        content.pivot = new Vector2(0.5f, 1f);
+        VerticalLayoutGroup layout = content.gameObject.AddComponent<VerticalLayoutGroup>();
+        layout.padding = new RectOffset(14, 14, 14, 14);
+        layout.spacing = 14f;
+        layout.childControlWidth = true;
+        layout.childControlHeight = true;
+        layout.childForceExpandWidth = true;
+        layout.childForceExpandHeight = false;
+        ContentSizeFitter fitter = content.gameObject.AddComponent<ContentSizeFitter>();
+        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        scroll.viewport = viewport;
+        scroll.content = content;
+
+        _weaponCards.Clear();
+        if (_gunConfigs != null)
+        {
+            for (int i = 0; i < _gunConfigs.Length; i++)
+                AddWeaponCard(content, i, _gunConfigs[i]);
+        }
+
+        _weaponWindow.gameObject.SetActive(false);
+    }
+
+    private void AddWeaponCard(RectTransform content, int index, GunConfig gun)
+    {
+        RectTransform card = AddPanel(content, $"Weapon {index}", Vector2.zero, Vector2.one, Vector2.zero,
+            new Vector2(0f, 152f), Hex("123663"));
+        LayoutElement element = card.gameObject.AddComponent<LayoutElement>();
+        element.preferredHeight = 152f;
+        Outline outline = card.gameObject.AddComponent<Outline>();
+        outline.effectColor = BlueDark;
+        outline.effectDistance = new Vector2(3f, -3f);
+
+        Sprite icon = gun != null && gun.Icon != null ? gun.Icon : _weaponIcon;
+        AddIcon(card, "Weapon Icon", icon, new Vector2(-245f, 0f), new Vector2(90f, 90f));
+        string weaponName = gun != null && !string.IsNullOrWhiteSpace(gun.DisplayName)
+            ? gun.DisplayName.ToUpperInvariant()
+            : gun != null ? gun.Archetype.ToString().ToUpperInvariant() : $"WEAPON {index + 1}";
+        AddText(card, weaponName, 25, FontStyles.Bold, TextAlignmentOptions.Left,
+            new Vector2(0.5f, 1f), new Vector2(-75f, -32f), new Vector2(330f, 42f), Color.white);
+        string stats = gun != null
+            ? $"DMG {gun.BaseDamage}   RATE {gun.BaseShotsPerSecond:0.#}/S   RANGE {gun.BaseRange:0.#}"
+            : "NO CONFIG";
+        AddText(card, stats, 17, FontStyles.Bold, TextAlignmentOptions.Left,
+            new Vector2(0.5f, 0.5f), new Vector2(-75f, -8f), new Vector2(330f, 34f), Hex("BCE4FF"));
+        TextMeshProUGUI price = AddText(card, string.Empty, 18, FontStyles.Bold, TextAlignmentOptions.Left,
+            new Vector2(0.5f, 0f), new Vector2(-75f, 27f), new Vector2(330f, 34f), Yellow);
+
+        Button action = AddButton(card, "BUY", new Vector2(1f, 0.5f), new Vector2(-91f, 0f),
+            new Vector2(150f, 64f), Green, Navy, 21);
+        int capturedIndex = index;
+        action.onClick.AddListener(() => PurchaseOrEquipWeapon(capturedIndex));
+        _weaponCards.Add(new WeaponCardView
+        {
+            Index = index,
+            ActionButton = action,
+            ActionLabel = action.GetComponentInChildren<TextMeshProUGUI>(),
+            Price = price,
+            Background = card.GetComponent<Image>(),
+            Outline = outline
+        });
+    }
+
+    private void OpenWeaponWindow()
+    {
+        if (_weaponWindow == null || _starting) return;
+        _weaponWindow.gameObject.SetActive(true);
+        _weaponWindow.SetAsLastSibling();
+        RefreshWeaponWindow();
+    }
+
+    private void CloseWeaponWindow()
+    {
+        if (_weaponWindow != null)
+            _weaponWindow.gameObject.SetActive(false);
+    }
+
+    private void PurchaseOrEquipWeapon(int index)
+    {
+        SelectWeapon(index);
+        RefreshWeaponWindow();
+    }
+
+    private void HandleSelectedWeaponChanged(int _)
+    {
+        RefreshWeaponWindow();
+    }
+
+    private void RefreshWeaponWindow()
+    {
+        int balance = GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0;
+        if (_weaponGoldText != null)
+            _weaponGoldText.text = balance.ToString("N0");
+
+        foreach (WeaponCardView card in _weaponCards)
+        {
+            bool selected = MetaProgression.SelectedWeapon == card.Index;
+            bool unlocked = MetaProgression.IsWeaponUnlocked(card.Index);
+            int cost = MetaProgression.WeaponCost(card.Index);
+            bool affordable = balance >= cost;
+
+            card.Price.text = unlocked ? "OWNED" : $"{cost:N0} GOLD";
+            card.Price.color = unlocked || affordable ? Yellow : Hex("FF6B72");
+            card.ActionLabel.text = selected ? "EQUIPPED" : unlocked ? "EQUIP" : "BUY";
+            card.ActionButton.interactable = !selected && (unlocked || affordable) && !_starting;
+            card.Background.color = selected ? Hex("174D70") : Hex("123663");
+            card.Outline.effectColor = selected ? Green : BlueDark;
+        }
     }
 
     private void SetupHeldWeaponPreview()
@@ -284,6 +450,7 @@ public sealed class MainMenuManager : MonoBehaviour
         if (_goldText != null)
             _goldText.text = balance.ToString("N0");
         RefreshUpgradeCards();
+        RefreshWeaponWindow();
     }
 
     private void RefreshUpgradeCards()
@@ -327,10 +494,15 @@ public sealed class MainMenuManager : MonoBehaviour
         ? Mathf.RoundToInt(value).ToString("N0")
         : value.ToString("0.##");
 
-    private void AddNavItem(RectTransform nav, float x, string label, Sprite iconSprite)
+    private Button AddNavItem(RectTransform nav, float x, string label, Sprite iconSprite)
     {
-        AddIcon(nav, label + " Icon", iconSprite, new Vector2(x, 19f), new Vector2(54f, 54f));
-        AddText(nav, label, 17, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(x, -31f), new Vector2(135f, 32f), Color.white);
+        RectTransform tab = AddPanel(nav, label + " Tab", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+            new Vector2(x, 0f), new Vector2(140f, 122f), Color.clear);
+        Button button = tab.gameObject.AddComponent<Button>();
+        button.targetGraphic = tab.GetComponent<Image>();
+        AddIcon(tab, label + " Icon", iconSprite, new Vector2(0f, 19f), new Vector2(54f, 54f));
+        AddText(tab, label, 17, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(0f, -31f), new Vector2(135f, 32f), Color.white);
+        return button;
     }
 
     private static Image AddIcon(RectTransform parent, string name, Sprite sprite, Vector2 position, Vector2 size, Vector2? anchor = null)

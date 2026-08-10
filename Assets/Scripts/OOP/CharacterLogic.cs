@@ -29,7 +29,8 @@ public class CharacterLogic : MonoBehaviour, IGameRunning
     void Update()
     {
         // The player is a stationary defender. Combat is handled automatically by ECS.
-        _animator.SetBool(_isWalkingHash, false);
+        if (_animator != null)
+            _animator.SetBool(_isWalkingHash, false);
     }
 
     public DamageableType GetDamageableType()

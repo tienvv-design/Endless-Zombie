@@ -6,6 +6,8 @@ using UnityEngine;
 [UpdateBefore(typeof(EventResetSystem))]
 public partial class WeaponVfxBridge : SystemBase
 {
+    private PlayerGunplayAnimator m_PlayerGunplayAnimator;
+
     protected override void OnUpdate()
     {
         GunConfig config = WeaponVfxRuntime.CurrentConfig;
@@ -13,6 +15,10 @@ public partial class WeaponVfxBridge : SystemBase
 
         foreach (RefRO<WeaponFiredVfxEvent> fired in SystemAPI.Query<RefRO<WeaponFiredVfxEvent>>())
         {
+            if (m_PlayerGunplayAnimator == null)
+                m_PlayerGunplayAnimator = Object.FindFirstObjectByType<PlayerGunplayAnimator>();
+            m_PlayerGunplayAnimator?.PlayShot();
+
             Transform muzzle = WeaponVfxRuntime.CurrentMuzzle;
             Vector3 position = muzzle != null ? muzzle.position : (Vector3)fired.ValueRO.Position;
             Quaternion rotation = muzzle != null

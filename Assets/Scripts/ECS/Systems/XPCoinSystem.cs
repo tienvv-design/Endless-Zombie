@@ -49,27 +49,28 @@ internal partial struct XPCoinSystem : ISystem
                      .WithOptions(EntityQueryOptions.IgnoreComponentEnabledState))
         {
             // Find the target object and get the necessary info.
+            bool foundTarget = false;
             for (int i = 0; i < goInfoBuffer.Length; i++)
             {
                 if (xpCoin.ValueRO.TargetType == goInfoBuffer[i].ObjectType)
                 {
                     xpCoin.ValueRW.TargetPosition = goInfoBuffer[i].Position;
                     unitMover.ValueRW.targetPosition = xpCoin.ValueRO.TargetPosition;
+                    foundTarget = true;
+                    break;
                 }
             }
 
-            // Set UnitMover component enabled if the target has gotten within range. 
-            if (math.distancesq(localTransform.ValueRO.Position, xpCoin.ValueRO.TargetPosition) <=
-                xpCoin.ValueRO.MagnetPullDistanceSq)
+            // The player is stationary, so pickups outside a local magnet radius
+            // would otherwise remain on the arena forever. Pull every spawned
+            // pickup once a valid player target is available.
+            if (foundTarget && !SystemAPI.IsComponentEnabled<UnitMover>(entity))
             {
-                if (!SystemAPI.IsComponentEnabled<UnitMover>(entity))
-                {
-                    SystemAPI.SetComponentEnabled<UnitMover>(entity, true);   
-                }
+                SystemAPI.SetComponentEnabled<UnitMover>(entity, true);
             }
 
             // If the coin is close enough, create an event and destroy the entity.
-            if (math.distancesq(localTransform.ValueRO.Position, xpCoin.ValueRO.TargetPosition) <=
+            if (foundTarget && math.distancesq(localTransform.ValueRO.Position, xpCoin.ValueRO.TargetPosition) <=
                 XP_COLLECT_DISTANCE_SQ)
             {
                 Entity xpCollectedEvent = esEcb.CreateEntity();
