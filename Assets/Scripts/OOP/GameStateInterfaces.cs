@@ -14,4 +14,6 @@ public interface IGameLevelUp : IGameState{}
 
 public interface IGameOver : IGameState{}
 
+public interface IGameWin : IGameState{}
+
 public interface IGamePlayerPause : IGameState{}

@@ -13,6 +13,7 @@ namespace OOP.GameStates
         private bool _gameplayStarted;
         private bool _gameOverPending;
         private bool _gameOverTriggered;
+        private bool _winTriggered;
         private CharacterHealthManager _healthManager;
 
         void Awake()
@@ -31,16 +32,19 @@ namespace OOP.GameStates
             foreach (MonoBehaviour behaviour in FindObjectsByType<MonoBehaviour>(
                          FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
-                if (behaviour is IGameOver || behaviour is IGameLevelUp ||
+                if (behaviour is IGameOver || behaviour is IGameWin || behaviour is IGameLevelUp ||
                     behaviour is IGamePaused || behaviour is IGamePlayerPause)
                     behaviour.gameObject.SetActive(false);
             }
+
+            WinMenu.EnsureExists();
 
             _factory = new GameStateFactory(this);
             _factory.WireStates();
 
             _gameState = _factory.GetGameState(GameStateType.Running);
             BindPlayerHealth();
+            WaveSpawnLifecycle.StageCompleted += HandleStageCompleted;
         }
 
         private void Start()
@@ -71,6 +75,7 @@ namespace OOP.GameStates
             _gameplayStarted = true;
             _gameOverPending = false;
             _gameOverTriggered = false;
+            _winTriggered = false;
             BindPlayerHealth();
             _healthManager?.ApplyMetaProgression();
             GoldWallet.Instance?.ResetRunReward();
@@ -90,12 +95,24 @@ namespace OOP.GameStates
 
         private void TriggerGameOver()
         {
-            if (_gameOverTriggered) return;
+            if (_gameOverTriggered || _winTriggered) return;
             _gameOverTriggered = true;
             _gameOverPending = false;
             WaveSpawnLifecycle.StopStage();
             GoldWallet.Instance?.BankRunReward();
             _gameState.SwitchState(_factory.GetGameState(GameStateType.GameOver));
+        }
+
+        private void HandleStageCompleted()
+        {
+            if (!_gameplayStarted || _gameOverTriggered || _winTriggered)
+                return;
+
+            _winTriggered = true;
+            _gameOverPending = false;
+            WaveSpawnLifecycle.StopStage();
+            GoldWallet.Instance?.BankRunReward();
+            _gameState.SwitchState(_factory.GetGameState(GameStateType.Win));
         }
 
         private void BindPlayerHealth()
@@ -113,6 +130,7 @@ namespace OOP.GameStates
 
         private void OnDestroy()
         {
+            WaveSpawnLifecycle.StageCompleted -= HandleStageCompleted;
             if (_healthManager != null)
                 _healthManager.OnDeath -= PlayerDeathCallback;
         }

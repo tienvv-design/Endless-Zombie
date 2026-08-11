@@ -12,6 +12,7 @@ namespace OOP.GameStates
         PlayerPause,
         LevelUp,
         GameOver,
+        Win,
     }
     
     public class GameStateFactory
@@ -40,6 +41,9 @@ namespace OOP.GameStates
                         break;
                     case GameStateType.GameOver:
                         _gameStates.Add(GameStateType.GameOver, new GameOverState(stateMachineRunner, this));
+                        break;
+                    case GameStateType.Win:
+                        _gameStates.Add(GameStateType.Win, new WinState(stateMachineRunner, this));
                         break;
                     default:
                         break;
