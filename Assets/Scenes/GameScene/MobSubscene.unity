@@ -258,16 +258,16 @@ MonoBehaviour:
   DeadZoneSize: {x: 18, y: 10, z: 12}
   Regions:
   - GroupId: Outer
-    Center: {x: 0, y: 0.5, z: 18}
+    Center: {x: 0, y: 0, z: 18}
     Size: {x: 20, y: 1, z: 8}
   - GroupId: Outer
-    Center: {x: 0, y: 0.5, z: -18}
+    Center: {x: 0, y: 0, z: -18}
     Size: {x: 20, y: 1, z: 8}
   - GroupId: Outer
-    Center: {x: 18, y: 0.5, z: 0}
+    Center: {x: 18, y: 0, z: 0}
     Size: {x: 8, y: 1, z: 20}
   - GroupId: Outer
-    Center: {x: -18, y: 0.5, z: 0}
+    Center: {x: -18, y: 0, z: 0}
     Size: {x: 8, y: 1, z: 20}
 --- !u!1 &778725616
 GameObject:

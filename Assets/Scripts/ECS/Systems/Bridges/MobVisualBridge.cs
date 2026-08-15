@@ -14,6 +14,8 @@ public partial class MobVisualBridge : SystemBase
     {
         public GameObject GameObject;
         public Animator Animator;
+        public float LoopDuration;
+        public float DistancePerLoop;
     }
 
     private readonly Dictionary<Entity, VisualInstance> m_Visuals = new();
@@ -55,26 +57,47 @@ public partial class MobVisualBridge : SystemBase
             Entity entity = entities[i];
             if (!m_Visuals.TryGetValue(entity, out VisualInstance visual))
             {
-                GameObject visualObject = Object.Instantiate(m_Settings.VisualPrefab, m_VisualRoot);
-                visualObject.name = $"Zombie Visual ({entity.Index}:{entity.Version})";
+                bool isDogMutant = EntityManager.HasComponent<MobVisualVariant>(entity) &&
+                                   EntityManager.GetComponentData<MobVisualVariant>(entity).Kind == MobVisualKind.DogMutant;
+                GameObject prefab = isDogMutant && m_Settings.DogMutantVisualPrefab != null
+                    ? m_Settings.DogMutantVisualPrefab
+                    : m_Settings.VisualPrefab;
+                RuntimeAnimatorController controller = isDogMutant
+                    ? m_Settings.DogMutantAnimatorController
+                    : m_Settings.AnimatorController;
+                float loopDuration = isDogMutant
+                    ? m_Settings.DogMutantRunLoopDuration
+                    : m_Settings.WalkLoopDuration;
+                float distancePerLoop = isDogMutant
+                    ? m_Settings.DogMutantDistancePerRunLoop
+                    : m_Settings.DistancePerWalkLoop;
+
+                GameObject visualObject = Object.Instantiate(prefab, m_VisualRoot);
+                visualObject.name = $"{(isDogMutant ? "Dog Mutant" : "Zombie")} Visual ({entity.Index}:{entity.Version})";
 
                 Animator animator = visualObject.GetComponentInChildren<Animator>(true);
                 if (animator != null)
                 {
-                    if (m_Settings.AnimatorController != null)
-                        animator.runtimeAnimatorController = m_Settings.AnimatorController;
+                    if (controller != null)
+                        animator.runtimeAnimatorController = controller;
                     animator.applyRootMotion = false;
                 }
 
-                visual = new VisualInstance { GameObject = visualObject, Animator = animator };
+                visual = new VisualInstance
+                {
+                    GameObject = visualObject,
+                    Animator = animator,
+                    LoopDuration = loopDuration,
+                    DistancePerLoop = distancePerLoop,
+                };
                 m_Visuals.Add(entity, visual);
             }
 
             ApplyTransform(visual.GameObject.transform, transforms[i]);
             if (visual.Animator != null)
             {
-                float loopDuration = math.max(0.01f, m_Settings.WalkLoopDuration);
-                float loopDistance = math.max(0.01f, m_Settings.DistancePerWalkLoop);
+                float loopDuration = math.max(0.01f, visual.LoopDuration);
+                float loopDistance = math.max(0.01f, visual.DistancePerLoop);
                 visual.Animator.speed = math.max(0f, movers[i].moveSpeed * loopDuration / loopDistance);
             }
         }

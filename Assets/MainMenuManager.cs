@@ -153,11 +153,6 @@ public sealed class MainMenuManager : MonoBehaviour
         AddIcon(settings.transform as RectTransform, "Settings Icon", _settingsIcon, Vector2.zero, new Vector2(48f, 48f));
         _goldText = AddResourcePill(root, (GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0).ToString(), -48f, Yellow, _goldIcon);
 
-        AddPanel(root, "Energy", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -218f), new Vector2(188f, 74f), Blue);
-        AddText(root, "FULL\n12 / 5  ⚡", 25, FontStyles.Bold, TextAlignmentOptions.Center,
-            new Vector2(0.5f, 1f), new Vector2(0f, -218f), new Vector2(180f, 70f), Color.white);
-        AddIcon(root, "Energy Icon", _energyIcon, new Vector2(75f, -218f), new Vector2(46f, 58f), new Vector2(0.5f, 1f));
-
         _startButton = AddButton(root, "START  ·  1 ⚡", new Vector2(0.5f, 0f), new Vector2(0f, 470f), new Vector2(320f, 86f), Green, Navy, 34);
         _startButton.onClick.AddListener(StartGame);
         Button left = AddButton(root, "‹", new Vector2(0.5f, 0f), new Vector2(-205f, 470f), new Vector2(62f, 72f), Purple, Color.white, 50);

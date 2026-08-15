@@ -16,3 +16,7 @@ MonoBehaviour:
   AnimatorController: {fileID: 9100000, guid: c3513f7db65d46e4bc43f2bc9e51f00d, type: 2}
   WalkLoopDuration: 2
   DistancePerWalkLoop: 2
+  DogMutantVisualPrefab: {fileID: 5166489295478566908, guid: bc404b57e8c59a146bdbedea659b5649, type: 3}
+  DogMutantAnimatorController: {fileID: 9100000, guid: 115b86c178cd70243ae0456e11e2b31a, type: 2}
+  DogMutantRunLoopDuration: 0.6666667
+  DogMutantDistancePerRunLoop: 3

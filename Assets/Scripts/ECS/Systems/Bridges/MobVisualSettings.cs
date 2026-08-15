@@ -9,4 +9,12 @@ public sealed class MobVisualSettings : ScriptableObject
     [Min(0.01f)] public float WalkLoopDuration = 2f;
     [Tooltip("World-space distance the zombie should travel during one complete walk loop.")]
     [Min(0.01f)] public float DistancePerWalkLoop = 2f;
+
+    [Header("Dog Mutant")]
+    public GameObject DogMutantVisualPrefab;
+    public RuntimeAnimatorController DogMutantAnimatorController;
+    [Tooltip("Duration in seconds of one complete Dog Mutant run loop at Animator speed 1.")]
+    [Min(0.01f)] public float DogMutantRunLoopDuration = 1f;
+    [Tooltip("World-space distance the Dog Mutant should travel during one complete run loop.")]
+    [Min(0.01f)] public float DogMutantDistancePerRunLoop = 3f;
 }
