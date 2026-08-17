@@ -44,6 +44,9 @@ public sealed class MainMenuManager : MonoBehaviour
     private UpgradeCardView _healthCard;
     private UpgradeCardView _incomeCard;
     private RectTransform _weaponWindow;
+    private RectTransform _featureWindow;
+    private TextMeshProUGUI _featureTitle;
+    private TextMeshProUGUI _featureBody;
     private TextMeshProUGUI _weaponGoldText;
     private readonly List<WeaponCardView> _weaponCards = new();
 
@@ -164,16 +167,20 @@ public sealed class MainMenuManager : MonoBehaviour
         _incomeCard = AddUpgradeCard(root, 105f, StageUpgradeType.Income, "INCOME", Blue, _incomeIcon);
 
         RectTransform nav = AddPanel(root, "Navigation", new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 67f), new Vector2(0f, 134f), Navy);
-        AddNavItem(nav, -300f, "PET", _petIcon);
+        Button petTab = AddNavItem(nav, -300f, "PET", _petIcon);
+        petTab.onClick.AddListener(OpenPetWindow);
         Button weaponTab = AddNavItem(nav, -150f, "WEAPON", _weaponIcon);
         weaponTab.onClick.AddListener(OpenWeaponWindow);
         RectTransform battle = AddPanel(nav, "Battle Tab", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(155f, 165f), Hex("536BE7"));
         AddIcon(battle, "Battle Icon", _battleIcon, new Vector2(0f, 25f), new Vector2(68f, 68f));
         AddText(battle, "BATTLE", 25, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0f), new Vector2(0f, 26f), new Vector2(145f, 40f), Color.white);
-        AddNavItem(nav, 150f, "INVENTORY", _inventoryIcon);
-        AddNavItem(nav, 300f, "SHOP", _shopIcon);
+        Button inventoryTab = AddNavItem(nav, 150f, "INVENTORY", _inventoryIcon);
+        inventoryTab.onClick.AddListener(OpenInventoryWindow);
+        Button shopTab = AddNavItem(nav, 300f, "SHOP", _shopIcon);
+        shopTab.onClick.AddListener(OpenShopWindow);
 
         BuildWeaponWindow(root);
+        BuildFeatureWindow(root);
     }
 
     private void StartGame()
@@ -343,6 +350,58 @@ public sealed class MainMenuManager : MonoBehaviour
     {
         if (_weaponWindow != null)
             _weaponWindow.gameObject.SetActive(false);
+    }
+
+    private void BuildFeatureWindow(RectTransform root)
+    {
+        _featureWindow = AddPanel(root, "Feature Window", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero,
+            new Color(0.015f, 0.02f, 0.06f, 0.88f));
+        RectTransform panel = AddPanel(_featureWindow, "Feature Panel", new Vector2(0.5f, 0.5f),
+            new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(650f, 620f), Navy);
+        Outline outline = panel.gameObject.AddComponent<Outline>();
+        outline.effectColor = Blue;
+        outline.effectDistance = new Vector2(4f, -4f);
+
+        _featureTitle = AddText(panel, "FEATURE", 46, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 1f), new Vector2(0f, -90f), new Vector2(500f, 76f), Color.white);
+        _featureBody = AddText(panel, string.Empty, 25, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(520f, 250f), Hex("BCE4FF"));
+        Button close = AddButton(panel, "CLOSE", new Vector2(0.5f, 0f), new Vector2(0f, 85f),
+            new Vector2(300f, 78f), Blue, Color.white, 27);
+        close.onClick.AddListener(CloseFeatureWindow);
+        _featureWindow.gameObject.SetActive(false);
+    }
+
+    private void OpenPetWindow()
+    {
+        ShowFeatureWindow("PET", "PET SYSTEM\nCOMING SOON\n\nThis feature is not available in Endless Zombie yet.");
+    }
+
+    private void OpenInventoryWindow()
+    {
+        // Weapons are the inventory items currently supported by Zombie.
+        OpenWeaponWindow();
+    }
+
+    private void OpenShopWindow()
+    {
+        ShowFeatureWindow("SHOP", "UPGRADE SHOP\n\nUse the MAX HP and INCOME cards on the Battle screen.\nWeapon purchases are available in ARMORY.");
+    }
+
+    private void ShowFeatureWindow(string title, string body)
+    {
+        if (_featureWindow == null || _starting) return;
+        if (_weaponWindow != null) _weaponWindow.gameObject.SetActive(false);
+        _featureTitle.text = title;
+        _featureBody.text = body;
+        _featureWindow.gameObject.SetActive(true);
+        _featureWindow.SetAsLastSibling();
+    }
+
+    private void CloseFeatureWindow()
+    {
+        if (_featureWindow != null)
+            _featureWindow.gameObject.SetActive(false);
     }
 
     private void PurchaseOrEquipWeapon(int index)
