@@ -4,6 +4,7 @@ using Unity.Entities;
 public static class WaveSpawnLifecycle
 {
     public static event Action StageCompleted;
+    private static uint _runSeedSequence;
 
     public static void StopStage()
     {
@@ -62,11 +63,32 @@ public static class WaveSpawnLifecycle
         World world = World.DefaultGameObjectInjectionWorld;
         if (world == null || !world.IsCreated) return;
         EntityManager manager = world.EntityManager;
+        ReseedSpawnPositions(manager);
         EntityQuery query = manager.CreateEntityQuery(typeof(GameplayStartedTag));
         bool exists = !query.IsEmptyIgnoreFilter;
         query.Dispose();
         if (!exists)
             manager.CreateEntity(typeof(GameplayStartedTag));
+    }
+
+    private static void ReseedSpawnPositions(EntityManager manager)
+    {
+        EntityQuery query = manager.CreateEntityQuery(typeof(SpawnPositionSettings));
+        if (query.CalculateEntityCount() == 1)
+        {
+            Entity settingsEntity = query.GetSingletonEntity();
+            SpawnPositionSettings settings = manager.GetComponentData<SpawnPositionSettings>(settingsEntity);
+            settings.Random = Unity.Mathematics.Random.CreateFromIndex(CreateRunSeed());
+            manager.SetComponentData(settingsEntity, settings);
+        }
+        query.Dispose();
+    }
+
+    private static uint CreateRunSeed()
+    {
+        ulong ticks = (ulong)DateTime.UtcNow.Ticks;
+        uint seed = (uint)ticks ^ (uint)(ticks >> 32) ^ ++_runSeedSequence * 0x9E3779B9u;
+        return seed == 0u ? 1u : seed;
     }
 
     private static void RemoveGameplayStartedTag()

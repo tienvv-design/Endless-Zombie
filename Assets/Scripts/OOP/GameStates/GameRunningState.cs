@@ -59,7 +59,7 @@ namespace OOP.GameStates
         {
             if (PlayerInput.Instance.InputActions.Player.Pause.WasPerformedThisFrame())
             {
-                SwitchState(_factory.GetGameState(GameStateType.PlayerPause));
+                _context.PauseGameplay();
             }
         }
 

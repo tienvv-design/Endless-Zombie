@@ -559,13 +559,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - label: 0
-    clip: {fileID: 8300000, guid: 8acc058c379c6b34b84ae1b00e62be01, type: 3}
+    clip: {fileID: 8300000, guid: d89c85aff800b324ea468b33e0017bee, type: 3}
     volume: 0.7
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - label: 1
-    clip: {fileID: 8300000, guid: 51e00448ac778654382b46a548a4483f, type: 3}
+    clip: {fileID: 8300000, guid: 8015d907240d80248a01bb575f6926e6, type: 3}
     volume: 0.7
     pitch: 1
     loop: 1

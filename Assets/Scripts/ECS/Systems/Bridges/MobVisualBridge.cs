@@ -81,6 +81,7 @@ public partial class MobVisualBridge : SystemBase
                     if (controller != null)
                         animator.runtimeAnimatorController = controller;
                     animator.applyRootMotion = false;
+                    animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
                 }
 
                 visual = new VisualInstance
@@ -99,6 +100,7 @@ public partial class MobVisualBridge : SystemBase
                 float loopDuration = math.max(0.01f, visual.LoopDuration);
                 float loopDistance = math.max(0.01f, visual.DistancePerLoop);
                 visual.Animator.speed = math.max(0f, movers[i].moveSpeed * loopDuration / loopDistance);
+                EnsureLocomotionLoops(visual.Animator);
             }
         }
 
@@ -134,5 +136,18 @@ public partial class MobVisualBridge : SystemBase
             math.length(matrix.c0.xyz),
             math.length(matrix.c1.xyz),
             math.length(matrix.c2.xyz));
+    }
+
+    private static void EnsureLocomotionLoops(Animator animator)
+    {
+        if (animator.IsInTransition(0)) return;
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.loop || state.normalizedTime < 1f) return;
+
+        // Some visual variants use an animation clip embedded in an FBX whose
+        // importer does not expose Loop Time. Keep the controller's locomotion
+        // state cycling without modifying the source model asset.
+        animator.Play(state.fullPathHash, 0, state.normalizedTime % 1f);
     }
 }

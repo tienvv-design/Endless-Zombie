@@ -83,6 +83,20 @@ namespace OOP.GameStates
             State.EnterStates(_gameState);
         }
 
+        public void PauseGameplay()
+        {
+            if (!_gameplayStarted || _gameOverTriggered || _winTriggered)
+                return;
+            _gameState.SwitchState(_factory.GetGameState(GameStateType.PlayerPause));
+        }
+
+        public void ResumeGameplay()
+        {
+            if (!_gameplayStarted || _gameOverTriggered || _winTriggered)
+                return;
+            _gameState.SwitchState(_factory.GetGameState(GameStateType.Running));
+        }
+
         public void SetRunnerState(State state)
         {
             _gameState = state;
