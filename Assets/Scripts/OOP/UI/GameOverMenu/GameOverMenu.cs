@@ -4,6 +4,7 @@ using TMPro;
 public class GameOverMenu : MonoBehaviour, IGameOver
 {
     private TMP_Text m_ResultText;
+    private TMP_Text m_StageProgressText;
 
     public void OnStateEnable()
     {
@@ -11,6 +12,9 @@ public class GameOverMenu : MonoBehaviour, IGameOver
         if (m_ResultText == null)
             m_ResultText = CreateResultText();
         m_ResultText.text = $"Gold earned: {(GoldWallet.Instance ? GoldWallet.Instance.LastBankedReward : 0)}";
+        if (m_StageProgressText == null)
+            m_StageProgressText = StageProgressView.AddLabel(transform, new Vector2(0f, 82f));
+        StageProgressView.Refresh(m_StageProgressText);
     }
 
     public void OnStateDisable()

@@ -15,10 +15,10 @@ MonoBehaviour:
   WeaponId: rocket_launcher
   DisplayName: Rocket Launcher
   Icon: {fileID: 0}
-  HeldWeaponPrefab: {fileID: 0}
-  HeldLocalPosition: {x: 0, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 0, y: 0, z: 0}
-  HeldLocalScale: {x: 1, y: 1, z: 1}
+  HeldWeaponPrefab: {fileID: 8861018534708125288, guid: e255ad384286fce4f876c07a7e5e1d25, type: 3}
+  HeldLocalPosition: {x: 0.12, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  HeldLocalScale: {x: 0.7, y: 0.7, z: 0.7}
   Archetype: 4
   BaseDamage: 4
   BaseShotsPerSecond: 0.6

@@ -15,10 +15,10 @@ MonoBehaviour:
   WeaponId: ricochet_smg
   DisplayName: Ricochet SMG
   Icon: {fileID: 0}
-  HeldWeaponPrefab: {fileID: 0}
-  HeldLocalPosition: {x: 0, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 0, y: 0, z: 0}
-  HeldLocalScale: {x: 1, y: 1, z: 1}
+  HeldWeaponPrefab: {fileID: 2855816089889277477, guid: 1fd930a48e8659c4ca2bb28f913b3182, type: 3}
+  HeldLocalPosition: {x: 0.06, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
   Archetype: 5
   BaseDamage: 1
   BaseShotsPerSecond: 4

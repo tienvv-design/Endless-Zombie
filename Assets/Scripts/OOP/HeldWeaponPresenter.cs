@@ -16,6 +16,14 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         MetaProgression.SelectedWeaponChanged -= ShowWeapon;
     }
 
+    private void LateUpdate()
+    {
+        // The imported character is scaled to gameplay height. Cancel that inherited
+        // scale at the hand socket so weapon-pack models retain their intended size
+        // while still following the animated hand position and rotation.
+        CompensateInheritedScale();
+    }
+
     public void SetGunConfigs(GunConfig[] gunConfigs)
     {
         m_GunConfigs = gunConfigs;
@@ -71,12 +79,29 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         if (existing != null)
         {
             m_Socket = existing;
+            CompensateInheritedScale();
             return;
         }
 
         GameObject socket = new("HeldWeaponSocket");
         m_Socket = socket.transform;
         m_Socket.SetParent(parent, false);
+        CompensateInheritedScale();
+    }
+
+    private void CompensateInheritedScale()
+    {
+        if (m_Socket == null || m_Socket.parent == null) return;
+        Vector3 inherited = m_Socket.parent.lossyScale;
+        m_Socket.localScale = new Vector3(
+            SafeInverse(inherited.x),
+            SafeInverse(inherited.y),
+            SafeInverse(inherited.z));
+    }
+
+    private static float SafeInverse(float value)
+    {
+        return Mathf.Abs(value) > 0.0001f ? 1f / Mathf.Abs(value) : 1f;
     }
 
     private static Transform FindHandBone(Transform root)

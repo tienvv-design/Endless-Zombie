@@ -15,10 +15,10 @@ MonoBehaviour:
   WeaponId: assault_rifle
   DisplayName: Assault Rifle
   Icon: {fileID: 0}
-  HeldWeaponPrefab: {fileID: 0}
-  HeldLocalPosition: {x: 0, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 0, y: 0, z: 0}
-  HeldLocalScale: {x: 1, y: 1, z: 1}
+  HeldWeaponPrefab: {fileID: 3852799265655734254, guid: 6c7859e017cea78489d643b95bb38ec3, type: 3}
+  HeldLocalPosition: {x: 0.08, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
   Archetype: 2
   BaseDamage: 1
   BaseShotsPerSecond: 5

@@ -8,6 +8,7 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
 {
     private CanvasGroup m_Group;
     private TMP_Text m_GoldText;
+    private TMP_Text m_StageProgressText;
 
     public static void EnsureExists()
     {
@@ -38,6 +39,7 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
         gameObject.SetActive(true);
         if (m_GoldText != null)
             m_GoldText.text = $"GOLD EARNED  +{(GoldWallet.Instance ? GoldWallet.Instance.LastBankedReward : 0):N0}";
+        StageProgressView.Refresh(m_StageProgressText, true);
         m_Group.alpha = 1f;
         m_Group.interactable = true;
         m_Group.blocksRaycasts = true;
@@ -65,6 +67,7 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
             new Vector2(500f, 55f), Color.white);
         m_GoldText = AddText(panel, "GOLD EARNED  +0", 30f, new Vector2(0.5f, 0.5f), new Vector2(0f, 25f),
             new Vector2(520f, 60f), Hex("FFD628"));
+        m_StageProgressText = StageProgressView.AddLabel(panel, new Vector2(0f, 82f));
 
         Button mainMenu = AddButton(panel, "MAIN MENU", new Vector2(0.5f, 0f), new Vector2(0f, 100f),
             new Vector2(390f, 92f), Hex("168EF5"));

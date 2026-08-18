@@ -29,7 +29,7 @@ public partial class MobVisualBridge : SystemBase
         m_MobQuery = GetEntityQuery(
             ComponentType.ReadOnly<Mob>(),
             ComponentType.ReadOnly<UnitMover>(),
-            ComponentType.ReadOnly<LocalToWorld>());
+            ComponentType.ReadOnly<LocalTransform>());
     }
 
     protected override void OnStartRunning()
@@ -49,12 +49,13 @@ public partial class MobVisualBridge : SystemBase
     protected override void OnUpdate()
     {
         using NativeArray<Entity> entities = m_MobQuery.ToEntityArray(Allocator.Temp);
-        using NativeArray<LocalToWorld> transforms = m_MobQuery.ToComponentDataArray<LocalToWorld>(Allocator.Temp);
+        using NativeArray<LocalTransform> transforms = m_MobQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
         using NativeArray<UnitMover> movers = m_MobQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
 
         for (int i = 0; i < entities.Length; i++)
         {
             Entity entity = entities[i];
+            bool activateAfterTransform = false;
             if (!m_Visuals.TryGetValue(entity, out VisualInstance visual))
             {
                 bool isDogMutant = EntityManager.HasComponent<MobVisualVariant>(entity) &&
@@ -73,6 +74,10 @@ public partial class MobVisualBridge : SystemBase
                     : m_Settings.DistancePerWalkLoop;
 
                 GameObject visualObject = Object.Instantiate(prefab, m_VisualRoot);
+                // A newly instantiated GameObject starts at the visual root (world origin).
+                // Keep it hidden until the entity's actual spawn transform is applied so it
+                // can never render for one frame on top of the player.
+                visualObject.SetActive(false);
                 visualObject.name = $"{(isDogMutant ? "Dog Mutant" : "Zombie")} Visual ({entity.Index}:{entity.Version})";
 
                 Animator animator = visualObject.GetComponentInChildren<Animator>(true);
@@ -92,9 +97,12 @@ public partial class MobVisualBridge : SystemBase
                     DistancePerLoop = distancePerLoop,
                 };
                 m_Visuals.Add(entity, visual);
+                activateAfterTransform = true;
             }
 
             ApplyTransform(visual.GameObject.transform, transforms[i]);
+            if (activateAfterTransform)
+                visual.GameObject.SetActive(true);
             if (visual.Animator != null)
             {
                 float loopDuration = math.max(0.01f, visual.LoopDuration);
@@ -128,14 +136,10 @@ public partial class MobVisualBridge : SystemBase
             Object.Destroy(m_VisualRoot.gameObject);
     }
 
-    private static void ApplyTransform(Transform target, LocalToWorld source)
+    private static void ApplyTransform(Transform target, LocalTransform source)
     {
-        float4x4 matrix = source.Value;
-        target.SetPositionAndRotation(matrix.c3.xyz, new quaternion(matrix));
-        target.localScale = new Vector3(
-            math.length(matrix.c0.xyz),
-            math.length(matrix.c1.xyz),
-            math.length(matrix.c2.xyz));
+        target.SetPositionAndRotation(source.Position, source.Rotation);
+        target.localScale = Vector3.one * source.Scale;
     }
 
     private static void EnsureLocomotionLoops(Animator animator)

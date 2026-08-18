@@ -15,10 +15,10 @@ MonoBehaviour:
   WeaponId: shotgun
   DisplayName: Shotgun
   Icon: {fileID: 0}
-  HeldWeaponPrefab: {fileID: 0}
-  HeldLocalPosition: {x: 0, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 0, y: 0, z: 0}
-  HeldLocalScale: {x: 1, y: 1, z: 1}
+  HeldWeaponPrefab: {fileID: 647499141696943476, guid: 91ae9411a4d02cf41964a3f538884b64, type: 3}
+  HeldLocalPosition: {x: 0.08, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
   Archetype: 1
   BaseDamage: 1
   BaseShotsPerSecond: 0.8

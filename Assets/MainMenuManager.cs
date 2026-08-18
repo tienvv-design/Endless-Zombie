@@ -142,31 +142,34 @@ public sealed class MainMenuManager : MonoBehaviour
         canvas.sortingOrder = 50;
         CanvasScaler scaler = canvasObject.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(786f, 1402f);
+        // Match Endless Kicker's portrait reference layout so its prefab
+        // measurements can be transferred without per-device offsets.
+        scaler.referenceResolution = new Vector2(1080f, 1920f);
         scaler.matchWidthOrHeight = 0.5f;
         _menuGroup = canvasObject.GetComponent<CanvasGroup>();
 
         RectTransform root = canvasObject.GetComponent<RectTransform>();
-        AddPanel(root, "Top Fade", new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0f, -115f), new Vector2(0f, 230f), new Color(0f, 0f, 0f, 0.38f));
+        AddPanel(root, "TopBar", new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0f, -200f), new Vector2(0f, 400f), new Color(0f, 0f, 0f, 0.38f));
         AddText(root, "STAGE 1", 48, FontStyles.Bold, TextAlignmentOptions.Center,
-            new Vector2(0.5f, 1f), new Vector2(0f, -136f), new Vector2(380f, 70f), Color.white);
+            new Vector2(0.5f, 1f), new Vector2(0f, -120f), new Vector2(550f, 90f), Color.white);
 
-        Button settings = AddButton(root, "⚙", new Vector2(0f, 1f), new Vector2(62f, -62f), new Vector2(72f, 72f), Hex("DCE9FF"), Navy, 37);
+        Button settings = AddButton(root, "⚙", new Vector2(0f, 1f), new Vector2(168f, -120f), new Vector2(96f, 96f), Hex("DCE9FF"), Navy, 42);
         settings.onClick.AddListener(OpenSettings);
-        AddIcon(settings.transform as RectTransform, "Settings Icon", _settingsIcon, Vector2.zero, new Vector2(48f, 48f));
-        _goldText = AddResourcePill(root, (GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0).ToString(), -48f, Yellow, _goldIcon);
+        AddIcon(settings.transform as RectTransform, "Settings Icon", _settingsIcon, Vector2.zero, new Vector2(64f, 64f));
+        _goldText = AddResourcePill(root, (GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0).ToString(), -120f, Yellow, _goldIcon);
 
-        _startButton = AddButton(root, "START  ·  1 ⚡", new Vector2(0.5f, 0f), new Vector2(0f, 470f), new Vector2(320f, 86f), Green, Navy, 34);
+        _startButton = AddButton(root, "TAP TO START", new Vector2(0.5f, 0f), new Vector2(0f, 700f), new Vector2(400f, 172f), Green, Navy, 42);
+        (_startButton.transform as RectTransform).localScale = Vector3.one * 1.1f;
         _startButton.onClick.AddListener(StartGame);
-        Button left = AddButton(root, "‹", new Vector2(0.5f, 0f), new Vector2(-205f, 470f), new Vector2(62f, 72f), Purple, Color.white, 50);
-        Button right = AddButton(root, "›", new Vector2(0.5f, 0f), new Vector2(205f, 470f), new Vector2(62f, 72f), Purple, Color.white, 50);
+        Button left = AddButton(root, "‹", new Vector2(0.5f, 0f), new Vector2(-285f, 700f), new Vector2(72f, 96f), Purple, Color.white, 54);
+        Button right = AddButton(root, "›", new Vector2(0.5f, 0f), new Vector2(285f, 700f), new Vector2(72f, 96f), Purple, Color.white, 54);
         AddIcon(left.transform as RectTransform, "Left Arrow Icon", _leftArrowIcon, Vector2.zero, new Vector2(40f, 48f));
         AddIcon(right.transform as RectTransform, "Right Arrow Icon", _rightArrowIcon, Vector2.zero, new Vector2(40f, 48f));
 
-        _healthCard = AddUpgradeCard(root, -105f, StageUpgradeType.Health, "MAX HP", Blue, _maxHealthIcon);
-        _incomeCard = AddUpgradeCard(root, 105f, StageUpgradeType.Income, "INCOME", Blue, _incomeIcon);
+        _healthCard = AddUpgradeCard(root, -165f, StageUpgradeType.Health, "MAX HP", Blue, _maxHealthIcon);
+        _incomeCard = AddUpgradeCard(root, 165f, StageUpgradeType.Income, "INCOME", Blue, _incomeIcon);
 
-        RectTransform nav = AddPanel(root, "Navigation", new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 67f), new Vector2(0f, 134f), Navy);
+        RectTransform nav = AddPanel(root, "Navigation", new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 80f), new Vector2(0f, 160f), Navy);
         Button petTab = AddNavItem(nav, -300f, "PET", _petIcon);
         petTab.onClick.AddListener(OpenPetWindow);
         Button weaponTab = AddNavItem(nav, -150f, "WEAPON", _weaponIcon);
@@ -449,18 +452,18 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private UpgradeCardView AddUpgradeCard(RectTransform root, float x, StageUpgradeType type, string title, Color accent, Sprite iconSprite)
     {
-        RectTransform card = AddPanel(root, title, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(x, 245f), new Vector2(188f, 270f), BlueDark);
+        RectTransform card = AddPanel(root, title, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, -450f), new Vector2(260f, 448f), BlueDark);
         Outline outline = card.gameObject.AddComponent<Outline>();
         outline.effectColor = accent;
         outline.effectDistance = new Vector2(4f, -4f);
         Button button = card.gameObject.AddComponent<Button>();
         button.targetGraphic = card.GetComponent<Image>();
-        TextMeshProUGUI level = AddText(card, string.Empty, 23, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 1f), new Vector2(0f, -25f), new Vector2(170f, 30f), Color.white);
-        TextMeshProUGUI progress = AddText(card, string.Empty, 17, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 1f), new Vector2(0f, -51f), new Vector2(170f, 26f), Hex("BCE4FF"));
-        AddText(card, title, 25, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(0f, 55f), new Vector2(170f, 45f), Color.white);
-        AddIcon(card, title + " Icon", iconSprite, new Vector2(0f, 5f), new Vector2(80f, 80f));
-        TextMeshProUGUI value = AddText(card, string.Empty, 22, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(0f, -28f), new Vector2(170f, 44f), Color.white);
-        TextMeshProUGUI cost = AddText(card, string.Empty, 20, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0f), new Vector2(0f, 27f), new Vector2(170f, 46f), Yellow);
+        TextMeshProUGUI level = AddText(card, string.Empty, 28, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 1f), new Vector2(0f, -42f), new Vector2(230f, 40f), Color.white);
+        TextMeshProUGUI progress = AddText(card, string.Empty, 21, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 1f), new Vector2(0f, -82f), new Vector2(230f, 34f), Hex("BCE4FF"));
+        AddText(card, title, 30, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(0f, 86f), new Vector2(230f, 54f), Color.white);
+        AddIcon(card, title + " Icon", iconSprite, new Vector2(0f, 12f), new Vector2(108f, 108f));
+        TextMeshProUGUI value = AddText(card, string.Empty, 25, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(0f, -65f), new Vector2(230f, 52f), Color.white);
+        TextMeshProUGUI cost = AddText(card, string.Empty, 24, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0f), new Vector2(0f, 48f), new Vector2(230f, 58f), Yellow);
         UpgradeCardView view = new() { Type = type, Root = card, Button = button, Level = level, Progress = progress, Value = value, Cost = cost, Outline = outline };
         button.onClick.AddListener(() => PurchaseUpgrade(type));
         return view;
@@ -468,9 +471,9 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private TextMeshProUGUI AddResourcePill(RectTransform root, string value, float y, Color iconColor, Sprite iconSprite)
     {
-        RectTransform pill = AddPanel(root, value, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-76f, y), new Vector2(145f, 38f), new Color(0.04f, 0.05f, 0.1f, 0.9f));
-        AddIcon(pill, "Gold Icon", iconSprite, new Vector2(-48f, 0f), new Vector2(28f, 28f));
-        return AddText(pill, value, 19, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(12f, 0f), new Vector2(105f, 34f), iconColor);
+        RectTransform pill = AddPanel(root, value, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-168f, y), new Vector2(230f, 64f), new Color(0.04f, 0.05f, 0.1f, 0.9f));
+        AddIcon(pill, "Gold Icon", iconSprite, new Vector2(-78f, 0f), new Vector2(44f, 44f));
+        return AddText(pill, value, 25, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(24f, 0f), new Vector2(165f, 52f), iconColor);
     }
 
     private void PurchaseUpgrade(StageUpgradeType type)

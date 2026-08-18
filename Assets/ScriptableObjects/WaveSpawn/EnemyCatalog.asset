@@ -26,7 +26,7 @@ MonoBehaviour:
     EnemyType: 0
     HealthMultiplier: 1
     DamageMultiplier: 1
-    Scale: 1
+    Scale: 0.5
     XPReward: 7
     GoldReward: 2
   - EnemyId: Elite
