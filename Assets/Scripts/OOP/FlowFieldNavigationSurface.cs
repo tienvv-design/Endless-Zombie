@@ -1,0 +1,233 @@
+using System;
+using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Entities;
+using Unity.Mathematics;
+using UnityEngine;
+
+[DisallowMultipleComponent]
+public sealed class FlowFieldNavigationSurface : MonoBehaviour
+{
+    private static readonly Vector2Int[] Neighbours =
+    {
+        new(-1, 0), new(1, 0), new(0, -1), new(0, 1),
+        new(-1, -1), new(-1, 1), new(1, -1), new(1, 1)
+    };
+
+    private static readonly string[] WalkableNames =
+    {
+        "ground", "road", "floor", "terrain", "street", "pavement", "дорог"
+    };
+
+    [SerializeField, Min(0.25f)] private float m_CellSize = 1f;
+    [SerializeField, Min(0f)] private float m_AgentRadius = 0.65f;
+    [SerializeField, Min(0.1f)] private float m_MinObstacleHeight = 0.8f;
+    [SerializeField] private Transform m_Target;
+    [SerializeField] private bool m_DrawDebugGrid;
+
+    private NativeArray<sbyte> m_Directions;
+    private float3 m_Origin;
+    private int m_Width;
+    private int m_Height;
+    private int m_TargetCell = -1;
+
+    public static FlowFieldNavigationSurface Active { get; private set; }
+    public bool IsReady => m_Directions.IsCreated && m_Directions.Length > 0;
+    public NativeArray<sbyte> Directions => m_Directions;
+    public float3 Origin => m_Origin;
+    public float CellSize => m_CellSize;
+    public int Width => m_Width;
+    public int Height => m_Height;
+
+    private void Awake()
+    {
+        Active = this;
+        ResolveTarget();
+        Rebuild();
+    }
+
+    private void LateUpdate()
+    {
+        ResolveTarget();
+        if (!IsReady || m_Target == null) return;
+
+        int targetCell = WorldToCell(m_Target.position);
+        if (targetCell >= 0 && targetCell != m_TargetCell)
+            Rebuild();
+    }
+
+    private void OnDestroy()
+    {
+        if (Active == this) Active = null;
+        CompleteEntityJobs();
+        if (m_Directions.IsCreated) m_Directions.Dispose();
+    }
+
+    [ContextMenu("Rebuild Flow Field")]
+    public void Rebuild()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>(true);
+        if (renderers.Length == 0 || m_Target == null) return;
+
+        Bounds mapBounds = renderers[0].bounds;
+        foreach (Renderer renderer in renderers) mapBounds.Encapsulate(renderer.bounds);
+
+        m_Origin = new float3(mapBounds.min.x, 0f, mapBounds.min.z);
+        m_Width = Mathf.Max(1, Mathf.CeilToInt(mapBounds.size.x / m_CellSize));
+        m_Height = Mathf.Max(1, Mathf.CeilToInt(mapBounds.size.z / m_CellSize));
+        int cellCount = m_Width * m_Height;
+        bool[] blocked = new bool[cellCount];
+
+        foreach (Renderer renderer in renderers)
+        {
+            if (!IsObstacle(renderer)) continue;
+            Bounds bounds = renderer.bounds;
+            bounds.Expand(new Vector3(m_AgentRadius * 2f, 0f, m_AgentRadius * 2f));
+            MarkBlocked(bounds, blocked);
+        }
+
+        int target = FindNearestOpenCell(WorldToCell(m_Target.position), blocked);
+        if (target < 0)
+        {
+            Debug.LogWarning("Flow field could not find an open cell near the Player.", this);
+            return;
+        }
+
+        int[] distances = BuildDistances(target, blocked);
+        CompleteEntityJobs();
+        if (m_Directions.IsCreated) m_Directions.Dispose();
+        m_Directions = new NativeArray<sbyte>(cellCount, Allocator.Persistent);
+
+        for (int index = 0; index < cellCount; index++)
+        {
+            if (blocked[index] || distances[index] == int.MaxValue) continue;
+            int best = 0;
+            int bestDistance = distances[index];
+            Vector2Int cell = ToCoordinates(index);
+            for (int direction = 0; direction < Neighbours.Length; direction++)
+            {
+                Vector2Int next = cell + Neighbours[direction];
+                if (!IsInside(next.x, next.y)) continue;
+                if (!CanTraverseDiagonal(cell, Neighbours[direction], blocked)) continue;
+                int nextIndex = ToIndex(next.x, next.y);
+                if (distances[nextIndex] < bestDistance)
+                {
+                    best = direction + 1;
+                    bestDistance = distances[nextIndex];
+                }
+            }
+            m_Directions[index] = (sbyte)best;
+        }
+
+        m_TargetCell = WorldToCell(m_Target.position);
+        Debug.Log($"Flow field built: {m_Width}x{m_Height}, cell {m_CellSize:0.##}m.", this);
+    }
+
+    private bool IsObstacle(Renderer renderer)
+    {
+        string objectName = renderer.name.ToLowerInvariant();
+        foreach (string walkableName in WalkableNames)
+            if (objectName.Contains(walkableName)) return false;
+        return renderer.bounds.size.y >= m_MinObstacleHeight;
+    }
+
+    private void MarkBlocked(Bounds bounds, bool[] blocked)
+    {
+        int minX = Mathf.Clamp(Mathf.FloorToInt((bounds.min.x - m_Origin.x) / m_CellSize), 0, m_Width - 1);
+        int maxX = Mathf.Clamp(Mathf.FloorToInt((bounds.max.x - m_Origin.x) / m_CellSize), 0, m_Width - 1);
+        int minZ = Mathf.Clamp(Mathf.FloorToInt((bounds.min.z - m_Origin.z) / m_CellSize), 0, m_Height - 1);
+        int maxZ = Mathf.Clamp(Mathf.FloorToInt((bounds.max.z - m_Origin.z) / m_CellSize), 0, m_Height - 1);
+        for (int z = minZ; z <= maxZ; z++)
+        for (int x = minX; x <= maxX; x++)
+            blocked[ToIndex(x, z)] = true;
+    }
+
+    private int[] BuildDistances(int target, bool[] blocked)
+    {
+        int[] distances = new int[blocked.Length];
+        Array.Fill(distances, int.MaxValue);
+        Queue<int> open = new();
+        distances[target] = 0;
+        open.Enqueue(target);
+        while (open.Count > 0)
+        {
+            int current = open.Dequeue();
+            Vector2Int cell = ToCoordinates(current);
+            foreach (Vector2Int offset in Neighbours)
+            {
+                int x = cell.x + offset.x;
+                int z = cell.y + offset.y;
+                if (!IsInside(x, z)) continue;
+                if (!CanTraverseDiagonal(cell, offset, blocked)) continue;
+                int next = ToIndex(x, z);
+                if (blocked[next] || distances[next] != int.MaxValue) continue;
+                distances[next] = distances[current] + (offset.x == 0 || offset.y == 0 ? 10 : 14);
+                open.Enqueue(next);
+            }
+        }
+        return distances;
+    }
+
+    private bool CanTraverseDiagonal(Vector2Int cell, Vector2Int offset, bool[] blocked)
+    {
+        if (offset.x == 0 || offset.y == 0) return true;
+        int horizontal = ToIndex(cell.x + offset.x, cell.y);
+        int vertical = ToIndex(cell.x, cell.y + offset.y);
+        return !blocked[horizontal] && !blocked[vertical];
+    }
+
+    private int FindNearestOpenCell(int requested, bool[] blocked)
+    {
+        if (requested >= 0 && !blocked[requested]) return requested;
+        if (requested < 0) return -1;
+        Vector2Int origin = ToCoordinates(requested);
+        int maxRadius = Mathf.Max(m_Width, m_Height);
+        for (int radius = 1; radius < maxRadius; radius++)
+        for (int z = origin.y - radius; z <= origin.y + radius; z++)
+        for (int x = origin.x - radius; x <= origin.x + radius; x++)
+            if (IsInside(x, z) && !blocked[ToIndex(x, z)]) return ToIndex(x, z);
+        return -1;
+    }
+
+    private int WorldToCell(Vector3 position)
+    {
+        int x = Mathf.FloorToInt((position.x - m_Origin.x) / m_CellSize);
+        int z = Mathf.FloorToInt((position.z - m_Origin.z) / m_CellSize);
+        return IsInside(x, z) ? ToIndex(x, z) : -1;
+    }
+
+    private Vector2Int ToCoordinates(int index) => new(index % m_Width, index / m_Width);
+    private int ToIndex(int x, int z) => z * m_Width + x;
+    private bool IsInside(int x, int z) => x >= 0 && z >= 0 && x < m_Width && z < m_Height;
+
+    private void ResolveTarget()
+    {
+        if (m_Target != null) return;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null) m_Target = player.transform;
+    }
+
+    private static void CompleteEntityJobs()
+    {
+        World world = World.DefaultGameObjectInjectionWorld;
+        if (world != null && world.IsCreated) world.EntityManager.CompleteAllTrackedJobs();
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (!m_DrawDebugGrid || !IsReady) return;
+        Gizmos.color = new Color(0.15f, 0.8f, 1f, 0.4f);
+        for (int i = 0; i < m_Directions.Length; i++)
+        {
+            int direction = m_Directions[i];
+            if (direction <= 0) continue;
+            Vector2Int cell = ToCoordinates(i);
+            Vector2Int offset = Neighbours[direction - 1];
+            Vector3 center = new(m_Origin.x + (cell.x + 0.5f) * m_CellSize, 0.15f,
+                m_Origin.z + (cell.y + 0.5f) * m_CellSize);
+            Gizmos.DrawLine(center, center + new Vector3(offset.x, 0f, offset.y) * m_CellSize * 0.4f);
+        }
+    }
+#endif
+}
