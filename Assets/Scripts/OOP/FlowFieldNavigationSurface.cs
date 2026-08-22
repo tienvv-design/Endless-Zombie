@@ -22,19 +22,24 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
     [SerializeField, Min(0.25f)] private float m_CellSize = 1f;
     [SerializeField, Min(0f)] private float m_AgentRadius = 0.65f;
     [SerializeField, Min(0.1f)] private float m_MinObstacleHeight = 0.8f;
+    [SerializeField, Min(0.25f)] private float m_ObstacleProbeHeight = 1.5f;
     [SerializeField] private bool m_SampleColliderGeometry = true;
+    [SerializeField] private string m_WalkableSurfaceName = "Plane";
     [SerializeField] private Transform m_Target;
     [SerializeField] private bool m_DrawDebugGrid;
 
     private NativeArray<sbyte> m_Directions;
+    private NativeArray<float> m_SurfaceHeights;
     private float3 m_Origin;
     private int m_Width;
     private int m_Height;
     private int m_TargetCell = -1;
 
     public static FlowFieldNavigationSurface Active { get; private set; }
-    public bool IsReady => m_Directions.IsCreated && m_Directions.Length > 0;
+    public bool IsReady => m_Directions.IsCreated && m_SurfaceHeights.IsCreated &&
+                           m_Directions.Length > 0 && m_SurfaceHeights.Length == m_Directions.Length;
     public NativeArray<sbyte> Directions => m_Directions;
+    public NativeArray<float> SurfaceHeights => m_SurfaceHeights;
     public float3 Origin => m_Origin;
     public float CellSize => m_CellSize;
     public int Width => m_Width;
@@ -62,6 +67,7 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
         if (Active == this) Active = null;
         CompleteEntityJobs();
         if (m_Directions.IsCreated) m_Directions.Dispose();
+        if (m_SurfaceHeights.IsCreated) m_SurfaceHeights.Dispose();
     }
 
     [ContextMenu("Rebuild Flow Field")]
@@ -70,20 +76,26 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
         Renderer[] renderers = GetComponentsInChildren<Renderer>(true);
         if (renderers.Length == 0 || m_Target == null) return;
 
-        Bounds mapBounds = renderers[0].bounds;
-        foreach (Renderer renderer in renderers) mapBounds.Encapsulate(renderer.bounds);
+        if (!TryGetWalkableSurfaceBounds(renderers, out Bounds mapBounds))
+        {
+            Debug.LogError($"Flow field could not find the walkable mesh '{m_WalkableSurfaceName}' " +
+                           "inside Stage Map.", this);
+            return;
+        }
 
         m_Origin = new float3(mapBounds.min.x, 0f, mapBounds.min.z);
         m_Width = Mathf.Max(1, Mathf.CeilToInt(mapBounds.size.x / m_CellSize));
         m_Height = Mathf.Max(1, Mathf.CeilToInt(mapBounds.size.z / m_CellSize));
         int cellCount = m_Width * m_Height;
         bool[] blocked = new bool[cellCount];
+        float[] surfaceHeights = new float[cellCount];
+        Array.Fill(surfaceHeights, mapBounds.center.y);
 
         EnsureRuntimeMeshColliders();
         Physics.SyncTransforms();
         if (m_SampleColliderGeometry && GetComponentsInChildren<MeshCollider>(true).Length > 0)
         {
-            SampleColliderObstacles(mapBounds, blocked);
+            SampleColliderObstacles(mapBounds, blocked, surfaceHeights);
         }
         else
         {
@@ -106,11 +118,17 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
         int[] distances = BuildDistances(target, blocked);
         CompleteEntityJobs();
         if (m_Directions.IsCreated) m_Directions.Dispose();
+        if (m_SurfaceHeights.IsCreated) m_SurfaceHeights.Dispose();
         m_Directions = new NativeArray<sbyte>(cellCount, Allocator.Persistent);
+        m_SurfaceHeights = new NativeArray<float>(surfaceHeights, Allocator.Persistent);
 
         for (int index = 0; index < cellCount; index++)
         {
-            if (blocked[index] || distances[index] == int.MaxValue) continue;
+            if (blocked[index] || distances[index] == int.MaxValue)
+            {
+                m_Directions[index] = -1;
+                continue;
+            }
             int best = 0;
             int bestDistance = distances[index];
             Vector2Int cell = ToCoordinates(index);
@@ -148,12 +166,91 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
         }
     }
 
-    private void SampleColliderObstacles(Bounds mapBounds, bool[] blocked)
+    private bool TryGetWalkableSurfaceBounds(Renderer[] renderers, out Bounds bounds)
+    {
+        bool found = false;
+        bounds = default;
+        foreach (Renderer renderer in renderers)
+        {
+            if (!string.Equals(renderer.name, m_WalkableSurfaceName, StringComparison.OrdinalIgnoreCase))
+                continue;
+            if (!found)
+            {
+                bounds = renderer.bounds;
+                found = true;
+            }
+            else
+            {
+                bounds.Encapsulate(renderer.bounds);
+            }
+        }
+        return found;
+    }
+
+    public bool TryProjectToWalkable(float3 position, out float3 projected)
+    {
+        projected = position;
+        if (!IsReady || !m_SurfaceHeights.IsCreated) return false;
+        int rawX = Mathf.FloorToInt((position.x - m_Origin.x) / m_CellSize);
+        int rawZ = Mathf.FloorToInt((position.z - m_Origin.z) / m_CellSize);
+        int x = Mathf.Clamp(rawX, 0, m_Width - 1);
+        int z = Mathf.Clamp(rawZ, 0, m_Height - 1);
+        int requestedCell = ToIndex(x, z);
+        if (rawX == x && rawZ == z && m_Directions[requestedCell] >= 0)
+        {
+            projected.y = m_SurfaceHeights[requestedCell];
+            return true;
+        }
+
+        int cell = FindNearestNavigableCell(x, z);
+        if (cell < 0) return false;
+
+        Vector2Int coordinates = ToCoordinates(cell);
+        projected.x = m_Origin.x + (coordinates.x + 0.5f) * m_CellSize;
+        projected.y = m_SurfaceHeights[cell];
+        projected.z = m_Origin.z + (coordinates.y + 0.5f) * m_CellSize;
+        return true;
+    }
+
+    private int FindNearestNavigableCell(int originX, int originZ)
+    {
+        int origin = ToIndex(originX, originZ);
+        if (m_Directions[origin] >= 0) return origin;
+
+        int maxRadius = Mathf.Max(m_Width, m_Height);
+        for (int radius = 1; radius < maxRadius; radius++)
+        {
+            int minX = Mathf.Max(0, originX - radius);
+            int maxX = Mathf.Min(m_Width - 1, originX + radius);
+            int minZ = Mathf.Max(0, originZ - radius);
+            int maxZ = Mathf.Min(m_Height - 1, originZ + radius);
+
+            for (int x = minX; x <= maxX; x++)
+            {
+                int bottom = ToIndex(x, minZ);
+                if (m_Directions[bottom] >= 0) return bottom;
+                int top = ToIndex(x, maxZ);
+                if (m_Directions[top] >= 0) return top;
+            }
+
+            for (int z = minZ + 1; z < maxZ; z++)
+            {
+                int left = ToIndex(minX, z);
+                if (m_Directions[left] >= 0) return left;
+                int right = ToIndex(maxX, z);
+                if (m_Directions[right] >= 0) return right;
+            }
+        }
+
+        return -1;
+    }
+
+    private void SampleColliderObstacles(Bounds mapBounds, bool[] blocked, float[] surfaceHeights)
     {
         float castTop = mapBounds.max.y + 2f;
         float castDistance = mapBounds.size.y + 4f;
-        float groundHeight = transform.position.y;
         RaycastHit[] hits = new RaycastHit[32];
+        Collider[] overlaps = new Collider[32];
 
         for (int z = 0; z < m_Height; z++)
         for (int x = 0; x < m_Width; x++)
@@ -164,19 +261,57 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
                 new Vector3(worldX, castTop, worldZ), Vector3.down, hits, castDistance,
                 Physics.AllLayers, QueryTriggerInteraction.Ignore);
 
-            float highestMapSurface = float.NegativeInfinity;
+            float planeHeight = float.NegativeInfinity;
+            float highestObstacle = float.NegativeInfinity;
             for (int i = 0; i < hitCount; i++)
             {
                 Collider collider = hits[i].collider;
                 if (collider == null || !collider.transform.IsChildOf(transform)) continue;
-                highestMapSurface = Mathf.Max(highestMapSurface, hits[i].point.y);
+                if (string.Equals(collider.name, m_WalkableSurfaceName, StringComparison.OrdinalIgnoreCase))
+                    planeHeight = Mathf.Max(planeHeight, hits[i].point.y);
+                else if (!string.Equals(collider.name, "Gameplay Ground Collider", StringComparison.OrdinalIgnoreCase))
+                    highestObstacle = Mathf.Max(highestObstacle, hits[i].point.y);
             }
 
-            if (highestMapSurface > groundHeight + m_MinObstacleHeight)
-                blocked[ToIndex(x, z)] = true;
+            int cell = ToIndex(x, z);
+            if (float.IsNegativeInfinity(planeHeight))
+            {
+                blocked[cell] = true;
+                continue;
+            }
+
+            surfaceHeights[cell] = planeHeight;
+            if (!float.IsNegativeInfinity(highestObstacle) &&
+                highestObstacle > planeHeight + m_MinObstacleHeight)
+                blocked[cell] = true;
+
+            if (!blocked[cell] && HasObstacleVolume(worldX, worldZ, planeHeight, overlaps))
+                blocked[cell] = true;
         }
 
         InflateBlockedCells(blocked, Mathf.CeilToInt(m_AgentRadius / m_CellSize));
+    }
+
+    private bool HasObstacleVolume(float worldX, float worldZ, float planeHeight, Collider[] overlaps)
+    {
+        Vector3 halfExtents = new(m_CellSize * 0.51f, m_ObstacleProbeHeight * 0.5f,
+            m_CellSize * 0.51f);
+        Vector3 center = new(worldX, planeHeight + halfExtents.y + 0.05f, worldZ);
+        int count = Physics.OverlapBoxNonAlloc(center, halfExtents, overlaps, Quaternion.identity,
+            Physics.AllLayers, QueryTriggerInteraction.Ignore);
+
+        for (int i = 0; i < count; i++)
+        {
+            Collider collider = overlaps[i];
+            overlaps[i] = null;
+            if (collider == null || !collider.transform.IsChildOf(transform)) continue;
+            if (string.Equals(collider.name, m_WalkableSurfaceName, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(collider.name, "Gameplay Ground Collider", StringComparison.OrdinalIgnoreCase))
+                continue;
+            return true;
+        }
+
+        return false;
     }
 
     private void InflateBlockedCells(bool[] blocked, int radius)

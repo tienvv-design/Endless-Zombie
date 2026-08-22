@@ -20,7 +20,6 @@ public partial struct SpawnRequestProcessingSystem : ISystem
         state.RequireForUpdate<GameplayStartedTag>();
     }
 
-    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         StageRuntime stage = SystemAPI.GetSingleton<StageRuntime>();
@@ -80,6 +79,17 @@ public partial struct SpawnRequestProcessingSystem : ISystem
                     physicsWorld.CollisionWorld,
                     ref settings.ValueRW,
                     out float3 spawnPosition))
+            {
+                entry.EnqueuedCount = math.max(entry.SpawnedCount, entry.EnqueuedCount - 1);
+                entry.State = SpawnEntryRuntimeState.Active;
+                entries[request.SpawnEntryIndex] = entry;
+                requests.RemoveAt(0);
+                continue;
+            }
+
+            FlowFieldNavigationSurface navigation = FlowFieldNavigationSurface.Active;
+            if (navigation != null && navigation.IsReady &&
+                !navigation.TryProjectToWalkable(spawnPosition, out spawnPosition))
             {
                 entry.EnqueuedCount = math.max(entry.SpawnedCount, entry.EnqueuedCount - 1);
                 entry.State = SpawnEntryRuntimeState.Active;

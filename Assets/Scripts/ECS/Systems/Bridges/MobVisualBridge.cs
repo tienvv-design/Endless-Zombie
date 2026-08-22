@@ -16,6 +16,7 @@ public partial class MobVisualBridge : SystemBase
         public Animator Animator;
         public float LoopDuration;
         public float DistancePerLoop;
+        public float GroundOffset;
     }
 
     private readonly Dictionary<Entity, VisualInstance> m_Visuals = new();
@@ -95,12 +96,14 @@ public partial class MobVisualBridge : SystemBase
                     Animator = animator,
                     LoopDuration = loopDuration,
                     DistancePerLoop = distancePerLoop,
+                    GroundOffset = CalculateGroundOffset(visualObject) +
+                                   (isDogMutant ? m_Settings.DogMutantGroundOffset : m_Settings.ZombieGroundOffset),
                 };
                 m_Visuals.Add(entity, visual);
                 activateAfterTransform = true;
             }
 
-            ApplyTransform(visual.GameObject.transform, transforms[i]);
+            ApplyTransform(visual.GameObject.transform, transforms[i], visual.GroundOffset);
             if (activateAfterTransform)
                 visual.GameObject.SetActive(true);
             if (visual.Animator != null)
@@ -136,9 +139,22 @@ public partial class MobVisualBridge : SystemBase
             Object.Destroy(m_VisualRoot.gameObject);
     }
 
-    private static void ApplyTransform(Transform target, LocalTransform source)
+    private static float CalculateGroundOffset(GameObject visualObject)
     {
-        target.SetPositionAndRotation(source.Position, source.Rotation);
+        Renderer[] renderers = visualObject.GetComponentsInChildren<Renderer>(true);
+        if (renderers.Length == 0) return 0f;
+
+        float lowestPoint = float.PositiveInfinity;
+        foreach (Renderer renderer in renderers)
+            lowestPoint = Mathf.Min(lowestPoint, renderer.bounds.min.y);
+        return float.IsPositiveInfinity(lowestPoint) ? 0f : visualObject.transform.position.y - lowestPoint;
+    }
+
+    private static void ApplyTransform(Transform target, LocalTransform source, float groundOffset)
+    {
+        float3 groundedPosition = source.Position;
+        groundedPosition.y += groundOffset * source.Scale;
+        target.SetPositionAndRotation(groundedPosition, source.Rotation);
         target.localScale = Vector3.one * source.Scale;
     }
 

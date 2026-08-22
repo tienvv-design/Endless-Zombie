@@ -26,6 +26,7 @@ partial struct UnitMoverSystem : ISystem
             MobUnitMoverJob mobMoverJob = new MobUnitMoverJob {
                 deltaTime = SystemAPI.Time.DeltaTime,
                 directions = surface.Directions,
+                surfaceHeights = surface.SurfaceHeights,
                 gridOrigin = surface.Origin,
                 cellSize = surface.CellSize,
                 gridWidth = surface.Width,
@@ -56,6 +57,7 @@ public partial struct MobUnitMoverJob : IJobEntity
 {
     public float deltaTime;
     [ReadOnly] public NativeArray<sbyte> directions;
+    [ReadOnly] public NativeArray<float> surfaceHeights;
     public float3 gridOrigin;
     public float cellSize;
     public int gridWidth;
@@ -78,15 +80,25 @@ public partial struct MobUnitMoverJob : IJobEntity
         int z = (int)math.floor((localTransform.Position.z - gridOrigin.z) / cellSize);
         if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
         {
-            int direction = directions[z * gridWidth + x];
+            int cellIndex = z * gridWidth + x;
+            localTransform.Position.y = surfaceHeights[cellIndex];
+            int direction = directions[cellIndex];
+            if (direction < 0)
+            {
+                physicsVelocity.Linear = float3.zero;
+                physicsVelocity.Angular = float3.zero;
+                return;
+            }
             if (direction > 0)
             {
                 int2 offset = DirectionOffset(direction);
                 float3 flowDirection = math.normalizesafe(new float3(offset.x, 0f, offset.y));
-                // Blend toward the Player so movement remains natural instead of looking grid-locked.
-                moveDirection = math.normalizesafe(flowDirection * 0.85f + moveDirection * 0.15f, flowDirection);
+                moveDirection = flowDirection;
             }
         }
+
+        moveDirection.y = 0f;
+        moveDirection = math.normalizesafe(moveDirection);
 
         if (unitMover.LookAtTarget)
         {
@@ -96,7 +108,6 @@ public partial struct MobUnitMoverJob : IJobEntity
                     deltaTime * unitMover.rotationSpeed);   
         }
 
-        moveDirection.y = 0f;
         physicsVelocity.Linear = moveDirection * unitMover.moveSpeed;
         physicsVelocity.Angular = float3.zero;
         

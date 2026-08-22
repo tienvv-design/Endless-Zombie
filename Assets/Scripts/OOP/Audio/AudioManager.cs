@@ -4,6 +4,8 @@ using System;
 [RequireComponent(typeof(AudioLowPassFilter))]
 public class AudioManager : MonoBehaviour
 {
+    private const string MusicVolumeKey = "Settings.MusicVolume";
+    private const string SoundVolumeKey = "Settings.SoundVolume";
     public static AudioManager Instance;
 
     public Sound[] sounds;
@@ -35,6 +37,9 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+
+        SetMusicVolume(PlayerPrefs.GetFloat(MusicVolumeKey, 0.7f));
+        SetSoundVolume(PlayerPrefs.GetFloat(SoundVolumeKey, 0.7f));
     }
 
     public void Play(SoundLabel label)
@@ -61,6 +66,30 @@ public class AudioManager : MonoBehaviour
     public void SetGlobalVolume(float value)
     {
         AudioListener.volume = value;
+    }
+
+    public float MusicVolume => PlayerPrefs.GetFloat(MusicVolumeKey, 0.7f);
+    public float SoundVolume => PlayerPrefs.GetFloat(SoundVolumeKey, 0.7f);
+
+    public void SetMusicVolume(float value)
+    {
+        value = Mathf.Clamp01(value);
+        PlayerPrefs.SetFloat(MusicVolumeKey, value);
+        SetLocalVolume(SoundLabel.InGameMusic, value);
+        SetLocalVolume(SoundLabel.MainMenuMusic, value);
+    }
+
+    public void SetSoundVolume(float value)
+    {
+        value = Mathf.Clamp01(value);
+        PlayerPrefs.SetFloat(SoundVolumeKey, value);
+        foreach (Sound sound in sounds)
+        {
+            if (sound.label is SoundLabel.InGameMusic or SoundLabel.MainMenuMusic) continue;
+            if (!EnsureSource(sound)) continue;
+            sound.volume = value;
+            sound.source.volume = value;
+        }
     }
 
     public void SetLocalVolume(SoundLabel label, float value)

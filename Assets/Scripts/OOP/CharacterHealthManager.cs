@@ -47,6 +47,7 @@ public class CharacterHealthManager : Targetable
 
     public int BaseHealth => _characterStats != null ? _characterStats.Health : 0;
     public int CurrentHealth => m_Health;
+    public int MaxHealth => m_MaxHealth;
     public bool IsDead => m_IsDead;
 
     public void ApplyMetaProgression()

@@ -155,7 +155,7 @@ public static class MapVersion1Installer
 
     private static void AddGroundColliders(GameObject model)
     {
-        string[] groundWords = { "ground", "road", "floor", "terrain", "street", "pavement", "дорог" };
+        string[] groundWords = { "plane", "ground", "road", "floor", "terrain", "street", "pavement", "дорог" };
         int added = 0;
         foreach (MeshFilter filter in model.GetComponentsInChildren<MeshFilter>(true))
         {

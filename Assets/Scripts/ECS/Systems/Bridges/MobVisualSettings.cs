@@ -9,6 +9,8 @@ public sealed class MobVisualSettings : ScriptableObject
     [Min(0.01f)] public float WalkLoopDuration = 2f;
     [Tooltip("World-space distance the zombie should travel during one complete walk loop.")]
     [Min(0.01f)] public float DistancePerWalkLoop = 2f;
+    [Tooltip("Additional vertical correction after automatically aligning the zombie's lowest renderer point to the map surface.")]
+    public float ZombieGroundOffset;
 
     [Header("Dog Mutant")]
     public GameObject DogMutantVisualPrefab;
@@ -17,4 +19,6 @@ public sealed class MobVisualSettings : ScriptableObject
     [Min(0.01f)] public float DogMutantRunLoopDuration = 1f;
     [Tooltip("World-space distance the Dog Mutant should travel during one complete run loop.")]
     [Min(0.01f)] public float DogMutantDistancePerRunLoop = 3f;
+    [Tooltip("Additional vertical correction after automatically aligning the mutant dog's lowest renderer point to the map surface.")]
+    public float DogMutantGroundOffset;
 }
