@@ -158,13 +158,17 @@ public sealed class MainMenuManager : MonoBehaviour
         _menuGroup = canvasObject.GetComponent<CanvasGroup>();
 
         RectTransform root = canvasObject.GetComponent<RectTransform>();
+        SettingsMenu.EnsureExists(root);
         AddPanel(root, "TopBar", new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0f, -200f), new Vector2(0f, 400f), new Color(0f, 0f, 0f, 0.38f));
         AddText(root, "STAGE 1", 48, FontStyles.Bold, TextAlignmentOptions.Center,
             new Vector2(0.5f, 1f), new Vector2(0f, -120f), new Vector2(550f, 90f), Color.white);
 
-        Button settings = AddButton(root, "⚙", new Vector2(0f, 1f), new Vector2(168f, -120f), new Vector2(96f, 96f), Hex("DCE9FF"), Navy, 42);
+        Button settings = AddButton(root, string.Empty, new Vector2(0f, 1f), new Vector2(168f, -120f),
+            new Vector2(96f, 96f), Color.clear, Navy, 42);
         settings.onClick.AddListener(OpenSettings);
-        AddIcon(settings.transform as RectTransform, "Settings Icon", _settingsIcon, Vector2.zero, new Vector2(64f, 64f));
+        Sprite kickerSettingsIcon = Resources.Load<Sprite>("KickerHUD/setting_button");
+        AddIcon(settings.transform as RectTransform, "Settings Icon",
+            kickerSettingsIcon != null ? kickerSettingsIcon : _settingsIcon, Vector2.zero, new Vector2(78f, 78f));
         _goldText = AddResourcePill(root, (GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0).ToString(), -120f, Yellow, _goldIcon);
 
         _startButton = AddButton(root, "TAP TO START", new Vector2(0.5f, 0f), new Vector2(0f, 700f), new Vector2(400f, 172f), Green, Navy, 42);
@@ -269,9 +273,8 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private static void OpenSettings()
     {
-        GameObject settings = GameObject.Find("SettingsMenu");
-        if (settings != null)
-            settings.SetActive(true);
+        SettingsMenu settings = FindFirstObjectByType<SettingsMenu>(FindObjectsInactive.Include);
+        settings?.Show();
     }
 
     public bool SelectWeapon(int index)
@@ -643,6 +646,7 @@ public sealed class MainMenuManager : MonoBehaviour
         rect.anchoredPosition = position;
         rect.sizeDelta = dimensions;
         TextMeshProUGUI text = item.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = value;
         text.fontSize = size;
         text.fontStyle = style;

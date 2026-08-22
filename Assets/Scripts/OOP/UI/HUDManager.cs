@@ -15,7 +15,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TMP_Text m_AmmoText;
     [SerializeField] private Image m_AmmoIcon;
     private TMP_Text m_LevelText;
-    private TMP_Text m_WeaponStatsText;
+    private readonly TMP_Text[] m_WeaponStatValues = new TMP_Text[5];
     private TMP_Text m_WaveText;
     private TMP_Text m_KillProgressText;
     private RectTransform m_BottomCombatPanel;
@@ -42,7 +42,7 @@ public class HUDManager : MonoBehaviour
         if (m_GoldText == null)
             m_GoldText = CreateGoldCounter();
         m_LevelText = CreateLevelText();
-        m_WeaponStatsText = CreateWeaponStatsText();
+        CreateWeaponStatsTexts();
         m_WaveText = CreateWaveText();
         m_KillProgressText = CreateKillProgressText();
         CreatePauseButton();
@@ -182,6 +182,7 @@ public class HUDManager : MonoBehaviour
         rect.anchoredPosition = position;
         rect.sizeDelta = size;
         TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = value;
         text.fontSize = fontSize;
         text.fontStyle = FontStyles.Bold;
@@ -254,6 +255,7 @@ public class HUDManager : MonoBehaviour
         rect.sizeDelta = new Vector2(260f, 50f);
 
         TextMeshProUGUI text = counter.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = "Run Gold: 0";
         text.fontSize = 28f;
         text.fontStyle = FontStyles.Bold;
@@ -273,6 +275,7 @@ public class HUDManager : MonoBehaviour
         rect.anchoredPosition = new Vector2(-255f, -20f);
         rect.sizeDelta = new Vector2(390f, 30f);
         TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = "LEVEL 0   0/0 XP";
         text.fontSize = 19f;
         text.alignment = TextAlignmentOptions.Center;
@@ -282,23 +285,18 @@ public class HUDManager : MonoBehaviour
         return text;
     }
 
-    private TMP_Text CreateWeaponStatsText()
+    private void CreateWeaponStatsTexts()
     {
-        GameObject label = new GameObject("WeaponRuntimeStats", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        label.transform.SetParent(m_BottomCombatPanel, false);
-        RectTransform rect = label.GetComponent<RectTransform>();
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = new Vector2(245f, -45f);
-        rect.sizeDelta = new Vector2(470f, 42f);
-        TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
-        text.text = "--       --       --       --       --";
-        text.fontSize = 19f;
-        text.alignment = TextAlignmentOptions.Center;
-        text.fontStyle = FontStyles.Bold;
-        text.color = new Color(0.75f, 0.95f, 1f, 1f);
-        text.raycastTarget = false;
-        return text;
+        float[] xPositions = { 65f, 155f, 245f, 335f, 425f };
+        for (int i = 0; i < m_WeaponStatValues.Length; i++)
+        {
+            m_WeaponStatValues[i] = AddHUDText(m_BottomCombatPanel, "--", 19f,
+                new Vector2(xPositions[i], -38f), new Vector2(88f, 36f),
+                TextAlignmentOptions.Center, new Color32(205, 241, 255, 255));
+            m_WeaponStatValues[i].enableAutoSizing = true;
+            m_WeaponStatValues[i].fontSizeMin = 14f;
+            m_WeaponStatValues[i].fontSizeMax = 19f;
+        }
     }
 
     private TMP_Text CreateWaveText()
@@ -312,6 +310,7 @@ public class HUDManager : MonoBehaviour
         rect.anchoredPosition = new Vector2(0f, -24f);
         rect.sizeDelta = new Vector2(520f, 44f);
         TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = "Wave --";
         text.fontSize = 24f;
         text.fontStyle = FontStyles.Bold;
@@ -331,6 +330,7 @@ public class HUDManager : MonoBehaviour
         rect.anchoredPosition = new Vector2(0f, -66f);
         rect.sizeDelta = new Vector2(360f, 36f);
         TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = "KILLS  0 / 0";
         text.fontSize = 20f;
         text.fontStyle = FontStyles.Bold;
@@ -402,6 +402,7 @@ public class HUDManager : MonoBehaviour
         labelRect.offsetMin = new Vector2(66f, 5f);
         labelRect.offsetMax = new Vector2(-10f, -5f);
         TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = "AMMO  -- / --";
         text.fontSize = 25f;
         text.fontStyle = FontStyles.Bold;
@@ -473,7 +474,7 @@ public class HUDManager : MonoBehaviour
         if (m_StatsRefreshTimer > 0f) return;
         m_StatsRefreshTimer = 0.2f;
         World world = World.DefaultGameObjectInjectionWorld;
-        if (world == null || !world.IsCreated || m_WeaponStatsText == null) return;
+        if (world == null || !world.IsCreated || m_WeaponStatValues[0] == null) return;
         if (!m_WeaponQueryCreated)
         {
             m_EntityManager = world.EntityManager;
@@ -482,9 +483,11 @@ public class HUDManager : MonoBehaviour
         }
         if (m_WeaponQuery.CalculateEntityCount() != 1) return;
         WeaponManager gun = m_WeaponQuery.GetSingleton<WeaponManager>();
-        m_WeaponStatsText.text =
-            $"{gun.DamagePerHit:N0}       {gun.AttackRange:0.0}m       {gun.ShotsPerSecond:0.0}/s       " +
-            $"{gun.CriticalChance * 100f:0.#}%       x{gun.CriticalDamage:0.##}";
+        m_WeaponStatValues[0].text = $"{gun.DamagePerHit:N0}";
+        m_WeaponStatValues[1].text = $"{gun.AttackRange:0.0}m";
+        m_WeaponStatValues[2].text = $"{gun.ShotsPerSecond:0.0}/s";
+        m_WeaponStatValues[3].text = $"{gun.CriticalChance * 100f:0.#}%";
+        m_WeaponStatValues[4].text = $"x{gun.CriticalDamage:0.##}";
         if (m_AmmoText != null)
         {
             if (gun.IsReloading)

@@ -28,40 +28,40 @@ public class PauseMenu : MonoBehaviour, IGamePlayerPause
             transform.GetChild(i).gameObject.SetActive(false);
 
         RectTransform panel = CreateImage("KickerSettingControls", transform, LoadSprite("setting_panel"),
-            Vector2.zero, new Vector2(720f, 650f));
+            Vector2.zero, new Vector2(720f, 520f));
         RectTransform header = CreateImage("Header", panel, LoadSprite("setting_header"),
-            new Vector2(0f, 252f), new Vector2(610f, 110f));
-        CreateText("SETTINGS", header, Vector2.zero, new Vector2(460f, 70f), 42f, Color.white);
-        CreateIconButton("Close", panel, LoadSprite("setting_close"), new Vector2(292f, 255f),
-            new Vector2(68f, 68f), Resume);
+            new Vector2(0f, 205f), new Vector2(610f, 88f));
+        CreateText("SETTINGS", header, new Vector2(0f, -2f), new Vector2(460f, 62f), 36f, Color.white);
+        CreateIconButton("Close", panel, LoadSprite("setting_close"), new Vector2(302f, 210f),
+            new Vector2(60f, 60f), Resume);
 
-        CreateSettingRow(panel, "MUSIC", "setting_music", 130f,
+        CreateSettingRow(panel, "MUSIC", "setting_music", 92f,
             AudioManager.Instance != null ? AudioManager.Instance.MusicVolume : 0.7f,
             value => AudioManager.Instance?.SetMusicVolume(value));
-        CreateSettingRow(panel, "SOUND", "setting_sound", 5f,
+        CreateSettingRow(panel, "SOUND", "setting_sound", -8f,
             AudioManager.Instance != null ? AudioManager.Instance.SoundVolume : 0.7f,
             value => AudioManager.Instance?.SetSoundVolume(value));
 
         CreateImage("VibrationIcon", panel, LoadSprite("setting_vibration"),
-            new Vector2(-245f, -120f), new Vector2(68f, 68f));
-        CreateText("VIBRATION", panel, new Vector2(-130f, -120f), new Vector2(180f, 50f), 27f, Color.white);
-        Button vibration = CreateSpriteButton("VibrationToggle", panel, "ON", new Vector2(160f, -120f),
-            new Vector2(210f, 64f), ToggleVibration);
+            new Vector2(-265f, -108f), new Vector2(60f, 60f));
+        CreateText("VIBRATION", panel, new Vector2(-155f, -108f), new Vector2(180f, 44f), 24f, Color.white);
+        Button vibration = CreateSpriteButton("VibrationToggle", panel, "ON", new Vector2(165f, -108f),
+            new Vector2(210f, 62f), ToggleVibration);
         vibrationStateText = vibration.GetComponentInChildren<TextMeshProUGUI>();
         RefreshVibrationState();
 
-        CreateSpriteButton("Resume", panel, "RESUME", new Vector2(-165f, -238f),
-            new Vector2(270f, 76f), Resume);
-        CreateSpriteButton("MainMenu", panel, "MAIN MENU", new Vector2(165f, -238f),
-            new Vector2(270f, 76f), MainMenu);
+        CreateSpriteButton("Resume", panel, "RESUME", new Vector2(-145f, -205f),
+            new Vector2(230f, 70f), Resume);
+        CreateSpriteButton("MainMenu", panel, "MAIN MENU", new Vector2(145f, -205f),
+            new Vector2(230f, 70f), MainMenu);
     }
 
     private static void CreateSettingRow(Transform parent, string label, string iconName, float y,
         float initialValue, UnityEngine.Events.UnityAction<float> onChanged)
     {
-        CreateImage(label + "Icon", parent, LoadSprite(iconName), new Vector2(-245f, y), new Vector2(68f, 68f));
-        CreateText(label, parent, new Vector2(-145f, y), new Vector2(150f, 48f), 27f, Color.white);
-        Slider slider = CreateSlider(parent, new Vector2(115f, y), new Vector2(300f, 42f));
+        CreateImage(label + "Icon", parent, LoadSprite(iconName), new Vector2(-265f, y), new Vector2(60f, 60f));
+        CreateText(label, parent, new Vector2(-165f, y), new Vector2(150f, 44f), 24f, Color.white);
+        Slider slider = CreateSlider(parent, new Vector2(125f, y), new Vector2(310f, 38f));
         slider.SetValueWithoutNotify(initialValue);
         slider.onValueChanged.AddListener(onChanged);
     }
@@ -109,7 +109,7 @@ public class PauseMenu : MonoBehaviour, IGamePlayerPause
         Button button = rect.gameObject.AddComponent<Button>();
         button.targetGraphic = rect.GetComponent<Image>();
         button.onClick.AddListener(action);
-        CreateText(label, rect, Vector2.zero, size - new Vector2(20f, 12f), 28f, new Color32(42, 63, 75, 255));
+        CreateText(label, rect, new Vector2(0f, -2f), size - new Vector2(20f, 12f), 24f, new Color32(42, 63, 75, 255));
         return button;
     }
 
@@ -135,7 +135,7 @@ public class PauseMenu : MonoBehaviour, IGamePlayerPause
         Image image = item.GetComponent<Image>();
         image.sprite = sprite;
         image.color = sprite != null ? Color.white : Color.clear;
-        image.preserveAspect = sprite != null;
+        image.preserveAspect = false;
         return rect;
     }
 
@@ -160,10 +160,12 @@ public class PauseMenu : MonoBehaviour, IGamePlayerPause
         rect.anchoredPosition = position;
         rect.sizeDelta = size;
         TextMeshProUGUI text = item.GetComponent<TextMeshProUGUI>();
+        KickerUITheme.Apply(text);
         text.text = value;
         text.fontSize = fontSize;
         text.fontStyle = FontStyles.Bold;
         text.alignment = TextAlignmentOptions.Center;
+        text.margin = Vector4.zero;
         text.color = color;
         text.enableAutoSizing = true;
         text.fontSizeMin = 16f;
