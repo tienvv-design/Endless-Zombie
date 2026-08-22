@@ -22,6 +22,7 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
     [SerializeField, Min(0.25f)] private float m_CellSize = 1f;
     [SerializeField, Min(0f)] private float m_AgentRadius = 0.65f;
     [SerializeField, Min(0.1f)] private float m_MinObstacleHeight = 0.8f;
+    [SerializeField] private bool m_SampleColliderGeometry = true;
     [SerializeField] private Transform m_Target;
     [SerializeField] private bool m_DrawDebugGrid;
 
@@ -78,12 +79,21 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
         int cellCount = m_Width * m_Height;
         bool[] blocked = new bool[cellCount];
 
-        foreach (Renderer renderer in renderers)
+        EnsureRuntimeMeshColliders();
+        Physics.SyncTransforms();
+        if (m_SampleColliderGeometry && GetComponentsInChildren<MeshCollider>(true).Length > 0)
         {
-            if (!IsObstacle(renderer)) continue;
-            Bounds bounds = renderer.bounds;
-            bounds.Expand(new Vector3(m_AgentRadius * 2f, 0f, m_AgentRadius * 2f));
-            MarkBlocked(bounds, blocked);
+            SampleColliderObstacles(mapBounds, blocked);
+        }
+        else
+        {
+            foreach (Renderer renderer in renderers)
+            {
+                if (!IsObstacle(renderer)) continue;
+                Bounds bounds = renderer.bounds;
+                bounds.Expand(new Vector3(m_AgentRadius * 2f, 0f, m_AgentRadius * 2f));
+                MarkBlocked(bounds, blocked);
+            }
         }
 
         int target = FindNearestOpenCell(WorldToCell(m_Target.position), blocked);
@@ -120,7 +130,72 @@ public sealed class FlowFieldNavigationSurface : MonoBehaviour
         }
 
         m_TargetCell = WorldToCell(m_Target.position);
-        Debug.Log($"Flow field built: {m_Width}x{m_Height}, cell {m_CellSize:0.##}m.", this);
+        int blockedCount = 0;
+        foreach (bool isBlocked in blocked)
+            if (isBlocked) blockedCount++;
+        Debug.Log($"Flow field built: {m_Width}x{m_Height}, {blockedCount} obstacle cells, " +
+                  $"cell {m_CellSize:0.##}m.", this);
+    }
+
+    private void EnsureRuntimeMeshColliders()
+    {
+        foreach (MeshFilter filter in GetComponentsInChildren<MeshFilter>(true))
+        {
+            if (filter.sharedMesh == null || filter.GetComponent<MeshCollider>() != null) continue;
+            MeshCollider collider = filter.gameObject.AddComponent<MeshCollider>();
+            collider.sharedMesh = filter.sharedMesh;
+            collider.convex = false;
+        }
+    }
+
+    private void SampleColliderObstacles(Bounds mapBounds, bool[] blocked)
+    {
+        float castTop = mapBounds.max.y + 2f;
+        float castDistance = mapBounds.size.y + 4f;
+        float groundHeight = transform.position.y;
+        RaycastHit[] hits = new RaycastHit[32];
+
+        for (int z = 0; z < m_Height; z++)
+        for (int x = 0; x < m_Width; x++)
+        {
+            float worldX = m_Origin.x + (x + 0.5f) * m_CellSize;
+            float worldZ = m_Origin.z + (z + 0.5f) * m_CellSize;
+            int hitCount = Physics.RaycastNonAlloc(
+                new Vector3(worldX, castTop, worldZ), Vector3.down, hits, castDistance,
+                Physics.AllLayers, QueryTriggerInteraction.Ignore);
+
+            float highestMapSurface = float.NegativeInfinity;
+            for (int i = 0; i < hitCount; i++)
+            {
+                Collider collider = hits[i].collider;
+                if (collider == null || !collider.transform.IsChildOf(transform)) continue;
+                highestMapSurface = Mathf.Max(highestMapSurface, hits[i].point.y);
+            }
+
+            if (highestMapSurface > groundHeight + m_MinObstacleHeight)
+                blocked[ToIndex(x, z)] = true;
+        }
+
+        InflateBlockedCells(blocked, Mathf.CeilToInt(m_AgentRadius / m_CellSize));
+    }
+
+    private void InflateBlockedCells(bool[] blocked, int radius)
+    {
+        if (radius <= 0) return;
+        bool[] source = (bool[])blocked.Clone();
+        for (int z = 0; z < m_Height; z++)
+        for (int x = 0; x < m_Width; x++)
+        {
+            if (!source[ToIndex(x, z)]) continue;
+            for (int offsetZ = -radius; offsetZ <= radius; offsetZ++)
+            for (int offsetX = -radius; offsetX <= radius; offsetX++)
+            {
+                if (offsetX * offsetX + offsetZ * offsetZ > radius * radius) continue;
+                int nextX = x + offsetX;
+                int nextZ = z + offsetZ;
+                if (IsInside(nextX, nextZ)) blocked[ToIndex(nextX, nextZ)] = true;
+            }
+        }
     }
 
     private bool IsObstacle(Renderer renderer)

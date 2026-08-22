@@ -58,7 +58,7 @@ public static class MapVersion1Installer
         string sourceDependency = AssetDatabase.GetAssetDependencyHash(SourcePath).ToString();
         string installedDependency = EditorPrefs.GetString("EndlessZombie.VERSION1MapHash", string.Empty);
         if (prefab == null || prefab.GetComponent<FlowFieldNavigationSurface>() == null ||
-            sourceDependency != installedDependency)
+            !HasNavigationColliders(prefab) || sourceDependency != installedDependency)
         {
             Install();
             EditorPrefs.SetString("EndlessZombie.VERSION1MapHash", sourceDependency);
@@ -82,6 +82,7 @@ public static class MapVersion1Installer
         ConfigureRenderersAndMaterials(model);
         FitMapToGameplayArea(model);
         AddGroundColliders(model);
+        AddNavigationColliders(model);
         root.AddComponent<FlowFieldNavigationSurface>();
         SetStaticRecursively(root);
 
@@ -178,6 +179,24 @@ public static class MapVersion1Installer
         }
     }
 
+    private static void AddNavigationColliders(GameObject model)
+    {
+        foreach (MeshFilter filter in model.GetComponentsInChildren<MeshFilter>(true))
+        {
+            if (filter.sharedMesh == null || filter.GetComponent<MeshCollider>() != null) continue;
+            MeshCollider collider = filter.gameObject.AddComponent<MeshCollider>();
+            collider.sharedMesh = filter.sharedMesh;
+            collider.convex = false;
+        }
+    }
+
+    private static bool HasNavigationColliders(GameObject prefab)
+    {
+        MeshFilter[] filters = prefab.GetComponentsInChildren<MeshFilter>(true);
+        return filters.Length > 0 &&
+               filters.All(filter => filter.sharedMesh == null || filter.GetComponent<MeshCollider>() != null);
+    }
+
     private static void InstallIntoGameScene(GameObject prefab)
     {
         Scene scene = SceneManager.GetSceneByPath(ScenePath);
@@ -185,15 +204,27 @@ public static class MapVersion1Installer
         if (openedTemporarily)
             scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Additive);
 
-        foreach (GameObject existing in scene.GetRootGameObjects().Where(item => item.name == SceneObjectName).ToArray())
+        GameObject[] existingMaps = scene.GetRootGameObjects()
+            .Where(item => item.name == SceneObjectName).ToArray();
+        Vector3 position = Vector3.zero;
+        Quaternion rotation = Quaternion.identity;
+        Vector3 scale = Vector3.one;
+        if (existingMaps.Length > 0)
+        {
+            position = existingMaps[0].transform.position;
+            rotation = existingMaps[0].transform.rotation;
+            scale = existingMaps[0].transform.localScale;
+        }
+
+        foreach (GameObject existing in existingMaps)
             Object.DestroyImmediate(existing);
 
         GameObject instance = PrefabUtility.InstantiatePrefab(prefab, scene) as GameObject;
         if (instance != null)
         {
             instance.name = SceneObjectName;
-            instance.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            instance.transform.localScale = Vector3.one;
+            instance.transform.SetPositionAndRotation(position, rotation);
+            instance.transform.localScale = scale;
             instance.SetActive(true);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);

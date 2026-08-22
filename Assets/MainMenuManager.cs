@@ -14,9 +14,11 @@ public sealed class MainMenuManager : MonoBehaviour
     [Header("Camera Transition")]
     [SerializeField] private Vector3 _menuCameraPosition = new(0f, 9.5f, -7f);
     [SerializeField] private Vector3 _menuCameraEuler = new(52f, 0f, 0f);
+    [SerializeField] private Vector3 _menuFocusOffset = new(0f, 1.15f, 0f);
     [SerializeField] private float _menuFieldOfView = 52f;
     [SerializeField] private Vector3 _gameCameraPosition = new(0f, 20f, -3.5f);
     [SerializeField] private Vector3 _gameCameraEuler = new(81f, 0f, 0f);
+    [SerializeField] private Vector3 _gameFocusOffset = Vector3.zero;
     [SerializeField] private float _gameFieldOfView = 85f;
     [SerializeField, Min(0.1f)] private float _transitionDuration = 1.15f;
 
@@ -35,6 +37,8 @@ public sealed class MainMenuManager : MonoBehaviour
     [SerializeField] private Sprite _shopIcon;
 
     private Camera _camera;
+    private Transform _hero;
+    private Vector3 _resolvedMenuFocusOffset;
     private CanvasGroup _menuGroup;
     private Button _startButton;
     private Canvas _gameplayHud;
@@ -110,6 +114,9 @@ public sealed class MainMenuManager : MonoBehaviour
     private void SetupGameplayPresentation()
     {
         _gameStateMachine = FindFirstObjectByType<OOP.GameStates.GameStateMachineRunner>();
+        GameObject heroObject = GameObject.FindGameObjectWithTag("Player");
+        _hero = heroObject != null ? heroObject.transform : null;
+        _resolvedMenuFocusOffset = ResolveHeroVisualFocusOffset();
         PlayerInput.Instance?.InputActions.Player.Disable();
         _camera = Camera.main;
         if (_camera != null)
@@ -122,7 +129,9 @@ public sealed class MainMenuManager : MonoBehaviour
                     break;
                 }
             }
-            _camera.transform.SetPositionAndRotation(_menuCameraPosition, Quaternion.Euler(_menuCameraEuler));
+            Vector3 menuPosition = GetCameraPosition(_menuCameraPosition);
+            Quaternion menuRotation = GetFocusRotation(menuPosition, _resolvedMenuFocusOffset, _menuCameraEuler);
+            _camera.transform.SetPositionAndRotation(menuPosition, menuRotation);
             _camera.fieldOfView = _menuFieldOfView;
         }
 
@@ -199,6 +208,8 @@ public sealed class MainMenuManager : MonoBehaviour
         RefreshUpgradeCards();
         Vector3 startPosition = _camera != null ? _camera.transform.position : Vector3.zero;
         Quaternion startRotation = _camera != null ? _camera.transform.rotation : Quaternion.identity;
+        Vector3 gamePosition = GetCameraPosition(_gameCameraPosition);
+        Quaternion gameRotation = GetFocusRotation(gamePosition, _gameFocusOffset, _gameCameraEuler);
         float startFov = _camera != null ? _camera.fieldOfView : _menuFieldOfView;
         float elapsed = 0f;
 
@@ -209,8 +220,8 @@ public sealed class MainMenuManager : MonoBehaviour
             _menuGroup.alpha = 1f - t;
             if (_camera != null)
             {
-                _camera.transform.position = Vector3.Lerp(startPosition, _gameCameraPosition, t);
-                _camera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.Euler(_gameCameraEuler), t);
+                _camera.transform.position = Vector3.Lerp(startPosition, gamePosition, t);
+                _camera.transform.rotation = Quaternion.Slerp(startRotation, gameRotation, t);
                 _camera.fieldOfView = Mathf.Lerp(startFov, _gameFieldOfView, t);
             }
             yield return null;
@@ -225,6 +236,35 @@ public sealed class MainMenuManager : MonoBehaviour
         AudioManager.Instance?.Stop(SoundLabel.MainMenuMusic);
         _gameStateMachine?.BeginGameplay();
         Destroy(_menuGroup.gameObject);
+    }
+
+    private Vector3 GetCameraPosition(Vector3 offset)
+    {
+        return _hero != null ? _hero.position + offset : offset;
+    }
+
+    private Vector3 ResolveHeroVisualFocusOffset()
+    {
+        if (_hero == null) return _menuFocusOffset;
+
+        SkinnedMeshRenderer[] renderers = _hero.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+        if (renderers.Length == 0) return _menuFocusOffset;
+
+        Bounds bounds = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++)
+            bounds.Encapsulate(renderers[i].bounds);
+        return _hero.InverseTransformPoint(bounds.center);
+    }
+
+    private Quaternion GetFocusRotation(Vector3 cameraPosition, Vector3 focusOffset, Vector3 fallbackEuler)
+    {
+        if (_hero == null)
+            return Quaternion.Euler(fallbackEuler);
+
+        Vector3 direction = _hero.position + focusOffset - cameraPosition;
+        return direction.sqrMagnitude > 0.0001f
+            ? Quaternion.LookRotation(direction, Vector3.up)
+            : Quaternion.Euler(fallbackEuler);
     }
 
     private static void OpenSettings()
