@@ -2,30 +2,39 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+public sealed class SettingsMenu : MonoBehaviour
 {
     private const string VibrationKey = "Settings.Vibration";
-    public Slider volumeSlider;
-    private TMP_Text vibrationText;
-    private bool built;
+
+    [SerializeField] private SettingsMenuView m_View;
+    private bool m_Bound;
 
     public static void EnsureExists(Transform parent)
     {
-        if (FindFirstObjectByType<SettingsMenu>(FindObjectsInactive.Include) != null) return;
-        GameObject item = new("SettingsMenu", typeof(RectTransform));
-        item.SetActive(false);
-        RectTransform rect = item.GetComponent<RectTransform>();
-        rect.SetParent(parent, false);
-        rect.anchorMin = Vector2.zero;
-        rect.anchorMax = Vector2.one;
-        rect.offsetMin = rect.offsetMax = Vector2.zero;
-        item.AddComponent<SettingsMenu>();
+        if (FindFirstObjectByType<SettingsMenu>(FindObjectsInactive.Include) != null)
+            return;
+
+        SettingsMenu prefab = Resources.Load<SettingsMenu>("SettingsMenu");
+        if (prefab == null)
+        {
+            Debug.LogError("Missing Resources/SettingsMenu.prefab.");
+            return;
+        }
+
+        SettingsMenu instance = Instantiate(prefab, parent, false);
+        instance.name = "SettingsMenu";
+        instance.gameObject.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        BindView();
     }
 
     private void OnEnable()
     {
-        if (!built) Build();
-        RefreshVibration();
+        BindView();
+        RefreshControls();
     }
 
     public void Show()
@@ -33,64 +42,49 @@ public class SettingsMenu : MonoBehaviour
         transform.SetAsLastSibling();
         gameObject.SetActive(true);
     }
-    public void OnVolumeChanged(float value) => AudioManager.Instance?.SetGlobalVolume(value);
 
-    private void Build()
+    private void BindView()
     {
-        built = true;
-        for (int i = 0; i < transform.childCount; i++)
-            transform.GetChild(i).gameObject.SetActive(false);
+        if (m_Bound) return;
+        if (m_View == null)
+            m_View = GetComponent<SettingsMenuView>();
+        if (m_View == null)
+        {
+            Debug.LogError("SettingsMenu prefab is missing SettingsMenuView.", this);
+            return;
+        }
 
-        RectTransform panel = ImageRect("KickerMainSetting", transform, Sprite("setting_panel"),
-            Vector2.zero, new Vector2(720f, 520f));
-        RectTransform header = ImageRect("Header", panel, Sprite("setting_header"),
-            new Vector2(0f, 205f), new Vector2(610f, 88f));
-        Text("SETTINGS", header, new Vector2(0f, -2f), new Vector2(460f, 62f), 36f, Color.white);
-        IconButton("Close", panel, Sprite("setting_close"), new Vector2(302f, 210f),
-            new Vector2(60f, 60f), Close);
-
-        Row(panel, "MUSIC", "setting_music", 92f,
-            AudioManager.Instance != null ? AudioManager.Instance.MusicVolume : 0.7f,
-            value => AudioManager.Instance?.SetMusicVolume(value));
-        Row(panel, "SOUND", "setting_sound", -8f,
-            AudioManager.Instance != null ? AudioManager.Instance.SoundVolume : 0.7f,
-            value => AudioManager.Instance?.SetSoundVolume(value));
-
-        ImageRect("VibrationIcon", panel, Sprite("setting_vibration"), new Vector2(-265f, -108f),
-            new Vector2(60f, 60f));
-        Text("VIBRATION", panel, new Vector2(-155f, -108f), new Vector2(180f, 44f), 24f, Color.white);
-        Button vibration = TextButton("Vibration", panel, "ON", new Vector2(165f, -108f),
-            new Vector2(210f, 62f), ToggleVibration);
-        vibrationText = vibration.GetComponentInChildren<TextMeshProUGUI>();
-        TextButton("CLOSE", panel, "CLOSE", new Vector2(0f, -205f), new Vector2(250f, 70f), Close);
+        m_View.CaptureReferences();
+        BindSlider(m_View.MusicSlider, value => AudioManager.Instance?.SetMusicVolume(value));
+        BindSlider(m_View.SoundSlider, value => AudioManager.Instance?.SetSoundVolume(value));
+        BindButton(m_View.VibrationButton, ToggleVibration);
+        BindButton(m_View.HeaderCloseButton, Close);
+        BindButton(m_View.FooterCloseButton, Close);
+        m_Bound = true;
     }
 
-    private static void Row(Transform parent, string label, string icon, float y, float value,
-        UnityEngine.Events.UnityAction<float> changed)
+    private static void BindSlider(Slider slider, UnityEngine.Events.UnityAction<float> action)
     {
-        ImageRect(label + "Icon", parent, Sprite(icon), new Vector2(-265f, y), new Vector2(60f, 60f));
-        Text(label, parent, new Vector2(-165f, y), new Vector2(150f, 44f), 24f, Color.white);
-        Slider slider = SliderControl(parent, new Vector2(125f, y), new Vector2(310f, 38f));
-        slider.SetValueWithoutNotify(value);
-        slider.onValueChanged.AddListener(changed);
+        if (slider == null) return;
+        slider.onValueChanged.RemoveAllListeners();
+        slider.onValueChanged.AddListener(action);
     }
 
-    private static Slider SliderControl(Transform parent, Vector2 position, Vector2 size)
+    private static void BindButton(Button button, UnityEngine.Events.UnityAction action)
     {
-        RectTransform root = ImageRect("Slider", parent, null, position, size);
-        root.GetComponent<Image>().color = new Color32(8, 23, 38, 235);
-        RectTransform fillArea = Rect("Fill Area", root, Vector2.zero, size - new Vector2(10f, 10f));
-        RectTransform fill = ImageRect("Fill", fillArea, null, Vector2.zero, fillArea.sizeDelta);
-        fill.GetComponent<Image>().color = new Color32(255, 210, 49, 255);
-        RectTransform handleArea = Rect("Handle Slide Area", root, Vector2.zero, size);
-        RectTransform handle = ImageRect("Handle", handleArea, Sprite("setting_button_bg"), Vector2.zero,
-            new Vector2(42f, 54f));
-        Slider slider = root.gameObject.AddComponent<Slider>();
-        slider.fillRect = fill;
-        slider.handleRect = handle;
-        slider.targetGraphic = handle.GetComponent<Image>();
-        slider.direction = Slider.Direction.LeftToRight;
-        return slider;
+        if (button == null) return;
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(action);
+    }
+
+    private void RefreshControls()
+    {
+        if (m_View == null) return;
+        if (m_View.MusicSlider != null)
+            m_View.MusicSlider.SetValueWithoutNotify(AudioManager.Instance != null ? AudioManager.Instance.MusicVolume : 0.7f);
+        if (m_View.SoundSlider != null)
+            m_View.SoundSlider.SetValueWithoutNotify(AudioManager.Instance != null ? AudioManager.Instance.SoundVolume : 0.7f);
+        RefreshVibration();
     }
 
     private void ToggleVibration()
@@ -101,83 +95,15 @@ public class SettingsMenu : MonoBehaviour
 
     private void RefreshVibration()
     {
-        if (vibrationText == null) return;
-        bool enabled = PlayerPrefs.GetInt(VibrationKey, 1) != 0;
-        vibrationText.text = enabled ? "ON" : "OFF";
-        vibrationText.color = enabled ? new Color32(38, 103, 64, 255) : new Color32(120, 75, 75, 255);
+        TMP_Text text = m_View != null ? m_View.VibrationText : null;
+        if (text == null) return;
+        bool vibrationEnabled = PlayerPrefs.GetInt(VibrationKey, 1) != 0;
+        text.text = vibrationEnabled ? "ON" : "OFF";
+        text.color = vibrationEnabled ? new Color32(38, 103, 64, 255) : new Color32(120, 75, 75, 255);
     }
 
-    private void Close() => gameObject.SetActive(false);
-
-    private static Button TextButton(string name, Transform parent, string label, Vector2 position,
-        Vector2 size, UnityEngine.Events.UnityAction action)
+    private void Close()
     {
-        RectTransform rect = ImageRect(name, parent, Sprite("setting_button_bg"), position, size);
-        Button button = rect.gameObject.AddComponent<Button>();
-        button.targetGraphic = rect.GetComponent<Image>();
-        button.onClick.AddListener(action);
-        Text(label, rect, new Vector2(0f, -2f), size - new Vector2(16f, 10f), 24f, new Color32(42, 63, 75, 255));
-        return button;
+        gameObject.SetActive(false);
     }
-
-    private static Button IconButton(string name, Transform parent, Sprite sprite, Vector2 position,
-        Vector2 size, UnityEngine.Events.UnityAction action)
-    {
-        RectTransform rect = ImageRect(name, parent, sprite, position, size);
-        Button button = rect.gameObject.AddComponent<Button>();
-        button.targetGraphic = rect.GetComponent<Image>();
-        button.onClick.AddListener(action);
-        return button;
-    }
-
-    private static RectTransform ImageRect(string name, Transform parent, Sprite sprite, Vector2 position, Vector2 size)
-    {
-        GameObject item = new(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        RectTransform rect = item.GetComponent<RectTransform>();
-        rect.SetParent(parent, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
-        Image image = item.GetComponent<Image>();
-        image.sprite = sprite;
-        image.color = sprite != null ? Color.white : Color.clear;
-        image.preserveAspect = false;
-        return rect;
-    }
-
-    private static RectTransform Rect(string name, Transform parent, Vector2 position, Vector2 size)
-    {
-        GameObject item = new(name, typeof(RectTransform));
-        RectTransform rect = item.GetComponent<RectTransform>();
-        rect.SetParent(parent, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
-        return rect;
-    }
-
-    private static TMP_Text Text(string value, Transform parent, Vector2 position, Vector2 size, float fontSize, Color color)
-    {
-        GameObject item = new(value, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        RectTransform rect = item.GetComponent<RectTransform>();
-        rect.SetParent(parent, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
-        TextMeshProUGUI text = item.GetComponent<TextMeshProUGUI>();
-        KickerUITheme.Apply(text);
-        text.text = value;
-        text.fontSize = fontSize;
-        text.fontStyle = FontStyles.Bold;
-        text.alignment = TextAlignmentOptions.Center;
-        text.margin = Vector4.zero;
-        text.color = color;
-        text.enableAutoSizing = true;
-        text.fontSizeMin = 16f;
-        text.fontSizeMax = fontSize;
-        text.raycastTarget = false;
-        return text;
-    }
-
-    private static Sprite Sprite(string name) => Resources.Load<Sprite>("KickerHUD/" + name);
 }

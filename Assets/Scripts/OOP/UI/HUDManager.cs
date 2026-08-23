@@ -38,16 +38,17 @@ public class HUDManager : MonoBehaviour
 
     private void Awake()
     {
-        CreateBottomCombatHUD();
-        if (m_GoldText == null)
-            m_GoldText = CreateGoldCounter();
-        m_LevelText = CreateLevelText();
-        CreateWeaponStatsTexts();
-        m_WaveText = CreateWaveText();
-        m_KillProgressText = CreateKillProgressText();
-        CreatePauseButton();
-        if (m_AmmoText == null)
-            CreateAmmoDisplay();
+        GameplayHUDView prefab = Resources.Load<GameplayHUDView>("GameplayHUDLayout");
+        if (prefab == null)
+        {
+            Debug.LogError("Missing Resources/GameplayHUDLayout.prefab. Gameplay HUD cannot be displayed.", this);
+            enabled = false;
+            return;
+        }
+
+        GameplayHUDView view = Instantiate(prefab, transform, false);
+        view.name = "GameplayHUDLayout";
+        BindHUD(view);
 
         if (m_XPFillBar != null)
         {
@@ -63,133 +64,27 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    private void CreateBottomCombatHUD()
+    private void BindHUD(GameplayHUDView view)
     {
-        GameObject panel = new("BottomCombatHUD", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        panel.transform.SetParent(transform, false);
-        m_BottomCombatPanel = panel.GetComponent<RectTransform>();
-        m_BottomCombatPanel.anchorMin = m_BottomCombatPanel.anchorMax = new Vector2(0.5f, 0f);
-        m_BottomCombatPanel.pivot = new Vector2(0.5f, 0f);
-        m_BottomCombatPanel.anchoredPosition = new Vector2(0f, 24f);
-        m_BottomCombatPanel.sizeDelta = new Vector2(980f, 286f);
-        Image background = panel.GetComponent<Image>();
-        background.sprite = LoadHUDSprite("stat_bg");
-        background.type = Image.Type.Simple;
-        background.color = Color.white;
-        background.raycastTarget = false;
-        Outline outline = panel.AddComponent<Outline>();
-        outline.effectColor = new Color32(36, 117, 143, 220);
-        outline.effectDistance = new Vector2(3f, -3f);
+        view.CaptureReferences();
+        m_BottomCombatPanel = view.BottomCombatPanel;
+        m_BottomHealthFill = view.HealthFill;
+        m_BottomXPFill = view.XPFill;
+        m_BottomHealthText = view.HealthText;
+        m_LevelText = view.LevelText;
+        m_GoldText = view.GoldText;
+        m_WaveText = view.WaveText;
+        m_KillProgressText = view.KillProgressText;
+        m_AmmoText = view.AmmoText;
+        m_AmmoIcon = view.AmmoIcon;
+        for (int i = 0; i < m_WeaponStatValues.Length; i++)
+            m_WeaponStatValues[i] = view.WeaponStatValues[i];
 
-        AddHUDIcon(m_BottomCombatPanel, "HealthIcon", LoadHUDSprite("icon_heart"),
-            new Vector2(-443f, 26f), new Vector2(76f, 76f));
-        AddHUDText(m_BottomCombatPanel, "HEALTH", 22f, new Vector2(-350f, 58f),
-            new Vector2(150f, 34f), TextAlignmentOptions.Left, new Color32(239, 244, 247, 255));
-        m_BottomHealthText = AddHUDText(m_BottomCombatPanel, "0 / 0", 22f, new Vector2(-82f, 58f),
-            new Vector2(220f, 34f), TextAlignmentOptions.Right, Color.white);
-        m_BottomHealthFill = AddHUDBar(m_BottomCombatPanel, new Vector2(-255f, 28f),
-            new Vector2(330f, 24f), LoadHUDSprite("health_bg"), LoadHUDSprite("health_progress"));
-        m_BottomXPFill = AddHUDBar(m_BottomCombatPanel, new Vector2(-255f, -48f),
-            new Vector2(390f, 18f), LoadHUDSprite("level_bg"), LoadHUDSprite("level_progress"));
-
-        RectTransform divider = AddHUDPanel(m_BottomCombatPanel, "Divider", new Vector2(-20f, 0f),
-            new Vector2(3f, 132f), new Color32(42, 74, 91, 230));
-        divider.GetComponent<Image>().raycastTarget = false;
-
-        Sprite tile = LoadHUDSprite("attack_stats_bg");
-        AddStatIcon("Damage", "icon_dmg", tile, 65f);
-        AddStatIcon("Range", "icon_range", tile, 155f);
-        AddStatIcon("FireRate", "icon_firerate", tile, 245f);
-        AddStatIcon("CritChance", "icon_crc", tile, 335f);
-        AddStatIcon("CritDamage", "icon_crd", tile, 425f);
-    }
-
-    private void AddStatIcon(string name, string spriteName, Sprite backgroundSprite, float x)
-    {
-        RectTransform tile = AddHUDPanel(m_BottomCombatPanel, name, new Vector2(x, 24f),
-            new Vector2(76f, 68f), Color.white);
-        Image tileImage = tile.GetComponent<Image>();
-        tileImage.sprite = backgroundSprite;
-        tileImage.type = Image.Type.Simple;
-        tileImage.raycastTarget = false;
-        AddHUDIcon(tile, name + "Icon", LoadHUDSprite(spriteName), Vector2.zero, new Vector2(58f, 58f));
-    }
-
-    private static Sprite LoadHUDSprite(string name) => Resources.Load<Sprite>("KickerHUD/" + name);
-
-    private static RectTransform AddHUDPanel(RectTransform parent, string name, Vector2 position,
-        Vector2 size, Color color)
-    {
-        GameObject item = new(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        RectTransform rect = item.GetComponent<RectTransform>();
-        rect.SetParent(parent, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
-        item.GetComponent<Image>().color = color;
-        return rect;
-    }
-
-    private static Image AddHUDBar(RectTransform parent, Vector2 position, Vector2 size,
-        Sprite backgroundSprite, Sprite fillSprite)
-    {
-        RectTransform background = AddHUDPanel(parent, "BarBackground", position, size,
-            Color.white);
-        Image backgroundImage = background.GetComponent<Image>();
-        backgroundImage.sprite = backgroundSprite;
-        backgroundImage.type = Image.Type.Simple;
-        backgroundImage.raycastTarget = false;
-        GameObject fillObject = new("Fill", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        RectTransform fillRect = fillObject.GetComponent<RectTransform>();
-        fillRect.SetParent(background, false);
-        fillRect.anchorMin = new Vector2(0f, 0f);
-        fillRect.anchorMax = new Vector2(1f, 1f);
-        fillRect.offsetMin = new Vector2(3f, 3f);
-        fillRect.offsetMax = new Vector2(-3f, -3f);
-        Image fill = fillObject.GetComponent<Image>();
-        fill.sprite = fillSprite;
-        fill.color = Color.white;
-        fill.type = Image.Type.Filled;
-        fill.fillMethod = Image.FillMethod.Horizontal;
-        fill.fillAmount = 1f;
-        fill.raycastTarget = false;
-        return fill;
-    }
-
-    private static Image AddHUDIcon(RectTransform parent, string name, Sprite sprite, Vector2 position,
-        Vector2 size)
-    {
-        GameObject iconObject = new(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        RectTransform rect = iconObject.GetComponent<RectTransform>();
-        rect.SetParent(parent, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
-        Image image = iconObject.GetComponent<Image>();
-        image.sprite = sprite;
-        image.preserveAspect = true;
-        image.raycastTarget = false;
-        return image;
-    }
-
-    private static TMP_Text AddHUDText(RectTransform parent, string value, float fontSize, Vector2 position,
-        Vector2 size, TextAlignmentOptions alignment, Color color)
-    {
-        GameObject label = new("Label", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        RectTransform rect = label.GetComponent<RectTransform>();
-        rect.SetParent(parent, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
-        TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
-        KickerUITheme.Apply(text);
-        text.text = value;
-        text.fontSize = fontSize;
-        text.fontStyle = FontStyles.Bold;
-        text.alignment = alignment;
-        text.color = color;
-        text.raycastTarget = false;
-        return text;
+        if (view.SettingsButton != null)
+        {
+            view.SettingsButton.onClick.RemoveAllListeners();
+            view.SettingsButton.onClick.AddListener(PauseGameplay);
+        }
     }
 
     private void Start()
@@ -242,174 +137,10 @@ public class HUDManager : MonoBehaviour
             m_GoldText.text = $"Run Gold: {balance}";
     }
 
-    private TMP_Text CreateGoldCounter()
-    {
-        GameObject counter = new GameObject("GoldCounter", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        counter.transform.SetParent(transform, false);
-
-        RectTransform rect = counter.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(1f, 1f);
-        rect.anchorMax = new Vector2(1f, 1f);
-        rect.pivot = new Vector2(1f, 1f);
-        rect.anchoredPosition = new Vector2(-28f, -24f);
-        rect.sizeDelta = new Vector2(260f, 50f);
-
-        TextMeshProUGUI text = counter.GetComponent<TextMeshProUGUI>();
-        KickerUITheme.Apply(text);
-        text.text = "Run Gold: 0";
-        text.fontSize = 28f;
-        text.fontStyle = FontStyles.Bold;
-        text.alignment = TextAlignmentOptions.TopRight;
-        text.color = new Color(1f, 0.82f, 0.2f, 1f);
-        text.raycastTarget = false;
-        return text;
-    }
-
-    private TMP_Text CreateLevelText()
-    {
-        GameObject label = new GameObject("PlayerLevel", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        label.transform.SetParent(m_BottomCombatPanel, false);
-        RectTransform rect = label.GetComponent<RectTransform>();
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = new Vector2(-255f, -20f);
-        rect.sizeDelta = new Vector2(390f, 30f);
-        TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
-        KickerUITheme.Apply(text);
-        text.text = "LEVEL 0   0/0 XP";
-        text.fontSize = 19f;
-        text.alignment = TextAlignmentOptions.Center;
-        text.fontStyle = FontStyles.Bold;
-        text.color = new Color32(186, 228, 255, 255);
-        text.raycastTarget = false;
-        return text;
-    }
-
-    private void CreateWeaponStatsTexts()
-    {
-        float[] xPositions = { 65f, 155f, 245f, 335f, 425f };
-        for (int i = 0; i < m_WeaponStatValues.Length; i++)
-        {
-            m_WeaponStatValues[i] = AddHUDText(m_BottomCombatPanel, "--", 19f,
-                new Vector2(xPositions[i], -38f), new Vector2(88f, 36f),
-                TextAlignmentOptions.Center, new Color32(205, 241, 255, 255));
-            m_WeaponStatValues[i].enableAutoSizing = true;
-            m_WeaponStatValues[i].fontSizeMin = 14f;
-            m_WeaponStatValues[i].fontSizeMax = 19f;
-        }
-    }
-
-    private TMP_Text CreateWaveText()
-    {
-        GameObject label = new GameObject("WaveStatus", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        label.transform.SetParent(transform, false);
-        RectTransform rect = label.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0.5f, 1f);
-        rect.anchorMax = new Vector2(0.5f, 1f);
-        rect.pivot = new Vector2(0.5f, 1f);
-        rect.anchoredPosition = new Vector2(0f, -24f);
-        rect.sizeDelta = new Vector2(520f, 44f);
-        TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
-        KickerUITheme.Apply(text);
-        text.text = "Wave --";
-        text.fontSize = 24f;
-        text.fontStyle = FontStyles.Bold;
-        text.alignment = TextAlignmentOptions.Top;
-        text.color = new Color(1f, 0.9f, 0.55f, 1f);
-        text.raycastTarget = false;
-        return text;
-    }
-
-    private TMP_Text CreateKillProgressText()
-    {
-        GameObject label = new GameObject("KillProgress", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        label.transform.SetParent(transform, false);
-        RectTransform rect = label.GetComponent<RectTransform>();
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
-        rect.pivot = new Vector2(0.5f, 1f);
-        rect.anchoredPosition = new Vector2(0f, -66f);
-        rect.sizeDelta = new Vector2(360f, 36f);
-        TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
-        KickerUITheme.Apply(text);
-        text.text = "KILLS  0 / 0";
-        text.fontSize = 20f;
-        text.fontStyle = FontStyles.Bold;
-        text.alignment = TextAlignmentOptions.Top;
-        text.color = new Color32(238, 238, 238, 255);
-        text.raycastTarget = false;
-        return text;
-    }
-
-    private void CreatePauseButton()
-    {
-        if (transform.Find("SettingButton") != null) return;
-        GameObject item = new GameObject("SettingButton", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
-        item.transform.SetParent(transform, false);
-        RectTransform rect = item.GetComponent<RectTransform>();
-        rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
-        rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = new Vector2(90f, -90f);
-        rect.sizeDelta = new Vector2(78f, 78f);
-        Image image = item.GetComponent<Image>();
-        image.sprite = LoadHUDSprite("setting_button");
-        image.color = Color.white;
-        image.preserveAspect = true;
-        Button button = item.GetComponent<Button>();
-        button.targetGraphic = image;
-        button.onClick.AddListener(PauseGameplay);
-
-    }
-
     private static void PauseGameplay()
     {
         GameStateMachineRunner runner = FindFirstObjectByType<GameStateMachineRunner>();
         runner?.PauseGameplay();
-    }
-
-    private void CreateAmmoDisplay()
-    {
-        GameObject panel = new GameObject("AmmoDisplay", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        panel.transform.SetParent(transform, false);
-        RectTransform panelRect = panel.GetComponent<RectTransform>();
-        panelRect.anchorMin = new Vector2(1f, 0f);
-        panelRect.anchorMax = new Vector2(1f, 0f);
-        panelRect.pivot = new Vector2(1f, 0f);
-        panelRect.anchoredPosition = new Vector2(-28f, 78f);
-        panelRect.sizeDelta = new Vector2(250f, 70f);
-        Image background = panel.GetComponent<Image>();
-        background.color = new Color32(25, 28, 24, 220);
-        background.raycastTarget = false;
-
-        GameObject icon = new GameObject("AmmoIcon", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        icon.transform.SetParent(panel.transform, false);
-        RectTransform iconRect = icon.GetComponent<RectTransform>();
-        iconRect.anchorMin = new Vector2(0f, 0.5f);
-        iconRect.anchorMax = new Vector2(0f, 0.5f);
-        iconRect.pivot = new Vector2(0f, 0.5f);
-        iconRect.anchoredPosition = new Vector2(12f, 0f);
-        iconRect.sizeDelta = new Vector2(46f, 46f);
-        m_AmmoIcon = icon.GetComponent<Image>();
-        m_AmmoIcon.color = new Color32(214, 179, 82, 255);
-        m_AmmoIcon.preserveAspect = true;
-        m_AmmoIcon.raycastTarget = false;
-        m_AmmoIcon.enabled = m_AmmoIcon.sprite != null;
-
-        GameObject label = new GameObject("AmmoCount", typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        label.transform.SetParent(panel.transform, false);
-        RectTransform labelRect = label.GetComponent<RectTransform>();
-        labelRect.anchorMin = new Vector2(0f, 0f);
-        labelRect.anchorMax = new Vector2(1f, 1f);
-        labelRect.offsetMin = new Vector2(66f, 5f);
-        labelRect.offsetMax = new Vector2(-10f, -5f);
-        TextMeshProUGUI text = label.GetComponent<TextMeshProUGUI>();
-        KickerUITheme.Apply(text);
-        text.text = "AMMO  -- / --";
-        text.fontSize = 25f;
-        text.fontStyle = FontStyles.Bold;
-        text.alignment = TextAlignmentOptions.Center;
-        text.color = new Color32(236, 224, 190, 255);
-        text.raycastTarget = false;
-        m_AmmoText = text;
     }
 
     private void Update()

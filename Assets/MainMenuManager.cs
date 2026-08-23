@@ -145,6 +145,20 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private void BuildMenu()
     {
+        MainMenuCanvasView prefab = Resources.Load<MainMenuCanvasView>("MainMenuCanvas");
+        if (prefab != null)
+        {
+            MainMenuCanvasView view = Instantiate(prefab);
+            view.name = "Battle Main Menu";
+            BindAuthoredMenu(view);
+            return;
+        }
+
+        BuildMenuInCode();
+    }
+
+    private void BuildMenuInCode()
+    {
         GameObject canvasObject = new("Battle Main Menu", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster), typeof(CanvasGroup));
         Canvas canvas = canvasObject.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -165,17 +179,20 @@ public sealed class MainMenuManager : MonoBehaviour
 
         Button settings = AddButton(root, string.Empty, new Vector2(0f, 1f), new Vector2(168f, -120f),
             new Vector2(96f, 96f), Color.clear, Navy, 42);
+        settings.name = "Settings Button";
         settings.onClick.AddListener(OpenSettings);
         Sprite kickerSettingsIcon = Resources.Load<Sprite>("KickerHUD/setting_button");
         AddIcon(settings.transform as RectTransform, "Settings Icon",
             kickerSettingsIcon != null ? kickerSettingsIcon : _settingsIcon, Vector2.zero, new Vector2(78f, 78f));
         _goldText = AddResourcePill(root, (GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0).ToString(), -120f, Yellow, _goldIcon);
 
-        _startButton = AddButton(root, "TAP TO START", new Vector2(0.5f, 0f), new Vector2(0f, 700f), new Vector2(400f, 172f), Green, Navy, 42);
+        _startButton = AddButton(root, "TAP TO START", new Vector2(0.5f, 0f), new Vector2(0f, 700f), new Vector2(400f, 172f), Color.clear, Navy, 42);
         (_startButton.transform as RectTransform).localScale = Vector3.one * 1.1f;
         _startButton.onClick.AddListener(StartGame);
         Button left = AddButton(root, "‹", new Vector2(0.5f, 0f), new Vector2(-285f, 700f), new Vector2(72f, 96f), Purple, Color.white, 54);
         Button right = AddButton(root, "›", new Vector2(0.5f, 0f), new Vector2(285f, 700f), new Vector2(72f, 96f), Purple, Color.white, 54);
+        left.name = "Previous Stage Button";
+        right.name = "Next Stage Button";
         AddIcon(left.transform as RectTransform, "Left Arrow Icon", _leftArrowIcon, Vector2.zero, new Vector2(40f, 48f));
         AddIcon(right.transform as RectTransform, "Right Arrow Icon", _rightArrowIcon, Vector2.zero, new Vector2(40f, 48f));
 
@@ -197,6 +214,62 @@ public sealed class MainMenuManager : MonoBehaviour
 
         BuildWeaponWindow(root);
         BuildFeatureWindow(root);
+    }
+
+    private void BindAuthoredMenu(MainMenuCanvasView view)
+    {
+        view.CaptureReferences();
+        _menuGroup = view.GetComponent<CanvasGroup>();
+        RectTransform root = view.transform as RectTransform;
+        SettingsMenu.EnsureExists(root);
+
+        _goldText = view.GoldText;
+        _startButton = view.StartButton;
+        BindButton(view.SettingsButton, OpenSettings);
+        BindButton(_startButton, StartGame);
+        BindButton(view.PetButton, OpenPetWindow);
+        BindButton(view.WeaponButton, OpenWeaponWindow);
+        BindButton(view.InventoryButton, OpenInventoryWindow);
+        BindButton(view.ShopButton, OpenShopWindow);
+
+        _healthCard = BindUpgradeCard(view.HealthCard, StageUpgradeType.Health);
+        _incomeCard = BindUpgradeCard(view.IncomeCard, StageUpgradeType.Income);
+
+        BuildWeaponWindow(root);
+        BuildFeatureWindow(root);
+    }
+
+    private static void BindButton(Button button, UnityEngine.Events.UnityAction action)
+    {
+        if (button == null) return;
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(action);
+    }
+
+    private UpgradeCardView BindUpgradeCard(RectTransform card, StageUpgradeType type)
+    {
+        if (card == null) return null;
+        TextMeshProUGUI[] labels = card.GetComponentsInChildren<TextMeshProUGUI>(true);
+        if (labels.Length < 5)
+        {
+            Debug.LogError($"Main Menu Canvas card '{card.name}' has an invalid label hierarchy.", card);
+            return null;
+        }
+
+        Button button = card.GetComponent<Button>();
+        Outline outline = card.GetComponent<Outline>();
+        BindButton(button, () => PurchaseUpgrade(type));
+        return new UpgradeCardView
+        {
+            Type = type,
+            Root = card,
+            Button = button,
+            Level = labels[0],
+            Progress = labels[1],
+            Value = labels[3],
+            Cost = labels[4],
+            Outline = outline,
+        };
     }
 
     private void StartGame()
@@ -515,6 +588,7 @@ public sealed class MainMenuManager : MonoBehaviour
     private TextMeshProUGUI AddResourcePill(RectTransform root, string value, float y, Color iconColor, Sprite iconSprite)
     {
         RectTransform pill = AddPanel(root, value, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-168f, y), new Vector2(230f, 64f), new Color(0.04f, 0.05f, 0.1f, 0.9f));
+        pill.name = "Gold Pill";
         AddIcon(pill, "Gold Icon", iconSprite, new Vector2(-78f, 0f), new Vector2(44f, 44f));
         return AddText(pill, value, 25, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0.5f), new Vector2(24f, 0f), new Vector2(165f, 52f), iconColor);
     }
