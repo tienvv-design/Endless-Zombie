@@ -33,6 +33,12 @@ public class GunConfig : ScriptableObject
     public Vector3 HeldLocalEulerAngles;
     public Vector3 HeldLocalScale = Vector3.one;
 
+    [Header("Pistol Two-Hand Pose")]
+    [Range(0f, 1f)] public float PistolPoseWeight = 1f;
+    [Range(0.4f, 0.95f)] public float PistolArmReach = 0.78f;
+    [Min(0.02f)] public float PistolHandSpacing = 0.14f;
+    public float PistolPoseHeightOffset;
+
     [Header("VFX")]
     public GameObject MuzzleVfxPrefab;
     public GameObject ImpactVfxPrefab;

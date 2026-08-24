@@ -41,7 +41,8 @@ internal partial struct GunStatsSystem : ISystem
             gun.ValueRO.BaseProjectileSpeed * (1f + modifiers.ProjectileSpeedBonusPercent / 100f));
         gun.ValueRW.Pierce = math.max(0, gun.ValueRO.BasePierce + modifiers.AdditionalPierce);
         gun.ValueRW.Knockback = math.max(0f, gun.ValueRO.BaseKnockback + modifiers.KnockbackBonus);
-        gun.ValueRW.SpreadAngle = math.max(0f, gun.ValueRO.BaseSpreadAngle);
+        gun.ValueRW.SpreadAngle = math.max(0f,
+            gun.ValueRO.BaseSpreadAngle * (1f - math.clamp(modifiers.SpreadReductionPercent, 0f, 100f) / 100f));
         int previousMagazineSize = math.max(1, gun.ValueRO.MagazineSize);
         gun.ValueRW.MagazineSize = math.max(1,
             gun.ValueRO.BaseMagazineSize + modifiers.AdditionalMagazineSize);
@@ -53,22 +54,20 @@ internal partial struct GunStatsSystem : ISystem
             gun.ValueRO.BaseReloadDuration / (1f + math.max(0f, modifiers.ReloadSpeedBonusPercent) / 100f));
 
         gun.ValueRW.ExplosionRadius = gun.ValueRO.BaseExplosionRadius > 0f
-            ? gun.ValueRO.BaseExplosionRadius * (1f + synergyLevel * 0.15f)
+            ? gun.ValueRO.BaseExplosionRadius * (1f + synergyLevel * 0.15f + modifiers.ExplosionRadiusBonusPercent / 100f)
             : 0f;
         gun.ValueRW.ExplosionDamageMultiplier = gun.ValueRO.BaseExplosionDamageMultiplier > 0f
-            ? gun.ValueRO.BaseExplosionDamageMultiplier + synergyLevel * 0.1f
+            ? gun.ValueRO.BaseExplosionDamageMultiplier + synergyLevel * 0.1f + modifiers.ExplosionDamageBonus
             : 0f;
-        gun.ValueRW.RicochetCount = gun.ValueRO.BaseRicochetCount > 0
-            ? gun.ValueRO.BaseRicochetCount + synergyLevel
-            : 0;
-        gun.ValueRW.ChainCount = gun.ValueRO.BaseChainCount > 0
-            ? gun.ValueRO.BaseChainCount + synergyLevel
-            : 0;
+        gun.ValueRW.RicochetCount = math.max(0, gun.ValueRO.BaseRicochetCount + modifiers.AdditionalRicochets
+            + (gun.ValueRO.BaseRicochetCount > 0 ? synergyLevel : 0));
+        gun.ValueRW.ChainCount = math.max(0, gun.ValueRO.BaseChainCount + modifiers.AdditionalChains
+            + (gun.ValueRO.BaseChainCount > 0 ? synergyLevel : 0));
         gun.ValueRW.ElementChance = gun.ValueRO.BaseElementChance > 0f
-            ? math.saturate(gun.ValueRO.BaseElementChance + synergyLevel * 0.1f)
+            ? math.saturate(gun.ValueRO.BaseElementChance + synergyLevel * 0.1f + modifiers.ElementChanceBonus)
             : 0f;
         gun.ValueRW.ElementMagnitude = gun.ValueRO.BaseElementMagnitude > 0f
-            ? gun.ValueRO.BaseElementMagnitude * (1f + synergyLevel * 0.15f)
+            ? gun.ValueRO.BaseElementMagnitude * (1f + synergyLevel * 0.15f + modifiers.ElementMagnitudeBonusPercent / 100f)
             : 0f;
     }
 }

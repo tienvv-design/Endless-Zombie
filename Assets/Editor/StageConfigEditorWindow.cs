@@ -104,6 +104,26 @@ public sealed class StageConfigEditorWindow : EditorWindow
                 new GUIContent("Default Wave Delay", "Thời gian nghỉ mặc định giữa hai wave."));
             EditorGUILayout.PropertyField(m_SerializedStage.FindProperty("MaxAliveEnemies"),
                 new GUIContent("Max Alive Enemies", "Giới hạn quái sống đồng thời của stage."));
+            EditorGUILayout.Space(4f);
+            EditorGUILayout.LabelField("Elite Modifiers", EditorStyles.boldLabel);
+            SerializedProperty enableElite = m_SerializedStage.FindProperty("EnableEliteModifiers");
+            EditorGUILayout.PropertyField(enableElite, new GUIContent("Enable Elite Modifiers"));
+            using (new EditorGUI.DisabledScope(!enableElite.boolValue))
+            {
+                EditorGUILayout.PropertyField(m_SerializedStage.FindProperty("RandomEliteChance"),
+                    new GUIContent("Mutation Chance", "Tỉ lệ quái thường nhận một Elite Modifier. Elite wave luôn được roll."));
+                EditorGUILayout.PropertyField(m_SerializedStage.FindProperty("EliteChanceStartsAtWave"),
+                    new GUIContent("Starts At Wave", "Wave index bắt đầu cho phép elite xuất hiện ngẫu nhiên."));
+            }
+            EditorGUILayout.Space(4f);
+            EditorGUILayout.PropertyField(m_SerializedStage.FindProperty("Boss"), new GUIContent("Boss Tuning"), true);
+            EditorGUILayout.PropertyField(m_SerializedStage.FindProperty("SpawnPortalDuration"),
+                new GUIContent("Spawn Portal Duration", "Thời gian quái trồi lên khỏi portal trước khi bắt đầu di chuyển."));
+            SerializedProperty outsideCamera = m_SerializedStage.FindProperty("SpawnOutsideCamera");
+            EditorGUILayout.PropertyField(outsideCamera, new GUIContent("Spawn Outside Camera"));
+            using (new EditorGUI.DisabledScope(!outsideCamera.boolValue))
+                EditorGUILayout.PropertyField(m_SerializedStage.FindProperty("OffscreenSpawnPadding"),
+                    new GUIContent("Offscreen Padding", "Khoảng đệm ngoài viền màn hình để portal không bị nhìn thấy."));
 
             SerializedProperty waves = m_SerializedStage.FindProperty("Waves");
             int totalEnemies = 0;

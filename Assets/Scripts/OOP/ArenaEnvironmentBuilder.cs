@@ -6,6 +6,7 @@ public sealed class ArenaEnvironmentBuilder : MonoBehaviour
 
     public static void EnsureBuilt(ArenaEnvironmentConfig config)
     {
+        ArenaMapPolisher.Ensure(config);
         // A hand-authored/imported stage map takes precedence over the old
         // procedurally decorated arena so two grounds are never stacked.
         if (config == null || GameObject.Find(RootName) != null || GameObject.Find("Stage Map - VERSION1") != null)

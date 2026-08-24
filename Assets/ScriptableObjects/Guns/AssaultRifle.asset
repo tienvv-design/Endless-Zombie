@@ -20,11 +20,11 @@ MonoBehaviour:
   HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
   Archetype: 2
-  BaseDamage: 1
-  BaseShotsPerSecond: 5
+  BaseDamage: 5
+  BaseShotsPerSecond: 5.5
   BaseProjectileCount: 1
-  BaseCriticalChance: 0.05
-  BaseCriticalDamage: 1.5
+  BaseCriticalChance: 0.08
+  BaseCriticalDamage: 1.6
   BaseRange: 9
   BaseProjectileSpeed: 18
   BasePierce: 0

@@ -5,12 +5,18 @@ public sealed class MobVisualSettings : ScriptableObject
 {
     public GameObject VisualPrefab;
     public RuntimeAnimatorController AnimatorController;
+    public AnimationClip ZombieAttackClip;
     [Tooltip("Duration in seconds of one complete walk animation loop at Animator speed 1.")]
     [Min(0.01f)] public float WalkLoopDuration = 2f;
     [Tooltip("World-space distance the zombie should travel during one complete walk loop.")]
     [Min(0.01f)] public float DistancePerWalkLoop = 2f;
     [Tooltip("Additional vertical correction after automatically aligning the zombie's lowest renderer point to the map surface.")]
     public float ZombieGroundOffset;
+
+    [Header("Boss (optional - zombie is used as placeholder)")]
+    public GameObject BossVisualPrefab;
+    public RuntimeAnimatorController BossAnimatorController;
+    public float BossGroundOffset;
 
     [Header("Dog Mutant")]
     public GameObject DogMutantVisualPrefab;

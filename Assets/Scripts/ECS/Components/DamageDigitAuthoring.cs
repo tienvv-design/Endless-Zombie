@@ -9,6 +9,9 @@ public struct DamageDigit : IComponentData
     
     public float ExplosionRadius;
     public int DamageValue;
+    public bool IsCritical;
+    public float BaseScale;
+    public float FeedbackTime;
     
     public float ExplosionDelay;
     public float ExplosionTimer;

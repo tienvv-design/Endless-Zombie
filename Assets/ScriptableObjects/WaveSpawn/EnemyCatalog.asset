@@ -40,7 +40,7 @@ MonoBehaviour:
   - EnemyId: Boss
     Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
     EnemyType: 2
-    HealthMultiplier: 20
+    HealthMultiplier: 4
     DamageMultiplier: 3
     Scale: 2
     XPReward: 100

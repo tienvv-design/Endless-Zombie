@@ -27,6 +27,7 @@ public sealed class WaveSpawnAuthoring : MonoBehaviour
 
             DependsOn(stage);
             DependsOn(catalog);
+            BossTuning boss = stage.Boss ?? new BossTuning();
 
             Entity entity = GetEntity(TransformUsageFlags.None);
             AddComponent(entity, new StageRuntime
@@ -37,6 +38,23 @@ public sealed class WaveSpawnAuthoring : MonoBehaviour
                 DefaultWaveDelay = stage.DefaultWaveDelay,
                 MaxAliveEnemies = stage.MaxAliveEnemies,
                 NextRequestSequence = 0,
+                EnableEliteModifiers = stage.EnableEliteModifiers,
+                RandomEliteChance = Mathf.Clamp01(stage.RandomEliteChance),
+                EliteChanceStartsAtWave = Mathf.Max(0, stage.EliteChanceStartsAtWave),
+                BossHealthMultiplier = Mathf.Max(1f, boss.HealthMultiplier),
+                BossDamageMultiplier = Mathf.Max(1f, boss.DamageMultiplier),
+                BossScaleMultiplier = Mathf.Max(1f, boss.ScaleMultiplier),
+                BossPhaseTwoHealth = boss.PhaseTwoHealth,
+                BossPhaseThreeHealth = boss.PhaseThreeHealth,
+                BossSpeedPerPhase = Mathf.Max(1f, boss.SpeedPerPhase),
+                BossDamagePerPhase = Mathf.Max(1f, boss.DamagePerPhase),
+                BossShockwaveCooldown = Mathf.Max(1f, boss.ShockwaveCooldown),
+                BossShockwaveWarning = Mathf.Max(0.2f, boss.ShockwaveWarning),
+                BossShockwaveRadius = Mathf.Max(1f, boss.ShockwaveRadius),
+                BossShockwaveDamage = Mathf.Max(1, boss.ShockwaveDamage),
+                SpawnPortalDuration = Mathf.Max(0.1f, stage.SpawnPortalDuration),
+                SpawnOutsideCamera = stage.SpawnOutsideCamera,
+                OffscreenSpawnPadding = Mathf.Clamp(stage.OffscreenSpawnPadding, 0f, 0.25f),
             });
 
             DynamicBuffer<WaveRuntime> waves = AddBuffer<WaveRuntime>(entity);
@@ -197,3 +215,4 @@ public static class WaveSpawnConfigValidator
         return problems;
     }
 }
+

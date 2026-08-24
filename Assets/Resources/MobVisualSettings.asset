@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VisualPrefab: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
   AnimatorController: {fileID: 9100000, guid: c3513f7db65d46e4bc43f2bc9e51f00d, type: 2}
+  ZombieAttackClip: {fileID: 7400000, guid: de559bbb071ebfd40ab5af80881e75e8, type: 2}
   WalkLoopDuration: 2
   DistancePerWalkLoop: 2
   DogMutantVisualPrefab: {fileID: 5166489295478566908, guid: bc404b57e8c59a146bdbedea659b5649, type: 3}

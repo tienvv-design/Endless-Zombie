@@ -36,10 +36,14 @@ internal partial struct MobHealthManager : ISystem
             
             Mob mobData = mobs[mobEntity];
             if (mobData.Health <= 0) continue;
-            int appliedDamage = math.min(mobData.Health, math.max(0, damageTakenEvent.ValueRO.Amount));
+            int incomingDamage = math.max(0, damageTakenEvent.ValueRO.Amount);
+            if (incomingDamage > 0 && SystemAPI.HasComponent<EliteModifier>(mobEntity))
+                incomingDamage = math.max(1, (int)math.round(incomingDamage *
+                    SystemAPI.GetComponent<EliteModifier>(mobEntity).IncomingDamageMultiplier));
+            int appliedDamage = math.min(mobData.Health, incomingDamage);
             metrics.ValueRW.WindowDamage += appliedDamage;
             metrics.ValueRW.TotalDamage += appliedDamage;
-            mobData.Health -= damageTakenEvent.ValueRO.Amount;
+            mobData.Health -= incomingDamage;
 
             if (statusEffects.HasComponent(mobEntity) && damageTakenEvent.ValueRO.Element != ElementType.None)
             {

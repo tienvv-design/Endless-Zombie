@@ -16,7 +16,6 @@ public enum UpgradeTypes
     Speed,
     WeaponDamage,
     WeaponSpeed,
-    AttackRange,
     ProjectileSpeed,
     WeaponSynergy,
 }
@@ -36,6 +35,8 @@ public abstract class CharUpgrade : ScriptableObject
     public string Description => m_Description;
     public UpgradeRarity Rarity => m_Rarity;
     public float RollWeight => Mathf.Max(0.01f, m_RollWeight);
+    public virtual string DisplayName => GetUpgradeType().ToString();
+    public virtual bool IsEligible(GunArchetype archetype, int currentLevel) => true;
 
     public int GetCost(int currentLevel)
     {
@@ -81,6 +82,14 @@ public abstract class CharUpgrade : ScriptableObject
         }
         query.Dispose();
         return found;
+    }
+
+    public static bool TryGetActiveGunArchetype(out GunArchetype archetype)
+    {
+        archetype = GunArchetype.Pistol;
+        if (!TryGetGunStats(out WeaponManager gun, out _)) return false;
+        archetype = gun.Archetype;
+        return true;
     }
 
     protected static string FormatStat(float value)

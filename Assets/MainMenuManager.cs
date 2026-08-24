@@ -85,6 +85,9 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        Sprite kickerGold = Resources.Load<Sprite>("KickerHUD/gold");
+        if (kickerGold != null)
+            _goldIcon = kickerGold;
         ArenaEnvironmentBuilder.EnsureBuilt(_arenaEnvironment);
         SetupGameplayPresentation();
     }
@@ -95,6 +98,11 @@ public sealed class MainMenuManager : MonoBehaviour
         SetupHeldWeaponPreview();
         AudioManager.Instance?.Play(SoundLabel.MainMenuMusic);
         BuildMenu();
+        if (PlayerPrefs.GetInt(GameOverMenu.RetryRunKey, 0) != 0)
+        {
+            PlayerPrefs.DeleteKey(GameOverMenu.RetryRunKey);
+            StartGame();
+        }
         MetaProgression.UpgradesChanged += RefreshUpgradeCards;
         MetaProgression.SelectedWeaponChanged += HandleSelectedWeaponChanged;
         if (GoldWallet.Instance != null)
@@ -224,6 +232,18 @@ public sealed class MainMenuManager : MonoBehaviour
         SettingsMenu.EnsureExists(root);
 
         _goldText = view.GoldText;
+        Transform authoredGoldIcon = view.transform.Find("Gold Pill/Gold Icon");
+        if (authoredGoldIcon == null)
+        {
+            foreach (Image candidate in view.GetComponentsInChildren<Image>(true))
+                if (candidate.name == "Gold Icon") { authoredGoldIcon = candidate.transform; break; }
+        }
+        if (authoredGoldIcon != null && authoredGoldIcon.TryGetComponent(out Image goldImage))
+        {
+            goldImage.sprite = _goldIcon;
+            goldImage.preserveAspect = true;
+            goldImage.enabled = _goldIcon != null;
+        }
         _startButton = view.StartButton;
         BindButton(view.SettingsButton, OpenSettings);
         BindButton(_startButton, StartGame);

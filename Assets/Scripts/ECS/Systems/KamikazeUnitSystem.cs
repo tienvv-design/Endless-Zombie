@@ -22,6 +22,17 @@ partial struct KamikazeUnitSystem : ISystem
         foreach (var (localTransform, kamikaze, entity)
                  in SystemAPI.Query<RefRO<LocalTransform>, RefRW<KamikazeUnit>>().WithEntityAccess())
         {
+            // A spawning enemy is still inside its portal. Do not let the attack
+            // state machine re-enable movement or start an attack until the
+            // emergence component is removed.
+            if (SystemAPI.HasComponent<SpawnEmergence>(entity))
+            {
+                if (SystemAPI.HasComponent<UnitMover>(entity) && SystemAPI.IsComponentEnabled<UnitMover>(entity))
+                    SystemAPI.SetComponentEnabled<UnitMover>(entity, false);
+                kamikaze.ValueRW.AttackTimer = 0f;
+                continue;
+            }
+
             if (!SystemAPI.TryGetSingletonBuffer(out DynamicBuffer<GameObjectInfo> goInfoBuffer))
                 return;
 
@@ -45,11 +56,18 @@ partial struct KamikazeUnitSystem : ISystem
 
             if (distanceSq <= kamikaze.ValueRO.HitDistanceSq)
             {
+                bool startedAttack = false;
                 if (SystemAPI.HasComponent<UnitMover>(entity) && SystemAPI.IsComponentEnabled<UnitMover>(entity))
+                {
                     SystemAPI.SetComponentEnabled<UnitMover>(entity, false);
+                    kamikaze.ValueRW.AttackTimer = math.max(0.01f,
+                        kamikaze.ValueRO.AttackInterval *
+                        math.clamp(kamikaze.ValueRO.AttackImpactNormalizedTime, 0.05f, 0.95f));
+                    startedAttack = true;
+                }
 
                 kamikaze.ValueRW.AttackTimer -= deltaTime;
-                if (kamikaze.ValueRO.AttackTimer <= 0f)
+                if (!startedAttack && kamikaze.ValueRO.AttackTimer <= 0f)
                 {
                     Entity attackEvent = ecb.CreateEntity();
                     ecb.AddComponent(attackEvent, new MobDamageGivenEvent
@@ -64,6 +82,7 @@ partial struct KamikazeUnitSystem : ISystem
             {
                 if (SystemAPI.HasComponent<UnitMover>(entity) && !SystemAPI.IsComponentEnabled<UnitMover>(entity))
                     SystemAPI.SetComponentEnabled<UnitMover>(entity, true);
+                kamikaze.ValueRW.AttackTimer = 0f;
             }
             
         }

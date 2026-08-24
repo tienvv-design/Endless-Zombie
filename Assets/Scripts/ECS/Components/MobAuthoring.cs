@@ -47,6 +47,39 @@ public struct MobStatusEffects : IComponentData
     public bool FrostApplied;
 }
 
+public struct BossShockwave : IComponentData
+{
+    public float Cooldown;
+    public float WarningDuration;
+    public float Radius;
+    public int Damage;
+    public float Timer;
+    public byte IsWarning;
+}
+
+public struct SpawnEmergence : IComponentData
+{
+    public float Duration;
+    public float Elapsed;
+}
+
+public enum EliteModifierKind : byte
+{
+    None,
+    Bulwark,
+    Frenzied,
+    Colossus,
+    Revenant,
+}
+
+public struct EliteModifier : IComponentData
+{
+    public EliteModifierKind Kind;
+    public float IncomingDamageMultiplier;
+    public float HealthRegenerationPerSecond;
+    public float RegenerationAccumulator;
+}
+
 public class MobAuthoring : MonoBehaviour
 {
     public int Health = 100;

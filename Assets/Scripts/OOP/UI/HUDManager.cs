@@ -15,7 +15,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TMP_Text m_AmmoText;
     [SerializeField] private Image m_AmmoIcon;
     private TMP_Text m_LevelText;
-    private readonly TMP_Text[] m_WeaponStatValues = new TMP_Text[5];
+    private readonly TMP_Text[] m_WeaponStatValues = new TMP_Text[4];
     private TMP_Text m_WaveText;
     private TMP_Text m_KillProgressText;
     private RectTransform m_BottomCombatPanel;
@@ -215,10 +215,9 @@ public class HUDManager : MonoBehaviour
         if (m_WeaponQuery.CalculateEntityCount() != 1) return;
         WeaponManager gun = m_WeaponQuery.GetSingleton<WeaponManager>();
         m_WeaponStatValues[0].text = $"{gun.DamagePerHit:N0}";
-        m_WeaponStatValues[1].text = $"{gun.AttackRange:0.0}m";
-        m_WeaponStatValues[2].text = $"{gun.ShotsPerSecond:0.0}/s";
-        m_WeaponStatValues[3].text = $"{gun.CriticalChance * 100f:0.#}%";
-        m_WeaponStatValues[4].text = $"x{gun.CriticalDamage:0.##}";
+        m_WeaponStatValues[1].text = $"{gun.ShotsPerSecond:0.0}/s";
+        m_WeaponStatValues[2].text = $"{gun.CriticalChance * 100f:0.#}%";
+        m_WeaponStatValues[3].text = $"x{gun.CriticalDamage:0.##}";
         if (m_AmmoText != null)
         {
             if (gun.IsReloading)

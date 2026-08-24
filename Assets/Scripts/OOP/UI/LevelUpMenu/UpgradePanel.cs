@@ -42,7 +42,7 @@ public class UpgradePanel : MonoBehaviour
     {
         EnsureRuntimeVisuals();
         m_Upgrade = upgrade;
-        m_UpgradeTitle.text = Nicify(m_Upgrade.GetUpgradeType().ToString());
+        m_UpgradeTitle.text = Nicify(m_Upgrade.DisplayName);
         m_UpgradeTitle.color = m_TitleColor;
         m_UpgradeText.color = m_DescriptionColor;
         m_RarityText.text = m_Upgrade.Rarity.ToString().ToUpperInvariant();

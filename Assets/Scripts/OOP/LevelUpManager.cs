@@ -37,7 +37,10 @@ public class LevelUpManager : MonoBehaviour, IGameLevelUp
 
     public void SetRandomUpgrades()
     {
-        List<CharUpgrade> charUpgradesCopy = new List<CharUpgrade>(m_UpgradeAssets);
+        GunArchetype activeArchetype = GetActiveArchetype();
+        List<CharUpgrade> charUpgradesCopy = new List<CharUpgrade>();
+        AddEligible(m_UpgradeAssets, activeArchetype, charUpgradesCopy);
+        AddEligible(Resources.LoadAll<CharUpgrade>("WeaponUpgrades"), activeArchetype, charUpgradesCopy);
         m_CurrentUpgrades.Clear();
 
         int numberOfUpgrades = Mathf.Clamp(3, 0, charUpgradesCopy.Count);
@@ -53,6 +56,26 @@ public class LevelUpManager : MonoBehaviour, IGameLevelUp
 
         Debug.Log("Set random upgrades");
         OnUpgradesAssigned?.Invoke(new List<CharUpgrade>(m_CurrentUpgrades));
+    }
+
+    private void AddEligible(IEnumerable<CharUpgrade> source, GunArchetype archetype, List<CharUpgrade> target)
+    {
+        if (source == null) return;
+        foreach (CharUpgrade upgrade in source)
+            if (upgrade != null && !target.Contains(upgrade) && upgrade.IsEligible(archetype, GetUpgradeLevel(upgrade)))
+                target.Add(upgrade);
+    }
+
+    private static GunArchetype GetActiveArchetype()
+    {
+        if (CharUpgrade.TryGetActiveGunArchetype(out GunArchetype archetype)) return archetype;
+        return Mathf.Clamp(MetaProgression.SelectedWeapon, 0, 3) switch
+        {
+            1 => GunArchetype.Shotgun,
+            2 => GunArchetype.AssaultRifle,
+            3 => GunArchetype.RocketLauncher,
+            _ => GunArchetype.Pistol,
+        };
     }
 
     private static int GetWeightedRandomIndex(IReadOnlyList<CharUpgrade> upgrades)

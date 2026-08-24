@@ -47,7 +47,7 @@ internal partial struct DamageDigitSystem : ISystem
             {
                 Position = new float3(mobTransform.Position.x, mobTransform.Position.y + 1.5f, mobTransform.Position.z),
                 Rotation = quaternion.identity,
-                Scale = digitPrefabTransform.Scale
+                Scale = digitPrefabTransform.Scale * (damageTakenEvent.ValueRO.IsCritical ? 1.35f : 0.75f)
             };
             
             digitEcb.SetComponent(digitEntity, digitTransform);
@@ -63,11 +63,18 @@ internal partial struct DamageDigitSystem : ISystem
             DamageDigit damageDigitComponent = SystemAPI.GetComponent<DamageDigit>(entityReferences.ValueRO.DamageDigitPrefabEntity);
             damageDigitComponent.DamageValue = damageTakenEvent.ValueRO.Amount;
             damageDigitComponent.IsExplosive = false;
+            damageDigitComponent.IsCritical = damageTakenEvent.ValueRO.IsCritical;
+            damageDigitComponent.BaseScale = digitPrefabTransform.Scale *
+                                             (damageTakenEvent.ValueRO.IsCritical ? 1.35f : 1f);
+            damageDigitComponent.FeedbackTime = 0f;
             digitEcb.SetComponent(digitEntity, damageDigitComponent);
             
             // Set the material property values.
             digitEcb.SetComponent(digitEntity, new DigitValueMatOverride { DigitIndex = damageTakenEvent.ValueRO.Amount });
-            digitEcb.SetComponent(digitEntity, new DigitPulseMatOverride { Pulse = damageDigitComponent.IsExplosive ? 1 : 0});
+            digitEcb.SetComponent(digitEntity, new DigitPulseMatOverride
+            {
+                Pulse = damageTakenEvent.ValueRO.IsCritical ? 1f : 0f,
+            });
         }
         
         digitEcb.Playback(state.EntityManager);
@@ -75,6 +82,11 @@ internal partial struct DamageDigitSystem : ISystem
         foreach (var (localTransform, velocity, damageDigit, entity) in SystemAPI
                      .Query<RefRW<LocalTransform>, RefRW<PhysicsVelocity>, RefRW<DamageDigit>>().WithEntityAccess())
         {   
+            damageDigit.ValueRW.FeedbackTime += SystemAPI.Time.DeltaTime;
+            float time = damageDigit.ValueRO.FeedbackTime;
+            float punch = 1f + 0.35f * math.exp(-time * 10f) * math.sin(time * 30f);
+            localTransform.ValueRW.Scale = damageDigit.ValueRO.BaseScale * punch;
+
             if (localTransform.ValueRO.Position.y > 0.02f)
             {
                 velocity.ValueRW.Linear.y -= DIGIT_FALL_ACCELERATION * SystemAPI.Time.DeltaTime;

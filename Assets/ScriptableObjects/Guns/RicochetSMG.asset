@@ -20,8 +20,8 @@ MonoBehaviour:
   HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
   Archetype: 5
-  BaseDamage: 1
-  BaseShotsPerSecond: 4
+  BaseDamage: 3
+  BaseShotsPerSecond: 8
   BaseProjectileCount: 1
   BaseCriticalChance: 0.05
   BaseCriticalDamage: 1.5
@@ -31,7 +31,7 @@ MonoBehaviour:
   BaseKnockback: 0.2
   BaseSpreadAngle: 3
   MinimumFireInterval: 0.08
-  BaseMagazineSize: 24
+  BaseMagazineSize: 32
   BaseReloadDuration: 1.5
   IsExplosive: 0
   ExplosionRadius: 0

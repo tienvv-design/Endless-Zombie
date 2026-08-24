@@ -28,6 +28,12 @@ public static class StageProgressView
     {
         if (label == null) return;
 
+        label.text = $"STAGE PROGRESS  {GetPercent(stageCleared)}%";
+    }
+
+    public static int GetPercent(bool stageCleared = false)
+    {
+
         int kills = 0;
         int totalEnemies = 0;
         World world = World.DefaultGameObjectInjectionWorld;
@@ -53,6 +59,6 @@ public static class StageProgressView
         int percent = stageCleared ? 100 : totalEnemies > 0
             ? Mathf.Clamp(Mathf.RoundToInt(kills * 100f / totalEnemies), 0, 100)
             : 0;
-        label.text = $"STAGE PROGRESS  {percent}%";
+        return percent;
     }
 }

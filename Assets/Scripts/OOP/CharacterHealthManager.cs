@@ -20,8 +20,6 @@ public class CharacterHealthManager : Targetable
 
         ApplyMetaProgression();
         CreateWorldHealthBar();
-        if (!TryGetComponent<AttackRangeIndicator>(out _))
-            gameObject.AddComponent<AttackRangeIndicator>();
         if (!TryGetComponent<RuntimeGunTuner>(out _))
             gameObject.AddComponent<RuntimeGunTuner>();
     }

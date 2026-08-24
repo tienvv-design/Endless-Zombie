@@ -4,6 +4,7 @@ using UnityEngine;
 
 public struct WeaponManager : IComponentData
 {
+    public GunArchetype Archetype;
     public Entity WeaponEntityPrefab;
     public int NumberOfWeapons;
     public int DamagePerHit;
@@ -85,6 +86,13 @@ public struct GunModifiers : IComponentData
     public int SynergyLevel;
     public int AdditionalMagazineSize;
     public float ReloadSpeedBonusPercent;
+    public float SpreadReductionPercent;
+    public float ExplosionRadiusBonusPercent;
+    public float ExplosionDamageBonus;
+    public int AdditionalRicochets;
+    public int AdditionalChains;
+    public float ElementChanceBonus;
+    public float ElementMagnitudeBonusPercent;
 }
 
 public class WeaponManagerAuthoring : MonoBehaviour
@@ -178,6 +186,7 @@ public class WeaponManagerAuthoring : MonoBehaviour
             float elementMagnitude = config != null ? config.ElementMagnitude : authoring.ElementMagnitude;
             AddComponent(entity, new WeaponManager
             {
+                Archetype = config != null ? config.Archetype : GunArchetype.Pistol,
                 WeaponEntityPrefab = GetEntity(
                     config != null && config.ProjectilePrefab != null
                         ? config.ProjectilePrefab

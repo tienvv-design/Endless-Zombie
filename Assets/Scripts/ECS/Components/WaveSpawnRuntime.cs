@@ -35,6 +35,16 @@ public struct StageRuntime : IComponentData
     public float DefaultWaveDelay;
     public int MaxAliveEnemies;
     public uint NextRequestSequence;
+    public bool EnableEliteModifiers;
+    public float RandomEliteChance;
+    public int EliteChanceStartsAtWave;
+    public float BossHealthMultiplier, BossDamageMultiplier, BossScaleMultiplier;
+    public float BossPhaseTwoHealth, BossPhaseThreeHealth, BossSpeedPerPhase, BossDamagePerPhase;
+    public float BossShockwaveCooldown, BossShockwaveWarning, BossShockwaveRadius;
+    public int BossShockwaveDamage;
+    public float SpawnPortalDuration;
+    public bool SpawnOutsideCamera;
+    public float OffscreenSpawnPadding;
 }
 
 [InternalBufferCapacity(8)]
