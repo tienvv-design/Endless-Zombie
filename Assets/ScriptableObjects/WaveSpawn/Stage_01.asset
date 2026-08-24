@@ -6,42 +6,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f787873cab749dcb2312eebc75eb2b1, type: 3}
   m_Name: Stage_01
   StageId: Stage_01
-  DefaultWaveDelay: 3
-  MaxAliveEnemies: 20
+  DefaultWaveDelay: 4
+  MaxAliveEnemies: 16
   Waves:
   - WaveId: Wave_01
     WaveType: 0
     ActivationCondition: 0
     WaveDelay: 1
     CompletionThreshold: 4
-    MaxAliveEnemyOverride: 20
-    SpawnEntries:
-    - EnemyId: Normal
-      Quantity: 12
-      SpawnDelay: 0
-      SpawnInterval: 0.8
-      SpawnArenaGroupId: Outer
-    - EnemyId: ZombieDog
-      Quantity: 8
-      SpawnDelay: 2
-      SpawnInterval: 1.2
-      SpawnArenaGroupId: Outer
-  - WaveId: Wave_02
-    WaveType: 1
-    ActivationCondition: 1
-    WaveDelay: 3
-    CompletionThreshold: 2
     MaxAliveEnemyOverride: 16
     SpawnEntries:
     - EnemyId: Normal
       Quantity: 12
       SpawnDelay: 0
-      SpawnInterval: 0.8
+      SpawnInterval: 1.15
+      SpawnArenaGroupId: Outer
+    - EnemyId: ZombieDog
+      Quantity: 8
+      SpawnDelay: 4
+      SpawnInterval: 1.6
+      SpawnArenaGroupId: Outer
+  - WaveId: Wave_02
+    WaveType: 1
+    ActivationCondition: 1
+    WaveDelay: 4
+    CompletionThreshold: 2
+    MaxAliveEnemyOverride: 12
+    SpawnEntries:
+    - EnemyId: Normal
+      Quantity: 12
+      SpawnDelay: 0
+      SpawnInterval: 1.1
       SpawnArenaGroupId: Outer
     - EnemyId: Elite
       Quantity: 6
-      SpawnDelay: 1
-      SpawnInterval: 1.5
+      SpawnDelay: 3
+      SpawnInterval: 2.2
       SpawnArenaGroupId: Outer
   - WaveId: Wave_03
     WaveType: 3

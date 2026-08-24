@@ -48,6 +48,13 @@ public class CharacterHealthManager : Targetable
     public int MaxHealth => m_MaxHealth;
     public bool IsDead => m_IsDead;
 
+    public void RestoreFullHealth()
+    {
+        m_Health = m_MaxHealth;
+        m_IsDead = false;
+        if (m_WorldHealthFill != null) m_WorldHealthFill.fillAmount = 1f;
+    }
+
     public void ApplyMetaProgression()
     {
         m_MaxHealth = Mathf.Max(1, Mathf.RoundToInt(BaseHealth + MetaProgression.HealthBonus));

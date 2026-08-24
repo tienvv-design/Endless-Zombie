@@ -101,6 +101,18 @@ public partial struct SpawnRequestProcessingSystem : ISystem
                 requests.RemoveAt(0);
                 continue;
             }
+            // Projection can move a candidate to the nearest walkable cell,
+            // occasionally pushing an originally off-screen point back into
+            // view. Validate the final position that will actually be used.
+            if (gameplayCamera != null && IsInsideCamera(
+                    gameplayCamera, spawnPosition, math.max(0.12f, stage.OffscreenSpawnPadding)))
+            {
+                entry.EnqueuedCount = math.max(entry.SpawnedCount, entry.EnqueuedCount - 1);
+                entry.State = SpawnEntryRuntimeState.Active;
+                entries[request.SpawnEntryIndex] = entry;
+                requests.RemoveAt(0);
+                continue;
+            }
 
             Entity mob = ecb.Instantiate(request.EnemyPrefab);
             float spawnScale = math.max(0.01f, request.Scale);
@@ -160,7 +172,7 @@ public partial struct SpawnRequestProcessingSystem : ISystem
             if (SystemAPI.HasComponent<UnitMover>(request.EnemyPrefab) && eliteKind == EliteModifierKind.Frenzied)
             {
                 UnitMover mover = SystemAPI.GetComponent<UnitMover>(request.EnemyPrefab);
-                mover.moveSpeed *= 1.45f;
+                mover.moveSpeed *= 1.35f;
                 mover.rotationSpeed *= 1.2f;
                 ecb.SetComponent(mob, mover);
             }
@@ -309,7 +321,8 @@ public partial struct SpawnRequestProcessingSystem : ISystem
     {
         Vector3 viewport = camera.WorldToViewportPoint(worldPosition);
         if (viewport.z <= 0f) return false;
-        float margin = Mathf.Clamp(padding, 0f, 0.25f);
+        // Keep the model, not only its pivot, outside the visible edge.
+        float margin = Mathf.Clamp(Mathf.Max(0.12f, padding), 0f, 0.25f);
         return viewport.x >= -margin && viewport.x <= 1f + margin &&
                viewport.y >= -margin && viewport.y <= 1f + margin;
     }

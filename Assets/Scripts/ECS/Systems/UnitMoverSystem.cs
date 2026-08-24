@@ -68,6 +68,7 @@ public struct CrowdNeighbor
     public Entity Entity;
     public float3 Position;
     public int2 Cell;
+    public float MoveSpeed;
 }
 
 public static class CrowdAvoidance
@@ -119,12 +120,13 @@ public static class CrowdAvoidance
 
 [BurstCompile]
 [WithAll(typeof(Mob))]
+[WithOptions(EntityQueryOptions.IgnoreComponentEnabledState)]
 public partial struct BuildCrowdGridJob : IJobEntity
 {
     public NativeParallelMultiHashMap<int, CrowdNeighbor>.ParallelWriter writer;
     public float cellSize;
 
-    public void Execute(Entity entity, in LocalTransform transform)
+    public void Execute(Entity entity, in LocalTransform transform, in UnitMover mover)
     {
         int2 cell = CrowdAvoidance.PositionToCell(transform.Position, cellSize);
         writer.Add(CrowdAvoidance.Hash(cell), new CrowdNeighbor
@@ -132,6 +134,7 @@ public partial struct BuildCrowdGridJob : IJobEntity
             Entity = entity,
             Position = transform.Position,
             Cell = cell,
+            MoveSpeed = mover.moveSpeed,
         });
     }
 }
@@ -172,21 +175,41 @@ public partial struct MobUnitMoverJob : IJobEntity
             int direction = directions[cellIndex];
             if (direction < 0)
             {
-                physicsVelocity.Linear = float3.zero;
-                physicsVelocity.Angular = float3.zero;
-                return;
+                int2 escapeOffset = FindEscapeOffset(x, z, unitMover.targetPosition);
+                if (math.all(escapeOffset == int2.zero))
+                {
+                    physicsVelocity.Linear = float3.zero;
+                    physicsVelocity.Angular = float3.zero;
+                    return;
+                }
+                float3 escapeCenter = new(
+                    gridOrigin.x + (x + escapeOffset.x + 0.5f) * cellSize,
+                    localTransform.Position.y,
+                    gridOrigin.z + (z + escapeOffset.y + 0.5f) * cellSize);
+                moveDirection = math.normalizesafe(escapeCenter - localTransform.Position);
             }
-            if (direction > 0)
+            else if (direction > 0)
             {
                 int2 offset = DirectionOffset(direction);
-                float3 flowDirection = math.normalizesafe(new float3(offset.x, 0f, offset.y));
+                // Steer through the centre of the next cell instead of using a
+                // coarse cardinal/diagonal vector. This gives fast units a real
+                // turning point and stops them pressing into concave corners.
+                float3 nextCellCenter = new float3(
+                    gridOrigin.x + (x + offset.x + 0.5f) * cellSize,
+                    localTransform.Position.y,
+                    gridOrigin.z + (z + offset.y + 0.5f) * cellSize);
+                float3 flowDirection = math.normalizesafe(nextCellCenter - localTransform.Position,
+                    new float3(offset.x, 0f, offset.y));
                 moveDirection = flowDirection;
             }
         }
 
         moveDirection.y = 0f;
+        float3 separation = CrowdAvoidance.Calculate(entity, localTransform.Position, crowdGrid);
+        float3 overtake = CalculateOvertake(entity, localTransform.Position, moveDirection,
+            unitMover.moveSpeed);
         moveDirection = math.normalizesafe(moveDirection +
-            CrowdAvoidance.Calculate(entity, localTransform.Position, crowdGrid) * CrowdAvoidance.Strength,
+            separation * CrowdAvoidance.Strength + overtake,
             moveDirection);
         moveDirection = math.normalizesafe(moveDirection);
 
@@ -201,6 +224,68 @@ public partial struct MobUnitMoverJob : IJobEntity
         physicsVelocity.Linear = moveDirection * unitMover.moveSpeed;
         physicsVelocity.Angular = float3.zero;
         
+    }
+    private float3 CalculateOvertake(Entity entity, float3 position, float3 forward, float selfSpeed)
+    {
+        float2 forward2 = math.normalizesafe(forward.xz);
+        if (math.lengthsq(forward2) < 0.1f) return float3.zero;
+        bool slowerUnitAhead = false;
+        int2 originCell = CrowdAvoidance.PositionToCell(position, CrowdAvoidance.CellSize);
+        for (int z = -1; z <= 1 && !slowerUnitAhead; z++)
+        for (int x = -1; x <= 1 && !slowerUnitAhead; x++)
+        {
+            int2 cell = originCell + new int2(x, z);
+            if (!crowdGrid.TryGetFirstValue(CrowdAvoidance.Hash(cell), out CrowdNeighbor neighbor, out var iterator))
+                continue;
+            do
+            {
+                if (neighbor.Entity == entity || math.any(neighbor.Cell != cell) ||
+                    neighbor.MoveSpeed >= selfSpeed * 0.82f) continue;
+                float2 delta = neighbor.Position.xz - position.xz;
+                float distanceSq = math.lengthsq(delta);
+                if (distanceSq > 2.25f || math.dot(forward2, delta) <= 0.15f) continue;
+                slowerUnitAhead = true;
+                break;
+            }
+            while (crowdGrid.TryGetNextValue(out neighbor, ref iterator));
+        }
+        if (!slowerUnitAhead) return float3.zero;
+
+        float2 left = new(-forward2.y, forward2.x);
+        bool leftOpen = IsWalkable(position.xz + left * 0.75f);
+        bool rightOpen = IsWalkable(position.xz - left * 0.75f);
+        if (!leftOpen && !rightOpen) return float3.zero;
+        float side = leftOpen && rightOpen ? ((entity.Index & 1) == 0 ? 1f : -1f) : leftOpen ? 1f : -1f;
+        return new float3(left.x * side, 0f, left.y * side) * 1.65f;
+    }
+
+    private bool IsWalkable(float2 position)
+    {
+        int x = (int)math.floor((position.x - gridOrigin.x) / cellSize);
+        int z = (int)math.floor((position.y - gridOrigin.z) / cellSize);
+        return x >= 0 && z >= 0 && x < gridWidth && z < gridHeight &&
+               directions[z * gridWidth + x] >= 0;
+    }
+    private int2 FindEscapeOffset(int x, int z, float3 targetPosition)
+    {
+        int2 best = int2.zero;
+        float bestDistanceSq = float.MaxValue;
+        for (int direction = 1; direction <= 8; direction++)
+        {
+            int2 offset = DirectionOffset(direction);
+            int nextX = x + offset.x;
+            int nextZ = z + offset.y;
+            if (nextX < 0 || nextZ < 0 || nextX >= gridWidth || nextZ >= gridHeight) continue;
+            if (directions[nextZ * gridWidth + nextX] < 0) continue;
+            float2 center = new(
+                gridOrigin.x + (nextX + 0.5f) * cellSize,
+                gridOrigin.z + (nextZ + 0.5f) * cellSize);
+            float distanceSq = math.distancesq(center, targetPosition.xz);
+            if (distanceSq >= bestDistanceSq) continue;
+            bestDistanceSq = distanceSq;
+            best = offset;
+        }
+        return best;
     }
     private static int2 DirectionOffset(int direction)
     {

@@ -18,7 +18,7 @@ public sealed class StageConfig : ScriptableObject
     [Min(0.1f)] public float SpawnPortalDuration = 0.7f;
     public bool SpawnOutsideCamera = true;
     [Tooltip("Extra viewport margin beyond the screen edge before a spawn is accepted.")]
-    [Range(0f, 0.25f)] public float OffscreenSpawnPadding = 0.06f;
+    [Range(0f, 0.25f)] public float OffscreenSpawnPadding = 0.12f;
     public WaveDefinition[] Waves = Array.Empty<WaveDefinition>();
 }
 

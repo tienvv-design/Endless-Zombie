@@ -1,15 +1,9 @@
 ﻿using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
-using UnityEngine;
 
 internal partial struct XPCoinSystem : ISystem
 {
 
-    public const float XP_COLLECT_DISTANCE_SQ = UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQ;
-    
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
@@ -20,68 +14,22 @@ internal partial struct XPCoinSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        EntityCommandBuffer xpSpawnEcb = new EntityCommandBuffer(Allocator.Temp);
         EntityCommandBuffer esEcb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
             .CreateCommandBuffer(state.WorldUnmanaged);
-
-        SystemAPI.TryGetSingleton(out EntityReferences entityReferences);
         
         foreach (var mobDeathEvent in SystemAPI.Query<RefRO<MobDeathEvent>>())
         {
-            // Debug.Log("Mob is dead alright");
-            Entity xpCollectible = xpSpawnEcb.Instantiate(entityReferences.XPCollectable);
-
-            LocalTransform localTransform = SystemAPI.GetComponent<LocalTransform>(entityReferences.XPCollectable);
-            localTransform.Position = mobDeathEvent.ValueRO.LocalTransform.Position;
-            xpSpawnEcb.SetComponent(xpCollectible, localTransform);
-
-            XPCoin xpPickup = SystemAPI.GetComponent<XPCoin>(entityReferences.XPCollectable);
-            xpPickup.XPAmount = math.max(1, mobDeathEvent.ValueRO.XPReward);
-            xpSpawnEcb.SetComponent(xpCollectible, xpPickup);
+            Entity xpCollectedEvent = esEcb.CreateEntity();
+            esEcb.AddComponent(xpCollectedEvent, new XPCollectedEvent
+            {
+                XPAmount = Unity.Mathematics.math.max(1, mobDeathEvent.ValueRO.XPReward),
+            });
         }
-        
-        xpSpawnEcb.Playback(state.EntityManager);
-        
-        SystemAPI.TryGetSingletonBuffer(out DynamicBuffer<GameObjectInfo> goInfoBuffer);
-        
-        foreach (var (localTransform, xpCoin, unitMover, entity) in SystemAPI
-                     .Query<RefRO<LocalTransform>, RefRW<XPCoin>, RefRW<UnitMover>>().WithEntityAccess()
-                     .WithOptions(EntityQueryOptions.IgnoreComponentEnabledState))
-        {
-            // Find the target object and get the necessary info.
-            bool foundTarget = false;
-            for (int i = 0; i < goInfoBuffer.Length; i++)
-            {
-                if (xpCoin.ValueRO.TargetType == goInfoBuffer[i].ObjectType)
-                {
-                    xpCoin.ValueRW.TargetPosition = goInfoBuffer[i].Position;
-                    unitMover.ValueRW.targetPosition = xpCoin.ValueRO.TargetPosition;
-                    foundTarget = true;
-                    break;
-                }
-            }
 
-            // The player is stationary, so pickups outside a local magnet radius
-            // would otherwise remain on the arena forever. Pull every spawned
-            // pickup once a valid player target is available.
-            if (foundTarget && !SystemAPI.IsComponentEnabled<UnitMover>(entity))
-            {
-                SystemAPI.SetComponentEnabled<UnitMover>(entity, true);
-            }
-
-            // If the coin is close enough, create an event and destroy the entity.
-            if (foundTarget && math.distancesq(localTransform.ValueRO.Position, xpCoin.ValueRO.TargetPosition) <=
-                XP_COLLECT_DISTANCE_SQ)
-            {
-                Entity xpCollectedEvent = esEcb.CreateEntity();
-                esEcb.AddComponent(xpCollectedEvent, new XPCollectedEvent
-                {
-                    XPAmount = xpCoin.ValueRO.XPAmount,
-                });
-                
-                esEcb.DestroyEntity(entity);
-            }
-        }
+        // Clean up pickups left from an older play session/domain reload. New
+        // kills never instantiate a pickup GameObject/entity anymore.
+        foreach (var (_, entity) in SystemAPI.Query<RefRO<XPCoin>>().WithEntityAccess())
+            esEcb.DestroyEntity(entity);
     }
 }
 

@@ -22,6 +22,10 @@ public sealed class MobDeathProceduralAnimator : MonoBehaviour
         m_StartScale = transform.localScale;
         Animator animator = GetComponentInChildren<Animator>(true);
         if (animator != null) animator.enabled = false;
+        // The dog attack layer applies additive root movement in LateUpdate.
+        // It must stop immediately or it keeps lunging the corpse every frame.
+        DogAttackProceduralAnimator dogAttack = GetComponent<DogAttackProceduralAnimator>();
+        if (dogAttack != null) dogAttack.enabled = false;
 
         m_Hips = dog ? FindBone("hips") : FindBone("Z_Hip", "Base HumanPelvis");
         m_Spine = dog ? FindBone("spine mid") : FindBone("Base HumanSpine1", "Z_Body");
@@ -61,10 +65,9 @@ public sealed class MobDeathProceduralAnimator : MonoBehaviour
     private void AnimateDog(float fall, float settle)
     {
         // Front legs buckle and the head hits the ground before the torso rolls.
-        transform.rotation = m_StartRotation * Quaternion.Euler(34f * fall, 0f, m_FallSide * 38f * fall);
-        transform.position = m_StartPosition + transform.forward * (0.16f * fall) +
-                             Vector3.down * (0.25f * fall + 0.12f * settle);
-        transform.localScale = m_StartScale * Mathf.Lerp(1f, 0.82f, settle);
+        transform.rotation = m_StartRotation * Quaternion.Euler(18f * fall, 0f, m_FallSide * 24f * fall);
+        transform.position = m_StartPosition + Vector3.down * (0.14f * fall + 0.07f * settle);
+        transform.localScale = m_StartScale * Mathf.Lerp(1f, 0.9f, settle);
         SetAdditive(m_FrontLegL, m_FrontLegLBase, new Vector3(48f * fall, 0f, -8f * fall));
         SetAdditive(m_FrontLegR, m_FrontLegRBase, new Vector3(48f * fall, 0f, 8f * fall));
         SetAdditive(m_Hips, m_HipsBase, new Vector3(-20f * fall, 0f, 10f * m_FallSide * fall));
