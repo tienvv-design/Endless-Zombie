@@ -9,6 +9,7 @@ using UnityEngine;
 public partial class MobVisualBridge : SystemBase
 {
     private const string SettingsResourcePath = "MobVisualSettings";
+    private const float AttackTransitionDuration = 0.12f;
 
     private sealed class VisualInstance
     {
@@ -17,8 +18,8 @@ public partial class MobVisualBridge : SystemBase
         public float LoopDuration;
         public float DistancePerLoop;
         public float GroundOffset;
-        public AnimatorOverrideController OverrideController;
         public AnimationClip LocomotionClip;
+        public AnimationClip AttackClip;
         public bool IsAttacking;
         public bool SupportsAttack;
         public LineRenderer BossWarning;
@@ -79,8 +80,12 @@ public partial class MobVisualBridge : SystemBase
                 bool isDogMutant = EntityManager.HasComponent<MobVisualVariant>(entity) &&
                                    EntityManager.GetComponentData<MobVisualVariant>(entity).Kind == MobVisualKind.DogMutant;
                 bool isBoss = mobs[i].EnemyType == EnemyType.Boss;
+                int zombieVariantIndex = SelectIndex(entity, m_Settings.ZombieVisualPrefabs, 0x9e3779b9u);
+                GameObject zombiePrefab = zombieVariantIndex >= 0
+                    ? m_Settings.ZombieVisualPrefabs[zombieVariantIndex]
+                    : m_Settings.VisualPrefab;
                 GameObject prefab = isBoss && m_Settings.BossVisualPrefab != null ? m_Settings.BossVisualPrefab :
-                    isDogMutant && m_Settings.DogMutantVisualPrefab != null ? m_Settings.DogMutantVisualPrefab : m_Settings.VisualPrefab;
+                    isDogMutant && m_Settings.DogMutantVisualPrefab != null ? m_Settings.DogMutantVisualPrefab : zombiePrefab;
                 RuntimeAnimatorController controller = isBoss && m_Settings.BossAnimatorController != null
                     ? m_Settings.BossAnimatorController : isDogMutant ? m_Settings.DogMutantAnimatorController : m_Settings.AnimatorController;
                 float loopDuration = isDogMutant
@@ -100,12 +105,34 @@ public partial class MobVisualBridge : SystemBase
                     ApplyEliteAppearance(visualObject, EntityManager.GetComponentData<EliteModifier>(entity).Kind);
 
                 Animator animator = visualObject.GetComponentInChildren<Animator>(true);
+                if (animator == null && !isDogMutant)
+                {
+                    animator = visualObject.AddComponent<Animator>();
+                    if (zombieVariantIndex >= 0 && m_Settings.ZombieVisualAvatars != null &&
+                        zombieVariantIndex < m_Settings.ZombieVisualAvatars.Length)
+                        animator.avatar = m_Settings.ZombieVisualAvatars[zombieVariantIndex];
+                }
+                AnimationClip locomotionClip = SelectClip(entity, m_Settings.ZombieLocomotionClips, 0x85ebca6bu);
+                AnimationClip attackClip = SelectClip(entity, m_Settings.ZombieAttackClips, 0xc2b2ae35u);
+                AnimationClip controllerBaseClip = controller != null && controller.animationClips.Length > 0
+                    ? controller.animationClips[0]
+                    : null;
+                AnimationClip locomotionSlotClip = !isDogMutant && m_Settings.AnimatorLocomotionSlotClip != null
+                    ? m_Settings.AnimatorLocomotionSlotClip
+                    : controllerBaseClip;
+                AnimationClip attackSlotClip = !isDogMutant ? m_Settings.AnimatorAttackSlotClip : null;
+                if (attackClip == null)
+                    attackClip = m_Settings.ZombieAttackClip;
                 if (animator != null)
                 {
                     if (controller != null)
                     {
                         AnimatorOverrideController overrideController = new(controller);
                         animator.runtimeAnimatorController = overrideController;
+                        if (!isDogMutant && locomotionSlotClip != null && locomotionClip != null)
+                            overrideController[locomotionSlotClip.name] = locomotionClip;
+                        if (!isDogMutant && attackSlotClip != null && attackClip != null)
+                            overrideController[attackSlotClip.name] = attackClip;
                     }
                     animator.applyRootMotion = false;
                     animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
@@ -115,16 +142,16 @@ public partial class MobVisualBridge : SystemBase
                 {
                     GameObject = visualObject,
                     Animator = animator,
-                    LoopDuration = loopDuration,
+                    LoopDuration = !isDogMutant && locomotionClip != null
+                        ? locomotionClip.length
+                        : loopDuration,
                     DistancePerLoop = distancePerLoop,
                     GroundOffset = CalculateGroundOffset(visualObject) +
                                    (isBoss ? m_Settings.BossGroundOffset : isDogMutant ? m_Settings.DogMutantGroundOffset : m_Settings.ZombieGroundOffset),
-                    OverrideController = animator != null
-                        ? animator.runtimeAnimatorController as AnimatorOverrideController
-                        : null,
-                    LocomotionClip = controller != null && controller.animationClips.Length > 0
-                        ? controller.animationClips[0]
-                        : null,
+                    LocomotionClip = locomotionClip != null
+                        ? locomotionClip
+                        : controller != null && controller.animationClips.Length > 0 ? controller.animationClips[0] : null,
+                    AttackClip = attackClip,
                     SupportsAttack = !isDogMutant,
                     IsDogMutant = isDogMutant,
                 };
@@ -159,8 +186,8 @@ public partial class MobVisualBridge : SystemBase
                     visual.DogAttackAnimator.SetAttack(dogAttacking, attackProgress);
                 }
                 UpdateAttackAnimation(visual, attacking);
-                if (attacking && m_Settings.ZombieAttackClip != null)
-                    visual.Animator.speed = m_Settings.ZombieAttackClip.length /
+                if (attacking && visual.AttackClip != null)
+                    visual.Animator.speed = visual.AttackClip.length /
                                             math.max(0.05f, attacks[i].AttackInterval);
                 else if (!emerging && movementLocked)
                     // Dog Mutant currently has no dedicated attack clip. Freeze
@@ -326,16 +353,48 @@ public partial class MobVisualBridge : SystemBase
 
     private void UpdateAttackAnimation(VisualInstance visual, bool attacking)
     {
-        if (visual.IsAttacking == attacking || visual.OverrideController == null ||
-            visual.LocomotionClip == null || m_Settings.ZombieAttackClip == null)
+        if (visual.IsAttacking == attacking || visual.Animator == null ||
+            visual.LocomotionClip == null || visual.AttackClip == null)
             return;
 
         visual.IsAttacking = attacking;
-        visual.OverrideController[visual.LocomotionClip.name] = attacking
-            ? m_Settings.ZombieAttackClip
-            : visual.LocomotionClip;
-        visual.Animator.Play("Walk", 0, 0f);
-        visual.Animator.Update(0f);
+        // Both overrides are assigned once when the visual is spawned. Switching
+        // fixed states here avoids rebinding the humanoid avatar (and therefore
+        // cannot replace or reset the selected visual mesh during an attack).
+        visual.Animator.CrossFadeInFixedTime(attacking ? "Attack" : "Walk",
+            AttackTransitionDuration, 0, 0f);
+    }
+
+    private static int SelectIndex(Entity entity, GameObject[] values, uint salt)
+    {
+        if (values == null || values.Length == 0)
+            return -1;
+
+        uint seed = math.hash(new uint3((uint)entity.Index, (uint)entity.Version, salt));
+        int start = (int)(seed % (uint)values.Length);
+        for (int offset = 0; offset < values.Length; offset++)
+        {
+            int index = (start + offset) % values.Length;
+            if (values[index] != null)
+                return index;
+        }
+        return -1;
+    }
+
+    private static AnimationClip SelectClip(Entity entity, AnimationClip[] clips, uint salt)
+    {
+        if (clips == null || clips.Length == 0)
+            return null;
+
+        uint seed = math.hash(new uint3((uint)entity.Index, (uint)entity.Version, salt));
+        int start = (int)(seed % (uint)clips.Length);
+        for (int offset = 0; offset < clips.Length; offset++)
+        {
+            AnimationClip clip = clips[(start + offset) % clips.Length];
+            if (clip != null)
+                return clip;
+        }
+        return null;
     }
 
     private static void ApplyTransform(Transform target, LocalTransform source, float groundOffset)

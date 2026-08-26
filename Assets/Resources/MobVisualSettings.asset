@@ -13,8 +13,44 @@ MonoBehaviour:
   m_Name: MobVisualSettings
   m_EditorClassIdentifier: 
   VisualPrefab: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
-  AnimatorController: {fileID: 9100000, guid: c3513f7db65d46e4bc43f2bc9e51f00d, type: 2}
-  ZombieAttackClip: {fileID: 7400000, guid: de559bbb071ebfd40ab5af80881e75e8, type: 2}
+  ZombieVisualPrefabs:
+  - {fileID: 5917135027497153125, guid: b6951047cdb59ea4c9f6093af14ee9ff, type: 3}
+  - {fileID: 9172777782440979183, guid: c9890c18eaeb6f1469a80b83538bcd38, type: 3}
+  - {fileID: 8247874740443395185, guid: 6789acd5297025144a923f11b35e7a25, type: 3}
+  - {fileID: 5139735296197789440, guid: 945b26a11965a794dbad15f68a652247, type: 3}
+  - {fileID: 5942935323189075924, guid: 2dbb3a3968ac8d94194853dd8409e3de, type: 3}
+  - {fileID: 8247210707253753404, guid: 3b500c9a560a2934eb10cd2a6444b07e, type: 3}
+  - {fileID: 2760531334045571808, guid: 75218f57a2a5f1b4d9c9d4a4108f05d5, type: 3}
+  - {fileID: 1814358270063643544, guid: 8c9301ea59e26574bae2fcdb42969c2e, type: 3}
+  - {fileID: 4942674315065071043, guid: 65acd687ef3c45247b291434b178d838, type: 3}
+  - {fileID: 3612090991278838773, guid: dce375694476dda4aa9a499c36a194a2, type: 3}
+  - {fileID: 5837906511451534247, guid: 26e33fd370938ed488d448ac877a45e5, type: 3}
+  - {fileID: 7887510458884752068, guid: 21bd2f7cf07fa4b4890c16970d36c712, type: 3}
+  ZombieVisualAvatars:
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: 285b171a527499c4e8becaa6a0c81603, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: e371a592876a337449815bc3a22b0b45, type: 2}
+  - {fileID: 9000000, guid: 58395036205536641985e03f8211e802, type: 2}
+  - {fileID: 9000000, guid: 8b4f64b46b48f5d4ebc380c1a46812e6, type: 2}
+  AnimatorController: {fileID: 9100000, guid: 7a91c2d3e4f5467890abc123456789de, type: 2}
+  AnimatorLocomotionSlotClip: {fileID: 7400000, guid: 1a97bd7733d408046948a7abfe8df52c, type: 2}
+  AnimatorAttackSlotClip: {fileID: 7400000, guid: ac7444b1a35107f4c97d96522699ea14, type: 2}
+  ZombieAttackClip: {fileID: 7400000, guid: ac7444b1a35107f4c97d96522699ea14, type: 2}
+  ZombieLocomotionClips:
+  - {fileID: 7400000, guid: 1a97bd7733d408046948a7abfe8df52c, type: 2}
+  - {fileID: 7400000, guid: a18283398b179634ab59664cc85fc94f, type: 2}
+  - {fileID: 7400000, guid: 6f4ae5c480f93824c915b9c251d8e978, type: 2}
+  - {fileID: 7400000, guid: bfefd070d16800b40b2eaaca9b38b8dc, type: 2}
+  - {fileID: 7400000, guid: 19d4ba02f71aa1d4094cdf9bd9f97d72, type: 2}
+  ZombieAttackClips:
+  - {fileID: 7400000, guid: ac7444b1a35107f4c97d96522699ea14, type: 2}
   WalkLoopDuration: 2
   DistancePerWalkLoop: 2
   DogMutantVisualPrefab: {fileID: 5166489295478566908, guid: bc404b57e8c59a146bdbedea659b5649, type: 3}
