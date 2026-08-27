@@ -15,6 +15,7 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
     private Transform m_RightUpperArm;
     private Transform m_RightForearm;
     private Transform m_RightHand;
+    private bool m_UsesLdoeRig;
 
     private void OnEnable()
     {
@@ -55,6 +56,8 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         GunConfig config = m_GunConfigs[index];
         m_CurrentConfig = config;
         WeaponVfxRuntime.CurrentConfig = config;
+        if (config != null)
+            GetComponent<PlayerGunplayAnimator>()?.SetWeaponArchetype(config.Archetype);
         if (config == null || config.HeldWeaponPrefab == null)
             return;
 
@@ -96,14 +99,14 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         m_Visual = parent;
         ResolvePoseBones(parent);
         Transform hand = FindHandBone(parent);
-        bool usesLdoeHand = IsLdoeHand(hand);
+        m_UsesLdoeRig = IsLdoeHand(hand);
         if (hand != null)
             parent = hand;
         Transform existing = parent.Find("HeldWeaponSocket");
         if (existing != null)
         {
             m_Socket = existing;
-            ConfigureSocketForRig(usesLdoeHand);
+            ConfigureSocketForRig(m_UsesLdoeRig);
             CompensateInheritedScale();
             return;
         }
@@ -111,7 +114,7 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         GameObject socket = new("HeldWeaponSocket");
         m_Socket = socket.transform;
         m_Socket.SetParent(parent, false);
-        ConfigureSocketForRig(usesLdoeHand);
+        ConfigureSocketForRig(m_UsesLdoeRig);
         CompensateInheritedScale();
     }
 
@@ -174,6 +177,12 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
 
     private void ApplyWeaponPose()
     {
+        // LDoE gun clips already animate the complete upper body and both arms.
+        // Applying the old procedural pose in LateUpdate would overwrite those
+        // rotations, producing twisted or snapping hands while firing.
+        if (m_UsesLdoeRig)
+            return;
+
         if (m_CurrentConfig == null ||
             m_Visual == null || m_Chest == null || m_LeftUpperArm == null ||
             m_LeftForearm == null || m_LeftHand == null || m_RightUpperArm == null ||

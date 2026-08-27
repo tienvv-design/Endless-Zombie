@@ -267,6 +267,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGunplayAnimator
   m_Controller: {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
+  m_ArchetypeControllers:
+  - {fileID: 22100000, guid: cc9bc670751e03c49a265cea3fa66d27, type: 2}
+  - {fileID: 22100000, guid: 060bc7ed8c7c8aa42890447e11bdd4ac, type: 2}
+  - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
+  - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
+  - {fileID: 22100000, guid: e2df5c795359c0d4a874cfc6ebd0de63, type: 2}
+  - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
+  - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
+  - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
+  - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
 --- !u!1 &4784062220205690571
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +602,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4257875523735993768, guid: 644d2a49c0aefc043b0c6ecce67a76ad, type: 3}
       propertyPath: m_Controller
-      value:
+      value: 
       objectReference: {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
     - target: {fileID: 4552415461050106257, guid: 644d2a49c0aefc043b0c6ecce67a76ad, type: 3}
       propertyPath: m_Name
