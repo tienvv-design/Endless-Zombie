@@ -77,6 +77,14 @@ public static class CyborgGunplayAnimationInstaller
             scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Additive);
 
         GameObject player = scene.GetRootGameObjects().FirstOrDefault(root => root.CompareTag("Player"));
+        if (player != null && player.transform.Find("Survivor Character (LDoE)") != null)
+        {
+            if (openedTemporarily)
+                EditorSceneManager.CloseScene(scene, true);
+            AssetDatabase.SaveAssets();
+            return;
+        }
+
         if (player != null)
         {
             CharacterLogic character = player.GetComponent<CharacterLogic>();

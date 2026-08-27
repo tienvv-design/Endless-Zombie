@@ -1,0 +1,265 @@
+using System;
+using System.Linq;
+using UnityEditor;
+using UnityEditor.Animations;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public static class LdoeSurvivorPlayerInstaller
+{
+    private const string SurvivorPrefabPath =
+        "Assets/Models/LDoE Survivor/Survivor_character_fixed.prefab";
+    private const string PlayerPrefabPath = "Assets/Prefabs/Player/Player.prefab";
+    private const string GameScenePath = "Assets/Scenes/GameScene.unity";
+    private const string ControllerPath =
+        "Assets/Animations/LDoE Survivor/SurvivorGunplay.controller";
+    private const string IdleClipPath =
+        "Assets/Animations/LDoE Survivor/movement_rifle_idle.anim";
+    private const string WalkClipPath =
+        "Assets/Animations/LDoE Survivor/movement_rifle_walk.anim";
+    private const string GunplayClipPath =
+        "Assets/Animations/LDoE Survivor/action_attack_rifle.anim";
+    private const string InstalledName = "Survivor Character (LDoE)";
+    private const string PreviousVisualName = "Cyborg Visual RX-1500";
+    private const float TargetHeight = 1.35f;
+    private const string AutoInstallSessionKey =
+        "EndlessZombie.LdoeSurvivorPlayerInstaller.AnimationV2";
+
+    [InitializeOnLoadMethod]
+    private static void ScheduleAutoInstall()
+    {
+        if (SessionState.GetBool(AutoInstallSessionKey, false))
+            return;
+
+        SessionState.SetBool(AutoInstallSessionKey, true);
+        EditorApplication.delayCall += TryAutoInstall;
+    }
+
+    private static void TryAutoInstall()
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
+            return;
+
+        GameObject playerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath);
+        Transform visual = playerPrefab != null ? playerPrefab.transform.Find(InstalledName) : null;
+        Animator animator = visual != null ? visual.GetComponentInChildren<Animator>(true) : null;
+        RuntimeAnimatorController controller =
+            AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(ControllerPath);
+        if (playerPrefab != null &&
+            (visual == null || controller == null || animator == null ||
+             animator.runtimeAnimatorController != controller))
+            Install();
+    }
+
+    [MenuItem("Tools/Endless Zombie/Player/Install LDoE Survivor Model")]
+    public static void Install()
+    {
+        AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+
+        GameObject survivorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(SurvivorPrefabPath);
+        if (survivorPrefab == null)
+            throw new MissingReferenceException($"Could not load {SurvivorPrefabPath}.");
+
+        RuntimeAnimatorController controller = BuildOrUpdateController();
+
+        InstallInPlayerPrefab(survivorPrefab, controller);
+        InstallInGameScene(survivorPrefab, controller);
+
+        AssetDatabase.SaveAssets();
+        Debug.Log("Installed Survivor_character_fixed as the Endless Zombie main character model.");
+    }
+
+    private static RuntimeAnimatorController BuildOrUpdateController()
+    {
+        AnimationClip idleClip = AssetDatabase.LoadAssetAtPath<AnimationClip>(IdleClipPath);
+        AnimationClip walkClip = AssetDatabase.LoadAssetAtPath<AnimationClip>(WalkClipPath);
+        AnimationClip gunplayClip = AssetDatabase.LoadAssetAtPath<AnimationClip>(GunplayClipPath);
+        if (idleClip == null || walkClip == null || gunplayClip == null)
+            throw new MissingReferenceException("One or more LDoE Survivor animation clips are missing.");
+
+        AnimatorController controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+        if (controller == null)
+            controller = AnimatorController.CreateAnimatorControllerAtPath(ControllerPath);
+        if (!controller.parameters.Any(parameter => parameter.name == "IsWalking"))
+            controller.AddParameter("IsWalking", AnimatorControllerParameterType.Bool);
+
+        AnimatorStateMachine stateMachine = controller.layers[0].stateMachine;
+        AnimatorState idle = GetOrCreateState(stateMachine, "Idle");
+        AnimatorState walk = GetOrCreateState(stateMachine, "Walk");
+        AnimatorState gunplay = GetOrCreateState(stateMachine, "Gunplay");
+        idle.motion = idleClip;
+        walk.motion = walkClip;
+        gunplay.motion = gunplayClip;
+        stateMachine.defaultState = idle;
+
+        ClearTransitions(idle);
+        ClearTransitions(walk);
+        ClearTransitions(gunplay);
+
+        AnimatorStateTransition startWalking = idle.AddTransition(walk);
+        startWalking.hasExitTime = false;
+        startWalking.duration = 0.12f;
+        startWalking.AddCondition(AnimatorConditionMode.If, 0f, "IsWalking");
+
+        AnimatorStateTransition stopWalking = walk.AddTransition(idle);
+        stopWalking.hasExitTime = false;
+        stopWalking.duration = 0.12f;
+        stopWalking.AddCondition(AnimatorConditionMode.IfNot, 0f, "IsWalking");
+
+        AnimatorStateTransition shotFinished = gunplay.AddTransition(idle);
+        shotFinished.hasExitTime = true;
+        shotFinished.exitTime = 1f;
+        shotFinished.hasFixedDuration = true;
+        shotFinished.duration = 0.04f;
+
+        EditorUtility.SetDirty(controller);
+        AssetDatabase.SaveAssets();
+        return controller;
+    }
+
+    private static AnimatorState GetOrCreateState(AnimatorStateMachine stateMachine, string stateName)
+    {
+        return stateMachine.states
+                   .Select(child => child.state)
+                   .FirstOrDefault(state => state.name == stateName)
+               ?? stateMachine.AddState(stateName);
+    }
+
+    private static void ClearTransitions(AnimatorState state)
+    {
+        foreach (AnimatorStateTransition transition in state.transitions.ToArray())
+            state.RemoveTransition(transition);
+    }
+
+    private static void InstallInPlayerPrefab(
+        GameObject survivorPrefab,
+        RuntimeAnimatorController controller)
+    {
+        GameObject player = PrefabUtility.LoadPrefabContents(PlayerPrefabPath);
+        try
+        {
+            RemovePreviousVisuals(player.transform, removeInstalledSurvivor: false);
+            Transform existingVisual = player.transform.Find(InstalledName);
+            GameObject visual = existingVisual != null
+                ? existingVisual.gameObject
+                : CreateVisual(survivorPrefab, player.transform, controller);
+            ConfigureAnimator(visual, controller);
+            BindCharacter(player, visual, controller);
+            PrefabUtility.SaveAsPrefabAsset(player, PlayerPrefabPath);
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(player);
+        }
+    }
+
+    private static void InstallInGameScene(
+        GameObject survivorPrefab,
+        RuntimeAnimatorController controller)
+    {
+        Scene scene = EditorSceneManager.OpenScene(GameScenePath, OpenSceneMode.Single);
+        GameObject player = scene.GetRootGameObjects()
+            .FirstOrDefault(root => root.CompareTag("Player"));
+        if (player == null)
+            throw new MissingReferenceException($"Could not find the Player in {GameScenePath}.");
+
+        RemovePreviousVisuals(player.transform, removeInstalledSurvivor: false);
+
+        Transform visualTransform = player.transform.Find(InstalledName);
+        GameObject visual = visualTransform != null
+            ? visualTransform.gameObject
+            : CreateVisual(survivorPrefab, player.transform, controller);
+
+        ConfigureAnimator(visual, controller);
+        BindCharacter(player, visual, controller);
+        EditorSceneManager.MarkSceneDirty(scene);
+        EditorSceneManager.SaveScene(scene);
+    }
+
+    private static GameObject CreateVisual(
+        GameObject survivorPrefab,
+        Transform parent,
+        RuntimeAnimatorController controller)
+    {
+        GameObject visual = PrefabUtility.InstantiatePrefab(survivorPrefab, parent) as GameObject;
+        if (visual == null)
+            throw new UnityException("Failed to instantiate the LDoE Survivor prefab.");
+
+        visual.name = InstalledName;
+        visual.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        visual.transform.localScale = Vector3.one;
+        FitToCharacterHeight(visual.transform, TargetHeight);
+        ConfigureAnimator(visual, controller);
+        return visual;
+    }
+
+    private static void ConfigureAnimator(
+        GameObject visual,
+        RuntimeAnimatorController controller)
+    {
+        Animator animator = visual.GetComponentInChildren<Animator>(true);
+        if (animator == null)
+            animator = visual.AddComponent<Animator>();
+
+        animator.applyRootMotion = false;
+        if (controller != null)
+            animator.runtimeAnimatorController = controller;
+    }
+
+    private static void BindCharacter(
+        GameObject player,
+        GameObject visual,
+        RuntimeAnimatorController controller)
+    {
+        CharacterLogic logic = player.GetComponent<CharacterLogic>();
+        Animator animator = visual.GetComponentInChildren<Animator>(true);
+        if (logic != null)
+        {
+            SerializedObject serializedLogic = new(logic);
+            serializedLogic.FindProperty("_model").objectReferenceValue = visual.transform;
+            serializedLogic.FindProperty("_animator").objectReferenceValue = animator;
+            serializedLogic.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        PlayerGunplayAnimator gunplay = player.GetComponent<PlayerGunplayAnimator>();
+        if (gunplay != null && controller != null)
+        {
+            SerializedObject serializedGunplay = new(gunplay);
+            serializedGunplay.FindProperty("m_Controller").objectReferenceValue = controller;
+            serializedGunplay.ApplyModifiedPropertiesWithoutUndo();
+        }
+    }
+
+    private static void RemovePreviousVisuals(Transform player, bool removeInstalledSurvivor)
+    {
+        for (int i = player.childCount - 1; i >= 0; i--)
+        {
+            Transform child = player.GetChild(i);
+            bool isPrevious = child.name == PreviousVisualName || child.name == "Visual";
+            bool isInstalled = removeInstalledSurvivor && child.name == InstalledName;
+            if (isPrevious || isInstalled)
+                UnityEngine.Object.DestroyImmediate(child.gameObject);
+        }
+    }
+
+    private static void FitToCharacterHeight(Transform visual, float targetHeight)
+    {
+        Renderer[] renderers = visual.GetComponentsInChildren<Renderer>(true);
+        if (renderers.Length == 0)
+            return;
+
+        Bounds bounds = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++)
+            bounds.Encapsulate(renderers[i].bounds);
+        if (bounds.size.y <= 0.001f)
+            return;
+
+        visual.localScale = Vector3.one * (targetHeight / bounds.size.y);
+
+        bounds = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++)
+            bounds.Encapsulate(renderers[i].bounds);
+        visual.position += Vector3.up * (visual.parent.position.y - bounds.min.y);
+    }
+}

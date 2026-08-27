@@ -16,9 +16,24 @@ MonoBehaviour:
   DisplayName: Pistol
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 6949219968297497114, guid: 55b1fd5f577255c4a8338b61385780ec, type: 3}
-  HeldLocalPosition: {x: 0, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 0, y: 90, z: 90}
+  ProjectilePrefab: {fileID: 0}
+  HeldLocalPosition: {x: 0.04, y: 0, z: 0}
+  HeldLocalEulerAngles: {x: 0, y: 113.2, z: -90}
   HeldLocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  UseCustomHoldPose: 1
+  HoldPoseWeight: 0.746
+  RightHandTargetOffset: {x: -0.09, y: 0.36, z: 0.48}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: -1.13, y: -4.36, z: 1.4}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.79
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 1
   Archetype: 0
   BaseDamage: 8
   BaseShotsPerSecond: 2
@@ -33,3 +48,16 @@ MonoBehaviour:
   MinimumFireInterval: 0.08
   BaseMagazineSize: 12
   BaseReloadDuration: 1.1
+  IsExplosive: 0
+  ExplosionRadius: 0
+  ExplosionDamageMultiplier: 1
+  ExplosionKnockbackMultiplier: 1
+  RicochetCount: 0
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

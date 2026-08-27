@@ -29,11 +29,25 @@ public class GunConfig : ScriptableObject
     public Sprite Icon;
     public GameObject HeldWeaponPrefab;
     public GameObject ProjectilePrefab;
+    [Tooltip("Adjust this while the game is running; the held weapon updates immediately.")]
     public Vector3 HeldLocalPosition;
+    [Tooltip("Local rotation of the held weapon. Changes update immediately in Play Mode.")]
     public Vector3 HeldLocalEulerAngles;
+    [Tooltip("Local scale of the held weapon. Changes update immediately in Play Mode.")]
     public Vector3 HeldLocalScale = Vector3.one;
 
-    [Header("Pistol Two-Hand Pose")]
+    [Header("Per-Weapon Arm Pose")]
+    [Tooltip("Enable procedural arm posing for this weapon. All values update immediately in Play Mode.")]
+    public bool UseCustomHoldPose;
+    [Range(0f, 1f)] public float HoldPoseWeight = 1f;
+    [Tooltip("Right-hand target relative to the chest: X = right, Y = up, Z = forward (world units).")]
+    public Vector3 RightHandTargetOffset = new(0.08f, 0f, 0.35f);
+    [Tooltip("Make the left hand follow a grip point on the weapon.")]
+    public bool UseLeftHandIk = true;
+    [Tooltip("Fallback left-hand grip in the weapon's local space. A child named LeftHandGrip overrides this value.")]
+    public Vector3 LeftHandGripLocalPosition = new(0f, 0f, 0.25f);
+
+    [Header("Legacy Pistol Pose (Custom Hold Pose Off)")]
     [Range(0f, 1f)] public float PistolPoseWeight = 1f;
     [Range(0.4f, 0.95f)] public float PistolArmReach = 0.78f;
     [Min(0.02f)] public float PistolHandSpacing = 0.14f;

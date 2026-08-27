@@ -9,6 +9,7 @@ public static class CyborgPlayerModelInstaller
     private const string ModelPath = "Assets/Models/CYBORG SOLDIER RX-1500/Gunplay.fbx";
     private const string ScenePath = "Assets/Scenes/GameScene.unity";
     private const string InstalledName = "Cyborg Visual RX-1500";
+    private const string ReplacementVisualName = "Survivor Character (LDoE)";
 
     static CyborgPlayerModelInstaller()
     {
@@ -41,6 +42,12 @@ public static class CyborgPlayerModelInstaller
         }
 
         if (player == null)
+        {
+            if (openedTemporarily) EditorSceneManager.CloseScene(scene, true);
+            return;
+        }
+
+        if (player.transform.Find(ReplacementVisualName) != null)
         {
             if (openedTemporarily) EditorSceneManager.CloseScene(scene, true);
             return;

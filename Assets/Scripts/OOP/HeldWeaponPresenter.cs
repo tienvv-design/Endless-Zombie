@@ -32,7 +32,8 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         // scale at the hand socket so weapon-pack models retain their intended size
         // while still following the animated hand position and rotation.
         CompensateInheritedScale();
-        ApplyPistolPose();
+        ApplyCurrentWeaponTransform();
+        ApplyWeaponPose();
     }
 
     public void SetGunConfigs(GunConfig[] gunConfigs)
@@ -59,13 +60,20 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
 
         EnsureSocket();
         m_CurrentWeapon = Instantiate(config.HeldWeaponPrefab, m_Socket, false);
+        ApplyCurrentWeaponTransform();
+        WeaponVfxRuntime.CurrentMuzzle = FindMuzzle(m_CurrentWeapon.transform);
+    }
+
+    private void ApplyCurrentWeaponTransform()
+    {
+        if (m_CurrentWeapon == null || m_CurrentConfig == null) return;
+
         Transform weaponTransform = m_CurrentWeapon.transform;
-        weaponTransform.localPosition = config.HeldLocalPosition;
-        weaponTransform.localRotation = Quaternion.Euler(config.HeldLocalEulerAngles);
-        weaponTransform.localScale = config.HeldLocalScale == Vector3.zero
+        weaponTransform.localPosition = m_CurrentConfig.HeldLocalPosition;
+        weaponTransform.localRotation = Quaternion.Euler(m_CurrentConfig.HeldLocalEulerAngles);
+        weaponTransform.localScale = m_CurrentConfig.HeldLocalScale == Vector3.zero
             ? Vector3.one
-            : config.HeldLocalScale;
-        WeaponVfxRuntime.CurrentMuzzle = FindMuzzle(weaponTransform);
+            : m_CurrentConfig.HeldLocalScale;
     }
 
     private static Transform FindMuzzle(Transform root)
@@ -88,12 +96,14 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         m_Visual = parent;
         ResolvePoseBones(parent);
         Transform hand = FindHandBone(parent);
+        bool usesLdoeHand = IsLdoeHand(hand);
         if (hand != null)
             parent = hand;
         Transform existing = parent.Find("HeldWeaponSocket");
         if (existing != null)
         {
             m_Socket = existing;
+            ConfigureSocketForRig(usesLdoeHand);
             CompensateInheritedScale();
             return;
         }
@@ -101,7 +111,18 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         GameObject socket = new("HeldWeaponSocket");
         m_Socket = socket.transform;
         m_Socket.SetParent(parent, false);
+        ConfigureSocketForRig(usesLdoeHand);
         CompensateInheritedScale();
+    }
+
+    private void ConfigureSocketForRig(bool usesLdoeHand)
+    {
+        if (m_Socket == null || !usesLdoeHand) return;
+
+        // R_arm_3_jnt is located at the wrist. Move the socket along the hand's
+        // local X axis to the middle of the palm, where the weapon grip belongs.
+        m_Socket.localPosition = new Vector3(0.08f, 0f, 0f);
+        m_Socket.localRotation = Quaternion.identity;
     }
 
     private void CompensateInheritedScale()
@@ -119,11 +140,18 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         return Mathf.Abs(value) > 0.0001f ? 1f / Mathf.Abs(value) : 1f;
     }
 
+    private static bool IsLdoeHand(Transform hand)
+    {
+        return hand != null && string.Equals(
+            hand.name, "R_arm_3_jnt", System.StringComparison.OrdinalIgnoreCase);
+    }
+
     private static Transform FindHandBone(Transform root)
     {
         if (root == null) return null;
         string normalized = root.name.Replace("_", string.Empty).Replace(" ", string.Empty).ToLowerInvariant();
-        if (normalized.Contains("righthand") || normalized.Contains("handr"))
+        if (normalized.Contains("righthand") || normalized.Contains("handr") ||
+            normalized == "rarm3jnt")
             return root;
         for (int i = 0; i < root.childCount; i++)
         {
@@ -135,22 +163,56 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
 
     private void ResolvePoseBones(Transform root)
     {
-        m_Chest = FindBone(root, "Spine2") ?? FindBone(root, "Spine1") ?? root;
-        m_LeftUpperArm = FindBone(root, "LeftArm");
-        m_LeftForearm = FindBone(root, "LeftForeArm");
-        m_LeftHand = FindBone(root, "LeftHand");
-        m_RightUpperArm = FindBone(root, "RightArm");
-        m_RightForearm = FindBone(root, "RightForeArm");
-        m_RightHand = FindBone(root, "RightHand");
+        m_Chest = FindBone(root, "Spine2", "Spine1", "spine_2_jnt", "spine_1_jnt") ?? root;
+        m_LeftUpperArm = FindBone(root, "LeftArm", "L_arm_1_jnt");
+        m_LeftForearm = FindBone(root, "LeftForeArm", "L_arm_2_jnt");
+        m_LeftHand = FindBone(root, "LeftHand", "L_arm_3_jnt");
+        m_RightUpperArm = FindBone(root, "RightArm", "R_arm_1_jnt");
+        m_RightForearm = FindBone(root, "RightForeArm", "R_arm_2_jnt");
+        m_RightHand = FindBone(root, "RightHand", "R_arm_3_jnt");
     }
 
-    private void ApplyPistolPose()
+    private void ApplyWeaponPose()
     {
-        if (m_CurrentConfig == null || m_CurrentConfig.Archetype != GunArchetype.Pistol ||
+        if (m_CurrentConfig == null ||
             m_Visual == null || m_Chest == null || m_LeftUpperArm == null ||
             m_LeftForearm == null || m_LeftHand == null || m_RightUpperArm == null ||
             m_RightForearm == null || m_RightHand == null)
             return;
+
+        if (m_CurrentConfig.UseCustomHoldPose)
+        {
+            ApplyCustomHoldPose();
+            return;
+        }
+
+        if (m_CurrentConfig.Archetype == GunArchetype.Pistol)
+            ApplyLegacyPistolPose();
+    }
+
+    private void ApplyCustomHoldPose()
+    {
+        float weight = Mathf.Clamp01(m_CurrentConfig.HoldPoseWeight);
+        if (weight <= 0f) return;
+
+        Vector3 offset = m_CurrentConfig.RightHandTargetOffset;
+        Vector3 rightTarget = m_Chest.position +
+                              m_Visual.right * offset.x +
+                              m_Visual.up * offset.y +
+                              m_Visual.forward * offset.z;
+        ApplyTwoBoneIk(m_RightUpperArm, m_RightForearm, m_RightHand, rightTarget, weight);
+
+        if (!m_CurrentConfig.UseLeftHandIk || m_CurrentWeapon == null) return;
+
+        Transform grip = FindNamedChild(m_CurrentWeapon.transform, "LeftHandGrip");
+        Vector3 leftTarget = grip != null
+            ? grip.position
+            : m_CurrentWeapon.transform.TransformPoint(m_CurrentConfig.LeftHandGripLocalPosition);
+        ApplyTwoBoneIk(m_LeftUpperArm, m_LeftForearm, m_LeftHand, leftTarget, weight);
+    }
+
+    private void ApplyLegacyPistolPose()
+    {
 
         float weight = Mathf.Clamp01(m_CurrentConfig.PistolPoseWeight);
         if (weight <= 0f) return;
@@ -208,13 +270,17 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         }
     }
 
-    private static Transform FindBone(Transform root, string boneName)
+    private static Transform FindBone(Transform root, params string[] boneNames)
     {
         if (root == null) return null;
-        if (string.Equals(root.name, boneName, System.StringComparison.OrdinalIgnoreCase)) return root;
+        foreach (string boneName in boneNames)
+        {
+            if (string.Equals(root.name, boneName, System.StringComparison.OrdinalIgnoreCase))
+                return root;
+        }
         for (int i = 0; i < root.childCount; i++)
         {
-            Transform found = FindBone(root.GetChild(i), boneName);
+            Transform found = FindBone(root.GetChild(i), boneNames);
             if (found != null) return found;
         }
         return null;

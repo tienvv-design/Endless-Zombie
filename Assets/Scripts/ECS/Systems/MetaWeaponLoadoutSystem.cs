@@ -4,7 +4,9 @@ using UnityEngine;
 [UpdateBefore(typeof(GunStatsSystem))]
 public partial class MetaWeaponLoadoutSystem : SystemBase
 {
-    private bool m_Applied;
+    private Entity m_AppliedEntity = Entity.Null;
+    private int m_AppliedWeapon = -1;
+    private GunConfig m_AppliedConfig;
 
     protected override void OnCreate()
     {
@@ -13,13 +15,60 @@ public partial class MetaWeaponLoadoutSystem : SystemBase
 
     protected override void OnUpdate()
     {
-        if (m_Applied) return;
+        Entity gunEntity = SystemAPI.GetSingletonEntity<WeaponManager>();
+        int selectedWeapon = Mathf.Max(0, MetaProgression.SelectedWeapon);
+        GunConfig selectedConfig = WeaponVfxRuntime.CurrentConfig;
+        if (m_AppliedEntity == gunEntity && m_AppliedWeapon == selectedWeapon &&
+            m_AppliedConfig == selectedConfig)
+            return;
+
         RefRW<WeaponManager> gun = SystemAPI.GetSingletonRW<WeaponManager>();
-        ApplyProfile(ref gun.ValueRW, Mathf.Clamp(MetaProgression.SelectedWeapon, 0, 3));
+        if (selectedConfig != null)
+            ApplyConfig(ref gun.ValueRW, selectedConfig);
+        else
+            ApplyProfile(ref gun.ValueRW, Mathf.Clamp(selectedWeapon, 0, 3));
+
         gun.ValueRW.MagazineSize = gun.ValueRO.BaseMagazineSize;
         gun.ValueRW.AmmoInMagazine = gun.ValueRO.BaseMagazineSize;
         gun.ValueRW.ReloadDuration = gun.ValueRO.BaseReloadDuration;
-        m_Applied = true;
+        gun.ValueRW.Timer = 0f;
+        gun.ValueRW.ReloadTimer = 0f;
+        gun.ValueRW.IsReloading = false;
+        m_AppliedEntity = gunEntity;
+        m_AppliedWeapon = selectedWeapon;
+        m_AppliedConfig = selectedConfig;
+    }
+
+    private static void ApplyConfig(ref WeaponManager gun, GunConfig config)
+    {
+        gun.Archetype = config.Archetype;
+        gun.BaseDamage = config.BaseDamage;
+        gun.BaseShotsPerSecond = config.BaseShotsPerSecond;
+        gun.BaseProjectileCount = config.BaseProjectileCount;
+        gun.BaseCriticalChance = config.BaseCriticalChance;
+        gun.BaseCriticalDamage = config.BaseCriticalDamage;
+        gun.BaseAttackRange = config.BaseRange;
+        gun.BaseProjectileSpeed = config.BaseProjectileSpeed;
+        gun.BasePierce = config.BasePierce;
+        gun.BaseKnockback = config.BaseKnockback;
+        gun.BaseSpreadAngle = config.BaseSpreadAngle;
+        gun.MinimumFireInterval = config.MinimumFireInterval;
+        gun.BaseMagazineSize = Mathf.Max(1, config.BaseMagazineSize);
+        gun.BaseReloadDuration = Mathf.Max(0.05f, config.BaseReloadDuration);
+
+        gun.IsExplosive = config.IsExplosive;
+        gun.BaseExplosionRadius = Mathf.Max(0f, config.ExplosionRadius);
+        gun.BaseExplosionDamageMultiplier = Mathf.Max(0f, config.ExplosionDamageMultiplier);
+        gun.ExplosionKnockbackMultiplier = Mathf.Max(0f, config.ExplosionKnockbackMultiplier);
+        gun.BaseRicochetCount = Mathf.Max(0, config.RicochetCount);
+        gun.RicochetSearchRange = Mathf.Max(0.1f, config.RicochetSearchRange);
+        gun.BaseChainCount = Mathf.Max(0, config.ChainCount);
+        gun.ChainRange = Mathf.Max(0.1f, config.ChainRange);
+        gun.ChainDamageMultiplier = Mathf.Clamp(config.ChainDamageMultiplier, 0.1f, 1f);
+        gun.Element = config.Element;
+        gun.BaseElementChance = Mathf.Clamp01(config.ElementChance);
+        gun.ElementDuration = Mathf.Max(0f, config.ElementDuration);
+        gun.BaseElementMagnitude = Mathf.Max(0f, config.ElementMagnitude);
     }
 
     private static void ApplyProfile(ref WeaponManager gun, int profile)
