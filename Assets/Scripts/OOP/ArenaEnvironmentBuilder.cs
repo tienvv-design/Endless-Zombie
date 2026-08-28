@@ -9,7 +9,8 @@ public sealed class ArenaEnvironmentBuilder : MonoBehaviour
         ArenaMapPolisher.Ensure(config);
         // A hand-authored/imported stage map takes precedence over the old
         // procedurally decorated arena so two grounds are never stacked.
-        if (config == null || GameObject.Find(RootName) != null || GameObject.Find("Stage Map - VERSION1") != null)
+        if (config == null || GameObject.Find(RootName) != null ||
+            GameObject.Find("Stage Map - VERSION1") != null || GameObject.Find("Stage Map - Wasteland") != null)
             return;
         GameObject host = new(RootName);
         ArenaEnvironmentBuilder builder = host.AddComponent<ArenaEnvironmentBuilder>();

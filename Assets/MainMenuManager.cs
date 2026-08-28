@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public sealed class MainMenuManager : MonoBehaviour
 {
     [Header("Stage Upgrades")]
-    [SerializeField] private string _stageId = "Stage1";
     [SerializeField] private GunConfig[] _gunConfigs;
     [SerializeField] private ArenaEnvironmentConfig _arenaEnvironment;
 
@@ -45,6 +44,7 @@ public sealed class MainMenuManager : MonoBehaviour
     private OOP.GameStates.GameStateMachineRunner _gameStateMachine;
     private bool _starting;
     private TextMeshProUGUI _goldText;
+    private TextMeshProUGUI _stageTitle;
     private UpgradeCardView _healthCard;
     private UpgradeCardView _incomeCard;
     private RectTransform _weaponWindow;
@@ -85,6 +85,7 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        StageMapRuntimeLoader.ApplyMapForCurrentStage(gameObject.scene);
         Sprite kickerGold = Resources.Load<Sprite>("KickerHUD/gold");
         if (kickerGold != null)
             _goldIcon = kickerGold;
@@ -94,10 +95,11 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        MetaProgression.BeginStageSession(_stageId);
+        MetaProgression.BeginStageSession(StageMapProgression.CurrentStageId);
         SetupHeldWeaponPreview();
         AudioManager.Instance?.Play(SoundLabel.MainMenuMusic);
         BuildMenu();
+        RefreshStageTitle();
         if (PlayerPrefs.GetInt(GameOverMenu.RetryRunKey, 0) != 0)
         {
             PlayerPrefs.DeleteKey(GameOverMenu.RetryRunKey);
@@ -182,7 +184,7 @@ public sealed class MainMenuManager : MonoBehaviour
         RectTransform root = canvasObject.GetComponent<RectTransform>();
         SettingsMenu.EnsureExists(root);
         AddPanel(root, "TopBar", new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0f, -200f), new Vector2(0f, 400f), new Color(0f, 0f, 0f, 0.38f));
-        AddText(root, "STAGE 1", 48, FontStyles.Bold, TextAlignmentOptions.Center,
+        _stageTitle = AddText(root, "STAGE 1", 48, FontStyles.Bold, TextAlignmentOptions.Center,
             new Vector2(0.5f, 1f), new Vector2(0f, -120f), new Vector2(550f, 90f), Color.white);
 
         Button settings = AddButton(root, string.Empty, new Vector2(0f, 1f), new Vector2(168f, -120f),
@@ -232,6 +234,12 @@ public sealed class MainMenuManager : MonoBehaviour
         SettingsMenu.EnsureExists(root);
 
         _goldText = view.GoldText;
+        foreach (TextMeshProUGUI candidate in view.GetComponentsInChildren<TextMeshProUGUI>(true))
+        {
+            if (!candidate.text.StartsWith("STAGE ", System.StringComparison.OrdinalIgnoreCase)) continue;
+            _stageTitle = candidate;
+            break;
+        }
         Transform authoredGoldIcon = view.transform.Find("Gold Pill/Gold Icon");
         if (authoredGoldIcon == null)
         {
@@ -264,6 +272,12 @@ public sealed class MainMenuManager : MonoBehaviour
         if (button == null) return;
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(action);
+    }
+
+    private void RefreshStageTitle()
+    {
+        if (_stageTitle != null)
+            _stageTitle.text = $"STAGE {StageMapProgression.CurrentStage}";
     }
 
     private UpgradeCardView BindUpgradeCard(RectTransform card, StageUpgradeType type)

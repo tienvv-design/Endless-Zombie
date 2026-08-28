@@ -1,0 +1,101 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public static class StageMapProgression
+{
+    public const int FirstStage = 1;
+    public const int LastConfiguredStage = 2;
+    public const string CurrentStageKey = "StageProgress.CurrentStage";
+
+    public static int CurrentStage => Mathf.Clamp(
+        PlayerPrefs.GetInt(CurrentStageKey, FirstStage), FirstStage, LastConfiguredStage);
+
+    public static string CurrentStageId => $"Stage{CurrentStage}";
+
+    public static int AdvanceAfterWin()
+    {
+        int nextStage = Mathf.Min(CurrentStage + 1, LastConfiguredStage);
+        PlayerPrefs.SetInt(CurrentStageKey, nextStage);
+        PlayerPrefs.Save();
+        return nextStage;
+    }
+
+    public static void SelectStage(int stage)
+    {
+        PlayerPrefs.SetInt(CurrentStageKey, Mathf.Clamp(stage, FirstStage, LastConfiguredStage));
+        PlayerPrefs.Save();
+    }
+}
+
+public static class StageMapRuntimeLoader
+{
+    private const string GameSceneName = "GameScene";
+    private const string CityMapName = "Stage Map - VERSION1";
+    private const string WastelandMapName = "Stage Map - Wasteland";
+    private const string WastelandResourcePath = "StageMaps/WastelandArena_Endless";
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Register()
+    {
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
+        SceneManager.sceneLoaded += HandleSceneLoaded;
+    }
+
+    private static void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != GameSceneName) return;
+        ApplyMapForCurrentStage(scene);
+    }
+
+    public static void ApplyMapForCurrentStage(Scene scene)
+    {
+        GameObject cityMap = GameObject.Find(CityMapName);
+        GameObject fences = GameObject.Find("Fences");
+
+        if (StageMapProgression.CurrentStage < 2)
+        {
+            if (cityMap != null) cityMap.SetActive(true);
+            if (fences != null) fences.SetActive(true);
+            return;
+        }
+
+        GameObject prefab = Resources.Load<GameObject>(WastelandResourcePath);
+        if (prefab == null)
+        {
+            Debug.LogError($"Stage 2 map is missing at Resources/{WastelandResourcePath}.");
+            if (cityMap != null) cityMap.SetActive(true);
+            return;
+        }
+
+        if (cityMap != null) cityMap.SetActive(false);
+        if (fences != null) fences.SetActive(false);
+
+        GameObject existing = GameObject.Find(WastelandMapName);
+        GameObject wasteland = existing != null ? existing : Object.Instantiate(prefab);
+        wasteland.name = WastelandMapName;
+        SceneManager.MoveGameObjectToScene(wasteland, scene);
+        wasteland.SetActive(true);
+        MovePlayerToStageSpawn(wasteland.transform);
+    }
+
+    private static void MovePlayerToStageSpawn(Transform map)
+    {
+        Transform spawn = FindDescendant(map, "Spawn_Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (spawn == null || player == null) return;
+
+        player.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+        if (player.TryGetComponent(out Rigidbody body))
+        {
+            body.linearVelocity = Vector3.zero;
+            body.angularVelocity = Vector3.zero;
+        }
+    }
+
+    private static Transform FindDescendant(Transform root, string name)
+    {
+        foreach (Transform item in root.GetComponentsInChildren<Transform>(true))
+            if (item.name == name) return item;
+        return null;
+    }
+}

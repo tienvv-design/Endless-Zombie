@@ -17,9 +17,10 @@ MonoBehaviour:
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 5157368644320737447, guid: e91fa308568189b40b29043dc30ce085, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
-  HeldLocalPosition: {x: 0.013, y: 0.009, z: -0.03}
-  HeldLocalEulerAngles: {x: 351.7674, y: 92.063675, z: 261.3052}
-  HeldLocalScale: {x: 1, y: 1, z: 1}
+  ProjectileVisual: 0
+  HeldLocalPosition: {x: 0.033, y: 0.012, z: -0.03}
+  HeldLocalEulerAngles: {x: 351.7674, y: 92.06367, z: 261.30518}
+  HeldLocalScale: {x: 0.7, y: 0.7, z: 0.7}
   UseCustomHoldPose: 0
   HoldPoseWeight: 1
   RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}

@@ -74,13 +74,15 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
 
         Button claim = Button("ContinueBtn", root, "CLAIM & CONTINUE", new Vector2(0f, -220f),
             new Vector2(350f, 95f), KickerEndGameTheme.UI("UI_Maincenter_Button4"));
-        claim.onClick.AddListener(ReturnToMainMenu);
+        claim.onClick.AddListener(ContinueToNextStage);
     }
 
-    private static void ReturnToMainMenu()
+    private static void ContinueToNextStage()
     {
         Time.timeScale = 1f;
-        PlayerPrefs.DeleteKey(GameOverMenu.RetryRunKey);
+        StageMapProgression.AdvanceAfterWin();
+        PlayerPrefs.SetInt(GameOverMenu.RetryRunKey, 1);
+        PlayerPrefs.Save();
         World world = World.DefaultGameObjectInjectionWorld;
         if (world != null && world.IsCreated)
         {
