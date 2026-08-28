@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bb60d727e34574a433cb5ad97f1ee2, type: 3}
+  m_Name: WinchesterMercenary
+  m_EditorClassIdentifier: 
+  WeaponId: ldoe_winchester_mercenary
+  DisplayName: Winchester Mercenary
+  Icon: {fileID: 0}
+  HeldWeaponPrefab: {fileID: 5503910122863716695, guid: 7f7d227636c40ba44b8dd88734c1cdc6, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  HeldLocalPosition: {x: 0.009, y: 0.029, z: -0.042}
+  HeldLocalEulerAngles: {x: -0, y: 90, z: 270}
+  HeldLocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 185577682e9153a4ab5a5331ef4394a6, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
+  Archetype: 1
+  BaseDamage: 18
+  BaseShotsPerSecond: 1.2
+  BaseProjectileCount: 1
+  BaseCriticalChance: 0.18
+  BaseCriticalDamage: 2
+  BaseRange: 13
+  BaseProjectileSpeed: 24
+  BasePierce: 1
+  BaseKnockback: 0.65
+  BaseSpreadAngle: 1
+  MinimumFireInterval: 0.2
+  BaseMagazineSize: 8
+  BaseReloadDuration: 1.8
+  IsExplosive: 0
+  ExplosionRadius: 0
+  ExplosionDamageMultiplier: 1
+  ExplosionKnockbackMultiplier: 1
+  RicochetCount: 0
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

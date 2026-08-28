@@ -16,9 +16,26 @@ MonoBehaviour:
   DisplayName: Ricochet SMG
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 2855816089889277477, guid: 1fd930a48e8659c4ca2bb28f913b3182, type: 3}
-  HeldLocalPosition: {x: 0.06, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  HeldLocalPosition: {x: 0.047939237, y: 0.03007136, z: -0.023876077}
+  HeldLocalEulerAngles: {x: 86.90554, y: 86.314735, z: 270.78796}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 185577682e9153a4ab5a5331ef4394a6, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
   Archetype: 5
   BaseDamage: 3
   BaseShotsPerSecond: 8
@@ -39,3 +56,10 @@ MonoBehaviour:
   ExplosionKnockbackMultiplier: 1
   RicochetCount: 2
   RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

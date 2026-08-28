@@ -16,9 +16,26 @@ MonoBehaviour:
   DisplayName: Cryo Gun
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 3852799265655734254, guid: 6c7859e017cea78489d643b95bb38ec3, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: b320eb5cb0b84ec7b7453eb6c65db18e, type: 3}
+  ProjectileVisual: 3
   HeldLocalPosition: {x: 0.08, y: 0, z: 0}
   HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectScale: 1
   Archetype: 8
   BaseDamage: 6
   BaseShotsPerSecond: 2.5

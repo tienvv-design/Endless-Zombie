@@ -15,10 +15,27 @@ MonoBehaviour:
   WeaponId: shotgun
   DisplayName: Shotgun
   Icon: {fileID: 0}
-  HeldWeaponPrefab: {fileID: 647499141696943476, guid: 91ae9411a4d02cf41964a3f538884b64, type: 3}
-  HeldLocalPosition: {x: 0.08, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  HeldWeaponPrefab: {fileID: 8096054548853130690, guid: 86eca0eb86b38c445adff77b67993278, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  HeldLocalPosition: {x: -0.015, y: 0.025, z: 0}
+  HeldLocalEulerAngles: {x: -0, y: 90, z: 270}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 200dabfbb56d18440be007c9439ea6a8, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 1.25
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
   Archetype: 1
   BaseDamage: 4
   BaseShotsPerSecond: 0.9
@@ -33,3 +50,16 @@ MonoBehaviour:
   MinimumFireInterval: 0.15
   BaseMagazineSize: 6
   BaseReloadDuration: 1.75
+  IsExplosive: 0
+  ExplosionRadius: 0
+  ExplosionDamageMultiplier: 1
+  ExplosionKnockbackMultiplier: 1
+  RicochetCount: 0
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

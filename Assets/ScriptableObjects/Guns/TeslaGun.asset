@@ -16,9 +16,25 @@ MonoBehaviour:
   DisplayName: Tesla Gun
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 8861018534708125288, guid: e255ad384286fce4f876c07a7e5e1d25, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
   HeldLocalPosition: {x: 0.12, y: 0, z: 0}
   HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
   HeldLocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectScale: 1
   Archetype: 6
   BaseDamage: 8
   BaseShotsPerSecond: 2
@@ -42,3 +58,7 @@ MonoBehaviour:
   ChainCount: 4
   ChainRange: 4
   ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

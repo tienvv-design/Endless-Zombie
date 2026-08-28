@@ -21,11 +21,19 @@ public partial class WeaponVfxBridge : SystemBase
             m_PlayerGunplayAnimator?.PlayShot();
 
             Transform muzzle = WeaponVfxRuntime.CurrentMuzzle;
-            Vector3 position = muzzle != null ? muzzle.position : (Vector3)fired.ValueRO.Position;
-            Quaternion rotation = muzzle != null
-                ? muzzle.rotation
-                : Quaternion.LookRotation((Vector3)math.normalizesafe(fired.ValueRO.Direction, math.forward()));
-            WeaponVfxRuntime.Play(config.MuzzleVfxPrefab, position, rotation, config.VfxLifetime);
+            Vector3 position = muzzle != null
+                ? muzzle.TransformPoint(config.MuzzleEffectLocalOffset)
+                : (Vector3)fired.ValueRO.Position;
+            Vector3 shotDirection = (Vector3)math.normalizesafe(fired.ValueRO.Direction, math.forward());
+            Quaternion rotation = Quaternion.LookRotation(shotDirection);
+            WeaponVfxRuntime.Play(
+                config.MuzzleVfxPrefab,
+                position,
+                rotation,
+                config.VfxLifetime,
+                muzzle != null
+                    ? muzzle.localScale * config.MuzzleEffectScale
+                    : Vector3.one * config.MuzzleEffectScale);
         }
 
         foreach (RefRO<WeaponImpactVfxEvent> impact in SystemAPI.Query<RefRO<WeaponImpactVfxEvent>>())

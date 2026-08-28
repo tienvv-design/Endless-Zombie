@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bb60d727e34574a433cb5ad97f1ee2, type: 3}
+  m_Name: Minigun
+  m_EditorClassIdentifier: 
+  WeaponId: ldoe_minigun
+  DisplayName: Minigun
+  Icon: {fileID: 0}
+  HeldWeaponPrefab: {fileID: 1594408707648248837, guid: f671d699be733044784cab22bf955c14, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  HeldLocalPosition: {x: 0.179, y: 0.136, z: 0.041}
+  HeldLocalEulerAngles: {x: 347.6925, y: 138.1698, z: 245.77608}
+  HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
+  Archetype: 9
+  BaseDamage: 3
+  BaseShotsPerSecond: 12
+  BaseProjectileCount: 1
+  BaseCriticalChance: 0.06
+  BaseCriticalDamage: 1.5
+  BaseRange: 10
+  BaseProjectileSpeed: 20
+  BasePierce: 0
+  BaseKnockback: 0.18
+  BaseSpreadAngle: 6
+  MinimumFireInterval: 0.03
+  BaseMagazineSize: 120
+  BaseReloadDuration: 3
+  IsExplosive: 0
+  ExplosionRadius: 0
+  ExplosionDamageMultiplier: 1
+  ExplosionKnockbackMultiplier: 1
+  RicochetCount: 0
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

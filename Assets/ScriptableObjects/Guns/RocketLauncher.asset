@@ -15,10 +15,28 @@ MonoBehaviour:
   WeaponId: rocket_launcher
   DisplayName: Rocket Launcher
   Icon: {fileID: 0}
-  HeldWeaponPrefab: {fileID: 8861018534708125288, guid: e255ad384286fce4f876c07a7e5e1d25, type: 3}
-  HeldLocalPosition: {x: 0.12, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
-  HeldLocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  HeldWeaponPrefab: {fileID: 1709254077376921, guid: a91cd5c4a698a9547ab83e4622558c55, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 4c187d3635fd49fe99bc2b26f5cdb08a, type: 3}
+  ProjectileVisual: 1
+  HeldLocalPosition: {x: 0.1, y: 0.04, z: -0.03}
+  HeldLocalEulerAngles: {x: -0, y: 90, z: 270}
+  HeldLocalScale: {x: 1, y: 1, z: 1}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
   Archetype: 4
   BaseDamage: 38
   BaseShotsPerSecond: 0.55
@@ -37,3 +55,12 @@ MonoBehaviour:
   ExplosionRadius: 2.5
   ExplosionDamageMultiplier: 1
   ExplosionKnockbackMultiplier: 1.5
+  RicochetCount: 0
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

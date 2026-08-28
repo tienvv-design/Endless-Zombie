@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bb60d727e34574a433cb5ad97f1ee2, type: 3}
+  m_Name: MP5K
+  m_EditorClassIdentifier: 
+  WeaponId: ldoe_mp5k
+  DisplayName: MP5K
+  Icon: {fileID: 0}
+  HeldWeaponPrefab: {fileID: 5157368644320737447, guid: e91fa308568189b40b29043dc30ce085, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  HeldLocalPosition: {x: 0.013, y: 0.009, z: -0.03}
+  HeldLocalEulerAngles: {x: 351.7674, y: 92.063675, z: 261.3052}
+  HeldLocalScale: {x: 1, y: 1, z: 1}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 185577682e9153a4ab5a5331ef4394a6, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
+  Archetype: 5
+  BaseDamage: 3
+  BaseShotsPerSecond: 8
+  BaseProjectileCount: 1
+  BaseCriticalChance: 0.05
+  BaseCriticalDamage: 1.5
+  BaseRange: 12
+  BaseProjectileSpeed: 16
+  BasePierce: 0
+  BaseKnockback: 0.2
+  BaseSpreadAngle: 3
+  MinimumFireInterval: 0.08
+  BaseMagazineSize: 32
+  BaseReloadDuration: 1.5
+  IsExplosive: 0
+  ExplosionRadius: 0
+  ExplosionDamageMultiplier: 1
+  ExplosionKnockbackMultiplier: 1
+  RicochetCount: 2
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

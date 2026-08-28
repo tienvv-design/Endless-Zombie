@@ -16,9 +16,26 @@ MonoBehaviour:
   DisplayName: Assault Rifle
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 3852799265655734254, guid: 6c7859e017cea78489d643b95bb38ec3, type: 3}
-  HeldLocalPosition: {x: 0.08, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  HeldLocalPosition: {x: 0.158, y: 0.024, z: -0.035}
+  HeldLocalEulerAngles: {x: 82.77572, y: 90.04148, z: 270.0263}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 185577682e9153a4ab5a5331ef4394a6, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
   Archetype: 2
   BaseDamage: 5
   BaseShotsPerSecond: 5.5
@@ -33,3 +50,16 @@ MonoBehaviour:
   MinimumFireInterval: 0.08
   BaseMagazineSize: 30
   BaseReloadDuration: 1.6
+  IsExplosive: 0
+  ExplosionRadius: 0
+  ExplosionDamageMultiplier: 1
+  ExplosionKnockbackMultiplier: 1
+  RicochetCount: 0
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

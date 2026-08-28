@@ -34,18 +34,43 @@ public sealed class WeaponVfxRuntime : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void Play(GameObject prefab, Vector3 position, Quaternion rotation, float lifetime)
+    public static void Play(
+        GameObject prefab,
+        Vector3 position,
+        Quaternion rotation,
+        float lifetime,
+        float scale = 1f)
     {
         if (s_Instance == null || prefab == null) return;
-        s_Instance.PlayPooled(prefab, position, rotation, lifetime);
+        s_Instance.PlayPooled(prefab, position, rotation, lifetime, Vector3.one * scale);
     }
 
-    private void PlayPooled(GameObject prefab, Vector3 position, Quaternion rotation, float lifetime)
+    public static void Play(
+        GameObject prefab,
+        Vector3 position,
+        Quaternion rotation,
+        float lifetime,
+        Vector3 scale)
+    {
+        if (s_Instance == null || prefab == null) return;
+        s_Instance.PlayPooled(prefab, position, rotation, lifetime, scale);
+    }
+
+    private void PlayPooled(
+        GameObject prefab,
+        Vector3 position,
+        Quaternion rotation,
+        float lifetime,
+        Vector3 scale)
     {
         if (!m_Pools.TryGetValue(prefab, out Queue<GameObject> pool))
             m_Pools[prefab] = pool = new Queue<GameObject>();
         GameObject instance = pool.Count > 0 ? pool.Dequeue() : Instantiate(prefab, transform);
         instance.transform.SetPositionAndRotation(position, rotation);
+        scale.x = Mathf.Abs(scale.x);
+        scale.y = Mathf.Abs(scale.y);
+        scale.z = Mathf.Abs(scale.z);
+        instance.transform.localScale = Vector3.Scale(prefab.transform.localScale, scale);
         instance.SetActive(true);
         foreach (ParticleSystem particles in instance.GetComponentsInChildren<ParticleSystem>())
             particles.Play(true);

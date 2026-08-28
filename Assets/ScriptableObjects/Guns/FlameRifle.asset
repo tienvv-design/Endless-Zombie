@@ -13,12 +13,30 @@ MonoBehaviour:
   m_Name: FlameRifle
   m_EditorClassIdentifier: 
   WeaponId: flame_rifle
-  DisplayName: Flame Rifle
+  DisplayName: Flamethrower
   Icon: {fileID: 0}
-  HeldWeaponPrefab: {fileID: 647499141696943476, guid: 91ae9411a4d02cf41964a3f538884b64, type: 3}
-  HeldLocalPosition: {x: 0.08, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
-  HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  HeldWeaponPrefab: {fileID: 8910848325088545108, guid: ff2180d29469e4d46b31924f56d7981a, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 903f1fb32db9491eae47bd717aca54b1, type: 3}
+  ProjectileVisual: 4
+  HeldLocalPosition: {x: 0.1, y: 0.04, z: -0.03}
+  HeldLocalEulerAngles: {x: 0, y: 90, z: -90}
+  HeldLocalScale: {x: 1, y: 1, z: 1}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
   Archetype: 7
   BaseDamage: 3
   BaseShotsPerSecond: 6

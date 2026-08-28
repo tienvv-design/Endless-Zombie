@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum GunArchetype
 {
@@ -11,6 +12,8 @@ public enum GunArchetype
     TeslaGun,
     FlameRifle,
     CryoGun,
+    Minigun,
+    GrenadeLauncher,
 }
 
 public enum ElementType : byte
@@ -18,6 +21,15 @@ public enum ElementType : byte
     None,
     Fire,
     Frost,
+}
+
+public enum ProjectileVisualType : byte
+{
+    Bullet,
+    Harpoon,
+    Grenade,
+    Ice,
+    Fire,
 }
 
 [CreateAssetMenu(fileName = "GunConfig", menuName = "Settings-Configs/Gun Config")]
@@ -29,6 +41,7 @@ public class GunConfig : ScriptableObject
     public Sprite Icon;
     public GameObject HeldWeaponPrefab;
     public GameObject ProjectilePrefab;
+    public ProjectileVisualType ProjectileVisual;
     [Tooltip("Adjust this while the game is running; the held weapon updates immediately.")]
     public Vector3 HeldLocalPosition;
     [Tooltip("Local rotation of the held weapon. Changes update immediately in Play Mode.")]
@@ -59,6 +72,11 @@ public class GunConfig : ScriptableObject
     public GameObject ExplosionVfxPrefab;
     public GameObject ReloadVfxPrefab;
     [Min(0.05f)] public float VfxLifetime = 1f;
+    [Tooltip("Fine tuning offset from the Muzzle socket, in the held weapon's local space.")]
+    public Vector3 MuzzleEffectLocalOffset;
+    [FormerlySerializedAs("MuzzleVfxScale")]
+    [Tooltip("Multiplier for the scale set directly on the weapon prefab's Muzzle transform.")]
+    [Range(0.01f, 2f)] public float MuzzleEffectScale = 1f;
 
     [Header("Combat")]
     public GunArchetype Archetype;

@@ -42,6 +42,16 @@ public partial class MetaWeaponLoadoutSystem : SystemBase
     private static void ApplyConfig(ref WeaponManager gun, GunConfig config)
     {
         gun.Archetype = config.Archetype;
+        Entity projectilePrefab = config.ProjectileVisual switch
+        {
+            ProjectileVisualType.Harpoon => gun.HarpoonProjectilePrefab,
+            ProjectileVisualType.Grenade => gun.GrenadeProjectilePrefab,
+            ProjectileVisualType.Ice => gun.IceProjectilePrefab,
+            ProjectileVisualType.Fire => gun.FireProjectilePrefab,
+            _ => gun.BulletProjectilePrefab,
+        };
+        if (projectilePrefab != Entity.Null)
+            gun.WeaponEntityPrefab = projectilePrefab;
         gun.BaseDamage = config.BaseDamage;
         gun.BaseShotsPerSecond = config.BaseShotsPerSecond;
         gun.BaseProjectileCount = config.BaseProjectileCount;
@@ -73,6 +83,9 @@ public partial class MetaWeaponLoadoutSystem : SystemBase
 
     private static void ApplyProfile(ref WeaponManager gun, int profile)
     {
+        if (gun.BulletProjectilePrefab != Entity.Null)
+            gun.WeaponEntityPrefab = gun.BulletProjectilePrefab;
+
         switch (profile)
         {
             case 1: // Shotgun

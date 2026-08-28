@@ -315,6 +315,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunConfig: {fileID: 11400000, guid: 7723e3f33c514d4e9154b7ce79a0ce48, type: 2}
   WeaponObjectPrefab: {fileID: 184485202273541031, guid: a4d757049496aeb4d92148b28063c7f9, type: 3}
+  BulletProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  HarpoonProjectilePrefab: {fileID: 1709254077376921, guid: 4c187d3635fd49fe99bc2b26f5cdb08a, type: 3}
+  GrenadeProjectilePrefab: {fileID: 1709254077376921, guid: 5648dd93f59a466388a4202aa50d44d8, type: 3}
+  IceProjectilePrefab: {fileID: 1709254077376921, guid: b320eb5cb0b84ec7b7453eb6c65db18e, type: 3}
+  FireProjectilePrefab: {fileID: 1709254077376921, guid: 903f1fb32db9491eae47bd717aca54b1, type: 3}
   NumberOfWeapons: 3
   DamagePerHit: 1
   Cooldown: 3

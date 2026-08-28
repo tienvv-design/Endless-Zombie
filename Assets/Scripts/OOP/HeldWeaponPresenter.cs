@@ -17,6 +17,12 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
     private Transform m_RightHand;
     private bool m_UsesLdoeRig;
 
+#if UNITY_EDITOR
+    public GameObject EditorCurrentWeapon => m_CurrentWeapon;
+    public GunConfig[] EditorGunConfigs => m_GunConfigs;
+    public GunConfig EditorCurrentConfig => m_CurrentConfig;
+#endif
+
     private void OnEnable()
     {
         MetaProgression.SelectedWeaponChanged += ShowWeapon;
@@ -33,9 +39,43 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         // scale at the hand socket so weapon-pack models retain their intended size
         // while still following the animated hand position and rotation.
         CompensateInheritedScale();
+#if UNITY_EDITOR
+        // In Play Mode, selecting the spawned weapon root turns its normal Transform
+        // into a live pose editor. This must run before ApplyCurrentWeaponTransform,
+        // otherwise the presenter's per-frame update would overwrite the gizmo edits.
+        if (CaptureSelectedWeaponTransform())
+        {
+            ApplyWeaponPose();
+            return;
+        }
+#endif
         ApplyCurrentWeaponTransform();
         ApplyWeaponPose();
     }
+
+#if UNITY_EDITOR
+    private bool CaptureSelectedWeaponTransform()
+    {
+        if (!Application.isPlaying || m_CurrentWeapon == null || m_CurrentConfig == null)
+            return false;
+        if (UnityEditor.Selection.activeTransform != m_CurrentWeapon.transform)
+            return false;
+
+        Transform weaponTransform = m_CurrentWeapon.transform;
+        Vector3 localEulerAngles = weaponTransform.localEulerAngles;
+        bool changed = m_CurrentConfig.HeldLocalPosition != weaponTransform.localPosition ||
+                       m_CurrentConfig.HeldLocalEulerAngles != localEulerAngles ||
+                       m_CurrentConfig.HeldLocalScale != weaponTransform.localScale;
+        if (!changed)
+            return true;
+
+        m_CurrentConfig.HeldLocalPosition = weaponTransform.localPosition;
+        m_CurrentConfig.HeldLocalEulerAngles = localEulerAngles;
+        m_CurrentConfig.HeldLocalScale = weaponTransform.localScale;
+        UnityEditor.EditorUtility.SetDirty(m_CurrentConfig);
+        return true;
+    }
+#endif
 
     public void SetGunConfigs(GunConfig[] gunConfigs)
     {

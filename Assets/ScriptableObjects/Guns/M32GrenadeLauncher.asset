@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bb60d727e34574a433cb5ad97f1ee2, type: 3}
+  m_Name: M32GrenadeLauncher
+  m_EditorClassIdentifier: 
+  WeaponId: ldoe_m32
+  DisplayName: M32 Grenade Launcher
+  Icon: {fileID: 0}
+  HeldWeaponPrefab: {fileID: 2382278362087624226, guid: a5c37ee8087c5cc498b62ee7a13ec2c6, type: 3}
+  ProjectilePrefab: {fileID: 1709254077376921, guid: 5648dd93f59a466388a4202aa50d44d8, type: 3}
+  ProjectileVisual: 2
+  HeldLocalPosition: {x: -0.021, y: 0.03, z: 0.009}
+  HeldLocalEulerAngles: {x: 357.1345, y: 96.736, z: 250.65048}
+  HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  UseCustomHoldPose: 0
+  HoldPoseWeight: 1
+  RightHandTargetOffset: {x: 0.08, y: 0, z: 0.35}
+  UseLeftHandIk: 1
+  LeftHandGripLocalPosition: {x: 0, y: 0, z: 0.25}
+  PistolPoseWeight: 1
+  PistolArmReach: 0.78
+  PistolHandSpacing: 0.14
+  PistolPoseHeightOffset: 0
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
+  ImpactVfxPrefab: {fileID: 0}
+  ExplosionVfxPrefab: {fileID: 0}
+  ReloadVfxPrefab: {fileID: 0}
+  VfxLifetime: 0.75
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
+  MuzzleEffectScale: 1
+  Archetype: 10
+  BaseDamage: 38
+  BaseShotsPerSecond: 0.55
+  BaseProjectileCount: 1
+  BaseCriticalChance: 0.05
+  BaseCriticalDamage: 1.5
+  BaseRange: 10
+  BaseProjectileSpeed: 9
+  BasePierce: 0
+  BaseKnockback: 1.2
+  BaseSpreadAngle: 0
+  MinimumFireInterval: 0.2
+  BaseMagazineSize: 3
+  BaseReloadDuration: 2.4
+  IsExplosive: 1
+  ExplosionRadius: 2.5
+  ExplosionDamageMultiplier: 1
+  ExplosionKnockbackMultiplier: 1.5
+  RicochetCount: 0
+  RicochetSearchRange: 5
+  ChainCount: 0
+  ChainRange: 4
+  ChainDamageMultiplier: 0.75
+  Element: 0
+  ElementChance: 0
+  ElementDuration: 0
+  ElementMagnitude: 0

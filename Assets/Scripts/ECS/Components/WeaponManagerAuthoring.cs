@@ -6,6 +6,11 @@ public struct WeaponManager : IComponentData
 {
     public GunArchetype Archetype;
     public Entity WeaponEntityPrefab;
+    public Entity BulletProjectilePrefab;
+    public Entity HarpoonProjectilePrefab;
+    public Entity GrenadeProjectilePrefab;
+    public Entity IceProjectilePrefab;
+    public Entity FireProjectilePrefab;
     public int NumberOfWeapons;
     public int DamagePerHit;
 
@@ -101,6 +106,12 @@ public class WeaponManagerAuthoring : MonoBehaviour
     public GunConfig GunConfig;
 
     public GameObject WeaponObjectPrefab;
+    [Header("Projectile Visual Prefabs")]
+    public GameObject BulletProjectilePrefab;
+    public GameObject HarpoonProjectilePrefab;
+    public GameObject GrenadeProjectilePrefab;
+    public GameObject IceProjectilePrefab;
+    public GameObject FireProjectilePrefab;
     public int NumberOfWeapons;
     public int DamagePerHit;
     public float Cooldown;
@@ -192,6 +203,11 @@ public class WeaponManagerAuthoring : MonoBehaviour
                         ? config.ProjectilePrefab
                         : authoring.WeaponObjectPrefab,
                     TransformUsageFlags.Dynamic),
+                BulletProjectilePrefab = GetEntity(authoring.BulletProjectilePrefab, TransformUsageFlags.Dynamic),
+                HarpoonProjectilePrefab = GetEntity(authoring.HarpoonProjectilePrefab, TransformUsageFlags.Dynamic),
+                GrenadeProjectilePrefab = GetEntity(authoring.GrenadeProjectilePrefab, TransformUsageFlags.Dynamic),
+                IceProjectilePrefab = GetEntity(authoring.IceProjectilePrefab, TransformUsageFlags.Dynamic),
+                FireProjectilePrefab = GetEntity(authoring.FireProjectilePrefab, TransformUsageFlags.Dynamic),
                 NumberOfWeapons = authoring.NumberOfWeapons,
                 DamagePerHit = baseDamage,
                 Radius = authoring.Radius,
