@@ -130,15 +130,14 @@ public static class LdoeWastelandArenaGenerator
             CreatePuddles(root.transform, puddleMaterial);
             CreateGameplayMarkers(root.transform);
             CreateBoundaries(root.transform);
+            LdoeWastelandAtmosphereInstaller.AddAtmosphere(root.transform);
 
             AddNavigationSurfaceIfAvailable(root);
             SetStaticExceptMarkers(root.transform);
             GameObject prefab = PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
             if (prefab == null)
                 throw new InvalidOperationException("Unity could not save the generated Wasteland arena prefab.");
-            GameObject runtimePrefab = PrefabUtility.SaveAsPrefabAsset(root, RuntimePrefabPath);
-            if (runtimePrefab == null)
-                throw new InvalidOperationException("Unity could not save the Stage 2 runtime map prefab.");
+            SaveRuntimeVariant(prefab);
         }
         finally
         {
@@ -150,6 +149,51 @@ public static class LdoeWastelandArenaGenerator
         AssetDatabase.ImportAsset(RuntimePrefabPath, ImportAssetOptions.ForceUpdate);
         BuildPreviewSceneAndImage();
         Debug.Log($"Built new LDoE Wasteland arena at {PrefabPath}.");
+    }
+
+    [MenuItem("Tools/Endless Zombie/Maps/Sync Edited Wasteland Prefab to Runtime")]
+    public static void SyncEditedPrefabToRuntime()
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
+            throw new InvalidOperationException("Exit Play Mode before syncing the Wasteland prefab.");
+
+        AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+        EnsureFolder(RuntimeResourceRoot);
+        GameObject canonicalPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
+        if (canonicalPrefab == null)
+            throw new MissingReferenceException($"Missing edited Wasteland prefab: {PrefabPath}");
+
+        GameObject runtimePrefab = SaveRuntimeVariant(canonicalPrefab);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.ImportAsset(RuntimePrefabPath, ImportAssetOptions.ForceUpdate);
+
+        GameObject source = PrefabUtility.GetCorrespondingObjectFromSource(runtimePrefab);
+        string sourcePath = source != null ? AssetDatabase.GetAssetPath(source) : string.Empty;
+        if (PrefabUtility.GetPrefabAssetType(runtimePrefab) != PrefabAssetType.Variant || sourcePath != PrefabPath)
+            throw new InvalidOperationException(
+                $"Runtime Wasteland must be a Prefab Variant of {PrefabPath}; source is '{sourcePath}'.");
+
+        Debug.Log($"Stage 2 runtime map now follows the edited prefab automatically: {PrefabPath}.");
+    }
+
+    private static GameObject SaveRuntimeVariant(GameObject canonicalPrefab)
+    {
+        GameObject instance = PrefabUtility.InstantiatePrefab(canonicalPrefab) as GameObject;
+        if (instance == null)
+            throw new InvalidOperationException("Unity could not instantiate the edited Wasteland prefab.");
+
+        try
+        {
+            instance.name = "WastelandArena_Endless";
+            GameObject runtimePrefab = PrefabUtility.SaveAsPrefabAsset(instance, RuntimePrefabPath);
+            if (runtimePrefab == null)
+                throw new InvalidOperationException("Unity could not save the Stage 2 runtime Prefab Variant.");
+            return runtimePrefab;
+        }
+        finally
+        {
+            UnityEngine.Object.DestroyImmediate(instance);
+        }
     }
 
     [MenuItem("Tools/Endless Zombie/Maps/Validate LDoE Wasteland Arena Materials")]

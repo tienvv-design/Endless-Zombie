@@ -16,6 +16,7 @@ public partial class WeaponVfxBridge : SystemBase
 
         foreach (RefRO<WeaponFiredVfxEvent> fired in SystemAPI.Query<RefRO<WeaponFiredVfxEvent>>())
         {
+            AudioManager.Instance?.PlayWeapon(config.Archetype);
             if (m_PlayerGunplayAnimator == null)
                 m_PlayerGunplayAnimator = Object.FindFirstObjectByType<PlayerGunplayAnimator>();
             m_PlayerGunplayAnimator?.PlayShot();
@@ -45,17 +46,27 @@ public partial class WeaponVfxBridge : SystemBase
                 impact.ValueRO.Direction, math.forward()));
             WeaponVfxRuntime.Play(prefab, impact.ValueRO.Position, rotation, config.VfxLifetime);
             if (impact.ValueRO.IsExplosion)
+            {
                 GetCameraFeedback()?.AddImpulse(0.09f, 0.16f);
+                AudioManager.Instance?.Play(SoundLabel.DigitExplosionSound);
+            }
         }
 
         bool criticalThisFrame = false;
+        bool damagedThisFrame = false;
         foreach (RefRO<MobDamageTakenEvent> damage in SystemAPI.Query<RefRO<MobDamageTakenEvent>>())
+        {
             criticalThisFrame |= damage.ValueRO.IsCritical;
+            damagedThisFrame = true;
+        }
+        if (damagedThisFrame)
+            AudioManager.Instance?.Play(SoundLabel.MobDamageSound);
         if (criticalThisFrame)
             GetCameraFeedback()?.AddImpulse(0.055f, 0.1f);
 
         foreach (RefRO<WeaponReloadVfxEvent> reload in SystemAPI.Query<RefRO<WeaponReloadVfxEvent>>())
         {
+            AudioManager.Instance?.PlayWeaponReload(config.Archetype);
             Transform muzzle = WeaponVfxRuntime.CurrentMuzzle;
             WeaponVfxRuntime.Play(
                 config.ReloadVfxPrefab,

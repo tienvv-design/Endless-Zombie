@@ -18,7 +18,9 @@ namespace OOP.GameStates
             // Debug.Log("Entered Level up state!");
             
             EnableMonoBehaviours<IGameOver>(false);
-            
+            AudioManager.Instance.Stop(SoundLabel.InGameMusic);
+            AudioManager.Instance.Stop(SoundLabel.CityAmbience);
+            AudioManager.Instance.Stop(SoundLabel.WastelandAmbience);
             AudioManager.Instance.Play(SoundLabel.PlayerDeathSound);
 
             LevelUpManager.Instance.OnUpgradeApplied += OnUpgradeAppliedCallback;

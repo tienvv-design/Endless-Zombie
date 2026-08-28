@@ -1431,66 +1431,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667409368}
   m_CullTransparentMesh: 1
---- !u!1001 &769276482
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.72287
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.71704
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6892687252626113327, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7583692135326479383, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-      propertyPath: m_Name
-      value: WastelandArena_Endless
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5710553718609615739, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-    - {fileID: 1293971262794759554, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-    - {fileID: 6971336619547768663, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9902e78a247585442b5ecab548bebf97, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,11 +1553,11 @@ MonoBehaviour:
   _menuCameraPosition: {x: 0, y: 9.5, z: -7}
   _menuCameraEuler: {x: 52, y: 0, z: 0}
   _menuFocusOffset: {x: 0, y: 1.15, z: 0}
-  _menuFieldOfView: 52
+  _menuFieldOfView: 30
   _gameCameraPosition: {x: 0, y: 20, z: -3.5}
   _gameCameraEuler: {x: 81, y: 0, z: 0}
   _gameFocusOffset: {x: 0, y: 0, z: 0}
-  _gameFieldOfView: 85
+  _gameFieldOfView: 57
   _transitionDuration: 1.15
   _settingsIcon: {fileID: 0}
   _goldIcon: {fileID: 0}
@@ -3874,36 +3814,48 @@ MonoBehaviour:
     volume: 0.7
     pitch: 1
     loop: 1
+    randomPitch: 0
+    minimumInterval: 0
     source: {fileID: 0}
   - label: 1
     clip: {fileID: 8300000, guid: 8015d907240d80248a01bb575f6926e6, type: 3}
     volume: 0.7
     pitch: 1
     loop: 1
+    randomPitch: 0
+    minimumInterval: 0
     source: {fileID: 0}
   - label: 2
     clip: {fileID: 8300000, guid: 4b0e5feec18c7ef4182b8766b5f4a947, type: 3}
     volume: 0.7
     pitch: 1
     loop: 0
+    randomPitch: 0
+    minimumInterval: 0
     source: {fileID: 0}
   - label: 4
     clip: {fileID: 8300000, guid: 07805bb658e1c6047a7e3b342b5f2113, type: 3}
     volume: 0.7
     pitch: 1
     loop: 0
+    randomPitch: 0
+    minimumInterval: 0
     source: {fileID: 0}
   - label: 6
     clip: {fileID: 8300000, guid: e48774766960d1249a17143f0f54efc0, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
+    randomPitch: 0
+    minimumInterval: 0
     source: {fileID: 0}
   - label: 3
     clip: {fileID: 8300000, guid: c49ba4c18480a324c9cc9fe81cc3a2ff, type: 3}
     volume: 0.7
     pitch: 1
     loop: 0
+    randomPitch: 0
+    minimumInterval: 0
     source: {fileID: 0}
 --- !u!1 &1736168113
 GameObject:
@@ -4382,4 +4334,3 @@ SceneRoots:
   - {fileID: 1312640205}
   - {fileID: 1683311606}
   - {fileID: 1196242194}
-  - {fileID: 769276482}

@@ -14,6 +14,10 @@ namespace OOP.GameStates
         public override void EnterState()
         {
             EnableMonoBehaviours<IGameWin>(false);
+            AudioManager.Instance?.Stop(SoundLabel.InGameMusic);
+            AudioManager.Instance?.Stop(SoundLabel.CityAmbience);
+            AudioManager.Instance?.Stop(SoundLabel.WastelandAmbience);
+            AudioManager.Instance?.Play(SoundLabel.StageWinSound);
         }
 
         protected override void UpdateState() { }

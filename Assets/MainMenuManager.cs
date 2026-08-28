@@ -36,6 +36,7 @@ public sealed class MainMenuManager : MonoBehaviour
     [SerializeField] private Sprite _shopIcon;
 
     private Camera _camera;
+    private CameraHitFeedback _cameraRig;
     private Transform _hero;
     private Vector3 _resolvedMenuFocusOffset;
     private CanvasGroup _menuGroup;
@@ -98,6 +99,7 @@ public sealed class MainMenuManager : MonoBehaviour
         MetaProgression.BeginStageSession(StageMapProgression.CurrentStageId);
         SetupHeldWeaponPreview();
         AudioManager.Instance?.Play(SoundLabel.MainMenuMusic);
+        AudioManager.Instance?.SetStageAmbience(StageMapProgression.CurrentStage);
         BuildMenu();
         RefreshStageTitle();
         if (PlayerPrefs.GetInt(GameOverMenu.RetryRunKey, 0) != 0)
@@ -143,6 +145,10 @@ public sealed class MainMenuManager : MonoBehaviour
             Quaternion menuRotation = GetFocusRotation(menuPosition, _resolvedMenuFocusOffset, _menuCameraEuler);
             _camera.transform.SetPositionAndRotation(menuPosition, menuRotation);
             _camera.fieldOfView = _menuFieldOfView;
+            _cameraRig = _camera.GetComponent<CameraHitFeedback>();
+            if (_cameraRig == null)
+                _cameraRig = _camera.gameObject.AddComponent<CameraHitFeedback>();
+            _cameraRig.LockTo(_hero, _menuCameraPosition, menuRotation);
         }
 
         GameObject hudObject = GameObject.Find("HUDCanvas");
@@ -317,6 +323,8 @@ public sealed class MainMenuManager : MonoBehaviour
         _starting = true;
         _startButton.interactable = false;
         RefreshUpgradeCards();
+        if (_cameraRig != null)
+            _cameraRig.enabled = false;
         Vector3 startPosition = _camera != null ? _camera.transform.position : Vector3.zero;
         Quaternion startRotation = _camera != null ? _camera.transform.rotation : Quaternion.identity;
         Vector3 gamePosition = GetCameraPosition(_gameCameraPosition);
@@ -338,6 +346,15 @@ public sealed class MainMenuManager : MonoBehaviour
             yield return null;
         }
 
+        if (_camera != null)
+        {
+            _camera.transform.SetPositionAndRotation(gamePosition, gameRotation);
+            _camera.fieldOfView = _gameFieldOfView;
+            if (_cameraRig == null)
+                _cameraRig = _camera.gameObject.AddComponent<CameraHitFeedback>();
+            _cameraRig.LockTo(_hero, _gameCameraPosition, gameRotation);
+        }
+
         if (_gameplayHud != null)
             _gameplayHud.enabled = true;
         MetaProgression.UpgradesChanged -= RefreshUpgradeCards;
@@ -345,6 +362,7 @@ public sealed class MainMenuManager : MonoBehaviour
         if (GoldWallet.Instance != null)
             GoldWallet.Instance.OnBalanceChanged -= HandleGoldChanged;
         AudioManager.Instance?.Stop(SoundLabel.MainMenuMusic);
+        AudioManager.Instance?.Play(SoundLabel.StageStartSound);
         _gameStateMachine?.BeginGameplay();
         Destroy(_menuGroup.gameObject);
     }

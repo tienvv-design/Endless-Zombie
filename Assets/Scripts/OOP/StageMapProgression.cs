@@ -32,6 +32,7 @@ public static class StageMapRuntimeLoader
     private const string GameSceneName = "GameScene";
     private const string CityMapName = "Stage Map - VERSION1";
     private const string WastelandMapName = "Stage Map - Wasteland";
+    private const string WastelandPrefabName = "WastelandArena_Endless";
     private const string WastelandResourcePath = "StageMaps/WastelandArena_Endless";
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -47,15 +48,17 @@ public static class StageMapRuntimeLoader
         ApplyMapForCurrentStage(scene);
     }
 
-    public static void ApplyMapForCurrentStage(Scene scene)
+    public static void ApplyMapForCurrentStage(Scene scene, bool movePlayerToSpawn = true)
     {
-        GameObject cityMap = GameObject.Find(CityMapName);
-        GameObject fences = GameObject.Find("Fences");
+        GameObject cityMap = FindSceneObject(scene, CityMapName);
+        GameObject fences = FindSceneObject(scene, "Fences");
+        GameObject wasteland = FindSceneObject(scene, WastelandMapName, WastelandPrefabName);
 
         if (StageMapProgression.CurrentStage < 2)
         {
             if (cityMap != null) cityMap.SetActive(true);
             if (fences != null) fences.SetActive(true);
+            if (wasteland != null) wasteland.SetActive(false);
             return;
         }
 
@@ -70,12 +73,29 @@ public static class StageMapRuntimeLoader
         if (cityMap != null) cityMap.SetActive(false);
         if (fences != null) fences.SetActive(false);
 
-        GameObject existing = GameObject.Find(WastelandMapName);
-        GameObject wasteland = existing != null ? existing : Object.Instantiate(prefab);
+        wasteland = wasteland != null ? wasteland : Object.Instantiate(prefab);
         wasteland.name = WastelandMapName;
-        SceneManager.MoveGameObjectToScene(wasteland, scene);
+        if (wasteland.scene != scene)
+            SceneManager.MoveGameObjectToScene(wasteland, scene);
         wasteland.SetActive(true);
-        MovePlayerToStageSpawn(wasteland.transform);
+        if (movePlayerToSpawn)
+            MovePlayerToStageSpawn(wasteland.transform);
+    }
+
+    private static GameObject FindSceneObject(Scene scene, params string[] names)
+    {
+        if (!scene.IsValid() || !scene.isLoaded) return null;
+
+        foreach (GameObject root in scene.GetRootGameObjects())
+        {
+            foreach (Transform item in root.GetComponentsInChildren<Transform>(true))
+            {
+                foreach (string name in names)
+                    if (item.name == name) return item.gameObject;
+            }
+        }
+
+        return null;
     }
 
     private static void MovePlayerToStageSpawn(Transform map)

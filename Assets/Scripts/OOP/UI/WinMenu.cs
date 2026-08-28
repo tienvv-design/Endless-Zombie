@@ -79,6 +79,7 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
 
     private static void ContinueToNextStage()
     {
+        AudioManager.Instance?.Play(SoundLabel.PickupGoldSound);
         Time.timeScale = 1f;
         StageMapProgression.AdvanceAfterWin();
         PlayerPrefs.SetInt(GameOverMenu.RetryRunKey, 1);

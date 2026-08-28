@@ -31,7 +31,11 @@ public sealed class DogAttackProceduralAnimator : MonoBehaviour
 
     public void SetAttack(bool attacking, float progress)
     {
-        if (attacking && !m_Attacking) m_PoseCaptured = false;
+        if (attacking && !m_Attacking)
+        {
+            m_PoseCaptured = false;
+            AudioManager.Instance?.Play(SoundLabel.DogAttackSound);
+        }
         m_Attacking = attacking;
         m_Progress = Mathf.Repeat(progress, 1f);
     }

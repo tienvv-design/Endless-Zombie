@@ -4,6 +4,10 @@ using UnityEngine;
 [DefaultExecutionOrder(2000)]
 public sealed class CameraHitFeedback : MonoBehaviour
 {
+    private Transform m_FollowTarget;
+    private Vector3 m_FollowOffset;
+    private Quaternion m_LockedRotation;
+    private bool m_LockRequested;
     private float m_Amplitude;
     private float m_Remaining;
     private float m_Duration;
@@ -22,9 +26,31 @@ public sealed class CameraHitFeedback : MonoBehaviour
         m_Duration = Mathf.Max(0.01f, Mathf.Max(m_Duration, duration));
     }
 
+    public void LockTo(Transform player, Vector3 worldOffset, Quaternion rotation)
+    {
+        m_FollowTarget = player;
+        m_FollowOffset = worldOffset;
+        m_LockedRotation = rotation;
+        m_LockRequested = true;
+        enabled = true;
+        ApplyLockedPose();
+    }
+
     private void LateUpdate()
     {
-        transform.position -= m_LastOffset;
+        if (m_LockRequested)
+        {
+            if (m_FollowTarget == null)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                m_FollowTarget = player != null ? player.transform : null;
+            }
+            ApplyLockedPose();
+        }
+        else
+        {
+            transform.position -= m_LastOffset;
+        }
         m_LastOffset = Vector3.zero;
         if (m_Remaining <= 0f) return;
 
@@ -45,9 +71,20 @@ public sealed class CameraHitFeedback : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.position -= m_LastOffset;
+        if (m_LockRequested)
+            ApplyLockedPose();
+        else
+            transform.position -= m_LastOffset;
         m_LastOffset = Vector3.zero;
         m_Remaining = 0f;
         m_Amplitude = 0f;
+    }
+
+    private void ApplyLockedPose()
+    {
+        if (m_FollowTarget == null) return;
+        transform.SetPositionAndRotation(
+            m_FollowTarget.position + m_FollowOffset,
+            m_LockedRotation);
     }
 }

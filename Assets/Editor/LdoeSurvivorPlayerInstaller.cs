@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public static class LdoeSurvivorPlayerInstaller
@@ -360,6 +361,13 @@ public static class LdoeSurvivorPlayerInstaller
         Renderer[] renderers = visual.GetComponentsInChildren<Renderer>(true);
         if (renderers.Length == 0)
             return;
+
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer is ParticleSystemRenderer or TrailRenderer or LineRenderer) continue;
+            renderer.shadowCastingMode = ShadowCastingMode.On;
+            renderer.receiveShadows = true;
+        }
 
         Bounds bounds = renderers[0].bounds;
         for (int i = 1; i < renderers.Length; i++)

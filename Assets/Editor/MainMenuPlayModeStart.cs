@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 [InitializeOnLoad]
 public static class MainMenuPlayModeStart
 {
-    public const string MainMenuPath = "Assets/Scenes/GameScene.unity";
+    public const string MainMenuPath = "Assets/Scenes/LoadingScreen.unity";
 
     static MainMenuPlayModeStart()
     {

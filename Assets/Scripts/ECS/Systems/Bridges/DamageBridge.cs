@@ -28,6 +28,7 @@ public partial class DamageBridgeSystem : SystemBase
             {
                 targetable.TakeDamage(damageEvent.ValueRO.Amount);
                 AudioManager.Instance.Play(SoundLabel.MobGiveDamageSound);
+                AudioManager.Instance.Play(SoundLabel.PlayerDamageSound);
                 
             }
         }

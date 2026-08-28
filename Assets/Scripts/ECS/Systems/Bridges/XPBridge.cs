@@ -16,6 +16,7 @@ public partial class XPBridge : SystemBase
     {
         foreach (var xpCollectedEvent in SystemAPI.Query<RefRO<XPCollectedEvent>>())
         {
+            AudioManager.Instance?.Play(SoundLabel.PickupXpSound);
             if (CharacterXPManager.Instance)
                 CharacterXPManager.Instance.GainXP(xpCollectedEvent.ValueRO.XPAmount);
         }

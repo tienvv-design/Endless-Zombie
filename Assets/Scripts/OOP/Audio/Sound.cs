@@ -9,6 +9,28 @@ public enum SoundLabel
     LevelUpSound,
     PlayerDeathSound,
     MobGiveDamageSound,
+    MobDamageSound,
+    PlayerDamageSound,
+    UiClickSound,
+    StageWinSound,
+    StageStartSound,
+    CityAmbience,
+    WastelandAmbience,
+    DogAttackSound,
+    PickupGoldSound,
+    PickupXpSound,
+    WeaponPistol,
+    WeaponShotgun,
+    WeaponAssaultRifle,
+    WeaponSniper,
+    WeaponRocket,
+    WeaponSmg,
+    WeaponTesla,
+    WeaponFlame,
+    WeaponCryo,
+    WeaponMinigun,
+    WeaponGrenade,
+    WeaponReload,
 }
 
 [System.Serializable]
@@ -25,6 +47,15 @@ public class Sound
 
     public bool loop;
 
+    [Range(0f, 0.5f)]
+    public float randomPitch;
+
+    [Min(0f)]
+    public float minimumInterval;
+
     [HideInInspector]
     public AudioSource source;
+
+    [System.NonSerialized] public AudioClip[] variants;
+    [System.NonSerialized] public float nextAllowedPlayTime;
 }
