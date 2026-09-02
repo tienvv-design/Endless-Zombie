@@ -190,7 +190,13 @@ public sealed class GameplayDebugCheatTool : MonoBehaviour
         SetOrAdd(manager, boss, new MobVisualVariant { Kind = source.VisualKind });
 
         Mob mob = manager.GetComponentData<Mob>(boss);
-        mob.Health = math.max(1, (int)math.ceil(mob.Health * source.HealthMultiplier * stage.BossHealthMultiplier));
+        float healthMultiplier = WaveSpawnRuntimeRules.CalculateEnemyHealthMultiplier(
+            source.HealthMultiplier,
+            stage.StageNumber,
+            stage.CurrentWaveIndex,
+            stage.HealthGrowthPerStage,
+            stage.HealthGrowthPerWave);
+        mob.Health = math.max(1, (int)math.ceil(mob.Health * healthMultiplier * stage.BossHealthMultiplier));
         mob.MaxHealth = mob.Health;
         mob.EnemyType = EnemyType.Boss;
         mob.KnockbackResistance = 1f;

@@ -132,7 +132,13 @@ public partial struct SpawnRequestProcessingSystem : ISystem
             if (SystemAPI.HasComponent<Mob>(request.EnemyPrefab))
             {
                 Mob mobData = SystemAPI.GetComponent<Mob>(request.EnemyPrefab);
-                mobData.Health = math.max(1, (int)math.round(mobData.Health * request.HealthMultiplier));
+                float healthMultiplier = WaveSpawnRuntimeRules.CalculateEnemyHealthMultiplier(
+                    request.HealthMultiplier,
+                    stage.StageNumber,
+                    request.WaveIndex,
+                    stage.HealthGrowthPerStage,
+                    stage.HealthGrowthPerWave);
+                mobData.Health = math.max(1, (int)math.round(mobData.Health * healthMultiplier));
                 if (boss)
                 {
                     mobData.Health = math.max(1, (int)math.ceil(mobData.Health * stage.BossHealthMultiplier));
@@ -341,6 +347,18 @@ public partial struct SpawnRequestProcessingSystem : ISystem
 
 public static class WaveSpawnRuntimeRules
 {
+    public static float CalculateEnemyHealthMultiplier(
+        float enemyTypeMultiplier,
+        int stageNumber,
+        int waveIndex,
+        float healthGrowthPerStage,
+        float healthGrowthPerWave)
+    {
+        float stageMultiplier = 1f + math.max(0, stageNumber - 1) * math.max(0f, healthGrowthPerStage);
+        float waveMultiplier = 1f + math.max(0, waveIndex) * math.max(0f, healthGrowthPerWave);
+        return math.max(0.01f, enemyTypeMultiplier) * stageMultiplier * waveMultiplier;
+    }
+
     public static int CalculateSpawnBudget(int maxAlive, int alive)
     {
         return math.max(0, maxAlive - alive);

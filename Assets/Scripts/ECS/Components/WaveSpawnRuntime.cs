@@ -10,6 +10,9 @@ public enum SpawnEntryRuntimeState : byte { Pending, Active, Completed, Failed }
 public struct StageRuntime : IComponentData
 {
     public FixedString64Bytes StageId;
+    public int StageNumber;
+    public float HealthGrowthPerStage;
+    public float HealthGrowthPerWave;
     public StageRuntimeState State;
     public int CurrentWaveIndex;
     public float DefaultWaveDelay;

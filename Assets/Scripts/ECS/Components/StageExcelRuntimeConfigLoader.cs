@@ -164,3 +164,33 @@ public static class StageExcelRuntimeConfigLoader
         public string spawnArenaGroupId = string.Empty;
     }
 }
+
+public static class EnemyHealthScalingSettings
+{
+    private const string ResourceName = "EnemyHealthScalingSettings";
+    public const float DefaultHealthGrowthPerStage = 0.2f;
+    public const float DefaultHealthGrowthPerWave = 0.1f;
+
+    public static void ApplyTo(ref StageRuntime stage, int stageNumber)
+    {
+        TextAsset source = Resources.Load<TextAsset>(ResourceName);
+        RuntimeConfig config = source != null
+            ? JsonUtility.FromJson<RuntimeConfig>(source.text)
+            : null;
+
+        stage.StageNumber = Mathf.Max(1, stageNumber);
+        stage.HealthGrowthPerStage = config != null
+            ? Mathf.Max(0f, config.healthGrowthPerStage)
+            : DefaultHealthGrowthPerStage;
+        stage.HealthGrowthPerWave = config != null
+            ? Mathf.Max(0f, config.healthGrowthPerWave)
+            : DefaultHealthGrowthPerWave;
+    }
+
+    [Serializable]
+    private sealed class RuntimeConfig
+    {
+        public float healthGrowthPerStage = DefaultHealthGrowthPerStage;
+        public float healthGrowthPerWave = DefaultHealthGrowthPerWave;
+    }
+}

@@ -31,6 +31,7 @@ public static class WaveSpawnLifecycle
         if (!TryGetStage(out manager, out Entity stageEntity)) return;
         StageExcelRuntimeConfigLoader.TryApplyCurrentStage(manager, stageEntity);
         StageRuntime stage = manager.GetComponentData<StageRuntime>(stageEntity);
+        EnemyHealthScalingSettings.ApplyTo(ref stage, StageMapProgression.CurrentStage);
         stage.State = StageRuntimeState.NotStarted;
         stage.CurrentWaveIndex = -1;
         stage.NextRequestSequence = 0;

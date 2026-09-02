@@ -33,6 +33,9 @@ public sealed class WaveSpawnAuthoring : MonoBehaviour
             AddComponent(entity, new StageRuntime
             {
                 StageId = new FixedString64Bytes(stage.StageId ?? string.Empty),
+                StageNumber = 1,
+                HealthGrowthPerStage = EnemyHealthScalingSettings.DefaultHealthGrowthPerStage,
+                HealthGrowthPerWave = EnemyHealthScalingSettings.DefaultHealthGrowthPerWave,
                 State = StageRuntimeState.NotStarted,
                 CurrentWaveIndex = -1,
                 DefaultWaveDelay = stage.DefaultWaveDelay,
