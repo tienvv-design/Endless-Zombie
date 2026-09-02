@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.RenderGraphModule;
+using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
 
 public sealed class RadialFogRendererFeature : ScriptableRendererFeature
@@ -66,6 +68,7 @@ public sealed class RadialFogRendererFeature : ScriptableRendererFeature
         {
             this.material = material;
             ConfigureInput(ScriptableRenderPassInput.Depth);
+            requiresIntermediateTexture = true;
         }
 
         public void SetVolume(RadialFogVolume activeVolume) => volume = activeVolume;
@@ -96,6 +99,54 @@ public sealed class RadialFogRendererFeature : ScriptableRendererFeature
             CommandBufferPool.Release(cmd);
         }
 
+        public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
+        {
+            if (material == null || volume == null || !volume.IsActive()) return;
+
+            UniversalResourceData resources = frameData.Get<UniversalResourceData>();
+            if (resources.isActiveTargetBackBuffer)
+            {
+                Debug.LogWarning("Radial Fog skipped because the active camera color is the back buffer.");
+                return;
+            }
+
+            TextureHandle source = resources.activeColorTexture;
+            TextureDesc destinationDescriptor = renderGraph.GetTextureDesc(source);
+            destinationDescriptor.name = "_RadialFogRenderGraphColor";
+            destinationDescriptor.clearBuffer = false;
+            TextureHandle destination = renderGraph.CreateTexture(destinationDescriptor);
+
+            using (IRasterRenderGraphBuilder builder = renderGraph.AddRasterRenderPass<PassData>(
+                       "Radial Fog", out PassData passData, profilingSampler))
+            {
+                passData.source = source;
+                passData.material = material;
+                passData.fogColor = volume.color.value;
+                passData.fogCenter = volume.center.value;
+                passData.clearRadius = volume.clearRadius.value;
+                passData.density = volume.density.value;
+                passData.maxOpacity = volume.maxOpacity.value;
+
+                builder.UseTexture(source, AccessFlags.Read);
+                if (resources.cameraDepthTexture.IsValid())
+                    builder.UseTexture(resources.cameraDepthTexture, AccessFlags.Read);
+                builder.SetRenderAttachment(destination, 0, AccessFlags.Write);
+                builder.SetRenderFunc(static (PassData data, RasterGraphContext context) =>
+                {
+                    data.material.SetColor(FogColorId, data.fogColor);
+                    data.material.SetVector(FogCenterId, data.fogCenter);
+                    data.material.SetFloat(ClearRadiusId, data.clearRadius);
+                    data.material.SetFloat(DensityId, data.density);
+                    data.material.SetFloat(MaxOpacityId, data.maxOpacity);
+                    Blitter.BlitTexture(
+                        context.cmd, data.source, new Vector4(1f, 1f, 0f, 0f), data.material, 0);
+                });
+            }
+
+            renderGraph.AddBlitPass(
+                destination, source, Vector2.one, Vector2.zero, passName: "Radial Fog Copy Back");
+        }
+
         public override void OnCameraCleanup(CommandBuffer cmd)
         {
             cameraColorTarget = null;
@@ -106,6 +157,17 @@ public sealed class RadialFogRendererFeature : ScriptableRendererFeature
         {
             temporaryColor?.Release();
             temporaryColor = null;
+        }
+
+        private sealed class PassData
+        {
+            public TextureHandle source;
+            public Material material;
+            public Color fogColor;
+            public Vector3 fogCenter;
+            public float clearRadius;
+            public float density;
+            public float maxOpacity;
         }
     }
 }

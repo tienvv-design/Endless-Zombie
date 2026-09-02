@@ -20,6 +20,8 @@ public struct WeaponFiredVfxEvent : IComponentData
 {
     public float3 Position;
     public float3 Direction;
+    public float3 TargetPosition;
+    public Entity Target;
 }
 
 public struct WeaponImpactVfxEvent : IComponentData
@@ -32,6 +34,7 @@ public struct WeaponImpactVfxEvent : IComponentData
 public struct WeaponReloadVfxEvent : IComponentData
 {
     public float3 Position;
+    public float Duration;
 }
 
 public struct XPCollectedEvent : IComponentData

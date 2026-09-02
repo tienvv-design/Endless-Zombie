@@ -36,6 +36,7 @@ public sealed class WaveSpawnAuthoring : MonoBehaviour
                 State = StageRuntimeState.NotStarted,
                 CurrentWaveIndex = -1,
                 DefaultWaveDelay = stage.DefaultWaveDelay,
+                AttackDistance = Mathf.Max(0.1f, stage.AttackDistance),
                 MaxAliveEnemies = stage.MaxAliveEnemies,
                 NextRequestSequence = 0,
                 EnableEliteModifiers = stage.EnableEliteModifiers,
@@ -60,6 +61,26 @@ public sealed class WaveSpawnAuthoring : MonoBehaviour
             DynamicBuffer<WaveRuntime> waves = AddBuffer<WaveRuntime>(entity);
             DynamicBuffer<SpawnEntryRuntime> entries = AddBuffer<SpawnEntryRuntime>(entity);
             AddBuffer<SpawnRequest>(entity);
+            DynamicBuffer<EnemyCatalogRuntime> runtimeCatalog = AddBuffer<EnemyCatalogRuntime>(entity);
+
+            foreach (EnemyCatalogEntry enemy in catalog.Enemies)
+            {
+                if (enemy == null || string.IsNullOrWhiteSpace(enemy.EnemyId) || enemy.Prefab == null)
+                    continue;
+                DependsOn(enemy.Prefab);
+                runtimeCatalog.Add(new EnemyCatalogRuntime
+                {
+                    EnemyId = new FixedString64Bytes(enemy.EnemyId),
+                    EnemyPrefab = GetEntity(enemy.Prefab, TransformUsageFlags.Dynamic),
+                    EnemyType = enemy.EnemyType,
+                    VisualKind = enemy.VisualKind,
+                    HealthMultiplier = enemy.HealthMultiplier,
+                    DamageMultiplier = enemy.DamageMultiplier,
+                    Scale = enemy.Scale,
+                    XPReward = enemy.XPReward,
+                    GoldReward = enemy.GoldReward,
+                });
+            }
 
             for (int waveIndex = 0; waveIndex < stage.Waves.Length; waveIndex++)
             {
@@ -80,6 +101,7 @@ public sealed class WaveSpawnAuthoring : MonoBehaviour
                             ? GetEntity(enemy.Prefab, TransformUsageFlags.Dynamic)
                             : Entity.Null,
                         EnemyType = validEnemy ? enemy.EnemyType : EnemyType.Normal,
+                        VisualKind = validEnemy ? enemy.VisualKind : MobVisualKind.Zombie,
                         HealthMultiplier = validEnemy ? enemy.HealthMultiplier : 1f,
                         DamageMultiplier = validEnemy ? enemy.DamageMultiplier : 1f,
                         Scale = validEnemy ? enemy.Scale : 1f,

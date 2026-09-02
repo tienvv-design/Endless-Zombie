@@ -11,11 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5052c39697734962921a9902e6554ea1, type: 3}
   m_Name: EnemyCatalog
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   Enemies:
   - EnemyId: Normal
     Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
     EnemyType: 0
+    VisualKind: 0
     HealthMultiplier: 1
     DamageMultiplier: 1
     Scale: 1
@@ -24,6 +25,7 @@ MonoBehaviour:
   - EnemyId: ZombieDog
     Prefab: {fileID: 1001000000000000001, guid: a1cc56a57ca34c00b8a54df96bcf71d9, type: 3}
     EnemyType: 0
+    VisualKind: 1
     HealthMultiplier: 1
     DamageMultiplier: 1
     Scale: 0.5
@@ -32,6 +34,7 @@ MonoBehaviour:
   - EnemyId: Elite
     Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
     EnemyType: 1
+    VisualKind: 3
     HealthMultiplier: 4
     DamageMultiplier: 2
     Scale: 1.4
@@ -40,8 +43,63 @@ MonoBehaviour:
   - EnemyId: Boss
     Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
     EnemyType: 2
+    VisualKind: 5
     HealthMultiplier: 4
     DamageMultiplier: 3
     Scale: 2
     XPReward: 100
     GoldReward: 20
+  - EnemyId: 1
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 0
+    VisualKind: 0
+    HealthMultiplier: 1
+    DamageMultiplier: 1
+    Scale: 1
+    XPReward: 5
+    GoldReward: 1
+  - EnemyId: 2
+    Prefab: {fileID: 1001000000000000001, guid: a1cc56a57ca34c00b8a54df96bcf71d9, type: 3}
+    EnemyType: 0
+    VisualKind: 1
+    HealthMultiplier: 1.5
+    DamageMultiplier: 1.2
+    Scale: 0.5
+    XPReward: 10
+    GoldReward: 2
+  - EnemyId: 3
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 0
+    VisualKind: 2
+    HealthMultiplier: 2
+    DamageMultiplier: 1.4
+    Scale: 1
+    XPReward: 15
+    GoldReward: 3
+  - EnemyId: 4
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 0
+    VisualKind: 4
+    HealthMultiplier: 3
+    DamageMultiplier: 1.5
+    Scale: 1.2
+    XPReward: 20
+    GoldReward: 4
+  - EnemyId: 5
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 2
+    VisualKind: 5
+    HealthMultiplier: 4
+    DamageMultiplier: 3
+    Scale: 2
+    XPReward: 100
+    GoldReward: 20
+  - EnemyId: 6
+    Prefab: {fileID: 1682824551111190682, guid: 7ed57f1f8de65934689c66188048cf7a, type: 3}
+    EnemyType: 1
+    VisualKind: 3
+    HealthMultiplier: 2
+    DamageMultiplier: 1.4
+    Scale: 1
+    XPReward: 15
+    GoldReward: 3

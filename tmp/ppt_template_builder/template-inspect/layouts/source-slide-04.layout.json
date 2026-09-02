@@ -1,0 +1,795 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/jyx0ra1s",
+    "id": "jyx0ra1s",
+    "slide": 4,
+    "layoutId": "/ppt/slideLayouts/slideLayout2.xml",
+    "layoutName": "OBJECT",
+    "layoutType": "obj",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "backgroundColor": "lt1",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Office",
+    "colors": {
+      "accent1": "#4472C4",
+      "accent2": "#ED7D31",
+      "accent3": "#A5A5A5",
+      "accent4": "#FFC000",
+      "accent5": "#5B9BD5",
+      "accent6": "#70AD47",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#44546A",
+      "lt2": "#E7E6E6",
+      "hlink": "#0563C1",
+      "folHlink": "#954F72"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Calibri",
+      "Helvetica Neue"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout2.xml",
+      "name": "OBJECT",
+      "type": "obj",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/23",
+          "id": "23",
+          "name": "Google Shape;23;p18",
+          "bbox": [
+            88,
+            27.64,
+            1104,
+            69.67
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/24",
+          "id": "24",
+          "name": "Google Shape;24;p18",
+          "bbox": [
+            88,
+            112.76,
+            1104,
+            538.42
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/25",
+          "id": "25",
+          "name": "Google Shape;25;p18",
+          "bbox": [
+            1049.9,
+            667.33,
+            142.1,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "resolvedTextStyle": {
+                "alignment": "right"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›",
+                  "alignment": "right"
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/26",
+          "id": "26",
+          "name": "Google Shape;26;p18",
+          "bbox": [
+            325.73,
+            681.23,
+            628.54,
+            38.77
+          ],
+          "geometry": "rect",
+          "text": "Team MoonStone – Legend From Below",
+          "textPreview": "Team MoonStone – Legend From Below",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Team MoonStone – Legend From Below",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Team MoonStone",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                },
+                {
+                  "index": 2,
+                  "text": " – ",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                },
+                {
+                  "index": 3,
+                  "text": "Legend From Below",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/16",
+          "id": "16",
+          "name": "Google Shape;10;p16",
+          "bbox": [
+            -1.82,
+            36.25,
+            1280,
+            49.92
+          ],
+          "contentType": "image/png",
+          "imageCrop": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          "asset": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 1828
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 1828
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/11",
+          "id": "11",
+          "name": "Google Shape;11;p16",
+          "bbox": [
+            88,
+            26.77,
+            1104,
+            71.17
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/12",
+          "id": "12",
+          "name": "Google Shape;12;p16",
+          "bbox": [
+            88,
+            110.85,
+            1104,
+            539.81
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/13",
+          "id": "13",
+          "name": "Google Shape;13;p16",
+          "bbox": [
+            88,
+            667.33,
+            148.19,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/14",
+          "id": "14",
+          "name": "Google Shape;14;p16",
+          "bbox": [
+            248.38,
+            667.33,
+            786.29,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/15",
+          "id": "15",
+          "name": "Google Shape;15;p16",
+          "bbox": [
+            1048.38,
+            667.33,
+            143.62,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "resolvedTextStyle": {
+                "alignment": "right"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›",
+                  "alignment": "right"
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        },
+        {
+          "order": 7,
+          "kind": "image",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/17",
+          "id": "17",
+          "name": "Picture 2",
+          "bbox": [
+            968.52,
+            36.25,
+            302.36,
+            45.35
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 17915
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 17915
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/36xw7m5c",
+      "id": "112",
+      "name": "Google Shape;112;p4",
+      "bbox": [
+        17.12,
+        27.64,
+        1243.57,
+        69.67
+      ],
+      "geometry": "rect",
+      "text": "Project Introduction",
+      "textPreview": "Project Introduction",
+      "resolvedFontSize": 49.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 49.33,
+        "typeface": "Helvetica Neue",
+        "color": "lt1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Project Introduction"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Project Introduction",
+          "lineSpacingPercent": 90000,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Project Introduction",
+              "typeface": "Arial"
+            }
+          ],
+          "bulletCharacter": ""
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i5ovyhor",
+      "id": "113",
+      "name": "Google Shape;113;p4",
+      "bbox": [
+        17.4,
+        112.76,
+        1243.57,
+        568.1
+      ],
+      "geometry": "rect",
+      "text": "\n\nCore Gameplay\nPlayer must dodge enemy bullets using roll mechanics.\nCollect and switch weapons dynamically.\nClear rooms to progress through dungeons.\nTreasure chests may appear randomly after clearing a room.\nSix dungeon levels, each with unique enemies and challenges.",
+      "textPreview": "|  | Core Gameplay | Player must dodge enemy bullets using roll mechanics. | Collect and switch weapons dynamically. | Clear rooms to pro...",
+      "resolvedFontSize": 37.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 37.33,
+        "typeface": "Helvetica Neue",
+        "color": "#002060",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 8,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": "• Core Gameplay"
+          },
+          {
+            "index": 4,
+            "text": "- Player must dodge enemy bullets using roll mechanics."
+          },
+          {
+            "index": 5,
+            "text": "- Collect and switch weapons dynamically."
+          },
+          {
+            "index": 6,
+            "text": "- Clear rooms to progress through dungeons."
+          },
+          {
+            "index": 7,
+            "text": "- Treasure chests may appear randomly after clearing a room."
+          },
+          {
+            "index": 8,
+            "text": "- Six dungeon levels, each with unique enemies and challenges."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 3,
+          "text": "Core Gameplay",
+          "lineSpacingPercent": 120000,
+          "runs": [
+            {
+              "index": 1,
+              "text": "Core Gameplay",
+              "fontSize": 32
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400
+        },
+        {
+          "index": 4,
+          "text": "Player must dodge enemy bullets using roll mechanics.",
+          "lineSpacingPercent": 120000,
+          "runs": [
+            {
+              "index": 1,
+              "text": "Player must ",
+              "fontSize": 26.67
+            },
+            {
+              "index": 2,
+              "text": "dodge enemy bullets",
+              "fontSize": 26.67,
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": " using roll mechanics.",
+              "fontSize": 26.67
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400
+        },
+        {
+          "index": 5,
+          "text": "Collect and switch weapons dynamically.",
+          "lineSpacingPercent": 120000,
+          "runs": [
+            {
+              "index": 1,
+              "text": "Collect and switch weapons",
+              "fontSize": 26.67,
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": " dynamically.",
+              "fontSize": 26.67
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400
+        },
+        {
+          "index": 6,
+          "text": "Clear rooms to progress through dungeons.",
+          "lineSpacingPercent": 120000,
+          "runs": [
+            {
+              "index": 1,
+              "text": "Clear rooms",
+              "fontSize": 26.67,
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": " to progress through dungeons.",
+              "fontSize": 26.67
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000
+        },
+        {
+          "index": 7,
+          "text": "Treasure chests may appear randomly after clearing a room.",
+          "lineSpacingPercent": 120000,
+          "runs": [
+            {
+              "index": 1,
+              "text": "Treasure chests",
+              "fontSize": 26.67,
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": " may appear randomly after clearing a room.",
+              "fontSize": 26.67
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000
+        },
+        {
+          "index": 8,
+          "text": "Six dungeon levels, each with unique enemies and challenges.",
+          "lineSpacingPercent": 120000,
+          "runs": [
+            {
+              "index": 1,
+              "text": "Six dungeon levels",
+              "fontSize": 26.67,
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": ", each with unique enemies and challenges.",
+              "fontSize": 26.67
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h4ve5cn6",
+      "id": "114",
+      "name": "Google Shape;114;p4",
+      "bbox": [
+        1118.6,
+        684.3,
+        142.1,
+        38.33
+      ],
+      "geometry": "rect",
+      "text": "4",
+      "textPreview": "4",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#888888",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "4"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "4",
+          "resolvedTextStyle": {
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "4",
+              "alignment": "right"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

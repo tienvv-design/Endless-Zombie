@@ -29,6 +29,7 @@ public static class WaveSpawnLifecycle
         mobs.Dispose();
 
         if (!TryGetStage(out manager, out Entity stageEntity)) return;
+        StageExcelRuntimeConfigLoader.TryApplyCurrentStage(manager, stageEntity);
         StageRuntime stage = manager.GetComponentData<StageRuntime>(stageEntity);
         stage.State = StageRuntimeState.NotStarted;
         stage.CurrentWaveIndex = -1;

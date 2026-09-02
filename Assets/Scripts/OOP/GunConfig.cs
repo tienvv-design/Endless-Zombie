@@ -38,6 +38,7 @@ public class GunConfig : ScriptableObject
     [Header("Identity & Main Menu Visual")]
     public string WeaponId;
     public string DisplayName;
+    [Min(0)] public int UnlockCost;
     public Sprite Icon;
     public GameObject HeldWeaponPrefab;
     public GameObject ProjectilePrefab;
@@ -72,11 +73,14 @@ public class GunConfig : ScriptableObject
     public GameObject ExplosionVfxPrefab;
     public GameObject ReloadVfxPrefab;
     [Min(0.05f)] public float VfxLifetime = 1f;
-    [Tooltip("Fine tuning offset from the Muzzle socket, in the held weapon's local space.")]
+    [HideInInspector]
+    [Tooltip("Legacy only. Move the Muzzle transform directly in the held weapon prefab.")]
     public Vector3 MuzzleEffectLocalOffset;
     [FormerlySerializedAs("MuzzleVfxScale")]
     [Tooltip("Multiplier for the scale set directly on the weapon prefab's Muzzle transform.")]
     [Range(0.01f, 2f)] public float MuzzleEffectScale = 1f;
+    [Tooltip("Size multiplier for the in-flight projectile tracer. Does not affect hit detection.")]
+    [Range(0.1f, 2f)] public float ProjectileTracerScale = 1f;
 
     [Header("Combat")]
     public GunArchetype Archetype;

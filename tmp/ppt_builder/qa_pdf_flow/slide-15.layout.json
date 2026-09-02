@@ -1,0 +1,1421 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/o8ev32",
+    "id": "o8ev32",
+    "slide": 15,
+    "layoutId": "bfabf164-4c1d-46f7-9a63-ac8892c7e9c2",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "bfabf164-4c1d-46f7-9a63-ac8892c7e9c2",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjmdofq",
+      "id": "1",
+      "name": "chapter-15",
+      "bbox": [
+        72,
+        34,
+        600,
+        24
+      ],
+      "geometry": "rect",
+      "text": "VI. INSTALLATION INSTRUCTIONS",
+      "textPreview": "VI. INSTALLATION INSTRUCTIONS",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "VI. INSTALLATION INSTRUCTIONS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "VI. INSTALLATION INSTRUCTIONS",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "VI. INSTALLATION INSTRUCTIONS",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/itsnitwf",
+      "id": "2",
+      "name": "title-15",
+      "bbox": [
+        72,
+        70,
+        1136,
+        56
+      ],
+      "geometry": "rect",
+      "text": "Build and verify the project on Android",
+      "textPreview": "Build and verify the project on Android",
+      "resolvedFontSize": 36,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 36,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Build and verify the project on Android"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Build and verify the project on Android",
+          "resolvedTextStyle": {
+            "fontSize": 36,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Build and verify the project on Android",
+              "fontSize": 36,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ju14byx0",
+      "id": "3",
+      "name": "rule-15",
+      "bbox": [
+        72,
+        137,
+        82,
+        4
+      ],
+      "geometry": "rect",
+      "fillColor": "#E3B341",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wra5gje9",
+      "id": "4",
+      "name": "foot-15",
+      "bbox": [
+        72,
+        680,
+        360,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GD1305  •  THE MOONSTONE",
+      "textPreview": "GD1305  •  THE MOONSTONE",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GD1305  •  THE MOONSTONE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GD1305  •  THE MOONSTONE",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GD1305  •  THE MOONSTONE",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xsjm9ofu",
+      "id": "5",
+      "name": "page-15",
+      "bbox": [
+        1160,
+        680,
+        48,
+        18
+      ],
+      "geometry": "rect",
+      "text": "15",
+      "textPreview": "15",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "15"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "15",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "15",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a5sne9w3",
+      "id": "6",
+      "name": "inst-0",
+      "bbox": [
+        72,
+        180,
+        310,
+        370
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F6F8FB",
+      "lineColor": "#D7DFEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vq147exo",
+      "id": "7",
+      "name": "ih-0",
+      "bbox": [
+        96,
+        215,
+        262,
+        42
+      ],
+      "geometry": "rect",
+      "text": "1. PREREQUISITES",
+      "textPreview": "1. PREREQUISITES",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "1. PREREQUISITES"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "1. PREREQUISITES",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "1. PREREQUISITES",
+              "fontSize": 19,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gnu5s3ed",
+      "id": "8",
+      "name": "ib-0-0",
+      "bbox": [
+        96,
+        285,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Unity Hub and Editor 6000.3.10f1",
+      "textPreview": "•  Unity Hub and Editor 6000.3.10f1",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Unity Hub and Editor 6000.3.10f1"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Unity Hub and Editor 6000.3.10f1",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Unity Hub and Editor 6000.3.10f1",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hon6l8fy",
+      "id": "9",
+      "name": "ib-0-1",
+      "bbox": [
+        96,
+        343,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Android Build Support",
+      "textPreview": "•  Android Build Support",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Android Build Support"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Android Build Support",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Android Build Support",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lknadsny",
+      "id": "10",
+      "name": "ib-0-2",
+      "bbox": [
+        96,
+        401,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  SDK, NDK, OpenJDK",
+      "textPreview": "•  SDK, NDK, OpenJDK",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  SDK, NDK, OpenJDK"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  SDK, NDK, OpenJDK",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  SDK, NDK, OpenJDK",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjetknmd",
+      "id": "11",
+      "name": "ib-0-3",
+      "bbox": [
+        96,
+        459,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Android device or emulator",
+      "textPreview": "•  Android device or emulator",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Android device or emulator"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Android device or emulator",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Android device or emulator",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zilsb258",
+      "id": "12",
+      "name": "inst-1",
+      "bbox": [
+        420,
+        180,
+        310,
+        370
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F6F8FB",
+      "lineColor": "#D7DFEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yxcbix4n",
+      "id": "13",
+      "name": "ih-1",
+      "bbox": [
+        444,
+        215,
+        262,
+        42
+      ],
+      "geometry": "rect",
+      "text": "2. OPEN & RUN",
+      "textPreview": "2. OPEN & RUN",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "2. OPEN & RUN"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "2. OPEN & RUN",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "2. OPEN & RUN",
+              "fontSize": 19,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xw3a9sn2",
+      "id": "14",
+      "name": "ib-1-0",
+      "bbox": [
+        444,
+        285,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Add project from disk",
+      "textPreview": "•  Add project from disk",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Add project from disk"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Add project from disk",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Add project from disk",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cvutgn6h",
+      "id": "15",
+      "name": "ib-1-1",
+      "bbox": [
+        444,
+        343,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Restore packages",
+      "textPreview": "•  Restore packages",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Restore packages"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Restore packages",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Restore packages",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/buls7i5w",
+      "id": "16",
+      "name": "ib-1-2",
+      "bbox": [
+        444,
+        401,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Open MainMenu.unity",
+      "textPreview": "•  Open MainMenu.unity",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Open MainMenu.unity"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Open MainMenu.unity",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Open MainMenu.unity",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/atcredob",
+      "id": "17",
+      "name": "ib-1-3",
+      "bbox": [
+        444,
+        459,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Press Play and verify systems",
+      "textPreview": "•  Press Play and verify systems",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Press Play and verify systems"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Press Play and verify systems",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Press Play and verify systems",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hs7alcn6",
+      "id": "18",
+      "name": "inst-2",
+      "bbox": [
+        768,
+        180,
+        310,
+        370
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF5D8",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wrytsrml",
+      "id": "19",
+      "name": "ih-2",
+      "bbox": [
+        792,
+        215,
+        262,
+        42
+      ],
+      "geometry": "rect",
+      "text": "3. BUILD AND TEST",
+      "textPreview": "3. BUILD AND TEST",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "3. BUILD AND TEST"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "3. BUILD AND TEST",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "3. BUILD AND TEST",
+              "fontSize": 19,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/g7ql4fy9",
+      "id": "20",
+      "name": "ib-2-0",
+      "bbox": [
+        792,
+        285,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Switch platform to Android",
+      "textPreview": "•  Switch platform to Android",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Switch platform to Android"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Switch platform to Android",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Switch platform to Android",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/18zmdkzu",
+      "id": "21",
+      "name": "ib-2-1",
+      "bbox": [
+        792,
+        343,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Add MainMenu and GameScene",
+      "textPreview": "•  Add MainMenu and GameScene",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Add MainMenu and GameScene"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Add MainMenu and GameScene",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Add MainMenu and GameScene",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/e5o32pg3",
+      "id": "22",
+      "name": "ib-2-2",
+      "bbox": [
+        792,
+        401,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Configure Player Settings",
+      "textPreview": "•  Configure Player Settings",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Configure Player Settings"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Configure Player Settings",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Configure Player Settings",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/f6x4baho",
+      "id": "23",
+      "name": "ib-2-3",
+      "bbox": [
+        792,
+        459,
+        262,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Build APK/AAB or Build and Run",
+      "textPreview": "•  Build APK/AAB or Build and Run",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Build APK/AAB or Build and Run"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Build APK/AAB or Build and Run",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Build APK/AAB or Build and Run",
+              "fontSize": 16,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36l0fyx",
+      "id": "24",
+      "name": "verify",
+      "bbox": [
+        160,
+        585,
+        960,
+        40
+      ],
+      "geometry": "rect",
+      "text": "Device verification must cover UI scaling, touch input, audio, wave spawning, and game states.",
+      "textPreview": "Device verification must cover UI scaling, touch input, audio, wave spawning, and game states.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Device verification must cover UI scaling, touch input, audio, wave spawning, and game states."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Device verification must cover UI scaling, touch input, audio, wave spawning, and game states.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#121827",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Device verification must cover UI scaling, touch input, audio, wave spawning, and game states.",
+              "fontSize": 20,
+              "color": "#121827",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

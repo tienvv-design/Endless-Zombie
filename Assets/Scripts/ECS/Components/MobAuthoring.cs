@@ -10,6 +10,11 @@ public enum EnemyType : byte
     Boss,
 }
 
+public struct GameplayDebugFlags : IComponentData
+{
+    public byte EnemyInvincible;
+}
+
 public struct Mob : IComponentData
 {
     public GameObjectType MobTarget;

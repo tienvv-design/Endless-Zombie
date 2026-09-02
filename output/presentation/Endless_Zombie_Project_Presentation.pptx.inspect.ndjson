@@ -1,0 +1,270 @@
+{"kind":"deck","id":"pr/qmews1","name":"Deck"}
+{"kind":"layout","layoutId":"2a971f7f-f3f7-4e03-8675-ddcd79b61df6","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"bfabf164-4c1d-46f7-9a63-ac8892c7e9c2","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/ybk9io","slide":1,"title":"CAPSTONE PROJECT • GD1305","textShapes":6}
+{"kind":"shape","id":"sh/jyhobm54","slide":1,"name":"bar","bbox":[0,0,18,720]}
+{"kind":"textbox","id":"sh/kzqp4rm9","slide":1,"name":"cap","text":"CAPSTONE PROJECT • GD1305","textPreview":"CAPSTONE PROJECT • GD1305","textChars":25,"textLines":1,"bbox":[76,66,560,28]}
+{"kind":"textbox","id":"sh/50zqdwnu","slide":1,"name":"main","text":"ENDLESS\nZOMBIE","textPreview":"ENDLESS | ZOMBIE","textChars":14,"textLines":2,"bbox":[76,145,650,180]}
+{"kind":"textbox","id":"sh/ato7yh47","slide":1,"name":"sub","text":"Survival Shooter / Action Roguelite","textPreview":"Survival Shooter / Action Roguelite","textChars":35,"textLines":1,"bbox":[80,350,620,50]}
+{"kind":"shape","id":"sh/vuxo7m5s","slide":1,"name":"info","bbox":[790,80,390,520]}
+{"kind":"textbox","id":"sh/wv6p0rmd","slide":1,"name":"project","text":"PROJECT\nREPORT","textPreview":"PROJECT | REPORT","textChars":14,"textLines":2,"bbox":[850,170,270,110]}
+{"kind":"textbox","id":"sh/xwz69wny","slide":1,"name":"course","text":"Unity 6000.3.10f1\nAndroid Mobile\nHybrid OOP + ECS","textPreview":"Unity 6000.3.10f1 | Android Mobile | Hybrid OOP + ECS","textChars":49,"textLines":3,"bbox":[850,335,270,120]}
+{"kind":"textbox","id":"sh/m5o7ux4b","slide":1,"name":"team","text":"The MoonStone\nVu Viet Tien • Chu Van Thai","textPreview":"The MoonStone | Vu Viet Tien • Chu Van Thai","textChars":41,"textLines":2,"bbox":[80,570,620,66]}
+{"kind":"notes","id":"nt/ybk9io","slide":1,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 1)"}
+{"kind":"slide","id":"sl/pjy2yr","slide":2,"title":"I. PROJECT INTRODUCTION","textShapes":24}
+{"kind":"textbox","id":"sh/4vihgz2d","slide":2,"name":"chapter-2","text":"I. PROJECT INTRODUCTION","textPreview":"I. PROJECT INTRODUCTION","textChars":23,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/3upgnuls","slide":2,"name":"title-2","text":"Endless Zombie combines survival pressure with persistent growth","textPreview":"Endless Zombie combines survival pressure with persistent growth","textChars":64,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/i9gzepk7","slide":2,"name":"rule-2","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/h87ylk3m","slide":2,"name":"foot-2","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/g7yhcf21","slide":2,"name":"page-2","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"textbox","id":"sh/v6pgjalw","slide":2,"name":"overview","text":"PROJECT OVERVIEW","textPreview":"PROJECT OVERVIEW","textChars":16,"textLines":1,"bbox":[72,175,380,28]}
+{"kind":"textbox","id":"sh/u5gfa5kb","slide":2,"name":"overview-copy","text":"A top-down Android survival shooter where the player survives increasingly difficult waves through movement, automatic targeting, weapon choice, XP, and upgrades.","textPreview":"A top-down Android survival shooter where the player survives increasingly difficult waves through movement, automatic targeting, weapon ...","textChars":162,"textLines":1,"bbox":[72,215,510,112]}
+{"kind":"textbox","id":"sh/t47yhk3q","slide":2,"name":"scope","text":"PROJECT SCOPE","textPreview":"PROJECT SCOPE","textChars":13,"textLines":1,"bbox":[72,365,260,28]}
+{"kind":"textbox","id":"sh/83ex8f25","slide":2,"name":"s1","text":"•  Canvas-based Main Menu, HUD, Settings, and Level Up UI","textPreview":"•  Canvas-based Main Menu, HUD, Settings, and Level Up UI","textChars":57,"textLines":1,"bbox":[72,405,530,40]}
+{"kind":"textbox","id":"sh/2xsje94z","slide":2,"name":"s2","text":"•  Data-driven enemy waves and prefab spawning","textPreview":"•  Data-driven enemy waves and prefab spawning","textChars":46,"textLines":1,"bbox":[72,450,530,40]}
+{"kind":"textbox","id":"sh/3y107elk","slide":2,"name":"s3","text":"•  Weapon profiles including multi-projectile Shotgun","textPreview":"•  Weapon profiles including multi-projectile Shotgun","textChars":53,"textLines":1,"bbox":[72,495,530,40]}
+{"kind":"textbox","id":"sh/4za1gjm5","slide":2,"name":"s4","text":"•  DogMutant visual and synchronized run animation","textPreview":"•  DogMutant visual and synchronized run animation","textChars":50,"textLines":1,"bbox":[72,540,530,40]}
+{"kind":"shape","id":"sh/p03i9o3q","slide":2,"name":"stack","bbox":[650,175,558,410]}
+{"kind":"textbox","id":"sh/u9szap43","slide":2,"name":"stack-h","text":"DEPLOYMENT ENVIRONMENT","textPreview":"DEPLOYMENT ENVIRONMENT","textChars":22,"textLines":1,"bbox":[690,205,450,30]}
+{"kind":"textbox","id":"sh/fa103ul8","slide":2,"name":"rk-0","text":"Platform","textPreview":"Platform","textChars":8,"textLines":1,"bbox":[690,260,150,28]}
+{"kind":"textbox","id":"sh/gba1czmt","slide":2,"name":"rv-0","text":"Android mobile devices","textPreview":"Android mobile devices","textChars":22,"textLines":1,"bbox":[845,260,300,28]}
+{"kind":"textbox","id":"sh/hwji543e","slide":2,"name":"rk-1","text":"Engine","textPreview":"Engine","textChars":6,"textLines":1,"bbox":[690,308,150,28]}
+{"kind":"textbox","id":"sh/658z6p4r","slide":2,"name":"rv-1","text":"Unity 6000.3.10f1","textPreview":"Unity 6000.3.10f1","textChars":17,"textLines":1,"bbox":[845,308,300,28]}
+{"kind":"textbox","id":"sh/76h0zulc","slide":2,"name":"rk-2","text":"Rendering","textPreview":"Rendering","textChars":9,"textLines":1,"bbox":[690,356,150,28]}
+{"kind":"textbox","id":"sh/vaxg7q14","slide":2,"name":"rv-2","text":"URP 17.3.0","textPreview":"URP 17.3.0","textChars":10,"textLines":1,"bbox":[845,356,300,28]}
+{"kind":"textbox","id":"sh/a9ofelkj","slide":2,"name":"rk-3","text":"Data stack","textPreview":"Data stack","textChars":10,"textLines":1,"bbox":[690,404,150,28]}
+{"kind":"textbox","id":"sh/xcfy90ja","slide":2,"name":"rv-3","text":"Entities / DOTS 1.4","textPreview":"Entities / DOTS 1.4","textChars":19,"textLines":1,"bbox":[845,404,300,28]}
+{"kind":"textbox","id":"sh/wb6x0v2p","slide":2,"name":"rk-4","text":"Language","textPreview":"Language","textChars":8,"textLines":1,"bbox":[690,452,150,28]}
+{"kind":"textbox","id":"sh/jexgbq10","slide":2,"name":"rv-4","text":"C#","textPreview":"C#","textChars":2,"textLines":1,"bbox":[845,452,300,28]}
+{"kind":"textbox","id":"sh/idof25kv","slide":2,"name":"rk-5","text":"Input","textPreview":"Input","textChars":5,"textLines":1,"bbox":[690,500,150,28]}
+{"kind":"textbox","id":"sh/5gfyd0j6","slide":2,"name":"rv-5","text":"Unity Input System 1.18","textPreview":"Unity Input System 1.18","textChars":23,"textLines":1,"bbox":[845,500,300,28]}
+{"kind":"notes","id":"nt/pjy2yr","slide":2,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 3)"}
+{"kind":"slide","id":"sl/a6d80l","slide":3,"title":"II. SYSTEM REQUIREMENTS ANALYSIS","textShapes":17}
+{"kind":"textbox","id":"sh/za10bi1w","slide":3,"name":"chapter-3","text":"II. SYSTEM REQUIREMENTS ANALYSIS","textPreview":"II. SYSTEM REQUIREMENTS ANALYSIS","textChars":32,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/0bahk3ih","slide":3,"name":"title-3","text":"The requirements cover gameplay, scalability, UI, and persistence","textPreview":"The requirements cover gameplay, scalability, UI, and persistence","textChars":65,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/1c3id8j2","slide":3,"name":"rule-3","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/mdczmd0n","slide":3,"name":"foot-3","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/nel0fi18","slide":3,"name":"page-3","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"textbox","id":"sh/ofuhonit","slide":3,"name":"fr","text":"FUNCTIONAL REQUIREMENTS","textPreview":"FUNCTIONAL REQUIREMENTS","textChars":23,"textLines":1,"bbox":[72,175,420,28]}
+{"kind":"textbox","id":"sh/9g3ihsjy","slide":3,"name":"fr-0","text":"•  Start a selected stage and load GameScene","textPreview":"•  Start a selected stage and load GameScene","textChars":44,"textLines":1,"bbox":[72,220,540,40]}
+{"kind":"textbox","id":"sh/ahczqx0j","slide":3,"name":"fr-1","text":"•  Acquire targets and process projectiles, damage, death, and XP","textPreview":"•  Acquire targets and process projectiles, damage, death, and XP","textChars":65,"textLines":1,"bbox":[72,275,540,40]}
+{"kind":"textbox","id":"sh/bil0j214","slide":3,"name":"fr-2","text":"•  Spawn enemies by wave, prefab, schedule, and alive limit","textPreview":"•  Spawn enemies by wave, prefab, schedule, and alive limit","textChars":59,"textLines":1,"bbox":[72,330,540,40]}
+{"kind":"textbox","id":"sh/zat83ixo","slide":3,"name":"fr-3","text":"•  Display Canvas HUD and level-up choices","textPreview":"•  Display Canvas HUD and level-up choices","textChars":42,"textLines":1,"bbox":[72,385,540,40]}
+{"kind":"textbox","id":"sh/y9kradgj","slide":3,"name":"fr-4","text":"•  Pause, resume, configure settings, and persist progression","textPreview":"•  Pause, resume, configure settings, and persist progression","textChars":61,"textLines":1,"bbox":[72,440,540,40]}
+{"kind":"textbox","id":"sh/lcvq58fu","slide":3,"name":"fr-5","text":"•  Finish a stage with Win or Game Over","textPreview":"•  Finish a stage with Win or Game Over","textChars":39,"textLines":1,"bbox":[72,495,540,40]}
+{"kind":"shape","id":"sh/kb29c3y9","slide":3,"name":"nfr-box","bbox":[660,175,548,390]}
+{"kind":"textbox","id":"sh/bmt8zyxs","slide":3,"name":"nfr","text":"NON-FUNCTIONAL REQUIREMENTS","textPreview":"NON-FUNCTIONAL REQUIREMENTS","textChars":27,"textLines":1,"bbox":[700,205,450,28]}
+{"kind":"textbox","id":"sh/alk76tg7","slide":3,"name":"nf-0","text":"•  Stable performance with many Entity enemies","textPreview":"•  Stable performance with many Entity enemies","textChars":46,"textLines":1,"bbox":[700,255,440,40]}
+{"kind":"textbox","id":"sh/x8bq18fy","slide":3,"name":"nf-1","text":"•  Inspector-editable Canvas prefabs","textPreview":"•  Inspector-editable Canvas prefabs","textChars":36,"textLines":1,"bbox":[700,313,440,40]}
+{"kind":"textbox","id":"sh/c72983yd","slide":3,"name":"nf-2","text":"•  ScriptableObject-driven gameplay values","textPreview":"•  ScriptableObject-driven gameplay values","textChars":42,"textLines":1,"bbox":[700,371,440,40]}
+{"kind":"textbox","id":"sh/v2d8b2xw","slide":3,"name":"nf-3","text":"•  Movement-synchronized visual animation","textPreview":"•  Movement-synchronized visual animation","textChars":41,"textLines":1,"bbox":[700,429,440,40]}
+{"kind":"textbox","id":"sh/uh4rixgb","slide":3,"name":"nf-4","text":"•  Safe local defaults and wave validation","textPreview":"•  Safe local defaults and wave validation","textChars":42,"textLines":1,"bbox":[700,487,440,40]}
+{"kind":"notes","id":"nt/a6d80l","slide":3,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 5)"}
+{"kind":"slide","id":"sl/v5jxer","slide":4,"title":"II. SYSTEM REQUIREMENTS ANALYSIS","textShapes":4}
+{"kind":"textbox","id":"sh/ydk72tgj","slide":4,"name":"chapter-4","text":"II. SYSTEM REQUIREMENTS ANALYSIS","textPreview":"II. SYSTEM REQUIREMENTS ANALYSIS","textChars":32,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/l0b6d8za","slide":4,"name":"title-4","text":"4. Use Case Diagram","textPreview":"4. Use Case Diagram","textChars":19,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/kz2p43yp","slide":4,"name":"rule-4","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/ba9o7yh8","slide":4,"name":"foot-4","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/a90nytgn","slide":4,"name":"page-4","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/xcb69ozy","slide":4,"name":"frame","bbox":[140,160,1000,485]}
+{"kind":"image","id":"im/l0fqhsnu","slide":4,"name":"","bbox":[170,180,940,445]}
+{"kind":"notes","id":"nt/v5jxer","slide":4,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 6)"}
+{"kind":"slide","id":"sl/bhhabc","slide":5,"title":"II. SYSTEM REQUIREMENTS ANALYSIS","textShapes":18}
+{"kind":"textbox","id":"sh/8bmxg3il","slide":5,"name":"chapter-5","text":"II. SYSTEM REQUIREMENTS ANALYSIS","textPreview":"II. SYSTEM REQUIREMENTS ANALYSIS","textChars":32,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/7adg7y10","slide":5,"name":"title-5","text":"5. Use Case Descriptions","textPreview":"5. Use Case Descriptions","textChars":24,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/m94fed0f","slide":5,"name":"rule-5","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/l8ve58ju","slide":5,"name":"foot-5","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/k72xc3i9","slide":5,"name":"page-5","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"textbox","id":"sh/z6tw3y1o","slide":5,"name":"uc-range-1","text":"UC-01 to UC-04  •  Player entry and progression","textPreview":"UC-01 to UC-04  •  Player entry and progression","textChars":47,"textLines":1,"bbox":[72,145,600,24]}
+{"kind":"shape","id":"sh/y5kfat03","slide":5,"name":"ucb-1","bbox":[72,175,550,118]}
+{"kind":"textbox","id":"sh/x4be1ojy","slide":5,"name":"uci-1","text":"UC-01","textPreview":"UC-01","textChars":5,"textLines":1,"bbox":[90,189,72,24]}
+{"kind":"textbox","id":"sh/c32x8jid","slide":5,"name":"uct-1","text":"Play Game","textPreview":"Play Game","textChars":9,"textLines":1,"bbox":[90,216,514,28]}
+{"kind":"textbox","id":"sh/e5w3m9wb","slide":5,"name":"uca-1","text":"Player  •  Enter the gameplay loop and initialize the stage.","textPreview":"Player  •  Enter the gameplay loop and initialize the stage.","textChars":60,"textLines":1,"bbox":[90,251,514,30]}
+{"kind":"shape","id":"sh/fq54fexw","slide":5,"name":"ucb-2","bbox":[658,175,550,118]}
+{"kind":"textbox","id":"sh/0rylojeh","slide":5,"name":"uci-2","text":"UC-02","textPreview":"UC-02","textChars":5,"textLines":1,"bbox":[676,189,72,24]}
+{"kind":"textbox","id":"sh/1s7mhof2","slide":5,"name":"uct-2","text":"Action","textPreview":"Action","textChars":6,"textLines":1,"bbox":[676,216,514,28]}
+{"kind":"textbox","id":"sh/q1w3ipwf","slide":5,"name":"uca-2","text":"Player  •  Move, avoid enemies, and interact during Running state.","textPreview":"Player  •  Move, avoid enemies, and interact during Running state.","textChars":66,"textLines":1,"bbox":[676,251,514,30]}
+{"kind":"shape","id":"sh/r254buxk","slide":5,"name":"ucb-3","bbox":[72,325,550,118]}
+{"kind":"textbox","id":"sh/s3elkze5","slide":5,"name":"uci-3","text":"UC-03","textPreview":"UC-03","textChars":5,"textLines":1,"bbox":[90,339,72,24]}
+{"kind":"textbox","id":"sh/d4nmd4fq","slide":5,"name":"uct-3","text":"Switch Weapon","textPreview":"Switch Weapon","textChars":13,"textLines":1,"bbox":[90,366,514,28]}
+{"kind":"textbox","id":"sh/ixc3epw3","slide":5,"name":"uca-3","text":"Player  •  Select another valid weapon and apply its current statistics.","textPreview":"Player  •  Select another valid weapon and apply its current statistics.","textChars":72,"textLines":1,"bbox":[90,401,514,30]}
+{"kind":"shape","id":"sh/3ylk7uxo","slide":5,"name":"ucb-4","bbox":[658,325,550,118]}
+{"kind":"textbox","id":"sh/7210fqdg","slide":5,"name":"uci-4","text":"UC-04","textPreview":"UC-04","textChars":5,"textLines":1,"bbox":[676,339,72,24]}
+{"kind":"textbox","id":"sh/61sjmlcv","slide":5,"name":"uct-4","text":"Upgrade Weapon","textPreview":"Upgrade Weapon","textChars":14,"textLines":1,"bbox":[676,366,514,28]}
+{"kind":"textbox","id":"sh/t4jih0vm","slide":5,"name":"uca-4","text":"Player  •  Choose a weapon modifier at an upgrade opportunity.","textPreview":"Player  •  Choose a weapon modifier at an upgrade opportunity.","textChars":62,"textLines":1,"bbox":[676,401,514,30]}
+{"kind":"textbox","id":"sh/83a1ovu1","slide":5,"name":"uc-note","text":"Player actions are ignored while paused, during Level Up selection, or after Win / Game Over.","textPreview":"Player actions are ignored while paused, during Level Up selection, or after Win / Game Over.","textChars":93,"textLines":1,"bbox":[180,520,920,50]}
+{"kind":"notes","id":"nt/bhhabc","slide":5,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 6–9)"}
+{"kind":"slide","id":"sl/k8c0ms","slide":6,"title":"II. SYSTEM REQUIREMENTS ANALYSIS","textShapes":18}
+{"kind":"textbox","id":"sh/il0r2twj","slide":6,"name":"chapter-6","text":"II. SYSTEM REQUIREMENTS ANALYSIS","textPreview":"II. SYSTEM REQUIREMENTS ANALYSIS","textChars":32,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/5orax8va","slide":6,"name":"title-6","text":"5. Use Case Descriptions","textPreview":"5. Use Case Descriptions","textChars":24,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/4ni943ep","slide":6,"name":"rule-6","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/vip8ryd8","slide":6,"name":"foot-6","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/uhgrytwn","slide":6,"name":"page-6","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"textbox","id":"sh/hk7qt8ve","slide":6,"name":"uc-range-2","text":"UC-05 to UC-08  •  Session and enemy lifecycle","textPreview":"UC-05 to UC-08  •  Session and enemy lifecycle","textChars":46,"textLines":1,"bbox":[72,145,600,24]}
+{"kind":"shape","id":"sh/gjy903et","slide":6,"name":"ucb-5","bbox":[120,175,502,118]}
+{"kind":"textbox","id":"sh/7up8nedw","slide":6,"name":"uci-5","text":"UC-05","textPreview":"UC-05","textChars":5,"textLines":1,"bbox":[138,189,72,24]}
+{"kind":"textbox","id":"sh/6tgru9wr","slide":6,"name":"uct-5","text":"Pause & Resume","textPreview":"Pause & Resume","textChars":14,"textLines":1,"bbox":[138,216,466,28]}
+{"kind":"textbox","id":"sh/8rmdwvmp","slide":6,"name":"uca-5","text":"Player  •  Suspend the simulation, adjust settings, and return to Running.","textPreview":"Player  •  Suspend the simulation, adjust settings, and return to Running.","textChars":74,"textLines":1,"bbox":[138,251,466,30]}
+{"kind":"shape","id":"sh/9svu503a","slide":6,"name":"ucb-16","bbox":[658,175,550,118]}
+{"kind":"textbox","id":"sh/mpkvu54j","slide":6,"name":"uci-16","text":"UC-06","textPreview":"UC-06","textChars":5,"textLines":1,"bbox":[676,189,72,24]}
+{"kind":"textbox","id":"sh/7qdc3ql4","slide":6,"name":"uct-16","text":"Generate & Spawn Enemy Wave","textPreview":"Generate & Spawn Enemy Wave","textChars":27,"textLines":1,"bbox":[676,216,514,28]}
+{"kind":"textbox","id":"sh/kn2dsvmd","slide":6,"name":"uca-16","text":"Game System  •  Schedule entries, resolve EnemyId, and instantiate prefabs.","textPreview":"Game System  •  Schedule entries, resolve EnemyId, and instantiate prefabs.","textChars":75,"textLines":1,"bbox":[676,251,514,30]}
+{"kind":"shape","id":"sh/lobu103y","slide":6,"name":"ucb-7","bbox":[72,325,550,118]}
+{"kind":"textbox","id":"sh/y1kvql4n","slide":6,"name":"uci-7","text":"UC-07","textPreview":"UC-07","textChars":5,"textLines":1,"bbox":[90,339,72,24]}
+{"kind":"textbox","id":"sh/z2tczqls","slide":6,"name":"uct-7","text":"Auto Attack & Collect EXP, Gold","textPreview":"Auto Attack & Collect EXP, Gold","textChars":31,"textLines":1,"bbox":[90,366,514,28]}
+{"kind":"textbox","id":"sh/4j6d4f2x","slide":6,"name":"uca-7","text":"Game System  •  Acquire targets, fire projectiles, and generate rewards.","textPreview":"Game System  •  Acquire targets, fire projectiles, and generate rewards.","textChars":72,"textLines":1,"bbox":[90,401,514,30]}
+{"kind":"shape","id":"sh/5kfedk32","slide":6,"name":"ucb-8","bbox":[658,325,550,118]}
+{"kind":"textbox","id":"sh/dgbuxkvm","slide":6,"name":"uci-8","text":"UC-08","textPreview":"UC-08","textChars":5,"textLines":1,"bbox":[676,339,72,24]}
+{"kind":"textbox","id":"sh/sf2dofu1","slide":6,"name":"uct-8","text":"Process Enemy Death & Reward","textPreview":"Process Enemy Death & Reward","textChars":28,"textLines":1,"bbox":[676,366,514,28]}
+{"kind":"textbox","id":"sh/retcvadg","slide":6,"name":"uca-8","text":"Game System  •  Remove defeated enemies and continue wave progression.","textPreview":"Game System  •  Remove defeated enemies and continue wave progression.","textChars":70,"textLines":1,"bbox":[676,401,514,30]}
+{"kind":"textbox","id":"sh/qdkvm5cv","slide":6,"name":"uc-note2","text":"Invalid spawn or reward data must never leave the current wave permanently blocked.","textPreview":"Invalid spawn or reward data must never leave the current wave permanently blocked.","textChars":83,"textLines":1,"bbox":[180,520,920,50]}
+{"kind":"notes","id":"nt/k8c0ms","slide":6,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 9–12)"}
+{"kind":"slide","id":"sl/h53ryr","slide":7,"title":"II. SYSTEM REQUIREMENTS ANALYSIS","textShapes":5}
+{"kind":"textbox","id":"sh/pk725cfa","slide":7,"name":"chapter-7","text":"II. SYSTEM REQUIREMENTS ANALYSIS","textPreview":"II. SYSTEM REQUIREMENTS ANALYSIS","textChars":32,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/2xw3uhgj","slide":7,"name":"title-7","text":"6. Activity Diagram","textPreview":"6. Activity Diagram","textChars":19,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/3i5k3mx4","slide":7,"name":"rule-7","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/gvels7yd","slide":7,"name":"foot-7","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/hwn21cfy","slide":7,"name":"page-7","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/utw3qxgn","slide":7,"name":"af","bbox":[345,155,590,500]}
+{"kind":"textbox","id":"sh/8rulonyh","slide":7,"name":"activity-side","text":"The diagram follows the complete path from Main Menu to Stage Win or Game Over, including the repeated wave branch.","textPreview":"The diagram follows the complete path from Main Menu to Stage Win or Game Over, including the repeated wave branch.","textChars":115,"textLines":1,"bbox":[70,250,230,150]}
+{"kind":"image","id":"im/a1gzy50r","slide":7,"name":"","bbox":[390,170,500,470]}
+{"kind":"notes","id":"nt/h53ryr","slide":7,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 13)"}
+{"kind":"slide","id":"sl/6i9eym","slide":8,"title":"III. DETAILED DESIGN","textShapes":9}
+{"kind":"textbox","id":"sh/tore1c7u","slide":8,"name":"chapter-8","text":"III. DETAILED DESIGN","textPreview":"III. DETAILED DESIGN","textChars":20,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/6lgvqxo3","slide":8,"name":"title-8","text":"1. UI Design","textPreview":"1. UI Design","textChars":12,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/7m9cz2po","slide":8,"name":"rule-8","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/gridw765","slide":8,"name":"foot-8","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/hsre5c7q","slide":8,"name":"page-8","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/up0vuhof","slide":8,"name":"uif-0","bbox":[80,175,230,405]}
+{"kind":"shape","id":"sh/fq9w3mp0","slide":8,"name":"uif-1","bbox":[350,175,230,405]}
+{"kind":"shape","id":"sh/wvydkn61","slide":8,"name":"uif-2","bbox":[620,175,260,190]}
+{"kind":"shape","id":"sh/xw7uts7m","slide":8,"name":"uif-3","bbox":[920,175,260,190]}
+{"kind":"textbox","id":"sh/xcz6l0vi","slide":8,"name":"l1","text":"Main Menu Canvas","textPreview":"Main Menu Canvas","textChars":16,"textLines":1,"bbox":[90,535,210,28]}
+{"kind":"textbox","id":"sh/cr6psvux","slide":8,"name":"l2","text":"Gameplay HUD","textPreview":"Gameplay HUD","textChars":12,"textLines":1,"bbox":[360,535,210,28]}
+{"kind":"textbox","id":"sh/bqxojqdc","slide":8,"name":"l3","text":"Settings Menu","textPreview":"Settings Menu","textChars":13,"textLines":1,"bbox":[640,335,220,28]}
+{"kind":"textbox","id":"sh/apo7qlc7","slide":8,"name":"l4","text":"Level Up Menu","textPreview":"Level Up Menu","textChars":13,"textLines":1,"bbox":[940,335,220,28]}
+{"kind":"textbox","id":"sh/lgz6p0vu","slide":8,"name":"ui-copy","text":"MainMenuManager and HUDManager bind data and events; the Canvas prefabs own layout and remain editable in the Inspector.","textPreview":"MainMenuManager and HUDManager bind data and events; the Canvas prefabs own layout and remain editable in the Inspector.","textChars":120,"textLines":1,"bbox":[620,415,560,110]}
+{"kind":"image","id":"im/25kv2dsn","slide":8,"name":"","bbox":[100,192,190,330]}
+{"kind":"image","id":"im/36tcbit8","slide":8,"name":"","bbox":[370,192,190,330]}
+{"kind":"image","id":"im/o72d43at","slide":8,"name":"","bbox":[640,190,220,140]}
+{"kind":"image","id":"im/p8bud8be","slide":8,"name":"","bbox":[940,190,220,140]}
+{"kind":"notes","id":"nt/6i9eym","slide":8,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 14–15)"}
+{"kind":"slide","id":"sl/zkavpc","slide":9,"title":"III. DETAILED DESIGN","textShapes":4}
+{"kind":"textbox","id":"sh/dc76dw3y","slide":9,"name":"chapter-9","text":"III. DETAILED DESIGN","textPreview":"III. DETAILED DESIGN","textChars":20,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/q9gni1k7","slide":9,"name":"title-9","text":"2. Hybrid Architecture Diagram","textPreview":"2. Hybrid Architecture Diagram","textChars":30,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/rapobmls","slide":9,"name":"rule-9","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/0zypob2p","slide":9,"name":"foot-9","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/1076hgju","slide":9,"name":"page-9","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/edgnm1kj","slide":9,"name":"hf","bbox":[72,165,1136,455]}
+{"kind":"image","id":"im/6dgradoz","slide":9,"name":"","bbox":[92,185,1096,410]}
+{"kind":"notes","id":"nt/zkavpc","slide":9,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 16)"}
+{"kind":"slide","id":"sl/7to4ul","slide":10,"title":"III. DETAILED DESIGN","textShapes":4}
+{"kind":"textbox","id":"sh/xw32tc7q","slide":10,"name":"chapter-10","text":"III. DETAILED DESIGN","textPreview":"III. DETAILED DESIGN","textChars":20,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/atc3yxof","slide":10,"name":"title-10","text":"3. Class / Component Diagram","textPreview":"3. Class / Component Diagram","textChars":28,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/vulkr2p0","slide":10,"name":"rule-10","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/8rulwn69","slide":10,"name":"foot-10","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/9s32ps7u","slide":10,"name":"page-10","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/m5s3uxo3","slide":10,"name":"cf","bbox":[140,155,1000,500]}
+{"kind":"image","id":"im/ipgvm9cz","slide":10,"name":"","bbox":[175,175,930,455]}
+{"kind":"notes","id":"nt/7to4ul","slide":10,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 16)"}
+{"kind":"slide","id":"sl/91ffe6","slide":11,"title":"III. DETAILED DESIGN","textShapes":4}
+{"kind":"textbox","id":"sh/p8ra58n6","slide":11,"name":"chapter-11","text":"III. DETAILED DESIGN","textPreview":"III. DETAILED DESIGN","textChars":20,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/25gbut4f","slide":11,"name":"title-11","text":"4. Sequence Diagram","textPreview":"4. Sequence Diagram","textChars":19,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/36ps3y50","slide":11,"name":"rule-11","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/g3ytsjmp","slide":11,"name":"foot-11","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/h47a1onu","slide":11,"name":"page-11","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/u1grq94j","slide":11,"name":"sf","bbox":[72,160,1136,475]}
+{"kind":"image","id":"im/6ts36p8z","slide":11,"name":"","bbox":[100,185,1080,420]}
+{"kind":"notes","id":"nt/91ffe6","slide":11,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 17)"}
+{"kind":"slide","id":"sl/nvsxlm","slide":12,"title":"III. DETAILED DESIGN","textShapes":4}
+{"kind":"textbox","id":"sh/ixw3utgj","slide":12,"name":"chapter-12","text":"III. DETAILED DESIGN","textPreview":"III. DETAILED DESIGN","textChars":20,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/50nmp8fu","slide":12,"name":"title-12","text":"6. Data Model","textPreview":"6. Data Model","textChars":13,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/4zelw3yp","slide":12,"name":"rule-12","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/va5kjyxs","slide":12,"name":"foot-12","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/u9w3qtg7","slide":12,"name":"page-12","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/hwn2lofy","slide":12,"name":"df","bbox":[72,160,1136,475]}
+{"kind":"image","id":"im/t4bap8ve","slide":12,"name":"","bbox":[100,185,1080,420]}
+{"kind":"notes","id":"nt/nvsxlm","slide":12,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 17–18)"}
+{"kind":"slide","id":"sl/06hxln","slide":13,"title":"IV. TESTING","textShapes":18}
+{"kind":"textbox","id":"sh/y58ju5ov","slide":13,"name":"chapter-13","text":"IV. TESTING","textPreview":"IV. TESTING","textChars":11,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/l8ji5knm","slide":13,"name":"title-13","text":"Static checks are complete; runtime evidence remains explicit","textPreview":"Static checks are complete; runtime evidence remains explicit","textChars":61,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/k7a1wf61","slide":13,"name":"rule-13","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/bih0za5k","slide":13,"name":"foot-13","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/ah8jq5oz","slide":13,"name":"page-13","text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/xkzi10nq","slide":13,"name":"m1","bbox":[72,180,290,190]}
+{"kind":"textbox","id":"sh/wjq1sf65","slide":13,"name":"n1","text":"9","textPreview":"9","textChars":1,"textLines":1,"bbox":[100,205,234,78]}
+{"kind":"textbox","id":"sh/velkbu5o","slide":13,"name":"nt1","text":"PASS — STATIC","textPreview":"PASS — STATIC","textChars":13,"textLines":1,"bbox":[100,290,234,26]}
+{"kind":"shape","id":"sh/udcj2p43","slide":13,"name":"m2","bbox":[390,180,290,190]}
+{"kind":"textbox","id":"sh/gj6hw7ql","slide":13,"name":"n2","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[418,205,234,78]}
+{"kind":"textbox","id":"sh/hkfipc7q","slide":13,"name":"nt2","text":"PLAY MODE REQUIRED","textPreview":"PLAY MODE REQUIRED","textChars":18,"textLines":1,"bbox":[408,290,254,26]}
+{"kind":"shape","id":"sh/uhozux8f","slide":13,"name":"checks","bbox":[710,180,498,190]}
+{"kind":"textbox","id":"sh/fix0n2p0","slide":13,"name":"ch","text":"RUNTIME CHECKS","textPreview":"RUNTIME CHECKS","textChars":14,"textLines":1,"bbox":[745,205,400,28]}
+{"kind":"textbox","id":"sh/sf6hsnq9","slide":13,"name":"c1","text":"•  Player movement","textPreview":"•  Player movement","textChars":18,"textLines":1,"bbox":[745,250,400,40]}
+{"kind":"textbox","id":"sh/tgfils7u","slide":13,"name":"c2","text":"•  Enemy ground contact","textPreview":"•  Enemy ground contact","textChars":23,"textLines":1,"bbox":[745,292,400,40]}
+{"kind":"textbox","id":"sh/6t4zqx83","slide":13,"name":"c3","text":"•  Pause and resume","textPreview":"•  Pause and resume","textChars":19,"textLines":1,"bbox":[745,334,400,40]}
+{"kind":"textbox","id":"sh/7ux0jipo","slide":13,"name":"acc","text":"ACCEPTANCE CRITERIA","textPreview":"ACCEPTANCE CRITERIA","textChars":19,"textLines":1,"bbox":[72,430,350,28]}
+{"kind":"textbox","id":"sh/krmhonqd","slide":13,"name":"ac-0","text":"•  No compile errors","textPreview":"•  No compile errors","textChars":20,"textLines":1,"bbox":[72,475,500,40]}
+{"kind":"textbox","id":"sh/5svyhs7y","slide":13,"name":"ac-1","text":"•  No spawn-time visual flashing","textPreview":"•  No spawn-time visual flashing","textChars":32,"textLines":1,"bbox":[622,475,500,40]}
+{"kind":"textbox","id":"sh/l8nyl4zm","slide":13,"name":"ac-2","text":"•  DogMutant speed stays synchronized","textPreview":"•  DogMutant speed stays synchronized","textChars":37,"textLines":1,"bbox":[72,523,500,40]}
+{"kind":"textbox","id":"sh/0nexcji1","slide":13,"name":"ac-3","text":"•  Settings sliders remain clamped","textPreview":"•  Settings sliders remain clamped","textChars":34,"textLines":1,"bbox":[622,523,500,40]}
+{"kind":"textbox","id":"sh/zm5wjehg","slide":13,"name":"ac-4","text":"•  Final wave reaches a terminal state","textPreview":"•  Final wave reaches a terminal state","textChars":38,"textLines":1,"bbox":[72,571,500,40]}
+{"kind":"notes","id":"nt/06hxln","slide":13,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 19)"}
+{"kind":"slide","id":"sl/93hnsl","slide":14,"title":"V. TASK ASSIGNMENT","textShapes":13}
+{"kind":"textbox","id":"sh/54v6l0nm","slide":14,"name":"chapter-14","text":"V. TASK ASSIGNMENT","textPreview":"V. TASK ASSIGNMENT","textChars":18,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/i147a54v","slide":14,"name":"title-14","text":"The work is divided across core systems, UI, and delivery","textPreview":"The work is divided across core systems, UI, and delivery","textChars":57,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/j2doja5g","slide":14,"name":"rule-14","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/s7mpgfmx","slide":14,"name":"foot-14","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/t8f6pk3i","slide":14,"name":"page-14","text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/6547e547","slide":14,"name":"vt","bbox":[72,180,520,340]}
+{"kind":"textbox","id":"sh/r6donals","slide":14,"name":"vtn","text":"VU VIET TIEN","textPreview":"VU VIET TIEN","textChars":12,"textLines":1,"bbox":[105,215,450,42]}
+{"kind":"textbox","id":"sh/0v6pkzm9","slide":14,"name":"v1","text":"•  Requirement analysis and architecture design","textPreview":"•  Requirement analysis and architecture design","textChars":47,"textLines":1,"bbox":[105,290,430,40]}
+{"kind":"textbox","id":"sh/1wfqtk3u","slide":14,"name":"v2","text":"•  OOP/ECS gameplay, waves, combat, and XP","textPreview":"•  OOP/ECS gameplay, waves, combat, and XP","textChars":42,"textLines":1,"bbox":[105,345,430,40]}
+{"kind":"textbox","id":"sh/xkv61kzm","slide":14,"name":"v3","text":"•  Testing, bug fixing, and report writing","textPreview":"•  Testing, bug fixing, and report writing","textChars":42,"textLines":1,"bbox":[105,400,430,40]}
+{"kind":"shape","id":"sh/wj2p8zi1","slide":14,"name":"ct","bbox":[616,180,592,340]}
+{"kind":"textbox","id":"sh/bitozuhg","slide":14,"name":"ctn","text":"CHU VAN THAI","textPreview":"CHU VAN THAI","textChars":12,"textLines":1,"bbox":[650,215,520,42]}
+{"kind":"textbox","id":"sh/ahk76p0v","slide":14,"name":"t1","text":"•  OOP/ECS implementation support","textPreview":"•  OOP/ECS implementation support","textChars":33,"textLines":1,"bbox":[650,290,510,40]}
+{"kind":"textbox","id":"sh/58vq54zi","slide":14,"name":"t2","text":"•  Main Menu, HUD, and Settings Canvas","textPreview":"•  Main Menu, HUD, and Settings Canvas","textChars":38,"textLines":1,"bbox":[650,345,510,40]}
+{"kind":"textbox","id":"sh/k7mpczyd","slide":14,"name":"t3","text":"•  Enemy and DogMutant visuals / animation","textPreview":"•  Enemy and DogMutant visuals / animation","textChars":42,"textLines":1,"bbox":[650,400,510,40]}
+{"kind":"textbox","id":"sh/jmdo3uhs","slide":14,"name":"pending","text":"Final Play Mode regression remains pending before delivery.","textPreview":"Final Play Mode regression remains pending before delivery.","textChars":59,"textLines":1,"bbox":[230,565,820,44]}
+{"kind":"notes","id":"nt/93hnsl","slide":14,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 20)"}
+{"kind":"slide","id":"sl/o8ev32","slide":15,"title":"VI. INSTALLATION INSTRUCTIONS","textShapes":20}
+{"kind":"textbox","id":"sh/5wjmdofq","slide":15,"name":"chapter-15","text":"VI. INSTALLATION INSTRUCTIONS","textPreview":"VI. INSTALLATION INSTRUCTIONS","textChars":29,"textLines":1,"bbox":[72,34,600,24]}
+{"kind":"textbox","id":"sh/itsnitwf","slide":15,"name":"title-15","text":"Build and verify the project on Android","textPreview":"Build and verify the project on Android","textChars":39,"textLines":1,"bbox":[72,70,1136,56]}
+{"kind":"shape","id":"sh/ju14byx0","slide":15,"name":"rule-15","bbox":[72,137,82,4]}
+{"kind":"textbox","id":"sh/wra5gje9","slide":15,"name":"foot-15","text":"GD1305  •  THE MOONSTONE","textPreview":"GD1305  •  THE MOONSTONE","textChars":24,"textLines":1,"bbox":[72,680,360,18]}
+{"kind":"textbox","id":"sh/xsjm9ofu","slide":15,"name":"page-15","text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1160,680,48,18]}
+{"kind":"shape","id":"sh/a5sne9w3","slide":15,"name":"inst-0","bbox":[72,180,310,370]}
+{"kind":"textbox","id":"sh/vq147exo","slide":15,"name":"ih-0","text":"1. PREREQUISITES","textPreview":"1. PREREQUISITES","textChars":16,"textLines":1,"bbox":[96,215,262,42]}
+{"kind":"textbox","id":"sh/gnu5s3ed","slide":15,"name":"ib-0-0","text":"•  Unity Hub and Editor 6000.3.10f1","textPreview":"•  Unity Hub and Editor 6000.3.10f1","textChars":35,"textLines":1,"bbox":[96,285,262,40]}
+{"kind":"textbox","id":"sh/hon6l8fy","slide":15,"name":"ib-0-1","text":"•  Android Build Support","textPreview":"•  Android Build Support","textChars":24,"textLines":1,"bbox":[96,343,262,40]}
+{"kind":"textbox","id":"sh/lknadsny","slide":15,"name":"ib-0-2","text":"•  SDK, NDK, OpenJDK","textPreview":"•  SDK, NDK, OpenJDK","textChars":20,"textLines":1,"bbox":[96,401,262,40]}
+{"kind":"textbox","id":"sh/kjetknmd","slide":15,"name":"ib-0-3","text":"•  Android device or emulator","textPreview":"•  Android device or emulator","textChars":29,"textLines":1,"bbox":[96,459,262,40]}
+{"kind":"shape","id":"sh/zilsb258","slide":15,"name":"inst-1","bbox":[420,180,310,370]}
+{"kind":"textbox","id":"sh/yxcbix4n","slide":15,"name":"ih-1","text":"2. OPEN & RUN","textPreview":"2. OPEN & RUN","textChars":13,"textLines":1,"bbox":[444,215,262,42]}
+{"kind":"textbox","id":"sh/xw3a9sn2","slide":15,"name":"ib-1-0","text":"•  Add project from disk","textPreview":"•  Add project from disk","textChars":24,"textLines":1,"bbox":[444,285,262,40]}
+{"kind":"textbox","id":"sh/cvutgn6h","slide":15,"name":"ib-1-1","text":"•  Restore packages","textPreview":"•  Restore packages","textChars":19,"textLines":1,"bbox":[444,343,262,40]}
+{"kind":"textbox","id":"sh/buls7i5w","slide":15,"name":"ib-1-2","text":"•  Open MainMenu.unity","textPreview":"•  Open MainMenu.unity","textChars":22,"textLines":1,"bbox":[444,401,262,40]}
+{"kind":"textbox","id":"sh/atcredob","slide":15,"name":"ib-1-3","text":"•  Press Play and verify systems","textPreview":"•  Press Play and verify systems","textChars":32,"textLines":1,"bbox":[444,459,262,40]}
+{"kind":"shape","id":"sh/hs7alcn6","slide":15,"name":"inst-2","bbox":[768,180,310,370]}
+{"kind":"textbox","id":"sh/wrytsrml","slide":15,"name":"ih-2","text":"3. BUILD AND TEST","textPreview":"3. BUILD AND TEST","textChars":17,"textLines":1,"bbox":[792,215,262,42]}
+{"kind":"textbox","id":"sh/g7ql4fy9","slide":15,"name":"ib-2-0","text":"•  Switch platform to Android","textPreview":"•  Switch platform to Android","textChars":29,"textLines":1,"bbox":[792,285,262,40]}
+{"kind":"textbox","id":"sh/18zmdkzu","slide":15,"name":"ib-2-1","text":"•  Add MainMenu and GameScene","textPreview":"•  Add MainMenu and GameScene","textChars":29,"textLines":1,"bbox":[792,343,262,40]}
+{"kind":"textbox","id":"sh/e5o32pg3","slide":15,"name":"ib-2-2","text":"•  Configure Player Settings","textPreview":"•  Configure Player Settings","textChars":28,"textLines":1,"bbox":[792,401,262,40]}
+{"kind":"textbox","id":"sh/f6x4baho","slide":15,"name":"ib-2-3","text":"•  Build APK/AAB or Build and Run","textPreview":"•  Build APK/AAB or Build and Run","textChars":33,"textLines":1,"bbox":[792,459,262,40]}
+{"kind":"textbox","id":"sh/s36l0fyx","slide":15,"name":"verify","text":"Device verification must cover UI scaling, touch input, audio, wave spawning, and game states.","textPreview":"Device verification must cover UI scaling, touch input, audio, wave spawning, and game states.","textChars":94,"textLines":1,"bbox":[160,585,960,40]}
+{"kind":"notes","id":"nt/o8ev32","slide":15,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 21)"}
+{"kind":"slide","id":"sl/vcvxuh","slide":16,"title":"VII. CONCLUSION AND FUTURE DEVELOPMENT","textShapes":12}
+{"kind":"textbox","id":"sh/y50bm543","slide":16,"name":"ck","text":"VII. CONCLUSION AND FUTURE DEVELOPMENT","textPreview":"VII. CONCLUSION AND FUTURE DEVELOPMENT","textChars":38,"textLines":1,"bbox":[72,55,700,24]}
+{"kind":"textbox","id":"sh/l8bahknu","slide":16,"name":"ctitle","text":"The complete survival loop is in place","textPreview":"The complete survival loop is in place","textChars":38,"textLines":1,"bbox":[72,120,800,64]}
+{"kind":"textbox","id":"sh/k72tofm9","slide":16,"name":"cbody","text":"Stage entry, wave spawning, automatic combat, XP and upgrades, and Win / Game Over now operate within a hybrid Unity architecture.","textPreview":"Stage entry, wave spawning, automatic combat, XP and upgrades, and Win / Game Over now operate within a hybrid Unity architecture.","textChars":130,"textLines":1,"bbox":[72,210,780,78]}
+{"kind":"shape","id":"sh/7atsju5k","slide":16,"name":"cr","bbox":[72,315,90,5]}
+{"kind":"textbox","id":"sh/m9kbqp4f","slide":16,"name":"fh-0","text":"BOSSES","textPreview":"BOSSES","textChars":6,"textLines":1,"bbox":[72,360,190,28]}
+{"kind":"textbox","id":"sh/9cbal4nq","slide":16,"name":"fb-0","text":"New archetypes and explicit attack states","textPreview":"New archetypes and explicit attack states","textChars":41,"textLines":1,"bbox":[72,398,480,38]}
+{"kind":"textbox","id":"sh/8b2tszm5","slide":16,"name":"fh-1","text":"PERFORMANCE","textPreview":"PERFORMANCE","textChars":11,"textLines":1,"bbox":[632,360,190,28]}
+{"kind":"textbox","id":"sh/neps7q5g","slide":16,"name":"fb-1","text":"Pooling, profiling, and GC reduction","textPreview":"Pooling, profiling, and GC reduction","textChars":36,"textLines":1,"bbox":[632,398,480,38]}
+{"kind":"textbox","id":"sh/2dgrelov","slide":16,"name":"fh-2","text":"DEPTH","textPreview":"DEPTH","textChars":5,"textLines":1,"bbox":[72,480,190,28]}
+{"kind":"textbox","id":"sh/cjmhkvyt","slide":16,"name":"fb-2","text":"More stages, weapon synergies, and progression","textPreview":"More stages, weapon synergies, and progression","textChars":46,"textLines":1,"bbox":[72,518,480,38]}
+{"kind":"textbox","id":"sh/d4vit0ze","slide":16,"name":"fh-3","text":"QUALITY","textPreview":"QUALITY","textChars":7,"textLines":1,"bbox":[632,480,190,28]}
+{"kind":"textbox","id":"sh/qh4zilgn","slide":16,"name":"fb-3","text":"Automated Play Mode and accessibility tests","textPreview":"Automated Play Mode and accessibility tests","textChars":43,"textLines":1,"bbox":[632,518,480,38]}
+{"kind":"textbox","id":"sh/bid0rqh8","slide":16,"name":"cf","text":"THE MOONSTONE  •  GD1305 CAPSTONE PROJECT","textPreview":"THE MOONSTONE  •  GD1305 CAPSTONE PROJECT","textChars":41,"textLines":1,"bbox":[72,665,700,20]}
+{"kind":"notes","id":"nt/vcvxuh","slide":16,"text":"[Sources]\n- C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf (pages 21–22)"}

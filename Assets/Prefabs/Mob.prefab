@@ -45,10 +45,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682824551111190682}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4fe10dfa2347d09ad9d66603a4aa29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 30
+  Health: 20
   targetObjectType: 1
   KnockbackResistance: 0
 --- !u!114 &2803176911604712673
@@ -144,8 +144,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetObjectType: 1
   Damage: 5
-  HitDistanceSq: 2
   AttackInterval: 1
+  AttackImpactNormalizedTime: 0.45
+  HitDistanceSq: 2
 --- !u!114 &3138708986221907955
 MonoBehaviour:
   m_ObjectHideFlags: 0

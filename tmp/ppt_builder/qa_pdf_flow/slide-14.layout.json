@@ -1,0 +1,959 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/93hnsl",
+    "id": "93hnsl",
+    "slide": 14,
+    "layoutId": "bfabf164-4c1d-46f7-9a63-ac8892c7e9c2",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F6F8FB",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "bfabf164-4c1d-46f7-9a63-ac8892c7e9c2",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/54v6l0nm",
+      "id": "1",
+      "name": "chapter-14",
+      "bbox": [
+        72,
+        34,
+        600,
+        24
+      ],
+      "geometry": "rect",
+      "text": "V. TASK ASSIGNMENT",
+      "textPreview": "V. TASK ASSIGNMENT",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "V. TASK ASSIGNMENT"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "V. TASK ASSIGNMENT",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "V. TASK ASSIGNMENT",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i147a54v",
+      "id": "2",
+      "name": "title-14",
+      "bbox": [
+        72,
+        70,
+        1136,
+        56
+      ],
+      "geometry": "rect",
+      "text": "The work is divided across core systems, UI, and delivery",
+      "textPreview": "The work is divided across core systems, UI, and delivery",
+      "resolvedFontSize": 36,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 36,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The work is divided across core systems, UI, and delivery"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The work is divided across core systems, UI, and delivery",
+          "resolvedTextStyle": {
+            "fontSize": 36,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The work is divided across core systems, UI, and delivery",
+              "fontSize": 36,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j2doja5g",
+      "id": "3",
+      "name": "rule-14",
+      "bbox": [
+        72,
+        137,
+        82,
+        4
+      ],
+      "geometry": "rect",
+      "fillColor": "#E3B341",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s7mpgfmx",
+      "id": "4",
+      "name": "foot-14",
+      "bbox": [
+        72,
+        680,
+        360,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GD1305  •  THE MOONSTONE",
+      "textPreview": "GD1305  •  THE MOONSTONE",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GD1305  •  THE MOONSTONE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GD1305  •  THE MOONSTONE",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GD1305  •  THE MOONSTONE",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t8f6pk3i",
+      "id": "5",
+      "name": "page-14",
+      "bbox": [
+        1160,
+        680,
+        48,
+        18
+      ],
+      "geometry": "rect",
+      "text": "14",
+      "textPreview": "14",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "14"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "14",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "14",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6547e547",
+      "id": "6",
+      "name": "vt",
+      "bbox": [
+        72,
+        180,
+        520,
+        340
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EAF2FB",
+      "lineColor": "#D7DFEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r6donals",
+      "id": "7",
+      "name": "vtn",
+      "bbox": [
+        105,
+        215,
+        450,
+        42
+      ],
+      "geometry": "rect",
+      "text": "VU VIET TIEN",
+      "textPreview": "VU VIET TIEN",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "VU VIET TIEN"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "VU VIET TIEN",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "VU VIET TIEN",
+              "fontSize": 25,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0v6pkzm9",
+      "id": "8",
+      "name": "v1",
+      "bbox": [
+        105,
+        290,
+        430,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Requirement analysis and architecture design",
+      "textPreview": "•  Requirement analysis and architecture design",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Requirement analysis and architecture design"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Requirement analysis and architecture design",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Requirement analysis and architecture design",
+              "fontSize": 18,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1wfqtk3u",
+      "id": "9",
+      "name": "v2",
+      "bbox": [
+        105,
+        345,
+        430,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  OOP/ECS gameplay, waves, combat, and XP",
+      "textPreview": "•  OOP/ECS gameplay, waves, combat, and XP",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  OOP/ECS gameplay, waves, combat, and XP"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  OOP/ECS gameplay, waves, combat, and XP",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  OOP/ECS gameplay, waves, combat, and XP",
+              "fontSize": 18,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xkv61kzm",
+      "id": "10",
+      "name": "v3",
+      "bbox": [
+        105,
+        400,
+        430,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Testing, bug fixing, and report writing",
+      "textPreview": "•  Testing, bug fixing, and report writing",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Testing, bug fixing, and report writing"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Testing, bug fixing, and report writing",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Testing, bug fixing, and report writing",
+              "fontSize": 18,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wj2p8zi1",
+      "id": "11",
+      "name": "ct",
+      "bbox": [
+        616,
+        180,
+        592,
+        340
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF5D8",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bitozuhg",
+      "id": "12",
+      "name": "ctn",
+      "bbox": [
+        650,
+        215,
+        520,
+        42
+      ],
+      "geometry": "rect",
+      "text": "CHU VAN THAI",
+      "textPreview": "CHU VAN THAI",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CHU VAN THAI"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CHU VAN THAI",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CHU VAN THAI",
+              "fontSize": 25,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ahk76p0v",
+      "id": "13",
+      "name": "t1",
+      "bbox": [
+        650,
+        290,
+        510,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  OOP/ECS implementation support",
+      "textPreview": "•  OOP/ECS implementation support",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  OOP/ECS implementation support"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  OOP/ECS implementation support",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  OOP/ECS implementation support",
+              "fontSize": 18,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/58vq54zi",
+      "id": "14",
+      "name": "t2",
+      "bbox": [
+        650,
+        345,
+        510,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Main Menu, HUD, and Settings Canvas",
+      "textPreview": "•  Main Menu, HUD, and Settings Canvas",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Main Menu, HUD, and Settings Canvas"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Main Menu, HUD, and Settings Canvas",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Main Menu, HUD, and Settings Canvas",
+              "fontSize": 18,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/k7mpczyd",
+      "id": "15",
+      "name": "t3",
+      "bbox": [
+        650,
+        400,
+        510,
+        40
+      ],
+      "geometry": "rect",
+      "text": "•  Enemy and DogMutant visuals / animation",
+      "textPreview": "•  Enemy and DogMutant visuals / animation",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "•  Enemy and DogMutant visuals / animation"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "•  Enemy and DogMutant visuals / animation",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "•  Enemy and DogMutant visuals / animation",
+              "fontSize": 18,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jmdo3uhs",
+      "id": "16",
+      "name": "pending",
+      "bbox": [
+        230,
+        565,
+        820,
+        44
+      ],
+      "geometry": "rect",
+      "text": "Final Play Mode regression remains pending before delivery.",
+      "textPreview": "Final Play Mode regression remains pending before delivery.",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 21,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Final Play Mode regression remains pending before delivery."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Final Play Mode regression remains pending before delivery.",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#121827",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Final Play Mode regression remains pending before delivery.",
+              "fontSize": 21,
+              "color": "#121827",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

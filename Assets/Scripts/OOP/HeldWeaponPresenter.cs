@@ -40,6 +40,7 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         // while still following the animated hand position and rotation.
         CompensateInheritedScale();
 #if UNITY_EDITOR
+        SyncMuzzleFromPrefab();
         // In Play Mode, selecting the spawned weapon root turns its normal Transform
         // into a live pose editor. This must run before ApplyCurrentWeaponTransform,
         // otherwise the presenter's per-frame update would overwrite the gizmo edits.
@@ -54,6 +55,51 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
     }
 
 #if UNITY_EDITOR
+    private void SyncMuzzleFromPrefab()
+    {
+        if (!Application.isPlaying || m_CurrentConfig == null ||
+            m_CurrentConfig.HeldWeaponPrefab == null || WeaponVfxRuntime.CurrentMuzzle == null)
+            return;
+
+        Transform prefabMuzzle = FindMuzzle(m_CurrentConfig.HeldWeaponPrefab.transform);
+        if (prefabMuzzle == null) return;
+
+        Transform runtimeMuzzle = WeaponVfxRuntime.CurrentMuzzle;
+        CopyLocalTransform(prefabMuzzle, runtimeMuzzle);
+
+        WeaponVfxRuntime.CurrentMuzzleVfxSocket = SyncRuntimeSocket(
+            prefabMuzzle, runtimeMuzzle, "MuzzleVfxSocket",
+            WeaponVfxRuntime.CurrentMuzzleVfxSocket);
+        WeaponVfxRuntime.CurrentBulletSpawn = SyncRuntimeSocket(
+            prefabMuzzle, runtimeMuzzle, "BulletSpawn",
+            WeaponVfxRuntime.CurrentBulletSpawn);
+    }
+
+    private static Transform SyncRuntimeSocket(Transform prefabMuzzle, Transform runtimeMuzzle,
+        string socketName, Transform currentSocket)
+    {
+        Transform prefabSocket = FindNamedChild(prefabMuzzle, socketName);
+        if (prefabSocket == null) return runtimeMuzzle;
+
+        Transform runtimeSocket = currentSocket != null && currentSocket != runtimeMuzzle
+            ? currentSocket
+            : FindNamedChild(runtimeMuzzle, socketName);
+        if (runtimeSocket == null)
+        {
+            runtimeSocket = new GameObject(socketName).transform;
+            runtimeSocket.SetParent(runtimeMuzzle, false);
+        }
+        CopyLocalTransform(prefabSocket, runtimeSocket);
+        return runtimeSocket;
+    }
+
+    private static void CopyLocalTransform(Transform source, Transform destination)
+    {
+        destination.localPosition = source.localPosition;
+        destination.localRotation = source.localRotation;
+        destination.localScale = source.localScale;
+    }
+
     private bool CaptureSelectedWeaponTransform()
     {
         if (!Application.isPlaying || m_CurrentWeapon == null || m_CurrentConfig == null)
@@ -90,6 +136,8 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         m_CurrentWeapon = null;
         m_CurrentConfig = null;
         WeaponVfxRuntime.CurrentMuzzle = null;
+        WeaponVfxRuntime.CurrentMuzzleVfxSocket = null;
+        WeaponVfxRuntime.CurrentBulletSpawn = null;
 
         if (m_GunConfigs == null || index < 0 || index >= m_GunConfigs.Length)
             return;
@@ -105,6 +153,12 @@ public sealed class HeldWeaponPresenter : MonoBehaviour
         m_CurrentWeapon = Instantiate(config.HeldWeaponPrefab, m_Socket, false);
         ApplyCurrentWeaponTransform();
         WeaponVfxRuntime.CurrentMuzzle = FindMuzzle(m_CurrentWeapon.transform);
+        WeaponVfxRuntime.CurrentMuzzleVfxSocket =
+            FindNamedChild(m_CurrentWeapon.transform, "MuzzleVfxSocket") ??
+            WeaponVfxRuntime.CurrentMuzzle;
+        WeaponVfxRuntime.CurrentBulletSpawn =
+            FindNamedChild(m_CurrentWeapon.transform, "BulletSpawn") ??
+            WeaponVfxRuntime.CurrentMuzzle;
     }
 
     private void ApplyCurrentWeaponTransform()

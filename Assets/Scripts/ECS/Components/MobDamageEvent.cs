@@ -27,3 +27,9 @@ public struct MobDeathEvent : IComponentData
     public int XPReward;
     public int GoldReward;
 }
+
+public struct MobExplosionEvent : IComponentData
+{
+    public Unity.Mathematics.float3 Position;
+    public float Radius;
+}

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 public sealed class PlayerShadowEnforcer : MonoBehaviour
 {
+    private const string GroundShadowName = "Player Ground Shadow";
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Register()
     {
@@ -22,6 +24,7 @@ public sealed class PlayerShadowEnforcer : MonoBehaviour
 
     private void OnEnable()
     {
+        RemoveLegacyGroundShadow();
         ApplyShadows();
         StartCoroutine(ApplyAfterVisualSetup());
     }
@@ -43,9 +46,15 @@ public sealed class PlayerShadowEnforcer : MonoBehaviour
         {
             if (renderer is ParticleSystemRenderer or TrailRenderer or LineRenderer)
                 continue;
-
             renderer.shadowCastingMode = ShadowCastingMode.On;
             renderer.receiveShadows = true;
         }
+    }
+
+    private void RemoveLegacyGroundShadow()
+    {
+        Transform shadow = transform.Find(GroundShadowName);
+        if (shadow != null)
+            Destroy(shadow.gameObject);
     }
 }

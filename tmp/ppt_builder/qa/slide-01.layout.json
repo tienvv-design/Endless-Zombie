@@ -1,0 +1,589 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/54srrg",
+    "id": "54srrg",
+    "slide": 1,
+    "layoutId": "bf165d6e-76a8-4e32-861f-54f5375743c0",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "58268828-9583-446b-ae1e-ff4f5bc3cbce",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#08111F",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "bf165d6e-76a8-4e32-861f-54f5375743c0",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "58268828-9583-446b-ae1e-ff4f5bc3cbce",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "58268828-9583-446b-ae1e-ff4f5bc3cbce",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zq54bit4",
+      "id": "1",
+      "name": "accent-bar",
+      "bbox": [
+        0,
+        0,
+        18,
+        720
+      ],
+      "geometry": "rect",
+      "fillColor": "#E3B341",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/krel4nup",
+      "id": "2",
+      "name": "eyebrow",
+      "bbox": [
+        76,
+        66,
+        520,
+        28
+      ],
+      "geometry": "rect",
+      "text": "CAPSTONE PROJECT • GD1305",
+      "textPreview": "CAPSTONE PROJECT • GD1305",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#78D2D7",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CAPSTONE PROJECT • GD1305"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CAPSTONE PROJECT • GD1305",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#78D2D7",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CAPSTONE PROJECT • GD1305",
+              "fontSize": 16,
+              "color": "#78D2D7",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lsnmdsba",
+      "id": "3",
+      "name": "cover-title",
+      "bbox": [
+        76,
+        145,
+        650,
+        180
+      ],
+      "geometry": "rect",
+      "text": "ENDLESS\nZOMBIE",
+      "textPreview": "ENDLESS | ZOMBIE",
+      "resolvedFontSize": 64,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 64,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ENDLESS"
+          },
+          {
+            "index": 2,
+            "text": "ZOMBIE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ENDLESS",
+          "resolvedTextStyle": {
+            "fontSize": 64,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ENDLESS",
+              "fontSize": 64,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "ZOMBIE",
+          "resolvedTextStyle": {
+            "fontSize": 64,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ZOMBIE",
+              "fontSize": 64,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mtwn6xcv",
+      "id": "4",
+      "name": "subtitle",
+      "bbox": [
+        80,
+        350,
+        620,
+        50
+      ],
+      "geometry": "rect",
+      "text": "A hybrid ECS survival shooter built with Unity",
+      "textPreview": "A hybrid ECS survival shooter built with Unity",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#C7D6E8",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A hybrid ECS survival shooter built with Unity"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A hybrid ECS survival shooter built with Unity",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#C7D6E8",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A hybrid ECS survival shooter built with Unity",
+              "fontSize": 25,
+              "color": "#C7D6E8",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7up4f2tg",
+      "id": "5",
+      "name": "visual-field",
+      "bbox": [
+        790,
+        80,
+        390,
+        520
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#101E31",
+      "lineColor": "#274565",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8vy58nu1",
+      "id": "6",
+      "name": "visual-symbol",
+      "bbox": [
+        865,
+        170,
+        245,
+        150
+      ],
+      "geometry": "rect",
+      "text": "EZ",
+      "textPreview": "EZ",
+      "resolvedFontSize": 92,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 92,
+        "typeface": "+mn-lt",
+        "color": "#E3B341",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "EZ"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "EZ",
+          "resolvedTextStyle": {
+            "fontSize": 92,
+            "color": "#E3B341",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "EZ",
+              "fontSize": 92,
+              "color": "#E3B341",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9w7mhsbm",
+      "id": "7",
+      "name": "visual-copy",
+      "bbox": [
+        865,
+        355,
+        245,
+        140
+      ],
+      "geometry": "rect",
+      "text": "SURVIVE\nUPGRADE\nREPEAT",
+      "textPreview": "SURVIVE | UPGRADE | REPEAT",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "SURVIVE"
+          },
+          {
+            "index": 2,
+            "text": "UPGRADE"
+          },
+          {
+            "index": 3,
+            "text": "REPEAT"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "SURVIVE",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SURVIVE",
+              "fontSize": 25,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "UPGRADE",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "UPGRADE",
+              "fontSize": 25,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "REPEAT",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "REPEAT",
+              "fontSize": 25,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/uxgnaxsr",
+      "id": "8",
+      "name": "team",
+      "bbox": [
+        80,
+        570,
+        620,
+        66
+      ],
+      "geometry": "rect",
+      "text": "The MoonStone\nVu Viet Tien • Chu Van Thai",
+      "textPreview": "The MoonStone | Vu Viet Tien • Chu Van Thai",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#AFC1D8",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The MoonStone"
+          },
+          {
+            "index": 2,
+            "text": "Vu Viet Tien • Chu Van Thai"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The MoonStone",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#AFC1D8",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The MoonStone",
+              "fontSize": 18,
+              "color": "#AFC1D8",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "Vu Viet Tien • Chu Van Thai",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#AFC1D8",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Vu Viet Tien • Chu Van Thai",
+              "fontSize": 18,
+              "color": "#AFC1D8",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

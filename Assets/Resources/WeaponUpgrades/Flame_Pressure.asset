@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcc23d12815bea44b20c569032a740c, type: 3}
   m_Name: Flame_Pressure
   m_EditorClassIdentifier: Assembly-CSharp::GunPoolUpgrade
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: f728fab2489ecd14e8e8a99823598c45, type: 3}
   m_Description: A larger tank with faster pressure recovery.
   m_BaseCost: 5
   m_CostGrowth: 1.5

@@ -31,6 +31,8 @@ public static class StageMapRuntimeLoader
 {
     private const string GameSceneName = "GameScene";
     private const string CityMapName = "Stage Map - VERSION1";
+    private const string CityPrefabName = "Map_VERSION1";
+    private const string CityResourcePath = "StageMaps/Map_VERSION1";
     private const string WastelandMapName = "Stage Map - Wasteland";
     private const string WastelandPrefabName = "WastelandArena_Endless";
     private const string WastelandResourcePath = "StageMaps/WastelandArena_Endless";
@@ -50,15 +52,29 @@ public static class StageMapRuntimeLoader
 
     public static void ApplyMapForCurrentStage(Scene scene, bool movePlayerToSpawn = true)
     {
-        GameObject cityMap = FindSceneObject(scene, CityMapName);
+        GameObject cityMap = FindSceneObject(scene, CityMapName, CityPrefabName);
         GameObject fences = FindSceneObject(scene, "Fences");
         GameObject wasteland = FindSceneObject(scene, WastelandMapName, WastelandPrefabName);
 
         if (StageMapProgression.CurrentStage < 2)
         {
-            if (cityMap != null) cityMap.SetActive(true);
+            GameObject cityPrefab = Resources.Load<GameObject>(CityResourcePath);
+            if (cityPrefab == null)
+            {
+                Debug.LogError($"Stage 1 map is missing at Resources/{CityResourcePath}.");
+                if (wasteland != null) wasteland.SetActive(false);
+                return;
+            }
+
+            cityMap = cityMap != null ? cityMap : Object.Instantiate(cityPrefab);
+            cityMap.name = CityMapName;
+            if (cityMap.scene != scene)
+                SceneManager.MoveGameObjectToScene(cityMap, scene);
+            cityMap.SetActive(true);
             if (fences != null) fences.SetActive(true);
             if (wasteland != null) wasteland.SetActive(false);
+            if (movePlayerToSpawn)
+                MovePlayerToStageSpawn(cityMap.transform);
             return;
         }
 

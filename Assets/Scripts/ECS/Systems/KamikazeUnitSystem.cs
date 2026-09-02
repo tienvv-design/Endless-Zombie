@@ -1,6 +1,7 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 
 partial struct KamikazeUnitSystem : ISystem
@@ -19,14 +20,20 @@ partial struct KamikazeUnitSystem : ISystem
             .CreateCommandBuffer(state.WorldUnmanaged);
         
         float deltaTime = SystemAPI.Time.DeltaTime;
-        foreach (var (localTransform, kamikaze, entity)
-                 in SystemAPI.Query<RefRO<LocalTransform>, RefRW<KamikazeUnit>>().WithEntityAccess())
+        foreach (var (localTransform, physicsVelocity, kamikaze, entity)
+                 in SystemAPI.Query<RefRO<LocalTransform>, RefRW<PhysicsVelocity>, RefRW<KamikazeUnit>>()
+                     .WithEntityAccess())
         {
+            bool isExploder = SystemAPI.HasComponent<MobVisualVariant>(entity) &&
+                              SystemAPI.GetComponent<MobVisualVariant>(entity).Kind == MobVisualKind.ZombieFat;
+            if (isExploder && kamikaze.ValueRO.HasExploded != 0)
+                continue;
             // A spawning enemy is still inside its portal. Do not let the attack
             // state machine re-enable movement or start an attack until the
             // emergence component is removed.
             if (SystemAPI.HasComponent<SpawnEmergence>(entity))
             {
+                StopMovement(ref physicsVelocity.ValueRW);
                 if (SystemAPI.HasComponent<UnitMover>(entity) && SystemAPI.IsComponentEnabled<UnitMover>(entity))
                     SystemAPI.SetComponentEnabled<UnitMover>(entity, false);
                 kamikaze.ValueRW.AttackTimer = 0f;
@@ -56,6 +63,10 @@ partial struct KamikazeUnitSystem : ISystem
 
             if (distanceSq <= kamikaze.ValueRO.HitDistanceSq)
             {
+                // Disabling an enableable movement component does not clear the
+                // Rigidbody velocity written during the previous frame. Stop it
+                // explicitly or physics will carry the enemy through the Player.
+                StopMovement(ref physicsVelocity.ValueRW);
                 bool startedAttack = false;
                 if (SystemAPI.HasComponent<UnitMover>(entity) && SystemAPI.IsComponentEnabled<UnitMover>(entity))
                 {
@@ -75,7 +86,27 @@ partial struct KamikazeUnitSystem : ISystem
                         Id = target.ID,
                         Amount = kamikaze.ValueRO.Damage,
                     });
-                    kamikaze.ValueRW.AttackTimer = math.max(0.05f, kamikaze.ValueRO.AttackInterval);
+                    if (isExploder)
+                    {
+                        Entity explosionEvent = ecb.CreateEntity();
+                        ecb.AddComponent(explosionEvent, new MobExplosionEvent
+                        {
+                            Position = localTransform.ValueRO.Position,
+                            Radius = math.sqrt(kamikaze.ValueRO.HitDistanceSq),
+                        });
+                        Entity selfDamageEvent = ecb.CreateEntity();
+                        ecb.AddComponent(selfDamageEvent, new MobDamageTakenEvent
+                        {
+                            Id = entity.Index,
+                            Entity = entity,
+                            Amount = int.MaxValue,
+                        });
+                        kamikaze.ValueRW.HasExploded = 1;
+                        if (SystemAPI.HasComponent<UnitMover>(entity))
+                            SystemAPI.SetComponentEnabled<UnitMover>(entity, false);
+                    }
+                    else
+                        kamikaze.ValueRW.AttackTimer = math.max(0.05f, kamikaze.ValueRO.AttackInterval);
                 }
             }
             else
@@ -86,5 +117,11 @@ partial struct KamikazeUnitSystem : ISystem
             }
             
         }
+    }
+
+    private static void StopMovement(ref PhysicsVelocity velocity)
+    {
+        velocity.Linear = float3.zero;
+        velocity.Angular = float3.zero;
     }
 }

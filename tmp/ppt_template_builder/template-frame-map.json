@@ -1,0 +1,27 @@
+{
+  "outputSlides": [
+    {"outputSlide":1,"sourceSlide":1,"narrativeRole":"opening title","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/u5ojqpon","sh/kbmh0v25"]}]},
+    {"outputSlide":2,"sourceSlide":2,"narrativeRole":"presentation objectives","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/mtgn29sf","sh/7up4vet0","sh/wzi583ah"]}]},
+    {"outputSlide":3,"sourceSlide":3,"narrativeRole":"project introduction overview","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/r6xcjq5o","sh/q5oval43","sh/d8zul0nu"]},{"action":"replace","sourceElementId":"im/pwred0j6"}]},
+    {"outputSlide":4,"sourceSlide":4,"narrativeRole":"core gameplay explanation","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/36xw7m5c","sh/i5ovyhor","sh/h4ve5cn6"]}]},
+    {"outputSlide":5,"sourceSlide":5,"narrativeRole":"development tools","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/zm98nehc","sh/y10ru9gr","sh/9sbatoze"]},{"action":"replace","sourceElementIds":["tb/5c7mxgfe","im/yxoz2t83"]}]},
+    {"outputSlide":6,"sourceSlide":6,"narrativeRole":"system requirements overview","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/rixw3ato","sh/qhovu5s3","sh/dkfe50be"]}]},
+    {"outputSlide":7,"sourceSlide":7,"narrativeRole":"use case diagram","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/xwf65ori","sh/wv65c3qx","sh/m1k36pov"]},{"action":"replace","sourceElementId":"im/ep43mlon"}]},
+    {"outputSlide":8,"sourceSlide":8,"narrativeRole":"activity diagram","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/lgjm5wfe","sh/kfa5cry9","sh/7i147mxk"]},{"action":"replace","sourceElementId":"im/rml8bmlk"}]},
+    {"outputSlide":9,"sourceSlide":9,"narrativeRole":"menu user interface","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/ax87mh4b","sh/byh8fm5w","sh/cjqpormh"]},{"action":"replace","sourceElementIds":["im/k3etwfep","im/vylcjaxs"]}]},
+    {"outputSlide":10,"sourceSlide":10,"narrativeRole":"in game user interface","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/2183i1sj","sh/n2h4r694","sh/o3qlkbap"]},{"action":"replace","sourceElementIds":["im/0ry1snud","im/jm9kvmdc"]}]},
+    {"outputSlide":11,"sourceSlide":11,"narrativeRole":"class and component design","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/ylofmxsn","sh/zmxwf29s","sh/0n6xonad"]},{"action":"replace","sourceElementId":"im/cv6t8ryx"}]},
+    {"outputSlide":12,"sourceSlide":12,"narrativeRole":"hybrid architecture diagram","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/e9sjyxkv","sh/zu10r21g","sh/0va10721"]},{"action":"replace","sourceElementId":"im/kfqt8nq1"}]},
+    {"outputSlide":13,"sourceSlide":13,"narrativeRole":"gameplay sequence diagram","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/t0f2tgbe","sh/sz6l0va9","sh/ryxkrqto"]},{"action":"replace","sourceElementId":"im/3qpofuhc"}]},
+    {"outputSlide":14,"sourceSlide":14,"narrativeRole":"enemy wave sequence focus","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/6hsvyp4z","sh/7ilw7alk","sh/8jud0fmp"]},{"action":"replace","sourceElementId":"im/grypsbq1"}]},
+    {"outputSlide":15,"sourceSlide":15,"narrativeRole":"combat and reward sequence focus","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/21s3alo7","sh/n2l4jqps","sh/onulcv6d"]},{"action":"replace","sourceElementId":"im/8fq5ofy9"}]},
+    {"outputSlide":16,"sourceSlide":16,"narrativeRole":"data model overview","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/nqxk7a98","sh/mpoje5s3","sh/9sz29kre"]},{"action":"replace","sourceElementId":"im/10ry50vq"}]},
+    {"outputSlide":17,"sourceSlide":17,"narrativeRole":"data model details","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/ax0budgn","sh/by9s3ih8","sh/wz2twnyt","sh/t8ne10n6"]},{"action":"replace","sourceElementId":"im/crydcjid"}]},
+    {"outputSlide":18,"sourceSlide":18,"narrativeRole":"test plan evidence","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/6tsjahoz","sh/gzulgr61"]},{"action":"replace","sourceElementIds":["im/4f6xcvel","im/jexg3qxg"]}]},
+    {"outputSlide":19,"sourceSlide":19,"narrativeRole":"test results evidence","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/v2l0ru9g","sh/t03ipkra"]},{"action":"replace","sourceElementIds":["im/tw7axsbu","im/6twrmds3"]}]},
+    {"outputSlide":20,"sourceSlide":20,"narrativeRole":"installation instructions","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","sourceElementIds":["sh/9gr2dozm","sh/8fy1kji1","sh/7epkbehg"]},{"action":"replace","sourceElementId":"im/nato3exs"}]},
+    {"outputSlide":21,"sourceSlide":21,"narrativeRole":"preserve-only thank you closing","reuseMode":"duplicate-slide","editTargets":[]},
+    {"outputSlide":22,"sourceSlide":22,"narrativeRole":"preserve-only questions closing","reuseMode":"duplicate-slide","editTargets":[]}
+  ],
+  "omittedSourceSlides": []
+}

@@ -1,0 +1,1103 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/zyxsni5k",
+    "id": "zyxsni5k",
+    "slide": 20,
+    "layoutId": "/ppt/slideLayouts/slideLayout2.xml",
+    "layoutName": "OBJECT",
+    "layoutType": "obj",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Office",
+    "colors": {
+      "accent1": "#4472C4",
+      "accent2": "#ED7D31",
+      "accent3": "#A5A5A5",
+      "accent4": "#FFC000",
+      "accent5": "#5B9BD5",
+      "accent6": "#70AD47",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#44546A",
+      "lt2": "#E7E6E6",
+      "hlink": "#0563C1",
+      "folHlink": "#954F72"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Calibri",
+      "Helvetica Neue"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout2.xml",
+      "name": "OBJECT",
+      "type": "obj",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/23",
+          "id": "23",
+          "name": "Google Shape;23;p18",
+          "bbox": [
+            88,
+            27.64,
+            1104,
+            69.67
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/24",
+          "id": "24",
+          "name": "Google Shape;24;p18",
+          "bbox": [
+            88,
+            112.76,
+            1104,
+            538.42
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/25",
+          "id": "25",
+          "name": "Google Shape;25;p18",
+          "bbox": [
+            1049.9,
+            667.33,
+            142.1,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "resolvedTextStyle": {
+                "alignment": "right"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›",
+                  "alignment": "right"
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/26",
+          "id": "26",
+          "name": "Google Shape;26;p18",
+          "bbox": [
+            325.73,
+            681.23,
+            628.54,
+            38.77
+          ],
+          "geometry": "rect",
+          "text": "Team MoonStone – Legend From Below",
+          "textPreview": "Team MoonStone – Legend From Below",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Team MoonStone – Legend From Below",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Team MoonStone",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                },
+                {
+                  "index": 2,
+                  "text": " – ",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                },
+                {
+                  "index": 3,
+                  "text": "Legend From Below",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/16",
+          "id": "16",
+          "name": "Google Shape;10;p16",
+          "bbox": [
+            -1.82,
+            36.25,
+            1280,
+            49.92
+          ],
+          "contentType": "image/png",
+          "imageCrop": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          "asset": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 1828
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 1828
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/11",
+          "id": "11",
+          "name": "Google Shape;11;p16",
+          "bbox": [
+            88,
+            26.77,
+            1104,
+            71.17
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/12",
+          "id": "12",
+          "name": "Google Shape;12;p16",
+          "bbox": [
+            88,
+            110.85,
+            1104,
+            539.81
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/13",
+          "id": "13",
+          "name": "Google Shape;13;p16",
+          "bbox": [
+            88,
+            667.33,
+            148.19,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/14",
+          "id": "14",
+          "name": "Google Shape;14;p16",
+          "bbox": [
+            248.38,
+            667.33,
+            786.29,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/15",
+          "id": "15",
+          "name": "Google Shape;15;p16",
+          "bbox": [
+            1048.38,
+            667.33,
+            143.62,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "resolvedTextStyle": {
+                "alignment": "right"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›",
+                  "alignment": "right"
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        },
+        {
+          "order": 7,
+          "kind": "image",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/17",
+          "id": "17",
+          "name": "Picture 2",
+          "bbox": [
+            968.52,
+            36.25,
+            302.36,
+            45.35
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 17915
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 17915
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9gr2dozm",
+      "id": "184",
+      "name": "Google Shape;184;p13",
+      "bbox": [
+        17.12,
+        27.64,
+        1243.57,
+        69.67
+      ],
+      "geometry": "rect",
+      "text": "V. Installation Instructions",
+      "textPreview": "V. Installation Instructions",
+      "resolvedFontSize": 49.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 49.33,
+        "typeface": "Helvetica Neue",
+        "color": "lt1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "V. Installation Instructions"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "V. Installation Instructions",
+          "runs": [
+            {
+              "index": 1,
+              "text": "V. ",
+              "fontSize": 42.67
+            },
+            {
+              "index": 2,
+              "text": "Installation Instructions",
+              "fontSize": 42.67
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 90000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8fy1kji1",
+      "id": "185",
+      "name": "Google Shape;185;p13",
+      "bbox": [
+        17.4,
+        112.76,
+        770.37,
+        568.1
+      ],
+      "geometry": "rect",
+      "text": "PREREQUISITES\n\tUnity Hub – Download\n\tUnity Editor 6000.0.58f or later (LTS)\n\tGit (Optional, for version control)\n\nINSTALLATION STEPS\n       Step 1: Clone or Download Project\n\tGit clone https://github.com/Vutien1406/Assignment/settings\n\tOr Download ZIP : \nStep 2: Open in Unity Hub\n\tOpen Unity Hub\n\tClick \"Add\" → Select project folder\n\tChoose Unity 6000.0.58f\n\tClick \"Open\"\nStep 3: Build and Run\n\tPlatform: PC\n\tTarget: Windows\n\tClick Build → Choose folder\n\tRun .exe\n",
+      "textPreview": "PREREQUISITES | \tUnity Hub – Download | \tUnity Editor 6000.0.58f or later (LTS) | \tGit (Optional, for version control) |  | INSTALLATION ...",
+      "resolvedFontSize": 20.53,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 37.33,
+        "typeface": "Helvetica Neue",
+        "color": "#002060",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.55,
+        "autoFitLineSpaceReduction": 20000,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 39,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          },
+          {
+            "index": 2,
+            "text": "• PREREQUISITES"
+          },
+          {
+            "index": 3,
+            "text": ""
+          },
+          {
+            "index": 4,
+            "text": "Unity Hub – Download"
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": "Unity Editor 6000.0.58f or later (LTS)"
+          },
+          {
+            "index": 7,
+            "text": ""
+          },
+          {
+            "index": 8,
+            "text": "Git (Optional, for version control)"
+          },
+          {
+            "index": 9,
+            "text": ""
+          },
+          {
+            "index": 10,
+            "text": ""
+          },
+          {
+            "index": 11,
+            "text": ""
+          },
+          {
+            "index": 12,
+            "text": "• INSTALLATION STEPS"
+          },
+          {
+            "index": 13,
+            "text": ""
+          },
+          {
+            "index": 14,
+            "text": "       Step 1: Clone or Download Project"
+          },
+          {
+            "index": 15,
+            "text": ""
+          },
+          {
+            "index": 16,
+            "text": "Git clone https://github.com/Vutien1406/Assignment/settings"
+          },
+          {
+            "index": 17,
+            "text": ""
+          },
+          {
+            "index": 18,
+            "text": "Or Download ZIP :"
+          },
+          {
+            "index": 19,
+            "text": ""
+          },
+          {
+            "index": 20,
+            "text": "Step 2: Open in Unity Hub"
+          },
+          {
+            "index": 21,
+            "text": ""
+          },
+          {
+            "index": 22,
+            "text": "Open Unity Hub"
+          },
+          {
+            "index": 23,
+            "text": ""
+          },
+          {
+            "index": 24,
+            "text": "Click \"Add\" → Select project folder"
+          },
+          {
+            "index": 25,
+            "text": ""
+          },
+          {
+            "index": 26,
+            "text": "Choose Unity 6000.0.58f"
+          },
+          {
+            "index": 27,
+            "text": ""
+          },
+          {
+            "index": 28,
+            "text": "Click \"Open\""
+          },
+          {
+            "index": 29,
+            "text": ""
+          },
+          {
+            "index": 30,
+            "text": "Step 3: Build and Run"
+          },
+          {
+            "index": 31,
+            "text": ""
+          },
+          {
+            "index": 32,
+            "text": "Platform: PC"
+          },
+          {
+            "index": 33,
+            "text": ""
+          },
+          {
+            "index": 34,
+            "text": "Target: Windows"
+          },
+          {
+            "index": 35,
+            "text": ""
+          },
+          {
+            "index": 36,
+            "text": "Click Build → Choose folder"
+          },
+          {
+            "index": 37,
+            "text": ""
+          },
+          {
+            "index": 38,
+            "text": "Run .exe"
+          },
+          {
+            "index": 39,
+            "text": ""
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "PREREQUISITES",
+          "runs": [
+            {
+              "index": 1,
+              "text": "PREREQUISITES",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 2,
+          "text": "\tUnity Hub – Download",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\t"
+            },
+            {
+              "index": 2,
+              "text": "Unity Hub – Download"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 3,
+          "text": "\tUnity Editor 6000.0.58f or later (LTS)",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\t"
+            },
+            {
+              "index": 2,
+              "text": "Unity Editor 6000"
+            },
+            {
+              "index": 3,
+              "text": ".0.58f "
+            },
+            {
+              "index": 4,
+              "text": "or later (LTS)"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 4,
+          "text": "\tGit (Optional, for version control)",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\t"
+            },
+            {
+              "index": 2,
+              "text": "Git (Optional, for version control)"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 6,
+          "text": "INSTALLATION STEPS",
+          "runs": [
+            {
+              "index": 1,
+              "text": "INSTALLATION STEPS",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 7,
+          "text": "       Step 1: Clone or Download Project",
+          "runs": [
+            {
+              "index": 1,
+              "text": "       Step 1: Clone or Download Project",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 8,
+          "text": "\tGit clone https://github.com/Vutien1406/Assignment/settings",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tGit clone "
+            },
+            {
+              "index": 2,
+              "text": "https://github.com/Vutien1406/Assignment/settings"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 9,
+          "text": "\tOr Download ZIP : ",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tOr Download ZIP : "
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 10,
+          "text": "Step 2: Open in Unity Hub",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Step 2: Open in Unity Hub",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 11,
+          "text": "\tOpen Unity Hub",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tOpen Unity Hub"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 12,
+          "text": "\tClick \"Add\" → Select project folder",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tClick \"Add\" → Select project folder"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 13,
+          "text": "\tChoose Unity 6000.0.58f",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tChoose Unity 6000.0.58f"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 14,
+          "text": "\tClick \"Open\"",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tClick \"Open\""
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 15,
+          "text": "Step 3: Build and Run",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Step 3: Build and Run",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 16,
+          "text": "\tPlatform: PC",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tPlatform: PC"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 17,
+          "text": "\tTarget: Windows",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tTarget: Windows"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 18,
+          "text": "\tClick Build → Choose folder",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tClick Build → Choose folder"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 19,
+          "text": "\tRun .exe",
+          "runs": [
+            {
+              "index": 1,
+              "text": "\tRun .exe"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7epkbehg",
+      "id": "186",
+      "name": "Google Shape;186;p13",
+      "bbox": [
+        1118.6,
+        684.3,
+        142.1,
+        38.33
+      ],
+      "geometry": "rect",
+      "text": "20",
+      "textPreview": "20",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#888888",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "20"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "20",
+          "resolvedTextStyle": {
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "20",
+              "alignment": "right"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/nato3exs",
+      "id": "187",
+      "name": "Picture 2",
+      "bbox": [
+        801.62,
+        146.47,
+        424.06,
+        427.06
+      ],
+      "contentType": "image/png",
+      "asset": {
+        "assetId": "/ppt/media/image24.png",
+        "contentType": "image/png",
+        "byteLength": 24643
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image24.png",
+        "contentType": "image/png",
+        "byteLength": 24643
+      }
+    }
+  ],
+  "composeRuns": []
+}

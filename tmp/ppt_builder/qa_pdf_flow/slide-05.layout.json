@@ -1,0 +1,1331 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/bhhabc",
+    "id": "bhhabc",
+    "slide": 5,
+    "layoutId": "bfabf164-4c1d-46f7-9a63-ac8892c7e9c2",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "bfabf164-4c1d-46f7-9a63-ac8892c7e9c2",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "2a971f7f-f3f7-4e03-8675-ddcd79b61df6",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8bmxg3il",
+      "id": "1",
+      "name": "chapter-5",
+      "bbox": [
+        72,
+        34,
+        600,
+        24
+      ],
+      "geometry": "rect",
+      "text": "II. SYSTEM REQUIREMENTS ANALYSIS",
+      "textPreview": "II. SYSTEM REQUIREMENTS ANALYSIS",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "II. SYSTEM REQUIREMENTS ANALYSIS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "II. SYSTEM REQUIREMENTS ANALYSIS",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "II. SYSTEM REQUIREMENTS ANALYSIS",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7adg7y10",
+      "id": "2",
+      "name": "title-5",
+      "bbox": [
+        72,
+        70,
+        1136,
+        56
+      ],
+      "geometry": "rect",
+      "text": "5. Use Case Descriptions",
+      "textPreview": "5. Use Case Descriptions",
+      "resolvedFontSize": 36,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 36,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "5. Use Case Descriptions"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "5. Use Case Descriptions",
+          "resolvedTextStyle": {
+            "fontSize": 36,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "5. Use Case Descriptions",
+              "fontSize": 36,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m94fed0f",
+      "id": "3",
+      "name": "rule-5",
+      "bbox": [
+        72,
+        137,
+        82,
+        4
+      ],
+      "geometry": "rect",
+      "fillColor": "#E3B341",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l8ve58ju",
+      "id": "4",
+      "name": "foot-5",
+      "bbox": [
+        72,
+        680,
+        360,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GD1305  •  THE MOONSTONE",
+      "textPreview": "GD1305  •  THE MOONSTONE",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GD1305  •  THE MOONSTONE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GD1305  •  THE MOONSTONE",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GD1305  •  THE MOONSTONE",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/k72xc3i9",
+      "id": "5",
+      "name": "page-5",
+      "bbox": [
+        1160,
+        680,
+        48,
+        18
+      ],
+      "geometry": "rect",
+      "text": "05",
+      "textPreview": "05",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "05"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "05",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "05",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/z6tw3y1o",
+      "id": "6",
+      "name": "uc-range-1",
+      "bbox": [
+        72,
+        145,
+        600,
+        24
+      ],
+      "geometry": "rect",
+      "text": "UC-01 to UC-04  •  Player entry and progression",
+      "textPreview": "UC-01 to UC-04  •  Player entry and progression",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "UC-01 to UC-04  •  Player entry and progression"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "UC-01 to UC-04  •  Player entry and progression",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "UC-01 to UC-04  •  Player entry and progression",
+              "fontSize": 15,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y5kfat03",
+      "id": "7",
+      "name": "ucb-1",
+      "bbox": [
+        72,
+        175,
+        550,
+        118
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF5D8",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x4be1ojy",
+      "id": "8",
+      "name": "uci-1",
+      "bbox": [
+        90,
+        189,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "UC-01",
+      "textPreview": "UC-01",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "UC-01"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "UC-01",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "UC-01",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c32x8jid",
+      "id": "9",
+      "name": "uct-1",
+      "bbox": [
+        90,
+        216,
+        514,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Play Game",
+      "textPreview": "Play Game",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Play Game"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Play Game",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Play Game",
+              "fontSize": 20,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/e5w3m9wb",
+      "id": "10",
+      "name": "uca-1",
+      "bbox": [
+        90,
+        251,
+        514,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Player  •  Enter the gameplay loop and initialize the stage.",
+      "textPreview": "Player  •  Enter the gameplay loop and initialize the stage.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Player  •  Enter the gameplay loop and initialize the stage."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Player  •  Enter the gameplay loop and initialize the stage.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Player  •  Enter the gameplay loop and initialize the stage.",
+              "fontSize": 15,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fq54fexw",
+      "id": "11",
+      "name": "ucb-2",
+      "bbox": [
+        658,
+        175,
+        550,
+        118
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EAF2FB",
+      "lineColor": "#D7DFEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0rylojeh",
+      "id": "12",
+      "name": "uci-2",
+      "bbox": [
+        676,
+        189,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "UC-02",
+      "textPreview": "UC-02",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "UC-02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "UC-02",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "UC-02",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1s7mhof2",
+      "id": "13",
+      "name": "uct-2",
+      "bbox": [
+        676,
+        216,
+        514,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Action",
+      "textPreview": "Action",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Action"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Action",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Action",
+              "fontSize": 20,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q1w3ipwf",
+      "id": "14",
+      "name": "uca-2",
+      "bbox": [
+        676,
+        251,
+        514,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Player  •  Move, avoid enemies, and interact during Running state.",
+      "textPreview": "Player  •  Move, avoid enemies, and interact during Running state.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Player  •  Move, avoid enemies, and interact during Running state."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Player  •  Move, avoid enemies, and interact during Running state.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Player  •  Move, avoid enemies, and interact during Running state.",
+              "fontSize": 15,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r254buxk",
+      "id": "15",
+      "name": "ucb-3",
+      "bbox": [
+        72,
+        325,
+        550,
+        118
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF5D8",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s3elkze5",
+      "id": "16",
+      "name": "uci-3",
+      "bbox": [
+        90,
+        339,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "UC-03",
+      "textPreview": "UC-03",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "UC-03"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "UC-03",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "UC-03",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d4nmd4fq",
+      "id": "17",
+      "name": "uct-3",
+      "bbox": [
+        90,
+        366,
+        514,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Switch Weapon",
+      "textPreview": "Switch Weapon",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Switch Weapon"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Switch Weapon",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Switch Weapon",
+              "fontSize": 20,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ixc3epw3",
+      "id": "18",
+      "name": "uca-3",
+      "bbox": [
+        90,
+        401,
+        514,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Player  •  Select another valid weapon and apply its current statistics.",
+      "textPreview": "Player  •  Select another valid weapon and apply its current statistics.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Player  •  Select another valid weapon and apply its current statistics."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Player  •  Select another valid weapon and apply its current statistics.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Player  •  Select another valid weapon and apply its current statistics.",
+              "fontSize": 15,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3ylk7uxo",
+      "id": "19",
+      "name": "ucb-4",
+      "bbox": [
+        658,
+        325,
+        550,
+        118
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EAF2FB",
+      "lineColor": "#D7DFEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7210fqdg",
+      "id": "20",
+      "name": "uci-4",
+      "bbox": [
+        676,
+        339,
+        72,
+        24
+      ],
+      "geometry": "rect",
+      "text": "UC-04",
+      "textPreview": "UC-04",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "UC-04"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "UC-04",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "UC-04",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/61sjmlcv",
+      "id": "21",
+      "name": "uct-4",
+      "bbox": [
+        676,
+        366,
+        514,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Upgrade Weapon",
+      "textPreview": "Upgrade Weapon",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Upgrade Weapon"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Upgrade Weapon",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Upgrade Weapon",
+              "fontSize": 20,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t4jih0vm",
+      "id": "22",
+      "name": "uca-4",
+      "bbox": [
+        676,
+        401,
+        514,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Player  •  Choose a weapon modifier at an upgrade opportunity.",
+      "textPreview": "Player  •  Choose a weapon modifier at an upgrade opportunity.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Player  •  Choose a weapon modifier at an upgrade opportunity."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Player  •  Choose a weapon modifier at an upgrade opportunity.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#121827",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Player  •  Choose a weapon modifier at an upgrade opportunity.",
+              "fontSize": 15,
+              "color": "#121827",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/83a1ovu1",
+      "id": "23",
+      "name": "uc-note",
+      "bbox": [
+        180,
+        520,
+        920,
+        50
+      ],
+      "geometry": "rect",
+      "text": "Player actions are ignored while paused, during Level Up selection, or after Win / Game Over.",
+      "textPreview": "Player actions are ignored while paused, during Level Up selection, or after Win / Game Over.",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 21,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Player actions are ignored while paused, during Level Up selection, or after Win / Game Over."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Player actions are ignored while paused, during Level Up selection, or after Win / Game Over.",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#121827",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Player actions are ignored while paused, during Level Up selection, or after Win / Game Over.",
+              "fontSize": 21,
+              "color": "#121827",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

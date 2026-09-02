@@ -2,6 +2,7 @@ using Unity.Entities;
 
 public struct PlayerProjectile : IComponentData
 {
+    public GunArchetype Archetype;
     public Unity.Mathematics.float3 Direction;
     public int Damage;
     public float Speed;

@@ -65,7 +65,7 @@ public class ResponsiveCanvasController : MonoBehaviour
     {
         if (m_Scaler == null) return;
         m_Scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        m_Scaler.referenceResolution = new Vector2(1920f, 1080f);
+        m_Scaler.referenceResolution = new Vector2(1080f, 1920f);
         m_Scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
         m_Scaler.matchWidthOrHeight = 0.5f;
     }

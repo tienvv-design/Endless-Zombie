@@ -1,0 +1,36 @@
+flowchart LR
+    subgraph Presentation[Presentation Layer]
+      Canvas[Canvas Prefabs]
+      Models[Models and Animators]
+      VFX[VFX and Audio]
+    end
+    subgraph OOP[OOP / GameObject Layer]
+      Menu[MainMenuManager]
+      State[Game State Machine]
+      Input[PlayerInput and CharacterLogic]
+      UI[HUDManager and SettingsMenu]
+      Meta[MetaProgression and GoldWallet]
+    end
+    subgraph Bridge[Bridge Layer]
+      MV[MobVisualBridge]
+      DB[DamageBridge]
+      XPB[XPBridge]
+      WV[WeaponVfxBridge]
+    end
+    subgraph ECS[ECS / DOTS Simulation]
+      Wave[Wave Progression]
+      Spawn[Spawn Scheduler and Processor]
+      Mob[Mob Chase and Movement]
+      Combat[Projectile and Damage]
+      XP[XP and Combat Events]
+    end
+    Canvas --> UI
+    Models --> MV
+    VFX --> WV
+    Menu --> State
+    Input --> Combat
+    State --> Wave
+    UI <--> Bridge
+    Bridge <--> ECS
+    Meta --> State
+    Wave --> Spawn --> Mob --> Combat --> XP

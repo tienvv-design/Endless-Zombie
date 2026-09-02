@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: pistol
   DisplayName: Pistol
+  UnlockCost: 0
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 6949219968297497114, guid: 55b1fd5f577255c4a8338b61385780ec, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  ProjectileVisual: 0
   HeldLocalPosition: {x: 0.04, y: 0.02, z: -0.03}
   HeldLocalEulerAngles: {x: -0, y: 93.78, z: 270}
   HeldLocalScale: {x: 0.7, y: 0.7, z: 0.7}
@@ -30,20 +32,21 @@ MonoBehaviour:
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
   MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 185577682e9153a4ab5a5331ef4394a6, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 0.75
+  VfxLifetime: 0.85
   MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
   MuzzleEffectScale: 1
+  ProjectileTracerScale: 0.4
   Archetype: 0
-  BaseDamage: 8
+  BaseDamage: 10
   BaseShotsPerSecond: 2
   BaseProjectileCount: 1
   BaseCriticalChance: 0.15
   BaseCriticalDamage: 1.75
   BaseRange: 8
-  BaseProjectileSpeed: 14
+  BaseProjectileSpeed: 20
   BasePierce: 0
   BaseKnockback: 0.5
   BaseSpreadAngle: 0

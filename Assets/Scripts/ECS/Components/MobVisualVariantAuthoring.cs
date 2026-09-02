@@ -5,6 +5,10 @@ public enum MobVisualKind : byte
 {
     Zombie,
     DogMutant,
+    ZombieFat,
+    ZombieSquat,
+    ZombieTank,
+    ZombieWitch,
 }
 
 public struct MobVisualVariant : IComponentData

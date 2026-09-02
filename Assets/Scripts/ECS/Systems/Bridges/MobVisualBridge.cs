@@ -22,10 +22,12 @@ public partial class MobVisualBridge : SystemBase
         public AnimationClip AttackClip;
         public bool IsAttacking;
         public bool SupportsAttack;
+        public float ScaleMultiplier;
         public LineRenderer BossWarning;
         public LineRenderer SpawnPortal;
         public DogAttackProceduralAnimator DogAttackAnimator;
         public bool IsDogMutant;
+        public bool Exploded;
     }
 
     private readonly Dictionary<Entity, VisualInstance> m_Visuals = new();
@@ -77,14 +79,18 @@ public partial class MobVisualBridge : SystemBase
             bool activateAfterTransform = false;
             if (!m_Visuals.TryGetValue(entity, out VisualInstance visual))
             {
-                bool isDogMutant = EntityManager.HasComponent<MobVisualVariant>(entity) &&
-                                   EntityManager.GetComponentData<MobVisualVariant>(entity).Kind == MobVisualKind.DogMutant;
+                MobVisualKind visualKind = EntityManager.HasComponent<MobVisualVariant>(entity)
+                    ? EntityManager.GetComponentData<MobVisualVariant>(entity).Kind
+                    : MobVisualKind.Zombie;
+                bool isDogMutant = visualKind == MobVisualKind.DogMutant;
                 bool isBoss = mobs[i].EnemyType == EnemyType.Boss;
                 int zombieVariantIndex = SelectIndex(entity, m_Settings.ZombieVisualPrefabs, 0x9e3779b9u);
                 GameObject zombiePrefab = zombieVariantIndex >= 0
                     ? m_Settings.ZombieVisualPrefabs[zombieVariantIndex]
                     : m_Settings.VisualPrefab;
-                GameObject prefab = isBoss && m_Settings.BossVisualPrefab != null ? m_Settings.BossVisualPrefab :
+                GameObject specialPrefab = GetSpecialPrefab(visualKind);
+                GameObject prefab = specialPrefab != null ? specialPrefab :
+                    isBoss && m_Settings.BossVisualPrefab != null ? m_Settings.BossVisualPrefab :
                     isDogMutant && m_Settings.DogMutantVisualPrefab != null ? m_Settings.DogMutantVisualPrefab : zombiePrefab;
                 RuntimeAnimatorController controller = isBoss && m_Settings.BossAnimatorController != null
                     ? m_Settings.BossAnimatorController : isDogMutant ? m_Settings.DogMutantAnimatorController : m_Settings.AnimatorController;
@@ -100,39 +106,52 @@ public partial class MobVisualBridge : SystemBase
                 // Keep it hidden until the entity's actual spawn transform is applied so it
                 // can never render for one frame on top of the player.
                 visualObject.SetActive(false);
-                visualObject.name = $"{(isDogMutant ? "Dog Mutant" : "Zombie")} Visual ({entity.Index}:{entity.Version})";
+                visualObject.name = $"{visualKind} Visual ({entity.Index}:{entity.Version})";
+                RemoveImportedHelperObjects(visualObject);
                 if (EntityManager.HasComponent<EliteModifier>(entity))
                     ApplyEliteAppearance(visualObject, EntityManager.GetComponentData<EliteModifier>(entity).Kind);
 
                 Animator animator = visualObject.GetComponentInChildren<Animator>(true);
+                Avatar avatar = GetSpecialAvatar(visualKind);
+                if (avatar == null && zombieVariantIndex >= 0 && m_Settings.ZombieVisualAvatars != null &&
+                    zombieVariantIndex < m_Settings.ZombieVisualAvatars.Length)
+                    avatar = m_Settings.ZombieVisualAvatars[zombieVariantIndex];
                 if (animator == null && !isDogMutant)
-                {
                     animator = visualObject.AddComponent<Animator>();
-                    if (zombieVariantIndex >= 0 && m_Settings.ZombieVisualAvatars != null &&
-                        zombieVariantIndex < m_Settings.ZombieVisualAvatars.Length)
-                        animator.avatar = m_Settings.ZombieVisualAvatars[zombieVariantIndex];
-                }
-                AnimationClip locomotionClip = SelectClip(entity, m_Settings.ZombieLocomotionClips, 0x85ebca6bu);
-                AnimationClip attackClip = SelectClip(entity, m_Settings.ZombieAttackClips, 0xc2b2ae35u);
+                if (animator != null && avatar != null)
+                    animator.avatar = avatar;
                 AnimationClip controllerBaseClip = controller != null && controller.animationClips.Length > 0
                     ? controller.animationClips[0]
                     : null;
+                AnimationClip locomotionClip = isDogMutant
+                    ? controllerBaseClip
+                    : GetSpecialLocomotionClip(visualKind) ??
+                      SelectClip(entity, m_Settings.ZombieLocomotionClips, 0x85ebca6bu);
+                AnimationClip attackClip = isDogMutant
+                    ? null
+                    : GetSpecialAttackClip(visualKind) ??
+                      SelectClip(entity, m_Settings.ZombieAttackClips, 0xc2b2ae35u);
                 AnimationClip locomotionSlotClip = !isDogMutant && m_Settings.AnimatorLocomotionSlotClip != null
                     ? m_Settings.AnimatorLocomotionSlotClip
                     : controllerBaseClip;
                 AnimationClip attackSlotClip = !isDogMutant ? m_Settings.AnimatorAttackSlotClip : null;
-                if (attackClip == null)
+                if (!isDogMutant && attackClip == null)
                     attackClip = m_Settings.ZombieAttackClip;
                 if (animator != null)
                 {
                     if (controller != null)
                     {
-                        AnimatorOverrideController overrideController = new(controller);
-                        animator.runtimeAnimatorController = overrideController;
-                        if (!isDogMutant && locomotionSlotClip != null && locomotionClip != null)
-                            overrideController[locomotionSlotClip.name] = locomotionClip;
-                        if (!isDogMutant && attackSlotClip != null && attackClip != null)
-                            overrideController[attackSlotClip.name] = attackClip;
+                        if (isDogMutant)
+                            animator.runtimeAnimatorController = controller;
+                        else
+                        {
+                            AnimatorOverrideController overrideController = new(controller);
+                            animator.runtimeAnimatorController = overrideController;
+                            if (locomotionSlotClip != null && locomotionClip != null)
+                                overrideController[locomotionSlotClip.name] = locomotionClip;
+                            if (attackSlotClip != null && attackClip != null)
+                                overrideController[attackSlotClip.name] = attackClip;
+                        }
                     }
                     animator.applyRootMotion = false;
                     animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
@@ -153,6 +172,9 @@ public partial class MobVisualBridge : SystemBase
                         : controller != null && controller.animationClips.Length > 0 ? controller.animationClips[0] : null,
                     AttackClip = attackClip,
                     SupportsAttack = !isDogMutant,
+                    ScaleMultiplier = isDogMutant ? 1f : specialPrefab != null
+                        ? Mathf.Max(0.1f, m_Settings.SpecialZombieScale)
+                        : Mathf.Max(0.1f, m_Settings.HumanoidScale),
                     IsDogMutant = isDogMutant,
                 };
                 if (isDogMutant)
@@ -161,12 +183,16 @@ public partial class MobVisualBridge : SystemBase
                     visual.DogAttackAnimator.Initialize();
                 }
                 m_Visuals.Add(entity, visual);
-                if (isBoss && m_Settings.BossVisualPrefab == null)
+                if (isBoss && specialPrefab == null && m_Settings.BossVisualPrefab == null)
                     ApplyBossPlaceholderAppearance(visualObject);
                 activateAfterTransform = true;
             }
 
-            ApplyTransform(visual.GameObject.transform, transforms[i], visual.GroundOffset);
+            ApplyTransform(
+                visual.GameObject.transform,
+                transforms[i],
+                visual.GroundOffset,
+                visual.ScaleMultiplier);
             if (EntityManager.HasComponent<SpawnEmergence>(entity))
                 UpdateSpawnPortal(visual, transforms[i], EntityManager.GetComponentData<SpawnEmergence>(entity));
             else
@@ -189,9 +215,12 @@ public partial class MobVisualBridge : SystemBase
                 if (attacking && visual.AttackClip != null)
                     visual.Animator.speed = visual.AttackClip.length /
                                             math.max(0.05f, attacks[i].AttackInterval);
-                else if (!emerging && movementLocked)
-                    // Dog Mutant currently has no dedicated attack clip. Freeze
-                    // locomotion during its bite instead of letting it run in place.
+                else if (dogAttacking)
+                    // The mutant dog has a locomotion-only controller. Freeze that
+                    // controller while the procedural bite owns the attack pose so
+                    // the legs do not keep playing Run while the dog is stationary.
+                    visual.Animator.speed = 0f;
+                else if (!emerging && movementLocked && !visual.IsDogMutant)
                     visual.Animator.speed = 0f;
                 else
                 {
@@ -200,6 +229,11 @@ public partial class MobVisualBridge : SystemBase
                     visual.Animator.speed = math.max(0f, movers[i].moveSpeed * loopDuration / loopDistance);
                 }
                 EnsureLocomotionLoops(visual.Animator);
+            }
+            if (attacks[i].HasExploded != 0)
+            {
+                visual.Exploded = true;
+                visual.GameObject.SetActive(false);
             }
             if (mobs[i].EnemyType == EnemyType.Boss && EntityManager.HasComponent<BossShockwave>(entity))
                 UpdateBossWarning(visual, transforms[i], EntityManager.GetComponentData<BossShockwave>(entity));
@@ -219,9 +253,66 @@ public partial class MobVisualBridge : SystemBase
             if (visual?.SpawnPortal != null) Object.Destroy(visual.SpawnPortal.gameObject);
             if (visual?.GameObject != null)
             {
-                MobDeathProceduralAnimator death = visual.GameObject.AddComponent<MobDeathProceduralAnimator>();
-                death.Begin(visual.IsDogMutant, entity.Index);
+                if (visual.Exploded)
+                    Object.Destroy(visual.GameObject);
+                else
+                {
+                    MobDeathProceduralAnimator death = visual.GameObject.AddComponent<MobDeathProceduralAnimator>();
+                    death.Begin(
+                        visual.IsDogMutant,
+                        entity.Index,
+                        m_Settings != null ? m_Settings.CorpseStayDuration : 6f,
+                        m_Settings != null ? m_Settings.CorpseCleanupDuration : 1.25f,
+                        m_Settings != null ? m_Settings.MaxVisibleCorpses : 32,
+                        m_Settings != null ? m_Settings.CorpseGroundLift : 0.04f);
+                }
             }
+        }
+    }
+
+    private GameObject GetSpecialPrefab(MobVisualKind kind) => kind switch
+    {
+        MobVisualKind.ZombieFat => m_Settings.ZombieFatVisualPrefab,
+        MobVisualKind.ZombieSquat => m_Settings.ZombieSquatVisualPrefab,
+        MobVisualKind.ZombieTank => m_Settings.ZombieTankVisualPrefab,
+        MobVisualKind.ZombieWitch => m_Settings.ZombieWitchVisualPrefab,
+        _ => null,
+    };
+
+    private AnimationClip GetSpecialLocomotionClip(MobVisualKind kind) => kind switch
+    {
+        MobVisualKind.ZombieFat => m_Settings.ZombieFatLocomotionClip,
+        MobVisualKind.ZombieSquat => m_Settings.ZombieSquatLocomotionClip,
+        MobVisualKind.ZombieTank => m_Settings.ZombieTankLocomotionClip,
+        MobVisualKind.ZombieWitch => m_Settings.ZombieWitchLocomotionClip,
+        _ => null,
+    };
+
+    private AnimationClip GetSpecialAttackClip(MobVisualKind kind) => kind switch
+    {
+        MobVisualKind.ZombieFat => m_Settings.ZombieFatAttackClip,
+        MobVisualKind.ZombieSquat => m_Settings.ZombieSquatAttackClip,
+        MobVisualKind.ZombieTank => m_Settings.ZombieTankAttackClip,
+        MobVisualKind.ZombieWitch => m_Settings.ZombieWitchAttackClip,
+        _ => null,
+    };
+
+    private Avatar GetSpecialAvatar(MobVisualKind kind) => kind switch
+    {
+        MobVisualKind.ZombieWitch => m_Settings.ZombieWitchAvatar,
+        _ => null,
+    };
+
+    private static void RemoveImportedHelperObjects(GameObject root)
+    {
+        Transform[] descendants = root.GetComponentsInChildren<Transform>(true);
+        for (int i = descendants.Length - 1; i >= 0; i--)
+        {
+            Transform item = descendants[i];
+            if (item == root.transform) continue;
+            if (item.name == "CharacterTrigger" || item.name == "Prefab_Minimap_Enemy" ||
+                item.name == "Prefab_Minimap_Enemy_Corpse")
+                Object.Destroy(item.gameObject);
         }
     }
 
@@ -397,12 +488,16 @@ public partial class MobVisualBridge : SystemBase
         return null;
     }
 
-    private static void ApplyTransform(Transform target, LocalTransform source, float groundOffset)
+    private static void ApplyTransform(
+        Transform target,
+        LocalTransform source,
+        float groundOffset,
+        float scaleMultiplier)
     {
         float3 groundedPosition = source.Position;
         groundedPosition.y += groundOffset * source.Scale;
         target.SetPositionAndRotation(groundedPosition, source.Rotation);
-        target.localScale = Vector3.one * source.Scale;
+        target.localScale = Vector3.one * (source.Scale * scaleMultiplier);
     }
 
     private static void EnsureLocomotionLoops(Animator animator)

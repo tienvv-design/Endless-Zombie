@@ -7,8 +7,43 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour, IGamePlayerPause
 {
     private const string VibrationKey = "Settings.Vibration";
+    private const string RuntimeMenuName = "InGameSettingsMenu";
     public Slider volumeSlider;
     private TMP_Text vibrationStateText;
+
+    public static void EnsureExists()
+    {
+        if (FindFirstObjectByType<PauseMenu>(FindObjectsInactive.Include) != null)
+            return;
+
+        Canvas pauseCanvas = null;
+        foreach (Canvas canvas in FindObjectsByType<Canvas>(FindObjectsInactive.Include,
+                     FindObjectsSortMode.None))
+        {
+            if (canvas.name != "PauseCanvas") continue;
+            pauseCanvas = canvas;
+            break;
+        }
+
+        if (pauseCanvas == null)
+        {
+            Debug.LogError("PauseCanvas was not found. In-game Settings cannot be displayed.");
+            return;
+        }
+
+        pauseCanvas.overrideSorting = true;
+        pauseCanvas.sortingOrder = 100;
+
+        GameObject menuObject = new(RuntimeMenuName, typeof(RectTransform), typeof(PauseMenu));
+        RectTransform rect = menuObject.GetComponent<RectTransform>();
+        rect.SetParent(pauseCanvas.transform, false);
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+        rect.localScale = Vector3.one;
+        menuObject.SetActive(false);
+    }
 
     private void Start() => BuildKickerSettingControls();
     public void OnVolumeChanged(float value) => AudioManager.Instance?.SetGlobalVolume(value);
@@ -61,7 +96,7 @@ public class PauseMenu : MonoBehaviour, IGamePlayerPause
     {
         CreateImage(label + "Icon", parent, LoadSprite(iconName), new Vector2(-265f, y), new Vector2(60f, 60f));
         CreateText(label, parent, new Vector2(-165f, y), new Vector2(150f, 44f), 24f, Color.white);
-        Slider slider = CreateSlider(parent, new Vector2(125f, y), new Vector2(310f, 38f));
+        Slider slider = CreateSlider(parent, new Vector2(125f, y), new Vector2(365.7f, 38f));
         slider.SetValueWithoutNotify(initialValue);
         slider.onValueChanged.AddListener(onChanged);
     }
@@ -70,10 +105,27 @@ public class PauseMenu : MonoBehaviour, IGamePlayerPause
     {
         RectTransform root = CreateImage("Slider", parent, null, position, size);
         root.GetComponent<Image>().color = new Color32(8, 23, 38, 235);
-        RectTransform fillArea = CreateRect("Fill Area", root, Vector2.zero, size - new Vector2(10f, 10f));
-        RectTransform fill = CreateImage("Fill", fillArea, null, Vector2.zero, fillArea.sizeDelta);
+
+        // Match Resources/SettingsMenu.prefab. Slider changes the Fill anchors at
+        // runtime, so both containers must be stretch-based with a zero-sized Fill;
+        // a fixed Fill sizeDelta gets added to the anchor width and appears oversized.
+        RectTransform fillArea = CreateRect("Fill Area", root, Vector2.zero, Vector2.zero);
+        fillArea.anchorMin = Vector2.zero;
+        fillArea.anchorMax = Vector2.one;
+        fillArea.anchoredPosition = Vector2.zero;
+        fillArea.sizeDelta = new Vector2(-42f, -30f);
+
+        RectTransform fill = CreateImage("Fill", fillArea, null, new Vector2(-12f, 0f), Vector2.zero);
+        fill.anchorMin = Vector2.zero;
+        fill.anchorMax = Vector2.zero;
+        fill.sizeDelta = Vector2.zero;
+        fill.localScale = new Vector3(1f, 3.5f, 1f);
         fill.GetComponent<Image>().color = new Color32(255, 210, 49, 255);
-        RectTransform handleArea = CreateRect("Handle Slide Area", root, Vector2.zero, size);
+
+        RectTransform handleArea = CreateRect("Handle Slide Area", root, new Vector2(-12f, 0f), Vector2.zero);
+        handleArea.anchorMin = Vector2.zero;
+        handleArea.anchorMax = Vector2.one;
+        handleArea.sizeDelta = new Vector2(-42f, 0f);
         RectTransform handle = CreateImage("Handle", handleArea, LoadSprite("setting_button_bg"),
             Vector2.zero, new Vector2(42f, 54f));
         Slider slider = root.gameObject.AddComponent<Slider>();

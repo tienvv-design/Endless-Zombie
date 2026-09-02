@@ -1,0 +1,1805 @@
+{
+  "stageId": "Stage_02",
+  "defaultWaveDelay": 0.5,
+  "attackDistance": 1.2,
+  "maxAliveEnemies": 20,
+  "waves": [
+    {
+      "waveId": "Wave_01",
+      "waveType": 0,
+      "waveDelay": 0.6,
+      "completionThreshold": 1,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.52,
+          "spawnInterval": 2.25,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 1,
+          "spawnDelay": 1.87,
+          "spawnInterval": 1.88,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 3,
+          "spawnDelay": 2.22,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 3.72,
+          "spawnInterval": 2.65,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 3,
+          "spawnDelay": 5.97,
+          "spawnInterval": 2.3,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 8.22,
+          "spawnInterval": 2.22,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 3,
+          "spawnDelay": 10.47,
+          "spawnInterval": 2.3,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 12.72,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_02",
+      "waveType": 0,
+      "waveDelay": 0.45,
+      "completionThreshold": 1,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 0,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.52,
+          "spawnInterval": 2.25,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 1,
+          "spawnDelay": 1.87,
+          "spawnInterval": 1.88,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 3,
+          "spawnDelay": 2.22,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 3.72,
+          "spawnInterval": 2.55,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 3,
+          "spawnDelay": 5.97,
+          "spawnInterval": 2.2,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 8.22,
+          "spawnInterval": 2.13,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 3,
+          "spawnDelay": 10.47,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 4,
+          "spawnDelay": 12.72,
+          "spawnInterval": 2.25,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_03",
+      "waveType": 0,
+      "waveDelay": 0.45,
+      "completionThreshold": 2,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 0,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.52,
+          "spawnInterval": 2.25,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 1,
+          "spawnDelay": 1.87,
+          "spawnInterval": 1.88,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 3,
+          "spawnDelay": 2.22,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 2.82,
+          "spawnInterval": 2.43,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 5.07,
+          "spawnInterval": 2.11,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 7.32,
+          "spawnInterval": 2.03,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 3,
+          "spawnDelay": 9.57,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 4,
+          "spawnDelay": 11.82,
+          "spawnInterval": 2.15,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_04",
+      "waveType": 0,
+      "waveDelay": 0.45,
+      "completionThreshold": 2,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 0,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.52,
+          "spawnInterval": 2.25,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 2,
+          "spawnDelay": 1.87,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 3,
+          "spawnDelay": 2.22,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 2.82,
+          "spawnInterval": 2.35,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 4.21,
+          "spawnInterval": 2.03,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 5.59,
+          "spawnInterval": 1.95,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 4,
+          "spawnDelay": 6.98,
+          "spawnInterval": 2.07,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 1,
+          "spawnDelay": 8.36,
+          "spawnInterval": 2.62,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_05",
+      "waveType": 0,
+      "waveDelay": 0.45,
+      "completionThreshold": 3,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 0,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.52,
+          "spawnInterval": 2.25,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 2,
+          "spawnDelay": 1.87,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 3,
+          "spawnDelay": 2.22,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 9,
+          "spawnDelay": 2.82,
+          "spawnInterval": 2.26,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 4.28,
+          "spawnInterval": 1.93,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 5.74,
+          "spawnInterval": 1.86,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 4,
+          "spawnDelay": 7.21,
+          "spawnInterval": 1.98,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 8.67,
+          "spawnInterval": 2.51,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_06",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 3,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 0,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.52,
+          "spawnInterval": 2.25,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 2,
+          "spawnDelay": 1.87,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 2.22,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 2.82,
+          "spawnInterval": 2.28,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 3.85,
+          "spawnInterval": 2.16,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 4.88,
+          "spawnInterval": 1.85,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 5.91,
+          "spawnInterval": 1.77,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 6.93,
+          "spawnInterval": 1.85,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 5,
+          "spawnDelay": 7.96,
+          "spawnInterval": 1.89,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 8.99,
+          "spawnInterval": 2.41,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_07",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 3,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 0,
+          "spawnInterval": 1.32,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.34,
+          "spawnInterval": 1.99,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 2,
+          "spawnDelay": 1.69,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 2.04,
+          "spawnInterval": 1.95,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 3.29,
+          "spawnInterval": 2.18,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 5.25,
+          "spawnInterval": 2.07,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 7.22,
+          "spawnInterval": 1.76,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 7,
+          "spawnDelay": 9.18,
+          "spawnInterval": 1.69,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 11.14,
+          "spawnInterval": 1.76,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 5,
+          "spawnDelay": 13.11,
+          "spawnInterval": 1.8,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 15.07,
+          "spawnInterval": 2.31,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_08",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 4,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 0,
+          "spawnInterval": 1.32,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.34,
+          "spawnInterval": 1.99,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 1.69,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 2.04,
+          "spawnInterval": 1.87,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 9,
+          "spawnDelay": 3.29,
+          "spawnInterval": 1.98,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 1,
+          "spawnDelay": 4.46,
+          "spawnInterval": 2.66,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 8,
+          "spawnDelay": 5.64,
+          "spawnInterval": 1.68,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 6.81,
+          "spawnInterval": 1.6,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 6,
+          "spawnDelay": 7.98,
+          "spawnInterval": 1.72,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 9.15,
+          "spawnInterval": 1.6,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 3,
+          "spawnDelay": 10.33,
+          "spawnInterval": 2.21,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_09",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 4,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 0,
+          "spawnInterval": 1.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.31,
+          "spawnInterval": 1.94,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 1.66,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 10,
+          "spawnDelay": 2.01,
+          "spawnInterval": 1.84,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 3.26,
+          "spawnInterval": 1.93,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 3.91,
+          "spawnInterval": 2.15,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 1,
+          "spawnDelay": 4.56,
+          "spawnInterval": 2.55,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 5.21,
+          "spawnInterval": 1.6,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 8,
+          "spawnDelay": 5.86,
+          "spawnInterval": 1.52,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 6.51,
+          "spawnInterval": 1.6,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 6,
+          "spawnDelay": 7.16,
+          "spawnInterval": 1.64,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 3,
+          "spawnDelay": 7.81,
+          "spawnInterval": 2.12,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_10",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 4,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 0,
+          "spawnInterval": 1.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.31,
+          "spawnInterval": 1.94,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 1.66,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 11,
+          "spawnDelay": 2.01,
+          "spawnInterval": 1.79,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 3.26,
+          "spawnInterval": 1.86,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 3.91,
+          "spawnInterval": 2.09,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 1,
+          "spawnDelay": 4.56,
+          "spawnInterval": 2.48,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 5.21,
+          "spawnInterval": 1.53,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 8,
+          "spawnDelay": 5.86,
+          "spawnInterval": 1.47,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 6.51,
+          "spawnInterval": 1.53,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 7,
+          "spawnDelay": 7.16,
+          "spawnInterval": 1.58,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 4,
+          "spawnDelay": 7.81,
+          "spawnInterval": 2.05,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_11",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.31,
+          "spawnInterval": 1.94,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 1.66,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 11,
+          "spawnDelay": 2.01,
+          "spawnInterval": 1.69,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 3.11,
+          "spawnInterval": 1.76,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 3.76,
+          "spawnInterval": 1.9,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 1,
+          "spawnDelay": 4.41,
+          "spawnInterval": 2.35,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 5.06,
+          "spawnInterval": 1.44,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 5.71,
+          "spawnInterval": 1.38,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 6.36,
+          "spawnInterval": 1.44,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 7,
+          "spawnDelay": 7.01,
+          "spawnInterval": 1.49,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 7.66,
+          "spawnInterval": 1.38,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 4,
+          "spawnDelay": 8.31,
+          "spawnInterval": 1.94,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_12",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.31,
+          "spawnInterval": 1.94,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 1.66,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 12,
+          "spawnDelay": 2.01,
+          "spawnInterval": 1.65,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 3.11,
+          "spawnInterval": 1.71,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 3.76,
+          "spawnInterval": 1.84,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 1,
+          "spawnDelay": 4.41,
+          "spawnInterval": 2.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 5.06,
+          "spawnInterval": 1.39,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 5.71,
+          "spawnInterval": 1.33,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 6.36,
+          "spawnInterval": 1.39,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 8,
+          "spawnDelay": 7.01,
+          "spawnInterval": 1.44,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 7.66,
+          "spawnInterval": 1.33,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 4,
+          "spawnDelay": 8.31,
+          "spawnInterval": 1.89,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_13",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.19,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.21,
+          "spawnInterval": 1.78,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 1.56,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 1.91,
+          "spawnInterval": 1.6,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 3.01,
+          "spawnInterval": 1.66,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 3.66,
+          "spawnInterval": 1.73,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 4,
+          "spawnDelay": 4.31,
+          "spawnInterval": 1.77,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 4.96,
+          "spawnInterval": 2.24,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 5.61,
+          "spawnInterval": 1.34,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 6.26,
+          "spawnInterval": 1.28,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 6.91,
+          "spawnInterval": 1.34,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 9,
+          "spawnDelay": 7.56,
+          "spawnInterval": 1.39,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 4,
+          "spawnDelay": 8.21,
+          "spawnInterval": 1.28,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 6,
+          "spawnDelay": 8.86,
+          "spawnInterval": 1.84,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_14",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.19,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 1,
+          "spawnDelay": 1.21,
+          "spawnInterval": 1.78,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 3,
+          "spawnDelay": 1.56,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 1.91,
+          "spawnInterval": 1.56,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 3.01,
+          "spawnInterval": 1.61,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 3.66,
+          "spawnInterval": 1.68,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 4.31,
+          "spawnInterval": 1.7,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 4.96,
+          "spawnInterval": 2.19,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 5.61,
+          "spawnInterval": 1.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 6.26,
+          "spawnInterval": 1.23,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 6.91,
+          "spawnInterval": 1.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 9,
+          "spawnDelay": 7.56,
+          "spawnInterval": 1.34,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 8.21,
+          "spawnInterval": 1.23,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 6,
+          "spawnDelay": 8.86,
+          "spawnInterval": 1.78,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_15",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.14,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 2,
+          "spawnDelay": 1.16,
+          "spawnInterval": 1.72,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 4,
+          "spawnDelay": 3.23,
+          "spawnInterval": 1.43,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 6.57,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 7.52,
+          "spawnInterval": 1.55,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 8.82,
+          "spawnInterval": 1.62,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 10.12,
+          "spawnInterval": 1.78,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 11.42,
+          "spawnInterval": 2.13,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 12.72,
+          "spawnInterval": 1.24,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 14.02,
+          "spawnInterval": 1.18,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 15.32,
+          "spawnInterval": 1.24,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 9,
+          "spawnDelay": 16.62,
+          "spawnInterval": 1.29,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 17.92,
+          "spawnInterval": 1.18,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 7,
+          "spawnDelay": 19.22,
+          "spawnInterval": 1.73,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_16",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.14,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 2,
+          "spawnDelay": 1.16,
+          "spawnInterval": 1.72,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 4,
+          "spawnDelay": 3.23,
+          "spawnInterval": 1.43,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 6.57,
+          "spawnInterval": 1.46,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 7.52,
+          "spawnInterval": 1.5,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 8.89,
+          "spawnInterval": 1.57,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 10.26,
+          "spawnInterval": 1.71,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 11.63,
+          "spawnInterval": 2.08,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 12.99,
+          "spawnInterval": 1.21,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 14.36,
+          "spawnInterval": 1.14,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 15.73,
+          "spawnInterval": 1.21,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 5,
+          "spawnDelay": 17.1,
+          "spawnInterval": 1.24,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 18.47,
+          "spawnInterval": 1.14,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 7,
+          "spawnDelay": 19.84,
+          "spawnInterval": 1.68,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 5,
+          "spawnDelay": 21.2,
+          "spawnInterval": 1.24,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_17",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 10,
+          "spawnDelay": 0,
+          "spawnInterval": 1.14,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 2,
+          "spawnDelay": 1.16,
+          "spawnInterval": 1.72,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 1,
+          "spawnDelay": 3.23,
+          "spawnInterval": 1.43,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 3.58,
+          "spawnInterval": 1.41,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 7,
+          "spawnDelay": 4.53,
+          "spawnInterval": 1.46,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 5.71,
+          "spawnInterval": 1.52,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 4,
+          "spawnDelay": 6.89,
+          "spawnInterval": 1.56,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 2,
+          "spawnDelay": 8.07,
+          "spawnInterval": 2.02,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 9.26,
+          "spawnInterval": 1.16,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 10.44,
+          "spawnInterval": 1.09,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 11.62,
+          "spawnInterval": 1.16,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 6,
+          "spawnDelay": 12.8,
+          "spawnInterval": 1.2,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 5,
+          "spawnDelay": 13.98,
+          "spawnInterval": 1.09,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 10,
+          "spawnDelay": 15.16,
+          "spawnInterval": 1.63,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 5,
+          "spawnDelay": 16.35,
+          "spawnInterval": 1.2,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_18",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 5,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 0,
+          "spawnInterval": 1.07,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 2,
+          "spawnDelay": 1.08,
+          "spawnInterval": 1.6,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 5,
+          "spawnDelay": 3.03,
+          "spawnInterval": 1.33,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 6.14,
+          "spawnInterval": 1.37,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 7,
+          "spawnDelay": 7.09,
+          "spawnInterval": 1.41,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 8.36,
+          "spawnInterval": 1.48,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 9.62,
+          "spawnInterval": 1.58,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 3,
+          "spawnDelay": 10.89,
+          "spawnInterval": 1.97,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 12.16,
+          "spawnInterval": 1.11,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 13.42,
+          "spawnInterval": 1.04,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 14.69,
+          "spawnInterval": 1.11,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 6,
+          "spawnDelay": 15.96,
+          "spawnInterval": 1.15,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 17.22,
+          "spawnInterval": 1.04,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 10,
+          "spawnDelay": 18.49,
+          "spawnInterval": 1.58,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 6,
+          "spawnDelay": 19.76,
+          "spawnInterval": 1.15,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_19",
+      "waveType": 0,
+      "waveDelay": 0.4,
+      "completionThreshold": 0,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 0,
+          "spawnInterval": 1.07,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 2,
+          "spawnDelay": 1.08,
+          "spawnInterval": 1.6,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 5,
+          "spawnDelay": 3.03,
+          "spawnInterval": 1.33,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 6.14,
+          "spawnInterval": 1.32,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 8,
+          "spawnDelay": 7.09,
+          "spawnInterval": 1.36,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 7,
+          "spawnDelay": 8.4,
+          "spawnInterval": 1.43,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 5,
+          "spawnDelay": 9.71,
+          "spawnInterval": 1.51,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 3,
+          "spawnDelay": 11.02,
+          "spawnInterval": 1.92,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 12.33,
+          "spawnInterval": 1.06,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 7,
+          "spawnDelay": 13.63,
+          "spawnInterval": 0.99,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "1",
+          "quantity": 6,
+          "spawnDelay": 14.94,
+          "spawnInterval": 1.06,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 7,
+          "spawnDelay": 16.25,
+          "spawnInterval": 1.1,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "2",
+          "quantity": 6,
+          "spawnDelay": 17.56,
+          "spawnInterval": 0.99,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "4",
+          "quantity": 11,
+          "spawnDelay": 18.87,
+          "spawnInterval": 1.53,
+          "spawnArenaGroupId": "Outer"
+        },
+        {
+          "enemyId": "3",
+          "quantity": 6,
+          "spawnDelay": 20.18,
+          "spawnInterval": 1.1,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    },
+    {
+      "waveId": "Wave_20",
+      "waveType": 3,
+      "waveDelay": 2.5,
+      "completionThreshold": 0,
+      "maxAliveEnemies": 20,
+      "entries": [
+        {
+          "enemyId": "5",
+          "quantity": 1,
+          "spawnDelay": 0,
+          "spawnInterval": 0,
+          "spawnArenaGroupId": "Outer"
+        }
+      ]
+    }
+  ]
+}

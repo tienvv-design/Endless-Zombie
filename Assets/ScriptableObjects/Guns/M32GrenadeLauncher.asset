@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: ldoe_m32
   DisplayName: M32 Grenade Launcher
+  UnlockCost: 4200
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 2382278362087624226, guid: a5c37ee8087c5cc498b62ee7a13ec2c6, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 5648dd93f59a466388a4202aa50d44d8, type: 3}
@@ -30,29 +31,30 @@ MonoBehaviour:
   PistolArmReach: 0.78
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
-  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 200dabfbb56d18440be007c9439ea6a8, type: 3}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 0.75
+  VfxLifetime: 0.85
   MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
   MuzzleEffectScale: 1
+  ProjectileTracerScale: 0.4
   Archetype: 10
-  BaseDamage: 38
-  BaseShotsPerSecond: 0.55
+  BaseDamage: 35
+  BaseShotsPerSecond: 0.85
   BaseProjectileCount: 1
   BaseCriticalChance: 0.05
   BaseCriticalDamage: 1.5
   BaseRange: 10
-  BaseProjectileSpeed: 9
+  BaseProjectileSpeed: 10
   BasePierce: 0
-  BaseKnockback: 1.2
+  BaseKnockback: 0.9
   BaseSpreadAngle: 0
   MinimumFireInterval: 0.2
-  BaseMagazineSize: 3
-  BaseReloadDuration: 2.4
+  BaseMagazineSize: 6
+  BaseReloadDuration: 2.8
   IsExplosive: 1
-  ExplosionRadius: 2.5
+  ExplosionRadius: 2.15
   ExplosionDamageMultiplier: 1
   ExplosionKnockbackMultiplier: 1.5
   RicochetCount: 0

@@ -1,0 +1,49 @@
+classDiagram
+    class GameManager {
+      +GameStateMachineRunner stateMachine
+      +PauseGame()
+      +ResumeGame()
+    }
+    class GameStateMachineRunner {
+      +BeginStage()
+      +ChangeState(GameStateType)
+      +HandleStageCompleted()
+    }
+    class HUDManager {
+      -GameplayHUDView view
+      +RefreshHealth()
+      +RefreshWaveStatus()
+    }
+    class WaveSpawnAuthoring {
+      -StageConfig stage
+      -EnemyCatalog enemyCatalog
+      +Bake()
+    }
+    class StageRuntime {
+      +StageId
+      +State
+      +CurrentWaveIndex
+    }
+    class WeaponManager {
+      +Damage
+      +ProjectileCount
+      +SpreadAngle
+      +AttackCooldown
+    }
+    class Mob {
+      +Health
+      +MovementSpeed
+      +Damage
+    }
+    class MobVisualBridge {
+      +CreateVisual()
+      +SyncTransform()
+      +SyncAnimatorSpeed()
+    }
+    GameManager --> GameStateMachineRunner
+    GameStateMachineRunner --> StageRuntime
+    HUDManager --> StageRuntime
+    WaveSpawnAuthoring --> StageRuntime : bakes
+    StageRuntime --> Mob : schedules
+    WeaponManager --> Mob : damages
+    MobVisualBridge --> Mob : visualizes

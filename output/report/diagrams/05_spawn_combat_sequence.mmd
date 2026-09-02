@@ -1,0 +1,22 @@
+sequenceDiagram
+    participant GS as GameStateMachine
+    participant WP as WaveProgressionSystem
+    participant SS as SpawnEntrySchedulerSystem
+    participant SP as SpawnRequestProcessingSystem
+    participant MS as Mob and Combat Systems
+    participant BR as Bridges and HUD
+    GS->>WP: BeginStage()
+    WP->>SS: Activate current wave
+    loop For each spawn entry
+      SS->>SP: Enqueue SpawnRequest
+      SP->>MS: Instantiate enemy Entity prefab
+      MS->>BR: Create and bind visual model
+    end
+    loop While enemies are alive
+      MS->>MS: Chase player and update movement
+      MS->>MS: Fire projectiles and apply damage
+      MS-->>BR: Damage, VFX, and XP events
+    end
+    BR-->>WP: Updated alive count
+    WP->>WP: Complete wave or activate next wave
+    WP-->>GS: StageCompleted

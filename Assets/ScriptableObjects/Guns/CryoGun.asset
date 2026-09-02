@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: cryo_gun
   DisplayName: Cryo Gun
+  UnlockCost: 1250
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 3852799265655734254, guid: 6c7859e017cea78489d643b95bb38ec3, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: b320eb5cb0b84ec7b7453eb6c65db18e, type: 3}
@@ -31,14 +32,16 @@ MonoBehaviour:
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
   MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 0.75
+  VfxLifetime: 0.85
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
   MuzzleEffectScale: 1
+  ProjectileTracerScale: 0.4
   Archetype: 8
-  BaseDamage: 6
-  BaseShotsPerSecond: 2.5
+  BaseDamage: 12
+  BaseShotsPerSecond: 2.4
   BaseProjectileCount: 1
   BaseCriticalChance: 0.08
   BaseCriticalDamage: 1.5
@@ -48,8 +51,8 @@ MonoBehaviour:
   BaseKnockback: 0.4
   BaseSpreadAngle: 2
   MinimumFireInterval: 0.1
-  BaseMagazineSize: 12
-  BaseReloadDuration: 1.6
+  BaseMagazineSize: 14
+  BaseReloadDuration: 1.8
   IsExplosive: 0
   ExplosionRadius: 0
   ExplosionDamageMultiplier: 1
@@ -60,6 +63,6 @@ MonoBehaviour:
   ChainRange: 4
   ChainDamageMultiplier: 0.75
   Element: 2
-  ElementChance: 0.35
+  ElementChance: 0.45
   ElementDuration: 2.5
-  ElementMagnitude: 0.5
+  ElementMagnitude: 0.4

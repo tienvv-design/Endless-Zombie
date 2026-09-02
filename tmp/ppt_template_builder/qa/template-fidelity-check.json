@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-08-31T05:14:15.769Z",
+  "workspace": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder",
+  "finalPptx": "D:\\Project\\Endless zombie\\output\\presentation\\Endless_Zombie_MoonStone_Structure_Presentation.pptx",
+  "starterPptx": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-starter.pptx",
+  "mapPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-frame-map.json",
+  "starterLayoutDir": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-starter-layout",
+  "finalLayoutDir": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\final-inspect\\layouts",
+  "editDir": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder",
+  "issueCount": 0,
+  "issues": []
+}

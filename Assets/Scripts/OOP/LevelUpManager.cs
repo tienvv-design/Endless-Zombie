@@ -38,21 +38,23 @@ public class LevelUpManager : MonoBehaviour, IGameLevelUp
     public void SetRandomUpgrades()
     {
         GunArchetype activeArchetype = GetActiveArchetype();
-        List<CharUpgrade> charUpgradesCopy = new List<CharUpgrade>();
-        AddEligible(m_UpgradeAssets, activeArchetype, charUpgradesCopy);
-        AddEligible(Resources.LoadAll<CharUpgrade>("WeaponUpgrades"), activeArchetype, charUpgradesCopy);
+        List<CharUpgrade> genericUpgrades = new();
+        List<CharUpgrade> weaponUpgrades = new();
+        AddEligible(m_UpgradeAssets, activeArchetype, genericUpgrades);
+        AddEligible(Resources.LoadAll<CharUpgrade>("WeaponUpgrades"), activeArchetype, weaponUpgrades);
         m_CurrentUpgrades.Clear();
 
-        int numberOfUpgrades = Mathf.Clamp(3, 0, charUpgradesCopy.Count);
-        
-        for (int i = 0; i < numberOfUpgrades; i++)
+        // Make the level-up screen reflect the equipped weapon: two choices are
+        // guaranteed to come from its own pool whenever enough are available.
+        int weaponChoices = Mathf.Min(2, weaponUpgrades.Count);
+        for (int i = 0; i < weaponChoices; i++)
         {
-            int randomIndex = GetWeightedRandomIndex(charUpgradesCopy);
-            CharUpgrade selectedUpgrade = charUpgradesCopy[randomIndex];
-            selectedUpgrade.Init();
-            m_CurrentUpgrades.Add(selectedUpgrade);
-            charUpgradesCopy.RemoveAt(randomIndex);
+            AddWeightedChoice(weaponUpgrades);
         }
+
+        genericUpgrades.AddRange(weaponUpgrades);
+        while (m_CurrentUpgrades.Count < 3 && genericUpgrades.Count > 0)
+            AddWeightedChoice(genericUpgrades);
 
         Debug.Log("Set random upgrades");
         OnUpgradesAssigned?.Invoke(new List<CharUpgrade>(m_CurrentUpgrades));
@@ -62,8 +64,18 @@ public class LevelUpManager : MonoBehaviour, IGameLevelUp
     {
         if (source == null) return;
         foreach (CharUpgrade upgrade in source)
-            if (upgrade != null && !target.Contains(upgrade) && upgrade.IsEligible(archetype, GetUpgradeLevel(upgrade)))
+            if (upgrade != null && upgrade.GetUpgradeType() != UpgradeTypes.ProjectileSpeed &&
+                !target.Contains(upgrade) && upgrade.IsEligible(archetype, GetUpgradeLevel(upgrade)))
                 target.Add(upgrade);
+    }
+
+    private void AddWeightedChoice(List<CharUpgrade> candidates)
+    {
+        int randomIndex = GetWeightedRandomIndex(candidates);
+        CharUpgrade selectedUpgrade = candidates[randomIndex];
+        selectedUpgrade.Init();
+        m_CurrentUpgrades.Add(selectedUpgrade);
+        candidates.RemoveAt(randomIndex);
     }
 
     private static GunArchetype GetActiveArchetype()

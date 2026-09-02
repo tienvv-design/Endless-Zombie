@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e808c1beeb45b0b0e81d0f95a6ae59, type: 3}
   m_Name: WeaponSynergyUpgrade
   m_EditorClassIdentifier: 
-  m_Texture: {fileID: 2800000, guid: c68838cd724d5cc4a89b38f46c68a7d1, type: 3}
+  m_Texture: {fileID: 2800000, guid: 982a37a2503e9c74ba73336550f7b297, type: 3}
   m_Description: EMPOWER THE EQUIPPED GUN'S UNIQUE EFFECT
   m_BaseCost: 12
   m_CostGrowth: 1.8

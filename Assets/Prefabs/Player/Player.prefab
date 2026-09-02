@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 5320956420951860072}
   - component: {fileID: 2835595904308508770}
   - component: {fileID: 9030181386344118977}
+  - component: {fileID: 8217049348907068218}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -275,10 +276,22 @@ MonoBehaviour:
   - {fileID: 22100000, guid: e2df5c795359c0d4a874cfc6ebd0de63, type: 2}
   - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
   - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
-  - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
+  - {fileID: 22100000, guid: 491472a26f1524d4c8be6060ffda3415, type: 2}
   - {fileID: 9100000, guid: d14e6f157c224b3a89a3c60c176ade91, type: 2}
   - {fileID: 22100000, guid: 491472a26f1524d4c8be6060ffda3415, type: 2}
   - {fileID: 22100000, guid: b7e45189a3024ea1948be02649134c70, type: 2}
+--- !u!114 &8217049348907068218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537029199511776787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bfaf0e0c5dd804cbe929bc2f08665e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShadowEnforcer
 --- !u!1 &4784062220205690571
 GameObject:
   m_ObjectHideFlags: 0

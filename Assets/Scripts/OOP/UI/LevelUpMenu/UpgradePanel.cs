@@ -52,6 +52,7 @@ public class UpgradePanel : MonoBehaviour
         m_CardOutline.effectColor = m_Upgrade.GetRarityColor();
         m_CardOutline.effectDistance = new Vector2(3f, -3f);
         m_UpgradeImage.texture = m_Upgrade.Texture;
+        m_UpgradeImage.color = Color.white;
         Refresh();
         ConfigureResponsiveLayout();
     }
@@ -92,22 +93,26 @@ public class UpgradePanel : MonoBehaviour
 
         if (m_UpgradeImage != null)
         {
-            m_UpgradeImage.gameObject.SetActive(true);
+            m_UpgradeImage.gameObject.SetActive(m_UpgradeImage.texture != null);
             RectTransform imageRect = m_UpgradeImage.rectTransform;
-            imageRect.anchorMin = new Vector2(0.04f, 0.18f);
-            imageRect.anchorMax = new Vector2(0.29f, 0.88f);
+            imageRect.anchorMin = new Vector2(0.055f, 0.22f);
+            imageRect.anchorMax = new Vector2(0.285f, 0.82f);
             imageRect.offsetMin = Vector2.zero;
             imageRect.offsetMax = Vector2.zero;
+            AspectRatioFitter fitter = m_UpgradeImage.GetComponent<AspectRatioFitter>();
+            if (fitter == null) fitter = m_UpgradeImage.gameObject.AddComponent<AspectRatioFitter>();
+            fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
+            fitter.aspectRatio = 1f;
         }
 
         RectTransform rarityRect = m_RarityText.rectTransform;
-        rarityRect.anchorMin = new Vector2(0.04f, 0.02f);
-        rarityRect.anchorMax = new Vector2(0.29f, 0.19f);
+        rarityRect.anchorMin = new Vector2(0.035f, 0.035f);
+        rarityRect.anchorMax = new Vector2(0.305f, 0.18f);
         rarityRect.offsetMin = Vector2.zero;
         rarityRect.offsetMax = Vector2.zero;
 
-        m_ValuePill.anchorMin = new Vector2(0.34f, 0.06f);
-        m_ValuePill.anchorMax = new Vector2(0.84f, 0.31f);
+        m_ValuePill.anchorMin = new Vector2(0.34f, 0.065f);
+        m_ValuePill.anchorMax = new Vector2(0.95f, 0.285f);
         m_ValuePill.offsetMin = Vector2.zero;
         m_ValuePill.offsetMax = Vector2.zero;
     }

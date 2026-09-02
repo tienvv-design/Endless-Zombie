@@ -3,29 +3,9 @@ using Unity.Entities;
 
 public struct GameplayStartedTag : IComponentData { }
 
-public enum StageRuntimeState : byte
-{
-    NotStarted,
-    Running,
-    Completed,
-    Stopped,
-}
-
-public enum WaveRuntimeState : byte
-{
-    Pending,
-    Delay,
-    Active,
-    Completed,
-}
-
-public enum SpawnEntryRuntimeState : byte
-{
-    Pending,
-    Active,
-    Completed,
-    Failed,
-}
+public enum StageRuntimeState : byte { NotStarted, Running, Completed, Stopped }
+public enum WaveRuntimeState : byte { Pending, Delay, Active, Completed }
+public enum SpawnEntryRuntimeState : byte { Pending, Active, Completed, Failed }
 
 public struct StageRuntime : IComponentData
 {
@@ -33,6 +13,7 @@ public struct StageRuntime : IComponentData
     public StageRuntimeState State;
     public int CurrentWaveIndex;
     public float DefaultWaveDelay;
+    public float AttackDistance;
     public int MaxAliveEnemies;
     public uint NextRequestSequence;
     public bool EnableEliteModifiers;
@@ -68,6 +49,7 @@ public struct SpawnEntryRuntime : IBufferElementData
     public FixedString64Bytes EnemyId;
     public Entity EnemyPrefab;
     public EnemyType EnemyType;
+    public MobVisualKind VisualKind;
     public float HealthMultiplier;
     public float DamageMultiplier;
     public float Scale;
@@ -92,10 +74,25 @@ public struct SpawnRequest : IBufferElementData
     public int SpawnEntryIndex;
     public Entity EnemyPrefab;
     public EnemyType EnemyType;
+    public MobVisualKind VisualKind;
     public float HealthMultiplier;
     public float DamageMultiplier;
     public float Scale;
     public int XPReward;
     public int GoldReward;
     public FixedString64Bytes SpawnArenaGroupId;
+}
+
+[InternalBufferCapacity(8)]
+public struct EnemyCatalogRuntime : IBufferElementData
+{
+    public FixedString64Bytes EnemyId;
+    public Entity EnemyPrefab;
+    public EnemyType EnemyType;
+    public MobVisualKind VisualKind;
+    public float HealthMultiplier;
+    public float DamageMultiplier;
+    public float Scale;
+    public int XPReward;
+    public int GoldReward;
 }

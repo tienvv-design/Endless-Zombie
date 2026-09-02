@@ -1,0 +1,3 @@
+Design and structure source: C:/Users/Vu Tien/Desktop/Assignment/GD1305 - Group MoonStone - Presentation Project II.pptx
+Content and visual source: C:/Users/Vu Tien/Desktop/Project2_GD1305_Endless_Zombie_Report_EN.pdf
+All diagrams and game screenshots in the output are extracted from the report PDF.

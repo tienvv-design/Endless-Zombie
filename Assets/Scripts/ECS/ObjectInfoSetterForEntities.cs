@@ -9,15 +9,15 @@ public class ObjectInfoSetterForEntities : MonoBehaviour
     [SerializeField] private List<GameObject> _targetGameObjects;
     private List<Targetable> _targetables = new();
 
-    private EntityManager _entityManager;
-    private GameObjectInfo _gameObjectInfo;
+    private World _world;
     private Entity _objectInfoEntity;
 
     private void Awake()
     {
+        if (_targetGameObjects == null) return;
         foreach (var go in _targetGameObjects)
         {
-            if (go.TryGetComponent<Targetable>(out var targetable))
+            if (go != null && go.TryGetComponent<Targetable>(out var targetable))
             {
                 _targetables.Add(targetable);
             }
@@ -26,19 +26,26 @@ public class ObjectInfoSetterForEntities : MonoBehaviour
 
     private void Start()
     {
-        _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        _world = World.DefaultGameObjectInjectionWorld;
+        if (_world == null || !_world.IsCreated)
+        {
+            enabled = false;
+            return;
+        }
+
+        EntityManager entityManager = _world.EntityManager;
 
         // This buffer is created from a MonoBehaviour rather than a SubScene, so it
         // must be cleaned explicitly between runs. Remove stale instances left by a
         // previous GameScene before creating the current bridge entity.
-        EntityQuery staleBuffers = _entityManager.CreateEntityQuery(
+        EntityQuery staleBuffers = entityManager.CreateEntityQuery(
             ComponentType.ReadOnly<GameObjectInfo>());
         if (!staleBuffers.IsEmptyIgnoreFilter)
-            _entityManager.DestroyEntity(staleBuffers);
+            entityManager.DestroyEntity(staleBuffers);
         staleBuffers.Dispose();
 
-        _objectInfoEntity = _entityManager.CreateEntity();
-        DynamicBuffer<GameObjectInfo> buffer = _entityManager.AddBuffer<GameObjectInfo>(_objectInfoEntity);
+        _objectInfoEntity = entityManager.CreateEntity();
+        DynamicBuffer<GameObjectInfo> buffer = entityManager.AddBuffer<GameObjectInfo>(_objectInfoEntity);
 
         foreach (var targetable in _targetables)
         {
@@ -53,18 +60,26 @@ public class ObjectInfoSetterForEntities : MonoBehaviour
 
     private void OnDestroy()
     {
-        World world = World.DefaultGameObjectInjectionWorld;
-        if (world != null && world.IsCreated &&
-            _objectInfoEntity != Entity.Null && world.EntityManager.Exists(_objectInfoEntity))
+        if (_world != null && _world.IsCreated && _objectInfoEntity != Entity.Null)
         {
-            world.EntityManager.DestroyEntity(_objectInfoEntity);
+            EntityManager manager = _world.EntityManager;
+            if (manager.Exists(_objectInfoEntity))
+                manager.DestroyEntity(_objectInfoEntity);
         }
         _objectInfoEntity = Entity.Null;
+        _world = null;
     }
 
     private void Update()
     {
-        DynamicBuffer<GameObjectInfo> mobTargetBuffer = _entityManager.GetBuffer<GameObjectInfo>(_objectInfoEntity);
+        if (_world == null || !_world.IsCreated || _objectInfoEntity == Entity.Null)
+            return;
+
+        EntityManager manager = _world.EntityManager;
+        if (!manager.Exists(_objectInfoEntity) || !manager.HasBuffer<GameObjectInfo>(_objectInfoEntity))
+            return;
+
+        DynamicBuffer<GameObjectInfo> mobTargetBuffer = manager.GetBuffer<GameObjectInfo>(_objectInfoEntity);
 
         for (int i = 0; i < mobTargetBuffer.Length; i++)
         {
@@ -72,6 +87,7 @@ public class ObjectInfoSetterForEntities : MonoBehaviour
 
             foreach (var targetable in _targetables)
             {
+                if (targetable == null) continue;
                 if (target.ObjectType == targetable.GameObjectType)
                 {
                     target.Position = targetable.transform.position;

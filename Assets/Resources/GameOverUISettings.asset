@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a62d58a71cc4e77bd5dd583ce52ae14, type: 3}
+  m_Name: GameOverUISettings
+  m_EditorClassIdentifier:
+  ReferenceResolution: {x: 1080, y: 1920}
+  MatchWidthOrHeight: 0.5
+  SortingOrder: 160
+  BackdropColor: {r: 0, g: 0, b: 0, a: 0.902}
+  PanelPosition: {x: 0, y: 0}
+  PanelSize: {x: 860, y: 1290}
+  TitlePosition: {x: 0, y: 466}
+  TitleSize: {x: 610, y: 104}
+  TitleFontSize: 68
+  ProgressPosition: {x: 14, y: 209}
+  ProgressSize: {x: 624, y: 28}
+  ProgressTextPosition: {x: 0, y: 48}
+  MarkerStartEnd: {x: -302, y: 302}
+  MarkerPosition: {x: 302.889, y: 31.589}
+  MarkerSize: {x: 85, y: 85}
+  CollectedPosition: {x: 0, y: 54}
+  CollectedSize: {x: 600, y: 55}
+  GoldIconPosition: {x: -115, y: -110}
+  GoldIconSize: {x: 72, y: 72}
+  GoldTextPosition: {x: 45, y: -110}
+  GoldTextSize: {x: 260, y: 110}
+  ButtonGroupPosition: {x: 0, y: -542}
+  ButtonGroupSize: {x: 723.2, y: 137.2}
+  HomeButtonSize: {x: 412, y: 156}

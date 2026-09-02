@@ -1,0 +1,1032 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/lukdd0",
+    "id": "lukdd0",
+    "slide": 5,
+    "layoutId": "bf165d6e-76a8-4e32-861f-54f5375743c0",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "58268828-9583-446b-ae1e-ff4f5bc3cbce",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "bf165d6e-76a8-4e32-861f-54f5375743c0",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "58268828-9583-446b-ae1e-ff4f5bc3cbce",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "58268828-9583-446b-ae1e-ff4f5bc3cbce",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ilofmh4n",
+      "id": "1",
+      "name": "kicker",
+      "bbox": [
+        72,
+        36,
+        500,
+        24
+      ],
+      "geometry": "rect",
+      "text": "ENDLESS ZOMBIE",
+      "textPreview": "ENDLESS ZOMBIE",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#3478C9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ENDLESS ZOMBIE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ENDLESS ZOMBIE",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#3478C9",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ENDLESS ZOMBIE",
+              "fontSize": 14,
+              "color": "#3478C9",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5ofexw3e",
+      "id": "2",
+      "name": "title",
+      "bbox": [
+        72,
+        70,
+        1136,
+        58
+      ],
+      "geometry": "rect",
+      "text": "A hybrid architecture separates presentation from simulation",
+      "textPreview": "A hybrid architecture separates presentation from simulation",
+      "resolvedFontSize": 38,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 38,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A hybrid architecture separates presentation from simulation"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A hybrid architecture separates presentation from simulation",
+          "resolvedTextStyle": {
+            "fontSize": 38,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A hybrid architecture separates presentation from simulation",
+              "fontSize": 38,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4n6xormt",
+      "id": "3",
+      "name": "title-rule",
+      "bbox": [
+        72,
+        137,
+        82,
+        4
+      ],
+      "geometry": "rect",
+      "fillColor": "#E3B341",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rqxwz6lk",
+      "id": "4",
+      "name": "footer",
+      "bbox": [
+        72,
+        680,
+        360,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GD1305  •  THE MOONSTONE",
+      "textPreview": "GD1305  •  THE MOONSTONE",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GD1305  •  THE MOONSTONE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GD1305  •  THE MOONSTONE",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GD1305  •  THE MOONSTONE",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6pofq14z",
+      "id": "5",
+      "name": "page",
+      "bbox": [
+        1160,
+        680,
+        48,
+        18
+      ],
+      "geometry": "rect",
+      "text": "05",
+      "textPreview": "05",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#60708A",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "05"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "05",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#60708A",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "05",
+              "fontSize": 11,
+              "color": "#60708A",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tsze1g3a",
+      "id": "6",
+      "name": "a1",
+      "bbox": [
+        384,
+        300,
+        90,
+        36
+      ],
+      "geometry": "rightArrow",
+      "fillColor": "#E3B341",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/srqxsbm5",
+      "id": "7",
+      "name": "a2",
+      "bbox": [
+        806,
+        300,
+        90,
+        36
+      ],
+      "geometry": "rightArrow",
+      "fillColor": "#E3B341",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7udwn2l0",
+      "id": "8",
+      "name": "arch-0",
+      "bbox": [
+        72,
+        190,
+        300,
+        340
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EAF2FB",
+      "lineColor": "#D7DFEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mt4vex4f",
+      "id": "9",
+      "name": "arch-h-0",
+      "bbox": [
+        96,
+        225,
+        252,
+        50
+      ],
+      "geometry": "rect",
+      "text": "OOP / GAMEOBJECT",
+      "textPreview": "OOP / GAMEOBJECT",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "OOP / GAMEOBJECT"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "OOP / GAMEOBJECT",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "OOP / GAMEOBJECT",
+              "fontSize": 23,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/one18vid",
+      "id": "10",
+      "name": "arch-b-0",
+      "bbox": [
+        102,
+        310,
+        240,
+        130
+      ],
+      "geometry": "rect",
+      "text": "Input • State machine\nCanvas UI • Audio\nMeta progression",
+      "textPreview": "Input • State machine | Canvas UI • Audio | Meta progression",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Input • State machine"
+          },
+          {
+            "index": 2,
+            "text": "Canvas UI • Audio"
+          },
+          {
+            "index": 3,
+            "text": "Meta progression"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Input • State machine",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Input • State machine",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "Canvas UI • Audio",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Canvas UI • Audio",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "Meta progression",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Meta progression",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pon210jy",
+      "id": "11",
+      "name": "arch-1",
+      "bbox": [
+        490,
+        190,
+        300,
+        340
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF5D8",
+      "lineColor": "#E3B341",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2lwj6l07",
+      "id": "12",
+      "name": "arch-h-1",
+      "bbox": [
+        514,
+        225,
+        252,
+        50
+      ],
+      "geometry": "rect",
+      "text": "BRIDGE LAYER",
+      "textPreview": "BRIDGE LAYER",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "BRIDGE LAYER"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "BRIDGE LAYER",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "BRIDGE LAYER",
+              "fontSize": 23,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nm5kzq1s",
+      "id": "13",
+      "name": "arch-b-1",
+      "bbox": [
+        520,
+        310,
+        240,
+        130
+      ],
+      "geometry": "rect",
+      "text": "Mob visuals • Damage\nXP events • Weapon VFX\nEntity ↔ GameObject sync",
+      "textPreview": "Mob visuals • Damage | XP events • Weapon VFX | Entity ↔ GameObject sync",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Mob visuals • Damage"
+          },
+          {
+            "index": 2,
+            "text": "XP events • Weapon VFX"
+          },
+          {
+            "index": 3,
+            "text": "Entity ↔ GameObject sync"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Mob visuals • Damage",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Mob visuals • Damage",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "XP events • Weapon VFX",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "XP events • Weapon VFX",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "Entity ↔ GameObject sync",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Entity ↔ GameObject sync",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cry1cvip",
+      "id": "14",
+      "name": "arch-2",
+      "bbox": [
+        908,
+        190,
+        300,
+        340
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EAF7F1",
+      "lineColor": "#D7DFEA",
+      "lineWidth": 1
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xs7250ju",
+      "id": "15",
+      "name": "arch-h-2",
+      "bbox": [
+        932,
+        225,
+        252,
+        50
+      ],
+      "geometry": "rect",
+      "text": "ECS / DOTS",
+      "textPreview": "ECS / DOTS",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#173A66",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ECS / DOTS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ECS / DOTS",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#173A66",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ECS / DOTS",
+              "fontSize": 23,
+              "color": "#173A66",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/apwja50j",
+      "id": "16",
+      "name": "arch-b-2",
+      "bbox": [
+        938,
+        310,
+        240,
+        130
+      ],
+      "geometry": "rect",
+      "text": "Wave scheduling • Spawn\nMovement • Projectiles\nDamage • XP • Metrics",
+      "textPreview": "Wave scheduling • Spawn | Movement • Projectiles | Damage • XP • Metrics",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Wave scheduling • Spawn"
+          },
+          {
+            "index": 2,
+            "text": "Movement • Projectiles"
+          },
+          {
+            "index": 3,
+            "text": "Damage • XP • Metrics"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Wave scheduling • Spawn",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Wave scheduling • Spawn",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "Movement • Projectiles",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Movement • Projectiles",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "Damage • XP • Metrics",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#121827",
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Damage • XP • Metrics",
+              "fontSize": 19,
+              "color": "#121827",
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bqpk3a14",
+      "id": "17",
+      "name": "arch-note",
+      "bbox": [
+        160,
+        570,
+        960,
+        54
+      ],
+      "geometry": "rect",
+      "text": "High-volume gameplay remains data-oriented, while UI and visuals stay editable in the Unity Inspector.",
+      "textPreview": "High-volume gameplay remains data-oriented, while UI and visuals stay editable in the Unity Inspector.",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#121827",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "High-volume gameplay remains data-oriented, while UI and visuals stay editable in the Unity"
+          },
+          {
+            "index": 2,
+            "text": "Inspector."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "High-volume gameplay remains data-oriented, while UI and visuals stay editable in the Unity Inspector.",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#121827",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "High-volume gameplay remains data-oriented, while UI and visuals stay editable in the Unity Inspector.",
+              "fontSize": 23,
+              "color": "#121827",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

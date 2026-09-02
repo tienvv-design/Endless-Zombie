@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: tesla_gun
   DisplayName: Tesla Gun
+  UnlockCost: 2100
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 8861018534708125288, guid: e255ad384286fce4f876c07a7e5e1d25, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
-  HeldLocalPosition: {x: 0.12, y: 0, z: 0}
-  HeldLocalEulerAngles: {x: 90, y: 0, z: 0}
+  ProjectileVisual: 0
+  HeldLocalPosition: {x: 0.266, y: 0.056, z: -0.045}
+  HeldLocalEulerAngles: {x: 77.41576, y: 100.5857, z: 280.4652}
   HeldLocalScale: {x: 0.7, y: 0.7, z: 0.7}
   UseCustomHoldPose: 0
   HoldPoseWeight: 1
@@ -30,34 +32,36 @@ MonoBehaviour:
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
   MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 0.75
+  VfxLifetime: 0.85
+  MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
   MuzzleEffectScale: 1
+  ProjectileTracerScale: 0.4
   Archetype: 6
-  BaseDamage: 8
-  BaseShotsPerSecond: 2
+  BaseDamage: 11
+  BaseShotsPerSecond: 1.8
   BaseProjectileCount: 1
   BaseCriticalChance: 0.08
   BaseCriticalDamage: 1.5
-  BaseRange: 8
+  BaseRange: 8.5
   BaseProjectileSpeed: 18
   BasePierce: 0
   BaseKnockback: 0.1
   BaseSpreadAngle: 0
   MinimumFireInterval: 0.1
-  BaseMagazineSize: 8
-  BaseReloadDuration: 1.8
+  BaseMagazineSize: 10
+  BaseReloadDuration: 2
   IsExplosive: 0
   ExplosionRadius: 0
   ExplosionDamageMultiplier: 1
   ExplosionKnockbackMultiplier: 1
   RicochetCount: 0
   RicochetSearchRange: 5
-  ChainCount: 4
-  ChainRange: 4
-  ChainDamageMultiplier: 0.75
+  ChainCount: 2
+  ChainRange: 3.5
+  ChainDamageMultiplier: 0.65
   Element: 0
   ElementChance: 0
   ElementDuration: 0

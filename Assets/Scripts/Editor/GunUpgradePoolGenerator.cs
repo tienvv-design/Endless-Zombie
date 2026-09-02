@@ -18,21 +18,29 @@ public static class GunUpgradePoolGenerator
         Add("Pistol_TrickShot", "Trick Shot", GunArchetype.Pistol, "Bullets bounce to another nearby zombie.", E(ricochets:1));
         Add("Pistol_QuickDraw", "Quick Draw", GunArchetype.Pistol, "Faster trigger rhythm and a snappier reload.", E(fireRate:15, reload:15));
         Add("Pistol_ExtendedMag", "Extended Sidearm Mag", GunArchetype.Pistol, "Adds four rounds to every magazine.", E(magazine:4));
+        Add("Pistol_Akimbo", "Improvised Akimbo", GunArchetype.Pistol, "Fires an additional sidearm round with every shot.",
+            E(projectiles:1, spread:-12), 3, 30f, UpgradeRarity.Rare);
 
         Add("Shotgun_MorePellets", "Gravedigger Buckshot", GunArchetype.Shotgun, "Adds two pellets to every blast.", E(projectiles:2));
         Add("Shotgun_Choke", "Tight Choke", GunArchetype.Shotgun, "Tighter spread and faster pellets.", E(spread:25, speed:12));
         Add("Shotgun_Heavy", "Heavy Buckshot", GunArchetype.Shotgun, "Harder hits send the horde stumbling back.", E(damage:20, knockback:.4f));
         Add("Shotgun_Loader", "Combat Speedloader", GunArchetype.Shotgun, "Reload shells faster and carry two more.", E(magazine:2, reload:25));
+        Add("Shotgun_Ricochet", "Ricochet Buckshot", GunArchetype.Shotgun, "Every pellet can rebound into the horde.",
+            E(ricochets:1), 3, 30f, UpgradeRarity.Rare);
 
         Add("Rifle_Suppressive", "Suppressive Fire", GunArchetype.AssaultRifle, "Higher cyclic rate keeps lanes under control.", E(fireRate:18));
         Add("Rifle_AP", "Armor-Piercing Rounds", GunArchetype.AssaultRifle, "Rounds punch through one additional target.", E(pierce:1, speed:12));
         Add("Rifle_Drum", "Drum Magazine", GunArchetype.AssaultRifle, "A large magazine for sustained automatic fire.", E(magazine:12));
         Add("Rifle_Zeroing", "Combat Zeroing", GunArchetype.AssaultRifle, "Improved optics increase damage and crit chance.", E(damage:12, crit:.05f));
+        Add("Rifle_TacticalBurst", "Tactical Burst", GunArchetype.AssaultRifle, "Each trigger cycle releases two additional rounds.",
+            E(projectiles:2, fireRate:-8), 3, 30f, UpgradeRarity.Rare);
 
         Add("Rocket_BiggerBoom", "Bigger Boom", GunArchetype.RocketLauncher, "Expands the lethal radius of every explosion.", E(blastRadius:22));
         Add("Rocket_Warhead", "Overpacked Warhead", GunArchetype.RocketLauncher, "More explosive payload in every rocket.", E(damage:25, blastDamage:.15f));
         Add("Rocket_Autoloader", "Hydraulic Autoloader", GunArchetype.RocketLauncher, "Cycles and reloads heavy rockets faster.", E(fireRate:12, reload:25));
         Add("Rocket_Twin", "Twin Launch", GunArchetype.RocketLauncher, "Launches an additional rocket per volley.", E(projectiles:1));
+        Add("Rocket_ClusterPayload", "Cluster Payload", GunArchetype.RocketLauncher, "Splits the volley into extra explosive projectiles.",
+            E(projectiles:2, blastDamage:.1f), 2, 24f, UpgradeRarity.Epic);
 
         AddFuturePools();
         AssetDatabase.SaveAssets();
@@ -55,19 +63,58 @@ public static class GunUpgradePoolGenerator
         Add("Cryo_DeepFreeze", "Deep Freeze", GunArchetype.CryoGun, "Cold effects become stronger and more reliable.", E(elementChance:.12f, elementMagnitude:25));
         Add("Cryo_Shatter", "Shatter Rounds", GunArchetype.CryoGun, "Frozen ammunition hits harder.", E(damage:20, critDamage:.25f));
         Add("Cryo_Splinter", "Cryo Splinters", GunArchetype.CryoGun, "Adds another freezing projectile.", E(projectiles:1));
+        AssignCoreUpgradeIcons();
     }
 
-    private static void Add(string file, string title, GunArchetype gun, string description, GunUpgradeEffect effect)
+    private static void AssignCoreUpgradeIcons()
+    {
+        SetTexture("Assets/ScriptableObjects/Upgrades/WeaponUpgrade.asset", "icon_damage.png");
+        SetTexture("Assets/ScriptableObjects/Upgrades/WeaponSpeedUpgrade.asset", "icon_firerate.png");
+        SetTexture("Assets/ScriptableObjects/Upgrades/SpeedUpgrade.asset", "icon_range.png");
+        SetTexture("Assets/ScriptableObjects/Upgrades/WeaponSynergyUpgrade.asset", "icon_crit_damage.png");
+    }
+
+    private static void SetTexture(string assetPath, string iconName)
+    {
+        CharUpgrade upgrade = AssetDatabase.LoadAssetAtPath<CharUpgrade>(assetPath);
+        if (upgrade == null) return;
+        SerializedObject serialized = new(upgrade);
+        serialized.FindProperty("m_Texture").objectReferenceValue =
+            AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Art/UI/ApocalypseGenerated/{iconName}");
+        serialized.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(upgrade);
+    }
+
+    private static void Add(string file, string title, GunArchetype gun, string description, GunUpgradeEffect effect,
+        int maxLevel = 5, float weight = 45f, UpgradeRarity rarity = UpgradeRarity.Common)
     {
         string path = $"{Folder}/{file}.asset";
         GunPoolUpgrade asset = AssetDatabase.LoadAssetAtPath<GunPoolUpgrade>(path);
         if (asset == null) { asset = ScriptableObject.CreateInstance<GunPoolUpgrade>(); AssetDatabase.CreateAsset(asset, path); }
-        asset.Configure(title, gun, 5, effect);
+        asset.Configure(title, gun, maxLevel, effect);
         SerializedObject serialized = new(asset);
         serialized.FindProperty("m_Description").stringValue = description;
-        serialized.FindProperty("m_RollWeight").floatValue = 45f;
+        serialized.FindProperty("m_RollWeight").floatValue = weight;
+        serialized.FindProperty("m_Rarity").enumValueIndex = (int)rarity;
+        serialized.FindProperty("m_Texture").objectReferenceValue = SelectIcon(effect);
         serialized.ApplyModifiedPropertiesWithoutUndo();
         EditorUtility.SetDirty(asset);
+    }
+
+    private static Texture2D SelectIcon(GunUpgradeEffect effect)
+    {
+        string icon = "icon_damage.png";
+        if (effect.Projectiles != 0 || effect.Magazine != 0)
+            icon = "icon_ammo.png";
+        else if (effect.FireRatePercent != 0f || effect.ReloadSpeedPercent != 0f)
+            icon = "icon_firerate.png";
+        else if (effect.RangePercent != 0f || effect.ProjectileSpeedPercent != 0f || effect.SpreadReductionPercent != 0f)
+            icon = "icon_range.png";
+        else if (effect.CriticalChance != 0f)
+            icon = "icon_crit_chance.png";
+        else if (effect.CriticalDamage != 0f)
+            icon = "icon_crit_damage.png";
+        return AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Art/UI/ApocalypseGenerated/{icon}");
     }
 
     private static GunUpgradeEffect E(float damage=0, float fireRate=0, float range=0, float speed=0,

@@ -1,0 +1,138 @@
+{"kind":"deck","id":"pr/2yeosl","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"TITLE","type":"title","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout2.xml","name":"OBJECT","type":"obj","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout3.xml","name":"SECTION_HEADER","type":"secHead","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout4.xml","name":"TWO_OBJECTS","type":"twoObj","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout5.xml","name":"TWO_OBJECTS_WITH_TEXT","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout6.xml","name":"TITLE_ONLY","type":"titleOnly","placeholders":[{"name":"title","type":"title"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout7.xml","name":"OBJECT_WITH_CAPTION_TEXT","type":"objTx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout8.xml","name":"PICTURE_WITH_CAPTION_TEXT","type":"picTx","placeholders":[{"name":"title","type":"title"},{"name":"picture","type":"picture"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout9.xml","name":"VERTICAL_TEXT","type":"vertTx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout10.xml","name":"Custom Layout","placeholders":[{"name":"title","type":"title"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout11.xml","name":"1_Custom Layout","placeholders":[{"name":"title","type":"title"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"slide","id":"sl/2k1fd9","slide":1,"title":"Legen From Below","textShapes":2}
+{"kind":"textbox","id":"sh/tobudsf2","slide":1,"name":"Google Shape;89;p1","placeholder":"title","text":"Legen From Below","textPreview":"Legen From Below","textChars":16,"textLines":1,"bbox":[63.26,127.5,1153.48,250.67]}
+{"kind":"textbox","id":"sh/vy9wniho","slide":1,"name":"Google Shape;90;p1","placeholder":"subtitle","text":"Class Name:\tGD1305\nGroup Name: The MoonStone\nMembers: Vũ Việt Tiến\n\t\t\t","textPreview":"Class Name:\tGD1305 | Group Name: The MoonStone | Members: Vũ Việt Tiến |","textChars":70,"textLines":4,"bbox":[63.26,418.67,1153.48,250.67]}
+{"kind":"notes","id":"nt/2k1fd9","slide":1,"text":""}
+{"kind":"slide","id":"sl/lxw40t","slide":2,"title":"OBJECTIVES","textShapes":3}
+{"kind":"textbox","id":"sh/x4zihwv2","slide":2,"name":"Google Shape;96;p2","placeholder":"title","text":"OBJECTIVES","textPreview":"OBJECTIVES","textChars":10,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/w3qh8reh","slide":2,"name":"Google Shape;97;p2","placeholder":"body","text":"Project Introduction\nAnalyze System Requiments\nDesign Details\nTest\nInstallation Instructions\n\n","textPreview":"Project Introduction | Analyze System Requiments | Design Details | Test | Installation Instructions |  |","textChars":94,"textLines":7,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/jqh0jmd8","slide":2,"name":"Google Shape;98;p2","placeholder":"slideNumber","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"notes","id":"nt/lxw40t","slide":2,"text":""}
+{"kind":"slide","id":"sl/daysbm","slide":3,"title":"Project Introduction","textShapes":3}
+{"kind":"textbox","id":"sh/srutcbad","slide":3,"name":"Google Shape;104;p3","placeholder":"title","text":"Project Introduction","textPreview":"Project Introduction","textChars":20,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/ts3ulgbi","slide":3,"name":"Google Shape;105;p3","placeholder":"body","text":"Project Name: Legend From Below\n\nProject Description:\nLegend From Below is a dungeon shooter game inspired by Soul Knight, developed using Unity.\nStory: A mysterious warrior awakens in an unknown underground dungeon filled with enemies and traps.\nObjective: Survive, fight through multiple dungeon levels, and conquer the depths.\nGameplay: fast-paced combat, dodge rolls, random chests, and resource management.","textPreview":"Project Name: Legend From Below |  | Project Description: | Legend From Below is a dungeon shooter game inspired by Soul Knight, develope...","textChars":411,"textLines":7,"bbox":[17.4,112.76,667.23,568.1]}
+{"kind":"textbox","id":"sh/65cbals7","slide":3,"name":"Google Shape;106;p3","placeholder":"slideNumber","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/ilgz2h8b","slide":3,"name":"Picture 2","bbox":[682.72,144.47,592.48,441.88]}
+{"kind":"notes","id":"nt/daysbm","slide":3,"text":""}
+{"kind":"slide","id":"sl/rfaarr","slide":4,"title":"Project Introduction","textShapes":3}
+{"kind":"textbox","id":"sh/dwr2t8n6","slide":4,"name":"Google Shape;112;p4","placeholder":"title","text":"Project Introduction","textPreview":"Project Introduction","textChars":20,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/cvylk36l","slide":4,"name":"Google Shape;113;p4","placeholder":"body","text":"\n\nCore Gameplay\nPlayer must dodge enemy bullets using roll mechanics.\nCollect and switch weapons dynamically.\nClear rooms to progress through dungeons.\nTreasure chests may appear randomly after clearing a room.\nSix dungeon levels, each with unique enemies and challenges.","textPreview":"|  | Core Gameplay | Player must dodge enemy bullets using roll mechanics. | Collect and switch weapons dynamically. | Clear rooms to pro...","textChars":271,"textLines":8,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/zy9kvy5w","slide":4,"name":"Google Shape;114;p4","placeholder":"slideNumber","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"notes","id":"nt/rfaarr","slide":4,"text":""}
+{"kind":"slide","id":"sl/eqkt4n","slide":5,"title":"Project Introduction","textShapes":3}
+{"kind":"textbox","id":"sh/qd076dwr","slide":5,"name":"Google Shape;112;p4","placeholder":"title","text":"Project Introduction","textPreview":"Project Introduction","textChars":20,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/be9ofixc","slide":5,"name":"Google Shape;113;p4","placeholder":"body","text":"\nDevelopment Tool","textPreview":"| Development Tool","textChars":17,"textLines":2,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/oby543el","slide":5,"name":"Google Shape;114;p4","placeholder":"slideNumber","text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"table","id":"tb/o7qdwfq9","slide":5,"name":"Table 1","rows":5,"cols":2,"preview":"Tool | Purpose","bbox":[19.03,267.56,808.26,194.67]}
+{"kind":"image","id":"im/3m9o725c","slide":5,"name":"Picture 5","bbox":[863.06,290.27,383.06,139.46]}
+{"kind":"notes","id":"nt/eqkt4n","slide":5,"text":""}
+{"kind":"slide","id":"sl/xgodb5","slide":6,"title":"II. ANALYZE SYSTEM REQUIREMENTS","textShapes":3}
+{"kind":"textbox","id":"sh/1w761cjy","slide":6,"name":"Google Shape;120;p5","placeholder":"title","text":"II. ANALYZE SYSTEM REQUIREMENTS","textPreview":"II. ANALYZE SYSTEM REQUIREMENTS","textChars":31,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/gvy5872d","slide":6,"name":"Google Shape;121;p5","placeholder":"body","text":"\nSystem Overview\n\nThe game is structured into three main modules:\nPlayer Control Module\nHandles movement, rolling, shooting, and weapon switching.\nEnemy Spawner Module\nManages spawning logic, kill counts, and room-clear events.\nDungeon Builder Module\nConstructs interconnected rooms and manages spawn points.","textPreview":"| System Overview |  | The game is structured into three main modules: | Player Control Module | Handles movement, rolling, shooting, and...","textChars":308,"textLines":10,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/fupozm1s","slide":6,"name":"Google Shape;122;p5","placeholder":"slideNumber","text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"notes","id":"nt/xgodb5","slide":6,"text":""}
+{"kind":"slide","id":"sl/e1peoj","slide":7,"title":"II. ANALYZE SYSTEM REQUIREMENTS","textShapes":3}
+{"kind":"textbox","id":"sh/4fihg7mh","slide":7,"name":"Google Shape;128;p6","placeholder":"title","text":"II. ANALYZE SYSTEM REQUIREMENTS","textPreview":"II. ANALYZE SYSTEM REQUIREMENTS","textChars":31,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/5gry9c32","slide":7,"name":"Google Shape;129;p6","placeholder":"body","text":"Use Case\n\n","textPreview":"Use Case |  |","textChars":10,"textLines":3,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/zmdsvq9g","slide":7,"name":"Google Shape;130;p6","placeholder":"slideNumber","text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/ze1kva10","slide":7,"name":"Picture 1","bbox":[341.56,129.27,545.33,518.26]}
+{"kind":"notes","id":"nt/e1peoj","slide":7,"text":""}
+{"kind":"slide","id":"sl/tqj6ug","slide":8,"title":"II. ANALYZE SYSTEM REQUIREMENTS","textShapes":3}
+{"kind":"textbox","id":"sh/8zuh8va9","slide":8,"name":"Google Shape;136;p7","placeholder":"title","text":"II. ANALYZE SYSTEM REQUIREMENTS","textPreview":"II. ANALYZE SYSTEM REQUIREMENTS","textChars":31,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/t03i10ru","slide":8,"name":"Google Shape;137;p7","placeholder":"body","text":"Activity Diagram:\n","textPreview":"Activity Diagram: |","textChars":18,"textLines":2,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/qtwjip8n","slide":8,"name":"Google Shape;138;p7","placeholder":"slideNumber","text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/2xwnmhkf","slide":8,"name":"Picture 1","bbox":[411.35,97.31,428.18,590.44]}
+{"kind":"notes","id":"nt/tqj6ug","slide":8,"text":""}
+{"kind":"slide","id":"sl/c5kmhr","slide":9,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/sfqtona5","slide":9,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/tgzuxsrq","slide":9,"name":"Google Shape;145;p8","placeholder":"body","text":"Menu","textPreview":"Menu","textChars":4,"textLines":1,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/6d8bmxsz","slide":9,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"9","textPreview":"9","textChars":1,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/ehwva1sr","slide":9,"name":"Picture 1","bbox":[46.04,226.81,604.4,340]}
+{"kind":"image","id":"im/5grex0rm","slide":9,"name":"Picture 3","bbox":[650.44,226.81,605.26,340.46]}
+{"kind":"notes","id":"nt/c5kmhr","slide":9,"text":""}
+{"kind":"slide","id":"sl/d74pod","slide":10,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/47epg3mx","slide":10,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/p876983i","slide":10,"name":"Google Shape;145;p8","placeholder":"body","text":"In Game","textPreview":"In Game","textChars":7,"textLines":1,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/25w7ed47","slide":10,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/2lwjq18r","slide":10,"name":"Picture 2","bbox":[40.76,227.27,604.4,340]}
+{"kind":"image","id":"im/9kr2x07m","slide":10,"name":"Picture 5","bbox":[658.16,227.27,604.44,340]}
+{"kind":"notes","id":"nt/d74pod","slide":10,"text":""}
+{"kind":"slide","id":"sl/rte9nt","slide":11,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/476lw7yx","slide":11,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/58z25sfi","slide":11,"name":"Google Shape;145;p8","placeholder":"body","text":"Class Diagram","textPreview":"Class Diagram","textChars":13,"textLines":1,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/i5o3uxgr","slide":11,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/qdkvq98j","slide":11,"name":"Picture 1","bbox":[276.94,112.76,675.13,568.1]}
+{"kind":"notes","id":"nt/rte9nt","slide":11,"text":""}
+{"kind":"slide","id":"sl/oomq0w","slide":12,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/twnmhs3i","slide":12,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/svel8n2x","slide":12,"name":"Google Shape;145;p8","placeholder":"body","text":"Sequence Diagram\n- Movement\n","textPreview":"Sequence Diagram | - Movement |","textChars":28,"textLines":3,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/7u54filc","slide":12,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/fixk3m1k","slide":12,"name":"Picture 4","bbox":[64.83,207.36,1148.15,349.82]}
+{"kind":"notes","id":"nt/oomq0w","slide":12,"text":""}
+{"kind":"slide","id":"sl/8ychvd","slide":13,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/sbe5szi9","slide":13,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/tcnm14ju","slide":13,"name":"Google Shape;145;p8","placeholder":"body","text":"Sequence Diagram\n- Roll\n","textPreview":"Sequence Diagram | - Roll |","textChars":24,"textLines":3,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/69cnqp0j","slide":13,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/a5sbih8j","slide":13,"name":"Picture 2","bbox":[0,198.49,1280,471.72]}
+{"kind":"notes","id":"nt/8ychvd","slide":13,"text":""}
+{"kind":"slide","id":"sl/ww5wxt","slide":14,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/gj2dk3ax","slide":14,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/1kbet8ri","slide":14,"name":"Google Shape;145;p8","placeholder":"body","text":"Sequence Diagram\n- Fire Weapon\n","textPreview":"Sequence Diagram | - Fire Weapon |","textChars":31,"textLines":3,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/exkvitsr","slide":14,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/yxgvixwv","slide":14,"name":"Picture 3","bbox":[0,198.65,1280,446.93]}
+{"kind":"notes","id":"nt/ww5wxt","slide":14,"text":""}
+{"kind":"slide","id":"sl/kc7n60","slide":15,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/9gjapcz2","slide":15,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/ofa9w7ih","slide":15,"name":"Google Shape;145;p8","placeholder":"body","text":"Sequence Diagram\n- Use Item\n","textPreview":"Sequence Diagram | - Use Item |","textChars":28,"textLines":3,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/ne18n2hw","slide":15,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/zupoj21c","slide":15,"name":"Picture 2","bbox":[28.72,210.33,1175.05,473.97]}
+{"kind":"notes","id":"nt/kc7n60","slide":15,"text":""}
+{"kind":"slide","id":"sl/1yyhgu","slide":16,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/bixk7udg","slide":16,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/axojypwv","slide":16,"name":"Google Shape;145;p8","placeholder":"body","text":"Database Design\n\nEntity Relationship Diagram\n\t\nHighScoreManager: manages score persistence.\nData Storage: .dat binary file using BinaryFormatter.\nStructure:\nHighScoreManager → Controller\nHighScore → Entity\nScore → Records with playerName, levelDescription, playerScore.\n","textPreview":"Database Design |  | Entity Relationship Diagram | \t | HighScoreManager: manages score persistence. | Data Storage: .dat binary file usin...","textChars":270,"textLines":11,"bbox":[17.4,112.76,1243.57,568.1]}
+{"kind":"textbox","id":"sh/xkf294v6","slide":16,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/l4vuxwfu","slide":16,"name":"Picture 1","bbox":[828.77,109.32,268.89,551.39]}
+{"kind":"notes","id":"nt/1yyhgu","slide":16,"text":""}
+{"kind":"slide","id":"sl/fyv2en","slide":17,"title":"III. DESIGN DETIAL","textShapes":4}
+{"kind":"textbox","id":"sh/0b29kbqd","slide":17,"name":"Google Shape;144;p8","placeholder":"title","text":"III. DESIGN DETIAL","textPreview":"III. DESIGN DETIAL","textChars":18,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/1cbatg7i","slide":17,"name":"Google Shape;145;p8","placeholder":"body","text":"Database Design\n\n\n","textPreview":"Database Design |  |  |","textChars":18,"textLines":4,"bbox":[17.4,112.76,1243.57,58.53]}
+{"kind":"textbox","id":"sh/e9kri187","slide":17,"name":"Google Shape;146;p8","placeholder":"slideNumber","text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"textbox","id":"sh/729cfut8","slide":17,"name":"TextBox 5","text":"Database Design Detail :","textPreview":"Database Design Detail :","textChars":24,"textLines":1,"bbox":[83.76,160.05,364.24,42.01]}
+{"kind":"image","id":"im/il0bah47","slide":17,"name":"Picture 3","bbox":[306.54,203.74,709.88,480.56]}
+{"kind":"notes","id":"nt/fyv2en","slide":17,"text":""}
+{"kind":"slide","id":"sl/4rzmv0","slide":18,"title":"IV. TEST","textShapes":2}
+{"kind":"textbox","id":"sh/kvi9wryx","slide":18,"name":"Google Shape;152;p9","placeholder":"title","text":"IV. TEST","textPreview":"IV. TEST","textChars":8,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/mhkry1g3","slide":18,"name":"Google Shape;154;p9","placeholder":"slideNumber","text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/2d0bmdkn","slide":18,"name":"Picture 2","bbox":[89.01,108.31,495.46,564.99]}
+{"kind":"image","id":"im/pgrahsje","slide":18,"name":"Picture 4","bbox":[667.34,104.22,513.91,573.18]}
+{"kind":"notes","id":"nt/4rzmv0","slide":18,"text":""}
+{"kind":"slide","id":"sl/a7iv4t","slide":19,"title":"IV. TEST","textShapes":2}
+{"kind":"textbox","id":"sh/itgvylk7","slide":19,"name":"Google Shape;152;p9","placeholder":"title","text":"IV. TEST","textPreview":"IV. TEST","textChars":8,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/gredwv2h","slide":19,"name":"Google Shape;154;p9","placeholder":"slideNumber","text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/8bi9sby5","slide":19,"name":"Picture 8","bbox":[58.01,110.23,597.04,561.15]}
+{"kind":"image","id":"im/na98z6xk","slide":19,"name":"Picture 10","bbox":[691.03,110.21,527.68,561.19]}
+{"kind":"notes","id":"nt/a7iv4t","slide":19,"text":""}
+{"kind":"slide","id":"sl/skgyz5","slide":20,"title":"V. Installation Instructions","textShapes":3}
+{"kind":"textbox","id":"sh/j2tsvuhc","slide":20,"name":"Google Shape;184;p13","placeholder":"title","text":"V. Installation Instructions","textPreview":"V. Installation Instructions","textChars":28,"textLines":1,"bbox":[17.12,27.64,1243.57,69.67]}
+{"kind":"textbox","id":"sh/i1kr2pg7","slide":20,"name":"Google Shape;185;p13","placeholder":"body","text":"PREREQUISITES\n\tUnity Hub – Download\n\tUnity Editor 6000.0.58f or later (LTS)\n\tGit (Optional, for version control)\n\nINSTALLATION STEPS\n       Step 1: Clone or Download Project\n\tGit clone https://github.com/Vutien1406/Assignment/settings\n\tOr Download ZIP : \nStep 2: Open in Unity Hub\n\tOpen Unity Hub\n\tClick \"Add\" → Select project folder\n\tChoose Unity 6000.0.58f\n\tClick \"Open\"\nStep 3: Build and Run\n\tPlatform: PC\n\tTarget: Windows\n\tClick Build → Choose folder\n\tRun .exe\n","textPreview":"PREREQUISITES | \tUnity Hub – Download | \tUnity Editor 6000.0.58f or later (LTS) | \tGit (Optional, for version control) |  | INSTALLATION ...","textChars":465,"textLines":20,"bbox":[17.4,112.76,770.37,568.1]}
+{"kind":"textbox","id":"sh/5obax4zi","slide":20,"name":"Google Shape;186;p13","placeholder":"slideNumber","text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1118.6,684.3,142.1,38.33]}
+{"kind":"image","id":"im/pona50fe","slide":20,"name":"Picture 2","bbox":[801.62,146.47,424.06,427.06]}
+{"kind":"notes","id":"nt/skgyz5","slide":20,"text":""}
+{"kind":"slide","id":"sl/ntjeo3","slide":21,"title":"Slide 21","textShapes":0}
+{"kind":"image","id":"im/gzyd07a1","slide":21,"name":"Google Shape;192;p14","bbox":[466.23,174.76,347.54,370.48]}
+{"kind":"notes","id":"nt/ntjeo3","slide":21,"text":""}
+{"kind":"slide","id":"sl/oco9om","slide":22,"title":"Q & A","textShapes":1}
+{"kind":"textbox","id":"sh/f618b21w","slide":22,"name":"Google Shape;198;p15","text":"Q & A","textPreview":"Q & A","textChars":5,"textLines":1,"bbox":[32.98,277.6,1214.03,164.79]}
+{"kind":"notes","id":"nt/oco9om","slide":22,"text":""}

@@ -9,6 +9,7 @@ public struct KamikazeUnit : IComponentData
     public float AttackInterval;
     public float AttackTimer;
     public float AttackImpactNormalizedTime;
+    public byte HasExploded;
 }
 public class KamikazeUnitAuthoring : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class KamikazeUnitAuthoring : MonoBehaviour
                 AttackInterval = authoring.AttackInterval,
                 AttackTimer = 0f,
                 AttackImpactNormalizedTime = impactTime,
+                HasExploded = 0,
             });
         }
     }

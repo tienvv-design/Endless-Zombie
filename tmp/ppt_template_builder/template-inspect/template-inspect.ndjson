@@ -1,0 +1,104 @@
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"Legen From Below","textShapes":2}
+{"kind":"textbox","id":"sh/u5ojqpon","slide":1,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/kbmh0v25","slide":1,"textChars":70,"textLines":4}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"OBJECTIVES","textShapes":3}
+{"kind":"textbox","id":"sh/mtgn29sf","slide":2,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/7up4vet0","slide":2,"textChars":94,"textLines":7}
+{"kind":"textbox","id":"sh/wzi583ah","slide":2,"textChars":1,"textLines":1}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"Project Introduction","textShapes":3}
+{"kind":"textbox","id":"sh/r6xcjq5o","slide":3,"textChars":20,"textLines":1}
+{"kind":"textbox","id":"sh/q5oval43","slide":3,"textChars":411,"textLines":7}
+{"kind":"textbox","id":"sh/d8zul0nu","slide":3,"textChars":1,"textLines":1}
+{"kind":"image","id":"im/pwred0j6","slide":3,"name":"Picture 2","bbox":[682.72,144.47,592.48,441.88]}
+{"kind":"slide","id":"sl/jyx0ra1s","slide":4,"title":"Project Introduction","textShapes":3}
+{"kind":"textbox","id":"sh/36xw7m5c","slide":4,"textChars":20,"textLines":1}
+{"kind":"textbox","id":"sh/i5ovyhor","slide":4,"textChars":271,"textLines":8}
+{"kind":"textbox","id":"sh/h4ve5cn6","slide":4,"textChars":1,"textLines":1}
+{"kind":"slide","id":"sl/i107q5of","slide":5,"title":"Project Introduction","textShapes":3}
+{"kind":"textbox","id":"sh/zm98nehc","slide":5,"textChars":20,"textLines":1}
+{"kind":"textbox","id":"sh/y10ru9gr","slide":5,"textChars":17,"textLines":2}
+{"kind":"textbox","id":"sh/9sbatoze","slide":5,"textChars":1,"textLines":1}
+{"kind":"table","id":"tb/5c7mxgfe","slide":5,"name":"Table 1","rows":5,"cols":2,"preview":"Tool | Purpose","bbox":[19.03,267.56,808.26,194.67]}
+{"kind":"image","id":"im/yxoz2t83","slide":5,"name":"Picture 5","bbox":[863.06,290.27,383.06,139.46]}
+{"kind":"slide","id":"sl/x8f69ofe","slide":6,"title":"II. ANALYZE SYSTEM REQUIREMENTS","textShapes":3}
+{"kind":"textbox","id":"sh/rixw3ato","slide":6,"textChars":31,"textLines":1}
+{"kind":"textbox","id":"sh/qhovu5s3","slide":6,"textChars":308,"textLines":10}
+{"kind":"textbox","id":"sh/dkfe50be","slide":6,"textChars":1,"textLines":1}
+{"kind":"slide","id":"sl/gnmp4jqx","slide":7,"title":"II. ANALYZE SYSTEM REQUIREMENTS","textShapes":3}
+{"kind":"textbox","id":"sh/xwf65ori","slide":7,"textChars":31,"textLines":1}
+{"kind":"textbox","id":"sh/wv65c3qx","slide":7,"textChars":10,"textLines":3}
+{"kind":"textbox","id":"sh/m1k36pov","slide":7,"textChars":1,"textLines":1}
+{"kind":"image","id":"im/ep43mlon","slide":7,"name":"Picture 1","bbox":[341.56,129.27,545.33,518.26]}
+{"kind":"slide","id":"sl/fu1gfa1s","slide":8,"title":"II. ANALYZE SYSTEM REQUIREMENTS","textShapes":3}
+{"kind":"textbox","id":"sh/lgjm5wfe","slide":8,"textChars":31,"textLines":1}
+{"kind":"textbox","id":"sh/kfa5cry9","slide":8,"textChars":18,"textLines":2}
+{"kind":"textbox","id":"sh/7i147mxk","slide":8,"textChars":1,"textLines":1}
+{"kind":"image","id":"im/rml8bmlk","slide":8,"name":"Picture 1","bbox":[411.35,97.31,428.18,590.44]}
+{"kind":"slide","id":"sl/udsvah03","slide":9,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/ax87mh4b","slide":9,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/byh8fm5w","slide":9,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/cjqpormh","slide":9,"textChars":1,"textLines":1}
+{"kind":"image","id":"im/k3etwfep","slide":9,"name":"Picture 1","bbox":[46.04,226.81,604.4,340]}
+{"kind":"image","id":"im/vylcjaxs","slide":9,"name":"Picture 3","bbox":[650.44,226.81,605.26,340.46]}
+{"kind":"slide","id":"sl/m90b6t0r","slide":10,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/2183i1sj","slide":10,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/n2h4r694","slide":10,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/o3qlkbap","slide":10,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/0ry1snud","slide":10,"name":"Picture 2","bbox":[40.76,227.27,604.4,340]}
+{"kind":"image","id":"im/jm9kvmdc","slide":10,"name":"Picture 5","bbox":[658.16,227.27,604.44,340]}
+{"kind":"slide","id":"sl/jetc3ut0","slide":11,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/ylofmxsn","slide":11,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/zmxwf29s","slide":11,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/0n6xonad","slide":11,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/cv6t8ryx","slide":11,"name":"Picture 1","bbox":[276.94,112.76,675.13,568.1]}
+{"kind":"slide","id":"sl/8f2psfyx","slide":12,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/e9sjyxkv","slide":12,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/zu10r21g","slide":12,"textChars":28,"textLines":3}
+{"kind":"textbox","id":"sh/0va10721","slide":12,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/kfqt8nq1","slide":12,"name":"Picture 4","bbox":[64.83,207.36,1148.15,349.82]}
+{"kind":"slide","id":"sl/hgzapcr6","slide":13,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/t0f2tgbe","slide":13,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/sz6l0va9","slide":13,"textChars":24,"textLines":3}
+{"kind":"textbox","id":"sh/ryxkrqto","slide":13,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/3qpofuhc","slide":13,"name":"Picture 2","bbox":[0,198.49,1280,471.72]}
+{"kind":"slide","id":"sl/6lsnupw7","slide":14,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/6hsvyp4z","slide":14,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/7ilw7alk","slide":14,"textChars":31,"textLines":3}
+{"kind":"textbox","id":"sh/8jud0fmp","slide":14,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/grypsbq1","slide":14,"name":"Picture 3","bbox":[0,198.65,1280,446.93]}
+{"kind":"slide","id":"sl/vaxsvy10","slide":15,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/21s3alo7","slide":15,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/n2l4jqps","slide":15,"textChars":28,"textLines":3}
+{"kind":"textbox","id":"sh/onulcv6d","slide":15,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/8fq5ofy9","slide":15,"name":"Picture 2","bbox":[28.72,210.33,1175.05,473.97]}
+{"kind":"slide","id":"sl/gny5sjyp","slide":16,"title":"III. DESIGN DETIAL","textShapes":3}
+{"kind":"textbox","id":"sh/nqxk7a98","slide":16,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/mpoje5s3","slide":16,"textChars":270,"textLines":11}
+{"kind":"textbox","id":"sh/9sz29kre","slide":16,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/10ry50vq","slide":16,"name":"Picture 1","bbox":[828.77,109.32,268.89,551.39]}
+{"kind":"slide","id":"sl/14bup87q","slide":17,"title":"III. DESIGN DETIAL","textShapes":4}
+{"kind":"textbox","id":"sh/ax0budgn","slide":17,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/by9s3ih8","slide":17,"textChars":18,"textLines":4}
+{"kind":"textbox","id":"sh/wz2twnyt","slide":17,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/t8ne10n6","slide":17,"textChars":24,"textLines":1}
+{"kind":"image","id":"im/crydcjid","slide":17,"name":"Picture 3","bbox":[306.54,203.74,709.88,480.56]}
+{"kind":"slide","id":"sl/y5wne50z","slide":18,"title":"IV. TEST","textShapes":2}
+{"kind":"textbox","id":"sh/6tsjahoz","slide":18,"textChars":8,"textLines":1}
+{"kind":"textbox","id":"sh/gzulgr61","slide":18,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/4f6xcvel","slide":18,"name":"Picture 2","bbox":[89.01,108.31,495.46,564.99]}
+{"kind":"image","id":"im/jexg3qxg","slide":18,"name":"Picture 4","bbox":[667.34,104.22,513.91,573.18]}
+{"kind":"slide","id":"sl/nid43ytk","slide":19,"title":"IV. TEST","textShapes":2}
+{"kind":"textbox","id":"sh/v2l0ru9g","slide":19,"textChars":8,"textLines":1}
+{"kind":"textbox","id":"sh/t03ipkra","slide":19,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/tw7axsbu","slide":19,"name":"Picture 8","bbox":[58.01,110.23,597.04,561.15]}
+{"kind":"image","id":"im/6twrmds3","slide":19,"name":"Picture 10","bbox":[691.03,110.21,527.68,561.19]}
+{"kind":"slide","id":"sl/zyxsni5k","slide":20,"title":"V. Installation Instructions","textShapes":3}
+{"kind":"textbox","id":"sh/9gr2dozm","slide":20,"textChars":28,"textLines":1}
+{"kind":"textbox","id":"sh/8fy1kji1","slide":20,"textChars":465,"textLines":20}
+{"kind":"textbox","id":"sh/7epkbehg","slide":20,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/nato3exs","slide":20,"name":"Picture 2","bbox":[801.62,146.47,424.06,427.06]}
+{"kind":"slide","id":"sl/m1wvqtk3","slide":21,"title":"Slide 21","textShapes":0}
+{"kind":"image","id":"im/329wbuxw","slide":21,"name":"Google Shape;192;p14","bbox":[466.23,174.76,347.54,370.48]}
+{"kind":"slide","id":"sl/5onypobq","slide":22,"title":"Q & A","textShapes":1}
+{"kind":"textbox","id":"sh/m50ryh0n","slide":22,"textChars":5,"textLines":1}
+{"kind":"notice","message":"Truncated: omitted 0 lines. Increase maxChars or narrow target."}

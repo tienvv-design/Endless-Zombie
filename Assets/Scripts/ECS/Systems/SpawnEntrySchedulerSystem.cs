@@ -82,6 +82,7 @@ public partial struct SpawnEntrySchedulerSystem : ISystem
             SpawnEntryIndex = entryIndex,
             EnemyPrefab = entry.EnemyPrefab,
             EnemyType = entry.EnemyType,
+            VisualKind = entry.VisualKind,
             HealthMultiplier = entry.HealthMultiplier,
             DamageMultiplier = entry.DamageMultiplier,
             Scale = entry.Scale,

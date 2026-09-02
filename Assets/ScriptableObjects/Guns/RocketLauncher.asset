@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: rocket_launcher
   DisplayName: Rocket Launcher
+  UnlockCost: 2600
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 1709254077376921, guid: a91cd5c4a698a9547ab83e4622558c55, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 4c187d3635fd49fe99bc2b26f5cdb08a, type: 3}
@@ -31,28 +32,29 @@ MonoBehaviour:
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
   MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 0.75
+  VfxLifetime: 0.85
   MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
   MuzzleEffectScale: 1
+  ProjectileTracerScale: 0.4
   Archetype: 4
-  BaseDamage: 38
-  BaseShotsPerSecond: 0.55
+  BaseDamage: 56
+  BaseShotsPerSecond: 0.48
   BaseProjectileCount: 1
   BaseCriticalChance: 0.05
   BaseCriticalDamage: 1.5
   BaseRange: 10
   BaseProjectileSpeed: 9
   BasePierce: 0
-  BaseKnockback: 1.2
+  BaseKnockback: 1.4
   BaseSpreadAngle: 0
   MinimumFireInterval: 0.2
-  BaseMagazineSize: 3
-  BaseReloadDuration: 2.4
+  BaseMagazineSize: 2
+  BaseReloadDuration: 2.6
   IsExplosive: 1
-  ExplosionRadius: 2.5
+  ExplosionRadius: 2.75
   ExplosionDamageMultiplier: 1
   ExplosionKnockbackMultiplier: 1.5
   RicochetCount: 0

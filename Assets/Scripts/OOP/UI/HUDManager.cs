@@ -49,6 +49,7 @@ public class HUDManager : MonoBehaviour
         GameplayHUDView view = Instantiate(prefab, transform, false);
         view.name = "GameplayHUDLayout";
         BindHUD(view);
+        PauseMenu.EnsureExists();
 
         if (m_XPFillBar != null)
         {
@@ -177,13 +178,10 @@ public class HUDManager : MonoBehaviour
         EntityManager manager = world.EntityManager;
         StageRuntime stage = manager.GetComponentData<StageRuntime>(stageEntity);
         DynamicBuffer<WaveRuntime> waves = manager.GetBuffer<WaveRuntime>(stageEntity);
-        DynamicBuffer<SpawnRequest> queue = manager.GetBuffer<SpawnRequest>(stageEntity);
-        int alive = 0;
         int kills = 0;
         if (m_MetricsQuery.CalculateEntityCount() == 1)
         {
             CombatMetrics metrics = m_MetricsQuery.GetSingleton<CombatMetrics>();
-            alive = metrics.ActiveEnemies;
             kills = metrics.KillCount;
         }
         DynamicBuffer<SpawnEntryRuntime> entries = manager.GetBuffer<SpawnEntryRuntime>(stageEntity);
@@ -191,10 +189,7 @@ public class HUDManager : MonoBehaviour
         for (int i = 0; i < entries.Length; i++)
             totalEnemies += entries[i].Quantity;
         int displayWave = stage.CurrentWaveIndex >= 0 ? stage.CurrentWaveIndex + 1 : 0;
-        string waveState = stage.CurrentWaveIndex >= 0 && stage.CurrentWaveIndex < waves.Length
-            ? waves[stage.CurrentWaveIndex].State.ToString()
-            : stage.State.ToString();
-        m_WaveText.text = $"Wave {displayWave}/{waves.Length}  |  {waveState}  |  Alive {alive}  |  Queue {queue.Length}";
+        m_WaveText.text = $"Wave {displayWave}/{waves.Length}";
         if (m_KillProgressText != null)
             m_KillProgressText.text = $"KILLS  {kills} / {totalEnemies}";
     }

@@ -20,6 +20,13 @@ public static class LdoeWeaponVfxInstaller
         "Assets/Weapons/Prefabs/SM_Barrett_M82A1.prefab",
         "Assets/Weapons/Prefabs/SM_M16A1.prefab",
         "Assets/Weapons/Prefabs/Flamethrower.prefab",
+        "Assets/Weapons/Prefabs/LDoE_Rifle_M32.prefab",
+        "Assets/Weapons/Prefabs/LDoE_Minigun.prefab",
+        "Assets/Weapons/Prefabs/LDoE_MP5K.prefab",
+        "Assets/Weapons/Prefabs/SM_HK_MP5.prefab",
+        "Assets/Weapons/Prefabs/LDoE_Harpoon.prefab",
+        "Assets/Weapons/Prefabs/LDoE_Armourbreaker_Shotgun.prefab",
+        "Assets/Weapons/Prefabs/LDoE_Winchester_Mercenary.prefab",
     };
 
     private static readonly Dictionary<string, string> GunMuzzleAssignments = new()
@@ -27,10 +34,15 @@ public static class LdoeWeaponVfxInstaller
         { "AssaultRifle", LightMuzzlePath },
         { "CryoGun", HeavyMuzzlePath },
         { "FlameRifle", HeavyMuzzlePath },
+        { "M32GrenadeLauncher", HeavyMuzzlePath },
+        { "Minigun", HeavyMuzzlePath },
+        { "MP5K", LightMuzzlePath },
         { "Pistol", LightMuzzlePath },
+        { "RicochetSMG", LightMuzzlePath },
         { "RocketLauncher", HeavyMuzzlePath },
         { "Shotgun", ShotgunMuzzlePath },
         { "TeslaGun", HeavyMuzzlePath },
+        { "WinchesterMercenary", ShotgunMuzzlePath },
     };
 
     [MenuItem("Tools/Endless Zombie/Install LDoE Weapon VFX")]
@@ -61,7 +73,7 @@ public static class LdoeWeaponVfxInstaller
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-        Debug.Log("LDoE weapon VFX installed: URP materials, five muzzle sockets, and eight gun configs.");
+        Debug.Log("LDoE weapon VFX installed: URP materials, twelve muzzle sockets, and twelve gun configs.");
     }
 
     private static void ConfigureMaterials(Shader additiveShader, Shader alphaShader)

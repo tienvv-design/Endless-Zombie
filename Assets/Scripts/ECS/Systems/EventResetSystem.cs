@@ -27,6 +27,9 @@ internal partial struct EventResetSystem : ISystem
             ecb.DestroyEntity(entity);
         }
 
+        foreach (var (_, entity) in SystemAPI.Query<RefRW<MobExplosionEvent>>().WithEntityAccess())
+            ecb.DestroyEntity(entity);
+
         foreach (var (chainEvent, entity) in SystemAPI.Query<RefRW<ChainLightningEvent>>().WithEntityAccess())
         {
             ecb.DestroyEntity(entity);

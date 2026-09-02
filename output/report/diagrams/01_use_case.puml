@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam actorStyle stickman
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor white
+  BorderColor black
+  ArrowColor black
+}
+
+actor Player as player
+actor "Game System" as system
+
+rectangle "Endless Zombie" {
+  usecase "Play Game" as Play
+  usecase "Pause /\nResume Game" as Pause
+  usecase "Move and Aim" as Move
+  usecase "Auto Attack" as Attack
+  usecase "Switch Weapon" as Switch
+  usecase "Collect XP and\nChoose Upgrade" as Upgrade
+  usecase "Generate and\nSpawn Enemy Wave" as Spawn
+  usecase "Process Enemy\nDeath and Rewards" as Death
+  usecase "Complete Stage" as Complete
+
+  Play .up.> Pause : <<include>>
+  Play .right.> Spawn : <<include>>
+  Attack .up.> Move : <<extend>>
+  Switch .up.> Move : <<extend>>
+  Upgrade .up.> Attack : <<extend>>
+  Spawn .down.> Death : <<include>>
+  Death .down.> Complete : <<include>>
+
+  Move -[hidden]right- Spawn
+  Attack -[hidden]right- Death
+}
+
+player --> Play
+player --> Move
+Spawn --> system
+Death --> system
+Complete --> system
+@enduml

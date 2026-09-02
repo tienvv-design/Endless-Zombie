@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: ldoe_mp5k
   DisplayName: MP5K
+  UnlockCost: 450
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 5157368644320737447, guid: e91fa308568189b40b29043dc30ce085, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
@@ -31,31 +32,32 @@ MonoBehaviour:
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
   MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 185577682e9153a4ab5a5331ef4394a6, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 0.75
+  VfxLifetime: 0.85
   MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
   MuzzleEffectScale: 1
+  ProjectileTracerScale: 0.4
   Archetype: 5
-  BaseDamage: 3
-  BaseShotsPerSecond: 8
+  BaseDamage: 6
+  BaseShotsPerSecond: 7.5
   BaseProjectileCount: 1
   BaseCriticalChance: 0.05
   BaseCriticalDamage: 1.5
-  BaseRange: 12
+  BaseRange: 8.5
   BaseProjectileSpeed: 16
   BasePierce: 0
   BaseKnockback: 0.2
   BaseSpreadAngle: 3
   MinimumFireInterval: 0.08
-  BaseMagazineSize: 32
-  BaseReloadDuration: 1.5
+  BaseMagazineSize: 30
+  BaseReloadDuration: 1.45
   IsExplosive: 0
   ExplosionRadius: 0
   ExplosionDamageMultiplier: 1
   ExplosionKnockbackMultiplier: 1
-  RicochetCount: 2
+  RicochetCount: 0
   RicochetSearchRange: 5
   ChainCount: 0
   ChainRange: 4

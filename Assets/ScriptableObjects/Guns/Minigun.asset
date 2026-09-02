@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: ldoe_minigun
   DisplayName: Minigun
+  UnlockCost: 3300
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 1594408707648248837, guid: f671d699be733044784cab22bf955c14, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  ProjectileVisual: 0
   HeldLocalPosition: {x: 0.179, y: 0.136, z: 0.041}
   HeldLocalEulerAngles: {x: 347.6925, y: 138.1698, z: 245.77608}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
@@ -30,26 +32,27 @@ MonoBehaviour:
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
   MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 6490d8fd1db56924c802840c664d98e8, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 0.75
+  VfxLifetime: 0.85
   MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
-  MuzzleEffectScale: 1
+  MuzzleEffectScale: 0.5
+  ProjectileTracerScale: 0.4
   Archetype: 9
-  BaseDamage: 3
-  BaseShotsPerSecond: 12
+  BaseDamage: 14
+  BaseShotsPerSecond: 10.5
   BaseProjectileCount: 1
   BaseCriticalChance: 0.06
   BaseCriticalDamage: 1.5
-  BaseRange: 10
-  BaseProjectileSpeed: 20
+  BaseRange: 9.5
+  BaseProjectileSpeed: 35
   BasePierce: 0
-  BaseKnockback: 0.18
-  BaseSpreadAngle: 6
+  BaseKnockback: 0.15
+  BaseSpreadAngle: 7
   MinimumFireInterval: 0.03
-  BaseMagazineSize: 120
-  BaseReloadDuration: 3
+  BaseMagazineSize: 90
+  BaseReloadDuration: 3.2
   IsExplosive: 0
   ExplosionRadius: 0
   ExplosionDamageMultiplier: 1

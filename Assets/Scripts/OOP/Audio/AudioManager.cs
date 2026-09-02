@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     private readonly HashSet<Button> boundButtons = new();
     private float nextButtonScanTime;
+    private float flameLoopStopTime;
 
     private sealed class DefaultSoundSpec
     {
@@ -68,11 +69,12 @@ public class AudioManager : MonoBehaviour
         new(SoundLabel.WeaponRocket, 0.56f, 1f, false, 0.02f, 0.12f, "Weapon_Rocket"),
         new(SoundLabel.WeaponSmg, 0.3f, 1f, false, 0.03f, 0.04f, "Weapon_SMG"),
         new(SoundLabel.WeaponTesla, 0.42f, 1f, false, 0.04f, 0.055f, "Weapon_Tesla"),
-        new(SoundLabel.WeaponFlame, 0.25f, 1f, false, 0.02f, 0.075f, "Weapon_Flame"),
+        new(SoundLabel.WeaponFlame, 0.28f, 1f, true, 0f, 0f, "Weapon_Flame"),
+        new(SoundLabel.WeaponFlameStart, 0.34f, 1f, false, 0f, 0.1f, "Weapon_Flame_Start"),
         new(SoundLabel.WeaponCryo, 0.4f, 1f, false, 0.04f, 0.07f, "Weapon_Cryo"),
         new(SoundLabel.WeaponMinigun, 0.23f, 1f, false, 0.025f, 0.035f, "Weapon_Minigun"),
         new(SoundLabel.WeaponGrenade, 0.55f, 1f, false, 0.02f, 0.1f, "Weapon_Grenade"),
-        new(SoundLabel.WeaponReload, 0.36f, 1f, false, 0.02f, 0.2f, "Weapon_Reload"),
+        new(SoundLabel.WeaponReload, 0.52f, 1f, false, 0.02f, 0.2f, "Weapon_Reload_Harpoon"),
     };
 
     // private AudioLowPassFilter lowPassFilter;
@@ -113,6 +115,11 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+        if (flameLoopStopTime > 0f && Time.unscaledTime >= flameLoopStopTime)
+        {
+            flameLoopStopTime = 0f;
+            Stop(SoundLabel.WeaponFlame);
+        }
         if (Time.unscaledTime < nextButtonScanTime) return;
         nextButtonScanTime = Time.unscaledTime + 0.75f;
         foreach (Button button in FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None))
@@ -212,6 +219,16 @@ public class AudioManager : MonoBehaviour
 
     public void PlayWeapon(GunArchetype archetype)
     {
+        if (archetype == GunArchetype.FlameRifle)
+        {
+            if (!IsPlaying(SoundLabel.WeaponFlame))
+            {
+                Play(SoundLabel.WeaponFlameStart);
+                Play(SoundLabel.WeaponFlame);
+            }
+            flameLoopStopTime = Time.unscaledTime + 0.24f;
+            return;
+        }
         Play(archetype switch
         {
             GunArchetype.Shotgun => SoundLabel.WeaponShotgun,
@@ -220,7 +237,6 @@ public class AudioManager : MonoBehaviour
             GunArchetype.RocketLauncher => SoundLabel.WeaponRocket,
             GunArchetype.SMG => SoundLabel.WeaponSmg,
             GunArchetype.TeslaGun => SoundLabel.WeaponTesla,
-            GunArchetype.FlameRifle => SoundLabel.WeaponFlame,
             GunArchetype.CryoGun => SoundLabel.WeaponCryo,
             GunArchetype.Minigun => SoundLabel.WeaponMinigun,
             GunArchetype.GrenadeLauncher => SoundLabel.WeaponGrenade,
@@ -228,10 +244,27 @@ public class AudioManager : MonoBehaviour
         });
     }
 
-    public void PlayWeaponReload(GunArchetype archetype)
+    public void PlayWeaponReload(float reloadDuration)
     {
-        if (archetype is GunArchetype.TeslaGun or GunArchetype.CryoGun)
-            Play(SoundLabel.WeaponReload);
+        // A sustained weapon loop can otherwise mask the short mechanical reload cue.
+        Stop(SoundLabel.WeaponFlame);
+        flameLoopStopTime = 0f;
+
+        Sound sound = Array.Find(sounds, item => item.label == SoundLabel.WeaponReload);
+        if (sound == null || !EnsureSource(sound)) return;
+
+        float now = Time.unscaledTime;
+        if (now < sound.nextAllowedPlayTime) return;
+        sound.nextAllowedPlayTime = now + sound.minimumInterval;
+
+        AudioClip clip = ChooseClip(sound);
+        if (clip == null) return;
+
+        // Playback duration is clip.length / pitch. Match it to the current reload
+        // duration, including bonuses gained from in-game reload-speed upgrades.
+        float duration = Mathf.Max(0.05f, reloadDuration);
+        sound.source.pitch = Mathf.Clamp(clip.length / duration, 0.1f, 3f);
+        sound.source.PlayOneShot(clip);
     }
 
     public void SetMuffled(bool isMuffled)

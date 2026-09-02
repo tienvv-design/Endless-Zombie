@@ -8,7 +8,9 @@ using Unity.Transforms;
 partial struct UnitMoverSystem : ISystem
 {
     
-    public const float REACHED_TARGET_POSITION_DISTANCE_SQ = 2f;
+    // Keep movement stopping distance below the configured melee range.
+    // A value of 1 means enemies approach to roughly one world unit.
+    public const float REACHED_TARGET_POSITION_DISTANCE_SQ = 1f;
 
     [BurstCompile]
     public void OnCreate(ref SystemState state)
@@ -76,6 +78,13 @@ public static class CrowdAvoidance
     public const float CellSize = 1f;
     public const float Radius = 0.8f;
     public const float Strength = 1.35f;
+    public const float DirectApproachDistance = 3f;
+    public const float FullAvoidanceDistance = 5f;
+
+    public static float ApproachWeight(float targetDistance)
+    {
+        return math.smoothstep(DirectApproachDistance, FullAvoidanceDistance, targetDistance);
+    }
 
     public static int2 PositionToCell(float3 position, float cellSize)
     {
@@ -156,6 +165,7 @@ public partial struct MobUnitMoverJob : IJobEntity
         ref PhysicsVelocity physicsVelocity)
     {
         float3 moveDirection = unitMover.targetPosition - localTransform.Position;
+        float targetDistance = math.length(moveDirection.xz);
 
         float reachedTargetDistanceSq = UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQ;
         if (math.lengthsq(moveDirection) <= reachedTargetDistanceSq)
@@ -168,48 +178,55 @@ public partial struct MobUnitMoverJob : IJobEntity
         moveDirection = math.normalize(moveDirection);
         int x = (int)math.floor((localTransform.Position.x - gridOrigin.x) / cellSize);
         int z = (int)math.floor((localTransform.Position.z - gridOrigin.z) / cellSize);
+        // Close to the Player, steer toward the exact target instead of the
+        // centre of the next flow-field cell. This prevents a final sideways
+        // offset from being locked in when the attack system stops movement.
         if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
         {
             int cellIndex = z * gridWidth + x;
             localTransform.Position.y = surfaceHeights[cellIndex];
-            int direction = directions[cellIndex];
-            if (direction < 0)
+            if (targetDistance > CrowdAvoidance.DirectApproachDistance)
             {
-                int2 escapeOffset = FindEscapeOffset(x, z, unitMover.targetPosition);
-                if (math.all(escapeOffset == int2.zero))
+                int direction = directions[cellIndex];
+                if (direction < 0)
                 {
-                    physicsVelocity.Linear = float3.zero;
-                    physicsVelocity.Angular = float3.zero;
-                    return;
+                    int2 escapeOffset = FindEscapeOffset(x, z, unitMover.targetPosition);
+                    if (math.all(escapeOffset == int2.zero))
+                    {
+                        physicsVelocity.Linear = float3.zero;
+                        physicsVelocity.Angular = float3.zero;
+                        return;
+                    }
+                    float3 escapeCenter = new(
+                        gridOrigin.x + (x + escapeOffset.x + 0.5f) * cellSize,
+                        localTransform.Position.y,
+                        gridOrigin.z + (z + escapeOffset.y + 0.5f) * cellSize);
+                    moveDirection = math.normalizesafe(escapeCenter - localTransform.Position);
                 }
-                float3 escapeCenter = new(
-                    gridOrigin.x + (x + escapeOffset.x + 0.5f) * cellSize,
-                    localTransform.Position.y,
-                    gridOrigin.z + (z + escapeOffset.y + 0.5f) * cellSize);
-                moveDirection = math.normalizesafe(escapeCenter - localTransform.Position);
-            }
-            else if (direction > 0)
-            {
-                int2 offset = DirectionOffset(direction);
-                // Steer through the centre of the next cell instead of using a
-                // coarse cardinal/diagonal vector. This gives fast units a real
-                // turning point and stops them pressing into concave corners.
-                float3 nextCellCenter = new float3(
-                    gridOrigin.x + (x + offset.x + 0.5f) * cellSize,
-                    localTransform.Position.y,
-                    gridOrigin.z + (z + offset.y + 0.5f) * cellSize);
-                float3 flowDirection = math.normalizesafe(nextCellCenter - localTransform.Position,
-                    new float3(offset.x, 0f, offset.y));
-                moveDirection = flowDirection;
+                else if (direction > 0)
+                {
+                    int2 offset = DirectionOffset(direction);
+                    // Steer through the centre of the next cell instead of using a
+                    // coarse cardinal/diagonal vector. This gives fast units a real
+                    // turning point and stops them pressing into concave corners.
+                    float3 nextCellCenter = new float3(
+                        gridOrigin.x + (x + offset.x + 0.5f) * cellSize,
+                        localTransform.Position.y,
+                        gridOrigin.z + (z + offset.y + 0.5f) * cellSize);
+                    float3 flowDirection = math.normalizesafe(nextCellCenter - localTransform.Position,
+                        new float3(offset.x, 0f, offset.y));
+                    moveDirection = flowDirection;
+                }
             }
         }
 
         moveDirection.y = 0f;
+        float avoidanceWeight = CrowdAvoidance.ApproachWeight(targetDistance);
         float3 separation = CrowdAvoidance.Calculate(entity, localTransform.Position, crowdGrid);
         float3 overtake = CalculateOvertake(entity, localTransform.Position, moveDirection,
             unitMover.moveSpeed);
         moveDirection = math.normalizesafe(moveDirection +
-            separation * CrowdAvoidance.Strength + overtake,
+            (separation * CrowdAvoidance.Strength + overtake) * avoidanceWeight,
             moveDirection);
         moveDirection = math.normalizesafe(moveDirection);
 
@@ -315,6 +332,7 @@ public partial struct DirectMobUnitMoverJob : IJobEntity
         ref PhysicsVelocity physicsVelocity)
     {
         float3 moveDirection = unitMover.targetPosition - localTransform.Position;
+        float targetDistance = math.length(moveDirection.xz);
         if (math.lengthsq(moveDirection) <= UnitMoverSystem.REACHED_TARGET_POSITION_DISTANCE_SQ)
         {
             physicsVelocity.Linear = float3.zero;
@@ -323,8 +341,10 @@ public partial struct DirectMobUnitMoverJob : IJobEntity
         }
 
         moveDirection = math.normalize(moveDirection);
+        float avoidanceWeight = CrowdAvoidance.ApproachWeight(targetDistance);
         moveDirection = math.normalizesafe(moveDirection +
-            CrowdAvoidance.Calculate(entity, localTransform.Position, crowdGrid) * CrowdAvoidance.Strength,
+            CrowdAvoidance.Calculate(entity, localTransform.Position, crowdGrid) *
+            CrowdAvoidance.Strength * avoidanceWeight,
             moveDirection);
         if (unitMover.LookAtTarget)
             localTransform.Rotation = math.slerp(localTransform.Rotation,

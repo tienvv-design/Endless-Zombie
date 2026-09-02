@@ -1,0 +1,401 @@
+{
+  "sourcePptx": "C:\\Users\\Vu Tien\\Desktop\\Assignment\\GD1305 - Group MoonStone - Presentation Project II.pptx",
+  "workspace": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder",
+  "outDir": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect",
+  "generatedAt": "2026-08-31T05:08:09.276Z",
+  "slideCount": 22,
+  "slideArtifacts": [
+    {
+      "slide": 1,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-01.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-01.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-01.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-01.layout.json"
+    },
+    {
+      "slide": 2,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-02.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-02.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-02.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-02.layout.json"
+    },
+    {
+      "slide": 3,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-03.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-03.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-03.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-03.layout.json"
+    },
+    {
+      "slide": 4,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-04.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-04.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-04.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-04.layout.json"
+    },
+    {
+      "slide": 5,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-05.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-05.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-05.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-05.layout.json"
+    },
+    {
+      "slide": 6,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-06.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-06.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-06.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-06.layout.json"
+    },
+    {
+      "slide": 7,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-07.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-07.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-07.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-07.layout.json"
+    },
+    {
+      "slide": 8,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-08.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-08.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-08.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-08.layout.json"
+    },
+    {
+      "slide": 9,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-09.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-09.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-09.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-09.layout.json"
+    },
+    {
+      "slide": 10,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-10.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-10.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-10.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-10.layout.json"
+    },
+    {
+      "slide": 11,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-11.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-11.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-11.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-11.layout.json"
+    },
+    {
+      "slide": 12,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-12.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-12.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-12.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-12.layout.json"
+    },
+    {
+      "slide": 13,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-13.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-13.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-13.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-13.layout.json"
+    },
+    {
+      "slide": 14,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-14.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-14.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-14.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-14.layout.json"
+    },
+    {
+      "slide": 15,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-15.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-15.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-15.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-15.layout.json"
+    },
+    {
+      "slide": 16,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-16.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-16.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-16.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-16.layout.json"
+    },
+    {
+      "slide": 17,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-17.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-17.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-17.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-17.layout.json"
+    },
+    {
+      "slide": 18,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-18.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-18.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-18.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-18.layout.json"
+    },
+    {
+      "slide": 19,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-19.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-19.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-19.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-19.layout.json"
+    },
+    {
+      "slide": 20,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-20.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-20.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-20.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-20.layout.json"
+    },
+    {
+      "slide": 21,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-21.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-21.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-21.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-21.layout.json"
+    },
+    {
+      "slide": 22,
+      "previewPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\source-slides\\source-slide-22.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-22.png",
+      "layoutPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\layouts\\source-slide-22.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-22.layout.json"
+    }
+  ],
+  "inspectPath": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\template-inspect.ndjson",
+  "inspectRelativePath": "template-inspect/template-inspect.ndjson",
+  "inspectTruncated": true,
+  "inspectMetadata": {
+    "revision": "esz9uq",
+    "target": {
+      "id": "pr/145abe"
+    },
+    "kind": {
+      "requested": "slide,textbox,shape,image,table,chart",
+      "tokens": [
+        "slide",
+        "textbox",
+        "shape",
+        "image",
+        "table",
+        "chart"
+      ]
+    },
+    "include": {
+      "tokens": []
+    },
+    "exclude": {
+      "tokens": []
+    },
+    "notices": []
+  },
+  "extractedMedia": [
+    {
+      "entry": "ppt/media/image15.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image15.png",
+      "relativePath": "template-inspect/assets/ppt/media/image15.png",
+      "bytes": 68217
+    },
+    {
+      "entry": "ppt/media/image1.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image1.png",
+      "relativePath": "template-inspect/assets/ppt/media/image1.png",
+      "bytes": 1828
+    },
+    {
+      "entry": "ppt/media/image2.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image2.png",
+      "relativePath": "template-inspect/assets/ppt/media/image2.png",
+      "bytes": 17915
+    },
+    {
+      "entry": "ppt/media/image4.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image4.png",
+      "relativePath": "template-inspect/assets/ppt/media/image4.png",
+      "bytes": 11876
+    },
+    {
+      "entry": "ppt/media/image5.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image5.png",
+      "relativePath": "template-inspect/assets/ppt/media/image5.png",
+      "bytes": 2005186
+    },
+    {
+      "entry": "ppt/media/image6.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image6.png",
+      "relativePath": "template-inspect/assets/ppt/media/image6.png",
+      "bytes": 34018
+    },
+    {
+      "entry": "ppt/media/image7.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image7.png",
+      "relativePath": "template-inspect/assets/ppt/media/image7.png",
+      "bytes": 43279
+    },
+    {
+      "entry": "ppt/media/image16.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image16.png",
+      "relativePath": "template-inspect/assets/ppt/media/image16.png",
+      "bytes": 59685
+    },
+    {
+      "entry": "ppt/media/image8.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image8.png",
+      "relativePath": "template-inspect/assets/ppt/media/image8.png",
+      "bytes": 108928
+    },
+    {
+      "entry": "ppt/media/image9.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image9.png",
+      "relativePath": "template-inspect/assets/ppt/media/image9.png",
+      "bytes": 20401
+    },
+    {
+      "entry": "ppt/media/image10.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image10.png",
+      "relativePath": "template-inspect/assets/ppt/media/image10.png",
+      "bytes": 1482551
+    },
+    {
+      "entry": "ppt/media/image11.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image11.png",
+      "relativePath": "template-inspect/assets/ppt/media/image11.png",
+      "bytes": 14464
+    },
+    {
+      "entry": "ppt/media/image12.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image12.png",
+      "relativePath": "template-inspect/assets/ppt/media/image12.png",
+      "bytes": 49735
+    },
+    {
+      "entry": "ppt/media/image17.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image17.png",
+      "relativePath": "template-inspect/assets/ppt/media/image17.png",
+      "bytes": 63019
+    },
+    {
+      "entry": "ppt/media/image13.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image13.png",
+      "relativePath": "template-inspect/assets/ppt/media/image13.png",
+      "bytes": 217596
+    },
+    {
+      "entry": "ppt/media/image14.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image14.png",
+      "relativePath": "template-inspect/assets/ppt/media/image14.png",
+      "bytes": 57601
+    },
+    {
+      "entry": "ppt/media/image3.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image3.png",
+      "relativePath": "template-inspect/assets/ppt/media/image3.png",
+      "bytes": 96785
+    },
+    {
+      "entry": "ppt/media/image18.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image18.png",
+      "relativePath": "template-inspect/assets/ppt/media/image18.png",
+      "bytes": 27758
+    },
+    {
+      "entry": "ppt/media/image19.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image19.png",
+      "relativePath": "template-inspect/assets/ppt/media/image19.png",
+      "bytes": 51797
+    },
+    {
+      "entry": "ppt/media/image20.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image20.png",
+      "relativePath": "template-inspect/assets/ppt/media/image20.png",
+      "bytes": 70032
+    },
+    {
+      "entry": "ppt/media/image21.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image21.png",
+      "relativePath": "template-inspect/assets/ppt/media/image21.png",
+      "bytes": 68373
+    },
+    {
+      "entry": "ppt/media/image22.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image22.png",
+      "relativePath": "template-inspect/assets/ppt/media/image22.png",
+      "bytes": 59984
+    },
+    {
+      "entry": "ppt/media/image23.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image23.png",
+      "relativePath": "template-inspect/assets/ppt/media/image23.png",
+      "bytes": 63652
+    },
+    {
+      "entry": "ppt/media/image24.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image24.png",
+      "relativePath": "template-inspect/assets/ppt/media/image24.png",
+      "bytes": 24643
+    },
+    {
+      "entry": "ppt/media/image25.png",
+      "path": "D:\\Project\\Endless zombie\\tmp\\ppt_template_builder\\template-inspect\\assets\\ppt\\media\\image25.png",
+      "relativePath": "template-inspect/assets/ppt/media/image25.png",
+      "bytes": 80200
+    }
+  ],
+  "fonts": [
+    "+mj-lt",
+    "+mn-lt",
+    "Angsana New",
+    "Arial",
+    "Calibri",
+    "Calibri Light",
+    "Cordia New",
+    "DaunPenh",
+    "DokChampa",
+    "Ebrima",
+    "Estrangelo Edessa",
+    "Euphemia",
+    "Gautami",
+    "Helvetica Neue",
+    "Helvetica Neue Light",
+    "Iskoola Pota",
+    "Javanese Text",
+    "Kalinga",
+    "Kartika",
+    "Latha",
+    "Leelawadee UI",
+    "MV Boli",
+    "Mangal",
+    "Microsoft Himalaya",
+    "Microsoft JhengHei",
+    "Microsoft New Tai Lue",
+    "Microsoft Tai Le",
+    "Microsoft Uighur",
+    "Microsoft Yi Baiti",
+    "Mongolian Baiti",
+    "MoolBoran",
+    "Myanmar Text",
+    "Nirmala UI",
+    "Nyala",
+    "Phagspa",
+    "Plantagenet Cherokee",
+    "Raavi",
+    "Segoe UI",
+    "Shruti",
+    "Sylfaen",
+    "Times New Roman",
+    "Tunga",
+    "Vrinda",
+    "宋体",
+    "新細明體",
+    "游ゴシック",
+    "游ゴシック Light",
+    "等线",
+    "等线 Light",
+    "맑은 고딕",
+    "ＭＳ Ｐゴシック"
+  ],
+  "packageParts": {
+    "mediaCount": 25,
+    "slideXmlCount": 22,
+    "chartCount": 0,
+    "tableSlideCount": 1
+  }
+}

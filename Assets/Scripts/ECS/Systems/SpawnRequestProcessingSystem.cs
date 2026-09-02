@@ -115,6 +115,10 @@ public partial struct SpawnRequestProcessingSystem : ISystem
             }
 
             Entity mob = ecb.Instantiate(request.EnemyPrefab);
+            if (SystemAPI.HasComponent<MobVisualVariant>(request.EnemyPrefab))
+                ecb.SetComponent(mob, new MobVisualVariant { Kind = request.VisualKind });
+            else
+                ecb.AddComponent(mob, new MobVisualVariant { Kind = request.VisualKind });
             float spawnScale = math.max(0.01f, request.Scale);
             bool boss = request.EnemyType == EnemyType.Boss || waves[request.WaveIndex].WaveType == WaveType.Boss;
             bool eliteWave = !boss && waves[request.WaveIndex].WaveType == WaveType.Elite;
@@ -158,6 +162,7 @@ public partial struct SpawnRequestProcessingSystem : ISystem
             if (SystemAPI.HasComponent<KamikazeUnit>(request.EnemyPrefab))
             {
                 KamikazeUnit attack = SystemAPI.GetComponent<KamikazeUnit>(request.EnemyPrefab);
+                attack.HitDistanceSq = math.max(0.01f, stage.AttackDistance * stage.AttackDistance);
                 attack.Damage = math.max(1, (int)math.round(attack.Damage * request.DamageMultiplier));
                 if (boss) attack.Damage = math.max(1, (int)math.ceil(attack.Damage * stage.BossDamageMultiplier));
                 if (eliteKind == EliteModifierKind.Frenzied)
@@ -167,6 +172,12 @@ public partial struct SpawnRequestProcessingSystem : ISystem
                 }
                 else if (eliteKind == EliteModifierKind.Colossus)
                     attack.Damage = math.max(1, (int)math.ceil(attack.Damage * 1.2f));
+                if (request.VisualKind == MobVisualKind.ZombieFat)
+                {
+                    attack.AttackInterval = math.max(1.25f, attack.AttackInterval);
+                    attack.AttackImpactNormalizedTime = 0.9f;
+                    attack.HasExploded = 0;
+                }
                 ecb.SetComponent(mob, attack);
             }
             if (SystemAPI.HasComponent<UnitMover>(request.EnemyPrefab) && eliteKind == EliteModifierKind.Frenzied)

@@ -11,7 +11,7 @@ public sealed class MainMenuCanvasView : MonoBehaviour
     public Button NextStageButton;
     public Button PetButton;
     public Button WeaponButton;
-    public Button InventoryButton;
+    public Button BattleButton;
     public Button ShopButton;
     public RectTransform HealthCard;
     public RectTransform IncomeCard;
@@ -24,7 +24,13 @@ public sealed class MainMenuCanvasView : MonoBehaviour
         NextStageButton = FindComponent<Button>("Next Stage Button");
         PetButton = FindComponent<Button>("Navigation/PET Tab");
         WeaponButton = FindComponent<Button>("Navigation/WEAPON Tab");
-        InventoryButton = FindComponent<Button>("Navigation/INVENTORY Tab");
+        RectTransform battleTab = FindRect("Navigation/Battle Tab");
+        BattleButton = battleTab != null ? battleTab.GetComponent<Button>() : null;
+        if (battleTab != null && BattleButton == null)
+        {
+            BattleButton = battleTab.gameObject.AddComponent<Button>();
+            BattleButton.targetGraphic = battleTab.GetComponent<Image>();
+        }
         ShopButton = FindComponent<Button>("Navigation/SHOP Tab");
         HealthCard = FindRect("MAX HP");
         IncomeCard = FindRect("INCOME");

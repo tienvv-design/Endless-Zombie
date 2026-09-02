@@ -271,6 +271,7 @@ public sealed class CombatRuntimeDebuggerWindow : EditorWindow
             {
                 Sequence = stage.NextRequestSequence++, WaveIndex = entry.WaveIndex, SpawnEntryIndex = entryIndex,
                 EnemyPrefab = entry.EnemyPrefab, EnemyType = entry.EnemyType,
+                VisualKind = entry.VisualKind,
                 HealthMultiplier = entry.HealthMultiplier, DamageMultiplier = entry.DamageMultiplier,
                 Scale = entry.Scale, XPReward = entry.XPReward, GoldReward = entry.GoldReward,
                 SpawnArenaGroupId = entry.SpawnArenaGroupId,

@@ -18,6 +18,7 @@ public static class KickerEndGameTheme
     public static Sprite LosegameHome => Resources.Load<Sprite>("KickerHUD/losegame_home");
     public static Sprite LosegameMarker => Resources.Load<Sprite>("KickerHUD/losegame_marker");
     public static Sprite LosegameBoss => Resources.Load<Sprite>("KickerHUD/losegame_boss");
+    public static Sprite LosegameZombiePanel => Resources.Load<Sprite>("KickerHUD/losegame_zombie_panel");
     public static Sprite Gold => Resources.Load<Sprite>("KickerHUD/gold");
 
     private static Sprite Get(ref Dictionary<string, Sprite> cache, string path, string name)

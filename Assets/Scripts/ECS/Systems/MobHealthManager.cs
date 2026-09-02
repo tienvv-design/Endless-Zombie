@@ -26,9 +26,14 @@ internal partial struct MobHealthManager : ISystem
         var statusEffects = SystemAPI.GetComponentLookup<MobStatusEffects>(false);
         const float combatRadius = 25f;
         RefRW<CombatMetrics> metrics = SystemAPI.GetSingletonRW<CombatMetrics>();
+        bool debugEnemyInvincible = SystemAPI.TryGetSingleton<GameplayDebugFlags>(out GameplayDebugFlags debugFlags) &&
+                                    debugFlags.EnemyInvincible != 0;
         
         foreach (var damageTakenEvent in SystemAPI.Query<RefRW<MobDamageTakenEvent>>())
         {
+            if (debugEnemyInvincible)
+                continue;
+
             Entity mobEntity = damageTakenEvent.ValueRO.Entity;
 
             // Entity might have been destroyed somewhere in between so check if it has LocalTransform

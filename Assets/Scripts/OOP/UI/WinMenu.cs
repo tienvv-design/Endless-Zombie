@@ -6,37 +6,58 @@ using UnityEngine.UI;
 
 public sealed class WinMenu : MonoBehaviour, IGameWin
 {
+    [SerializeField] private TMP_Text goldText;
+    [SerializeField] private TMP_Text stageProgressText;
+    [SerializeField] private Button continueButton;
     private CanvasGroup group;
-    private TMP_Text goldText;
-    private TMP_Text stageProgressText;
+    private bool built;
 
     public static void EnsureExists()
     {
+        GameObject prefab = Resources.Load<GameObject>("WinMenu");
+        if (prefab != null)
+        {
+            // Always recreate from the asset. This also handles Unity's fast Enter Play Mode,
+            // where a runtime-created copy from the previous play session may still exist.
+            foreach (WinMenu existing in FindObjectsByType<WinMenu>(
+                         FindObjectsInactive.Include, FindObjectsSortMode.None))
+                Destroy(existing.gameObject);
+            GameObject instance = Instantiate(prefab);
+            instance.name = "Win Menu";
+            instance.SetActive(false);
+            return;
+        }
         if (FindFirstObjectByType<WinMenu>(FindObjectsInactive.Include) != null) return;
-        GameObject root = new("Win Menu", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler),
-            typeof(GraphicRaycaster), typeof(CanvasGroup), typeof(WinMenu));
-        Canvas canvas = root.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 150;
-        CanvasScaler scaler = root.GetComponent<CanvasScaler>();
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920f, 1080f);
-        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-        scaler.matchWidthOrHeight = 0.5f;
-        root.SetActive(false);
+        CreateCanvasRoot().SetActive(false);
     }
 
     private void Awake()
     {
         group = GetComponent<CanvasGroup>();
+        ResolvePrefabReferences();
+        built = goldText != null && stageProgressText != null && continueButton != null;
+        // Never replace an edited prefab hierarchy at runtime. Build is only a fallback
+        // for the code-created canvas when the prefab asset is genuinely unavailable.
+        if (!built && transform.childCount == 0) Build();
+        BindContinueButton();
+    }
+
+#if UNITY_EDITOR
+    public void BuildEditorPreview()
+    {
+        built = false;
         Build();
     }
+#endif
 
     public void OnStateEnable()
     {
         gameObject.SetActive(true);
-        goldText.text = $"GOLD EARNED   +{(GoldWallet.Instance ? GoldWallet.Instance.LastBankedReward : 0):N0}";
-        StageProgressView.Refresh(stageProgressText, true);
+        if (!built && transform.childCount == 0) Build();
+        GoldWallet wallet = GoldWallet.Instance;
+        int earnedGold = wallet != null ? wallet.LastBankedReward : 0;
+        if (goldText != null) goldText.text = $"GOLD EARNED  +{earnedGold:N0}";
+        if (stageProgressText != null) StageProgressView.Refresh(stageProgressText, true);
         group.alpha = 1f;
         group.interactable = true;
         group.blocksRaycasts = true;
@@ -46,44 +67,136 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
 
     private void Build()
     {
-        RectTransform canvasRoot = transform as RectTransform;
-        Panel("Backdrop", canvasRoot, Vector2.zero, new Vector2(1920f, 1080f),
-            new Color(0.005f, 0.015f, 0.025f, 0.84f), null);
-        RectTransform root = Panel("KickerVictoryPopup", canvasRoot, Vector2.zero, new Vector2(760f, 850f),
-            new Color32(8, 28, 43, 250), null);
+        built = true;
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+#if UNITY_EDITOR
+            if (!Application.isPlaying) DestroyImmediate(transform.GetChild(i).gameObject);
+            else Destroy(transform.GetChild(i).gameObject);
+#else
+            Destroy(transform.GetChild(i).gameObject);
+#endif
+        }
 
-        Image flare = Panel("Flare", root, new Vector2(0f, 210f), new Vector2(760f, 760f), Color.white,
+        RectTransform canvasRoot = transform as RectTransform;
+        RectTransform backdrop = StretchPanel("Zombie Backdrop", canvasRoot, new Color32(3, 8, 7, 238));
+        RectTransform panel = Panel("Survivor Panel", backdrop, new Vector2(0f, 5f),
+            new Vector2(960f, 1580f), new Color32(21, 30, 23, 252), null);
+        AddOutline(panel.gameObject, new Color32(111, 124, 73, 220), new Vector2(5f, -5f));
+
+        Image zombieArt = Panel("Zombie Artwork", panel, new Vector2(0f, 340f),
+            new Vector2(930f, 930f), new Color32(115, 129, 91, 205),
+            KickerEndGameTheme.LosegameZombiePanel).GetComponent<Image>();
+        zombieArt.preserveAspect = true;
+        zombieArt.raycastTarget = false;
+        Image flare = Panel("Toxic Flare", panel, new Vector2(0f, 390f),
+            new Vector2(900f, 900f), new Color32(118, 147, 60, 105),
             KickerEndGameTheme.Flare).GetComponent<Image>();
         flare.raycastTarget = false;
-        Panel("LeftHorn", root, new Vector2(-238f, 277f), new Vector2(210f, 158f), Color.white,
-            KickerEndGameTheme.Win("Win_Atlas_2"));
-        Panel("RightHorn", root, new Vector2(238f, 277f), new Vector2(210f, 158f), Color.white,
-            KickerEndGameTheme.Win("Win_Atlas_3"));
-        Panel("VictoryBadge", root, new Vector2(0f, 280f), new Vector2(280f, 272f), Color.white,
-            KickerEndGameTheme.Win("Win_Atlas_5"));
-        Text("VICTORY", root, new Vector2(0f, 288f), new Vector2(440f, 90f), 50f, Color.white);
 
-        Panel("Flag", root, new Vector2(-120f, 85f), new Vector2(78f, 78f), Color.white,
-            KickerEndGameTheme.Flag);
-        Text("STAGE CLEARED", root, new Vector2(40f, 85f), new Vector2(360f, 58f), 32f,
-            new Color32(205, 239, 255, 255));
-        stageProgressText = Text("STAGE PROGRESS  100%", root, new Vector2(0f, 5f),
-            new Vector2(520f, 52f), 29f, new Color32(180, 225, 248, 255));
-        goldText = Text("GOLD EARNED   +0", root, new Vector2(0f, -70f),
-            new Vector2(540f, 58f), 31f, new Color32(255, 211, 50, 255));
+        RectTransform titlePlate = Panel("Title Plate", panel, new Vector2(0f, 585f),
+            new Vector2(760f, 138f), new Color32(48, 57, 35, 245),
+            KickerEndGameTheme.UI("UI_Maincenter_Button4"));
+        AddOutline(titlePlate.gameObject, new Color32(117, 25, 18, 255), new Vector2(4f, -4f));
+        TMP_Text title = Text("SURVIVED", titlePlate, new Vector2(0f, 5f),
+            new Vector2(700f, 105f), 72f, new Color32(230, 226, 187, 255));
+        title.outlineColor = new Color32(63, 13, 9, 255);
+        title.outlineWidth = 0.25f;
+        Text("AREA SECURED", panel, new Vector2(0f, 430f), new Vector2(620f, 62f), 34f,
+            new Color32(213, 220, 172, 255));
 
-        Button claim = Button("ContinueBtn", root, "CLAIM & CONTINUE", new Vector2(0f, -220f),
-            new Vector2(350f, 95f), KickerEndGameTheme.UI("UI_Maincenter_Button4"));
-        claim.onClick.AddListener(ContinueToNextStage);
+        RectTransform report = Panel("Run Report", panel, new Vector2(0f, -235f),
+            new Vector2(820f, 340f), new Color32(10, 17, 13, 238), null);
+        AddOutline(report.gameObject, new Color32(91, 103, 65, 210), new Vector2(3f, -3f));
+        Panel("Warning Stripe", report, new Vector2(0f, 154f), new Vector2(820f, 12f),
+            new Color32(134, 42, 26, 255), null);
+        stageProgressText = Text("STAGE PROGRESS  100%", report, new Vector2(0f, 82f),
+            new Vector2(700f, 58f), 32f, new Color32(203, 216, 165, 255));
+        ImageRect("Gold Icon", report, new Vector2(-245f, -50f), new Vector2(96f, 96f),
+            KickerEndGameTheme.Gold).GetComponent<Image>().preserveAspect = true;
+        goldText = Text("GOLD EARNED  +0", report, new Vector2(70f, -54f),
+            new Vector2(520f, 118f), 34f, new Color32(239, 196, 76, 255));
+
+        continueButton = Button("Continue Button", panel, "CONTINUE TO NEXT ZONE",
+            new Vector2(0f, -650f), new Vector2(620f, 124f),
+            KickerEndGameTheme.UI("UI_Maincenter_Button4"));
+        continueButton.targetGraphic.color = new Color32(101, 116, 62, 255);
+        BindContinueButton();
+    }
+
+    private void BindContinueButton()
+    {
+        if (continueButton == null) return;
+        // The editable prefab may use child artwork and therefore have no Graphic on
+        // the Button object itself. GraphicRaycaster cannot hit such a Button, so add
+        // an invisible hit target without changing the prefab's appearance.
+        if (continueButton.targetGraphic == null)
+        {
+            Image hitTarget = continueButton.GetComponent<Image>();
+            if (hitTarget == null) hitTarget = continueButton.gameObject.AddComponent<Image>();
+            hitTarget.color = new Color(1f, 1f, 1f, 0.001f);
+            hitTarget.raycastTarget = true;
+            continueButton.targetGraphic = hitTarget;
+        }
+        else
+        {
+            continueButton.targetGraphic.raycastTarget = true;
+        }
+        continueButton.onClick.RemoveListener(ContinueToNextStage);
+        continueButton.onClick.AddListener(ContinueToNextStage);
+    }
+
+    private void ResolvePrefabReferences()
+    {
+        TMP_Text[] texts = GetComponentsInChildren<TMP_Text>(true);
+        foreach (TMP_Text text in texts)
+        {
+            if (stageProgressText == null &&
+                (text.name.Contains("STAGE PROGRESS") || text.text.Contains("STAGE PROGRESS")))
+                stageProgressText = text;
+            if (goldText == null &&
+                (text.name.Contains("SALVAGED") || text.name.Contains("GOLD EARNED") ||
+                 text.text.Contains("SALVAGED") || text.text.Contains("GOLD EARNED")))
+                goldText = text;
+        }
+        if (continueButton == null)
+        {
+            Button[] buttons = GetComponentsInChildren<Button>(true);
+            if (buttons.Length > 0) continueButton = buttons[0];
+        }
+    }
+
+    public static GameObject CreateCanvasRoot()
+    {
+        GameObject root = new("Win Menu", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler),
+            typeof(GraphicRaycaster), typeof(CanvasGroup), typeof(WinMenu));
+        RectTransform rect = root.GetComponent<RectTransform>();
+        rect.localScale = Vector3.one;
+        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = Vector2.zero;
+        rect.sizeDelta = new Vector2(1080f, 1920f);
+        Canvas canvas = root.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.sortingOrder = 155;
+        CanvasScaler scaler = root.GetComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1080f, 1920f);
+        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+        scaler.matchWidthOrHeight = 0.5f;
+        return root;
     }
 
     private static void ContinueToNextStage()
     {
         AudioManager.Instance?.Play(SoundLabel.PickupGoldSound);
         Time.timeScale = 1f;
-        StageMapProgression.AdvanceAfterWin();
-        PlayerPrefs.SetInt(GameOverMenu.RetryRunKey, 1);
+        int nextStage = StageMapProgression.AdvanceAfterWin();
+        // Continue returns to the main menu for the newly unlocked stage. RetryRun
+        // would skip that menu and immediately begin combat, so explicitly clear it.
+        PlayerPrefs.DeleteKey(GameOverMenu.RetryRunKey);
         PlayerPrefs.Save();
+        Debug.Log($"Win continue: returning to menu for Stage {nextStage}.");
         World world = World.DefaultGameObjectInjectionWorld;
         if (world != null && world.IsCreated)
         {
@@ -92,7 +205,7 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
             if (simulation != null) simulation.Enabled = true;
         }
         WaveSpawnLifecycle.ResetStage();
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     private static Button Button(string name, Transform parent, string label, Vector2 position,
@@ -101,9 +214,25 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
         RectTransform rect = Panel(name, parent, position, size, Color.white, sprite);
         Button button = rect.gameObject.AddComponent<Button>();
         button.targetGraphic = rect.GetComponent<Image>();
-        Text(label, rect, new Vector2(0f, -3f), size - new Vector2(28f, 16f), 29f, Color.white);
+        button.targetGraphic.raycastTarget = true;
+        Text(label, rect, Vector2.zero, size - new Vector2(36f, 20f), 31f, Color.white);
         return button;
     }
+
+    private static RectTransform StretchPanel(string name, Transform parent, Color color)
+    {
+        GameObject item = new(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+        RectTransform rect = item.GetComponent<RectTransform>();
+        rect.SetParent(parent, false);
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        item.GetComponent<Image>().color = color;
+        return rect;
+    }
+
+    private static RectTransform ImageRect(string name, Transform parent, Vector2 position, Vector2 size, Sprite sprite)
+        => Panel(name, parent, position, size, Color.white, sprite);
 
     private static RectTransform Panel(string name, Transform parent, Vector2 position, Vector2 size,
         Color color, Sprite sprite)
@@ -118,7 +247,7 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
         image.sprite = sprite;
         image.color = color;
         image.preserveAspect = sprite != null;
-        image.raycastTarget = name is not "Flare";
+        image.raycastTarget = false;
         return rect;
     }
 
@@ -143,5 +272,13 @@ public sealed class WinMenu : MonoBehaviour, IGameWin
         text.fontSizeMax = fontSize;
         text.raycastTarget = false;
         return text;
+    }
+
+    private static void AddOutline(GameObject target, Color color, Vector2 distance)
+    {
+        Outline outline = target.AddComponent<Outline>();
+        outline.effectColor = color;
+        outline.effectDistance = distance;
+        outline.useGraphicAlpha = true;
     }
 }

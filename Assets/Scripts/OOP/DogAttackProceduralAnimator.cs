@@ -44,19 +44,41 @@ public sealed class DogAttackProceduralAnimator : MonoBehaviour
     {
         if (!m_Attacking) return;
         if (!m_PoseCaptured)
-        {
-            if (m_Jaw != null) m_JawBase = m_Jaw.localRotation;
-            if (m_Neck != null) m_NeckBase = m_Neck.localRotation;
-            if (m_UpperSpine != null) m_UpperSpineBase = m_UpperSpine.localRotation;
-            if (m_MidSpine != null) m_MidSpineBase = m_MidSpine.localRotation;
-            if (m_LowerSpine != null) m_LowerSpineBase = m_LowerSpine.localRotation;
-            if (m_Hips != null) m_HipsBase = m_Hips.localRotation;
-            if (m_FrontLegL != null) m_FrontLegLBase = m_FrontLegL.localRotation;
-            if (m_FrontLegR != null) m_FrontLegRBase = m_FrontLegR.localRotation;
-            if (m_BackLegL != null) m_BackLegLBase = m_BackLegL.localRotation;
-            if (m_BackLegR != null) m_BackLegRBase = m_BackLegR.localRotation;
-            m_PoseCaptured = true;
-        }
+            CaptureBasePose();
+        ApplyPose();
+    }
+
+#if UNITY_EDITOR
+    public void EvaluatePreview(float progress)
+    {
+        if (m_Jaw == null && m_Neck == null)
+            Initialize();
+        m_Progress = Mathf.Repeat(progress, 1f);
+        CaptureBasePose();
+        ApplyPose();
+    }
+#endif
+
+    private void CaptureBasePose()
+    {
+        if (m_Jaw != null) m_JawBase = m_Jaw.localRotation;
+        if (m_Neck != null) m_NeckBase = m_Neck.localRotation;
+        if (m_UpperSpine != null) m_UpperSpineBase = m_UpperSpine.localRotation;
+        if (m_MidSpine != null) m_MidSpineBase = m_MidSpine.localRotation;
+        if (m_LowerSpine != null) m_LowerSpineBase = m_LowerSpine.localRotation;
+        if (m_Hips != null) m_HipsBase = m_Hips.localRotation;
+        if (m_FrontLegL != null) m_FrontLegLBase = m_FrontLegL.localRotation;
+        if (m_FrontLegR != null) m_FrontLegRBase = m_FrontLegR.localRotation;
+        if (m_BackLegL != null) m_BackLegLBase = m_BackLegL.localRotation;
+        if (m_BackLegR != null) m_BackLegRBase = m_BackLegR.localRotation;
+        m_PoseCaptured = true;
+    }
+
+    private void ApplyPose()
+    {
+        // MobVisualBridge freezes the locomotion controller for the whole attack
+        // window. Apply only the procedural bite on top of the pose captured when
+        // the attack began; Run must never continue underneath the attack.
 
         // 0-45%: crouch and open jaw. 45-62%: snap forward and bite.
         // 62-100%: recover smoothly into the next attack cycle.

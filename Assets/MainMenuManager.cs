@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,7 +33,6 @@ public sealed class MainMenuManager : MonoBehaviour
     [SerializeField] private Sprite _petIcon;
     [SerializeField] private Sprite _weaponIcon;
     [SerializeField] private Sprite _battleIcon;
-    [SerializeField] private Sprite _inventoryIcon;
     [SerializeField] private Sprite _shopIcon;
 
     private Camera _camera;
@@ -50,9 +50,15 @@ public sealed class MainMenuManager : MonoBehaviour
     private UpgradeCardView _incomeCard;
     private RectTransform _weaponWindow;
     private RectTransform _featureWindow;
+    private RectTransform _shopWindow;
+    private RectTransform _navigation;
+    private readonly RectTransform[] _navigationTabs = new RectTransform[4];
+    private readonly Vector3[] _navigationTabBaseScales = new Vector3[4];
     private TextMeshProUGUI _featureTitle;
     private TextMeshProUGUI _featureBody;
     private TextMeshProUGUI _weaponGoldText;
+    private TextMeshProUGUI _shopGoldText;
+    private TextMeshProUGUI _shopStatusText;
     private readonly List<WeaponCardView> _weaponCards = new();
 
     private sealed class UpgradeCardView
@@ -70,6 +76,7 @@ public sealed class MainMenuManager : MonoBehaviour
     private sealed class WeaponCardView
     {
         public int Index;
+        public GunConfig Gun;
         public Button ActionButton;
         public TextMeshProUGUI ActionLabel;
         public TextMeshProUGUI Price;
@@ -83,9 +90,19 @@ public sealed class MainMenuManager : MonoBehaviour
     private static readonly Color Purple = Hex("7A30D9");
     private static readonly Color Green = Hex("16E96C");
     private static readonly Color Yellow = Hex("FFD628");
+    private const string DailyShopClaimKey = "Shop.DailyCache.UtcDay";
+
+    private enum MenuScreen
+    {
+        Battle,
+        Pet,
+        Weapon,
+        Shop
+    }
 
     private void Awake()
     {
+        MetaProgression.ConfigureWeapons(_gunConfigs);
         StageMapRuntimeLoader.ApplyMapForCurrentStage(gameObject.scene);
         Sprite kickerGold = Resources.Load<Sprite>("KickerHUD/gold");
         if (kickerGold != null)
@@ -202,11 +219,13 @@ public sealed class MainMenuManager : MonoBehaviour
             kickerSettingsIcon != null ? kickerSettingsIcon : _settingsIcon, Vector2.zero, new Vector2(78f, 78f));
         _goldText = AddResourcePill(root, (GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0).ToString(), -120f, Yellow, _goldIcon);
 
-        _startButton = AddButton(root, "TAP TO START", new Vector2(0.5f, 0f), new Vector2(0f, 700f), new Vector2(400f, 172f), Color.clear, Navy, 42);
+        // Share the bottom anchor/safe-area offset with the upgrade cards and
+        // Navigation. Y=786 keeps a stable gap above the cards on every aspect.
+        _startButton = AddButton(root, "TAP TO START", new Vector2(0.5f, 0f), new Vector2(0f, 786f), new Vector2(400f, 172f), Color.clear, Navy, 42);
         (_startButton.transform as RectTransform).localScale = Vector3.one * 1.1f;
         _startButton.onClick.AddListener(StartGame);
-        Button left = AddButton(root, "‹", new Vector2(0.5f, 0f), new Vector2(-285f, 700f), new Vector2(72f, 96f), Purple, Color.white, 54);
-        Button right = AddButton(root, "›", new Vector2(0.5f, 0f), new Vector2(285f, 700f), new Vector2(72f, 96f), Purple, Color.white, 54);
+        Button left = AddButton(root, "‹", new Vector2(0.5f, 0f), new Vector2(-285f, 786f), new Vector2(72f, 96f), Purple, Color.white, 54);
+        Button right = AddButton(root, "›", new Vector2(0.5f, 0f), new Vector2(285f, 786f), new Vector2(72f, 96f), Purple, Color.white, 54);
         left.name = "Previous Stage Button";
         right.name = "Next Stage Button";
         AddIcon(left.transform as RectTransform, "Left Arrow Icon", _leftArrowIcon, Vector2.zero, new Vector2(40f, 48f));
@@ -216,20 +235,26 @@ public sealed class MainMenuManager : MonoBehaviour
         _incomeCard = AddUpgradeCard(root, 165f, StageUpgradeType.Income, "INCOME", Blue, _incomeIcon);
 
         RectTransform nav = AddPanel(root, "Navigation", new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 80f), new Vector2(0f, 160f), Navy);
-        Button petTab = AddNavItem(nav, -300f, "PET", _petIcon);
-        petTab.onClick.AddListener(OpenPetWindow);
-        Button weaponTab = AddNavItem(nav, -150f, "WEAPON", _weaponIcon);
-        weaponTab.onClick.AddListener(OpenWeaponWindow);
-        RectTransform battle = AddPanel(nav, "Battle Tab", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(155f, 165f), Hex("536BE7"));
+        _navigation = nav;
+        RectTransform battle = AddPanel(nav, "Battle Tab", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-270f, 5f), new Vector2(170f, 145f), Hex("536BE7"));
+        AddNavOutline(battle, Hex("92A2FF"));
+        Button battleTab = battle.gameObject.AddComponent<Button>();
+        battleTab.targetGraphic = battle.GetComponent<Image>();
+        battleTab.onClick.AddListener(OpenBattleScreen);
         AddIcon(battle, "Battle Icon", _battleIcon, new Vector2(0f, 25f), new Vector2(68f, 68f));
         AddText(battle, "BATTLE", 25, FontStyles.Bold, TextAlignmentOptions.Center, new Vector2(0.5f, 0f), new Vector2(0f, 26f), new Vector2(145f, 40f), Color.white);
-        Button inventoryTab = AddNavItem(nav, 150f, "INVENTORY", _inventoryIcon);
-        inventoryTab.onClick.AddListener(OpenInventoryWindow);
-        Button shopTab = AddNavItem(nav, 300f, "SHOP", _shopIcon);
+        Button petTab = AddNavItem(nav, -90f, "PET", _petIcon);
+        petTab.onClick.AddListener(OpenPetWindow);
+        Button weaponTab = AddNavItem(nav, 90f, "WEAPON", _weaponIcon);
+        weaponTab.onClick.AddListener(OpenWeaponWindow);
+        Button shopTab = AddNavItem(nav, 270f, "SHOP", _shopIcon);
         shopTab.onClick.AddListener(OpenShopWindow);
 
         BuildWeaponWindow(root);
         BuildFeatureWindow(root);
+        BuildShopWindow(root);
+        CacheNavigationTabs(battle, petTab.transform as RectTransform, weaponTab.transform as RectTransform, shopTab.transform as RectTransform);
+        ShowScreen(MenuScreen.Battle);
     }
 
     private void BindAuthoredMenu(MainMenuCanvasView view)
@@ -263,14 +288,21 @@ public sealed class MainMenuManager : MonoBehaviour
         BindButton(_startButton, StartGame);
         BindButton(view.PetButton, OpenPetWindow);
         BindButton(view.WeaponButton, OpenWeaponWindow);
-        BindButton(view.InventoryButton, OpenInventoryWindow);
+        BindButton(view.BattleButton, OpenBattleScreen);
         BindButton(view.ShopButton, OpenShopWindow);
+        _navigation = view.transform.Find("Navigation") as RectTransform;
+        CacheNavigationTabs(view.BattleButton != null ? view.BattleButton.transform as RectTransform : null,
+            view.PetButton != null ? view.PetButton.transform as RectTransform : null,
+            view.WeaponButton != null ? view.WeaponButton.transform as RectTransform : null,
+            view.ShopButton != null ? view.ShopButton.transform as RectTransform : null);
 
         _healthCard = BindUpgradeCard(view.HealthCard, StageUpgradeType.Health);
         _incomeCard = BindUpgradeCard(view.IncomeCard, StageUpgradeType.Income);
 
         BuildWeaponWindow(root);
         BuildFeatureWindow(root);
+        BuildShopWindow(root);
+        ShowScreen(MenuScreen.Battle);
     }
 
     private static void BindButton(Button button, UnityEngine.Events.UnityAction action)
@@ -278,6 +310,78 @@ public sealed class MainMenuManager : MonoBehaviour
         if (button == null) return;
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(action);
+    }
+
+    public static void StyleAuthoredNavigation(MainMenuCanvasView view, bool immediate = false, int selectedIndex = 0)
+    {
+        RectTransform nav = view.transform.Find("Navigation") as RectTransform;
+        if (nav == null) return;
+        nav.sizeDelta = new Vector2(nav.sizeDelta.x, 176f);
+        nav.anchoredPosition = new Vector2(nav.anchoredPosition.x, 88f);
+
+        Transform inventory = nav.Find("INVENTORY Tab");
+        if (inventory != null)
+        {
+            inventory.gameObject.SetActive(false);
+            if (immediate) UnityEngine.Object.DestroyImmediate(inventory.gameObject);
+            else Destroy(inventory.gameObject);
+        }
+
+        RectTransform pet = view.PetButton != null ? view.PetButton.transform as RectTransform : null;
+        RectTransform weapon = view.WeaponButton != null ? view.WeaponButton.transform as RectTransform : null;
+        RectTransform battle = nav.Find("Battle Tab") as RectTransform;
+        RectTransform shop = view.ShopButton != null ? view.ShopButton.transform as RectTransform : null;
+        RectTransform[] tabs = { battle, pet, weapon, shop };
+        float[] positions = { -270f, -90f, 90f, 270f };
+        for (int i = 0; i < tabs.Length; i++)
+        {
+            RectTransform tab = tabs[i];
+            if (tab == null) continue;
+            tab.SetSiblingIndex(i);
+            bool selected = i == selectedIndex;
+            tab.anchoredPosition = new Vector2(positions[i], selected ? 5f : 0f);
+            tab.sizeDelta = new Vector2(170f, selected ? 145f : 132f);
+            Image image = tab.GetComponent<Image>();
+            if (image != null) image.color = selected ? Hex("536BE7") : Hex("111B38");
+            AddNavOutline(tab, selected ? Hex("92A2FF") : Hex("30436F"));
+
+            Button button = tab.GetComponent<Button>();
+            if (button != null)
+            {
+                ColorBlock colors = button.colors;
+                colors.normalColor = Color.white;
+                colors.highlightedColor = Hex("344D85");
+                colors.pressedColor = Hex("0B1229");
+                colors.selectedColor = colors.highlightedColor;
+                button.colors = colors;
+            }
+
+            Image[] images = tab.GetComponentsInChildren<Image>(true);
+            foreach (Image child in images)
+            {
+                if (child.transform == tab || !child.name.Contains("Icon", StringComparison.OrdinalIgnoreCase)) continue;
+                RectTransform icon = child.rectTransform;
+                icon.anchoredPosition = new Vector2(0f, 19f);
+                icon.sizeDelta = new Vector2(54f, 54f);
+                child.preserveAspect = true;
+            }
+            TextMeshProUGUI label = tab.GetComponentInChildren<TextMeshProUGUI>(true);
+            if (label != null)
+            {
+                label.rectTransform.anchoredPosition = new Vector2(0f, -31f);
+                label.rectTransform.sizeDelta = new Vector2(160f, 34f);
+                label.fontSize = selected ? 22f : 19f;
+                label.alignment = TextAlignmentOptions.Center;
+            }
+        }
+    }
+
+    private static void AddNavOutline(RectTransform tab, Color color)
+    {
+        Outline outline = tab.GetComponent<Outline>();
+        if (outline == null) outline = tab.gameObject.AddComponent<Outline>();
+        outline.effectColor = color;
+        outline.effectDistance = new Vector2(2f, -2f);
     }
 
     private void RefreshStageTitle()
@@ -406,13 +510,14 @@ public sealed class MainMenuManager : MonoBehaviour
     {
         if (_gunConfigs == null || index < 0 || index >= _gunConfigs.Length)
             return false;
-        return MetaProgression.BuyOrSelectWeapon(index);
+        return MetaProgression.BuyOrSelectWeapon(index, _gunConfigs[index]);
     }
 
     private void BuildWeaponWindow(RectTransform root)
     {
-        _weaponWindow = AddPanel(root, "Weapon Window", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero,
-            new Color(0.015f, 0.02f, 0.06f, 0.88f));
+        _weaponWindow = AddPanel(root, "Weapon Screen", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero,
+            new Color(0.015f, 0.02f, 0.06f, 1f));
+        ConfigureScreenRoot(_weaponWindow);
 
         RectTransform panel = AddPanel(_weaponWindow, "Armory Panel", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
             new Vector2(0f, 25f), new Vector2(700f, 1110f), Navy);
@@ -433,7 +538,7 @@ public sealed class MainMenuManager : MonoBehaviour
 
         Button close = AddButton(panel, "X", new Vector2(1f, 1f), new Vector2(-50f, -55f),
             new Vector2(66f, 66f), Hex("D9435F"), Color.white, 30);
-        close.onClick.AddListener(CloseWeaponWindow);
+        close.onClick.AddListener(OpenBattleScreen);
 
         RectTransform scrollRoot = AddPanel(panel, "Weapon Scroll", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
             new Vector2(0f, -85f), new Vector2(638f, 850f), new Color(0.03f, 0.05f, 0.12f, 0.8f));
@@ -501,6 +606,7 @@ public sealed class MainMenuManager : MonoBehaviour
         _weaponCards.Add(new WeaponCardView
         {
             Index = index,
+            Gun = gun,
             ActionButton = action,
             ActionLabel = action.GetComponentInChildren<TextMeshProUGUI>(),
             Price = price,
@@ -512,21 +618,20 @@ public sealed class MainMenuManager : MonoBehaviour
     private void OpenWeaponWindow()
     {
         if (_weaponWindow == null || _starting) return;
-        _weaponWindow.gameObject.SetActive(true);
-        _weaponWindow.SetAsLastSibling();
+        ShowScreen(MenuScreen.Weapon);
         RefreshWeaponWindow();
     }
 
     private void CloseWeaponWindow()
     {
-        if (_weaponWindow != null)
-            _weaponWindow.gameObject.SetActive(false);
+        OpenBattleScreen();
     }
 
     private void BuildFeatureWindow(RectTransform root)
     {
-        _featureWindow = AddPanel(root, "Feature Window", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero,
-            new Color(0.015f, 0.02f, 0.06f, 0.88f));
+        _featureWindow = AddPanel(root, "Pet Screen", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero,
+            new Color(0.015f, 0.02f, 0.06f, 1f));
+        ConfigureScreenRoot(_featureWindow);
         RectTransform panel = AddPanel(_featureWindow, "Feature Panel", new Vector2(0.5f, 0.5f),
             new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(650f, 620f), Navy);
         Outline outline = panel.gameObject.AddComponent<Outline>();
@@ -539,8 +644,154 @@ public sealed class MainMenuManager : MonoBehaviour
             new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(520f, 250f), Hex("BCE4FF"));
         Button close = AddButton(panel, "CLOSE", new Vector2(0.5f, 0f), new Vector2(0f, 85f),
             new Vector2(300f, 78f), Blue, Color.white, 27);
-        close.onClick.AddListener(CloseFeatureWindow);
+        close.onClick.AddListener(OpenBattleScreen);
         _featureWindow.gameObject.SetActive(false);
+    }
+
+    private void BuildShopWindow(RectTransform root)
+    {
+        RectTransform authoredShop = root.Find("Shop Screen") as RectTransform;
+        if (authoredShop == null)
+            authoredShop = root.Find("Shop Window") as RectTransform;
+        if (authoredShop != null)
+        {
+            _shopWindow = authoredShop;
+            BindAuthoredShopWindow();
+            _shopWindow.gameObject.SetActive(false);
+            return;
+        }
+
+        _shopWindow = AddPanel(root, "Shop Screen", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero,
+            new Color(0.015f, 0.02f, 0.06f, 1f));
+        ConfigureScreenRoot(_shopWindow);
+        RectTransform panel = AddPanel(_shopWindow, "Supply Shop Panel", new Vector2(0.5f, 0.5f),
+            new Vector2(0.5f, 0.5f), new Vector2(0f, 20f), new Vector2(720f, 1120f), Navy);
+        Outline outline = panel.gameObject.AddComponent<Outline>();
+        outline.effectColor = Yellow;
+        outline.effectDistance = new Vector2(4f, -4f);
+
+        AddText(panel, "WASTELAND SUPPLY", 43, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 1f), new Vector2(0f, -58f), new Vector2(500f, 68f), Color.white);
+        AddText(panel, "DAILY REWARD & GOLD PACKS", 19, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 1f), new Vector2(0f, -105f), new Vector2(460f, 36f), Hex("FFD86A"));
+
+        RectTransform wallet = AddPanel(panel, "Shop Wallet", new Vector2(0f, 1f), new Vector2(0f, 1f),
+            new Vector2(112f, -58f), new Vector2(190f, 54f), new Color(0.04f, 0.05f, 0.1f, 0.96f));
+        AddIcon(wallet, "Gold Icon", _goldIcon, new Vector2(-65f, 0f), new Vector2(34f, 34f));
+        _shopGoldText = AddText(wallet, "0", 22, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 0.5f), new Vector2(19f, 0f), new Vector2(125f, 42f), Yellow);
+
+        Button close = AddButton(panel, "X", new Vector2(1f, 1f), new Vector2(-50f, -55f),
+            new Vector2(66f, 66f), Hex("D9435F"), Color.white, 30);
+        close.onClick.AddListener(OpenBattleScreen);
+
+        AddShopPack(panel, 285f, "DAILY CACHE", "500 GOLD", "FREE", Hex("174D70"), ClaimDailyCache, true);
+        AddShopPack(panel, 85f, "SURVIVOR PACK", "5,000 GOLD", "$0.99", Hex("123663"),
+            () => ShowPaidPackPlaceholder("Survivor Pack"));
+        AddShopPack(panel, -115f, "WASTELAND PACK", "15,000 GOLD  •  BEST VALUE", "$2.99", Hex("3B286A"),
+            () => ShowPaidPackPlaceholder("Wasteland Pack"));
+        AddShopPack(panel, -315f, "WARLORD PACK", "50,000 GOLD", "$7.99", Hex("633143"),
+            () => ShowPaidPackPlaceholder("Warlord Pack"));
+
+        _shopStatusText = AddText(panel, string.Empty, 19, FontStyles.Bold, TextAlignmentOptions.Center,
+            new Vector2(0.5f, 0f), new Vector2(0f, 72f), new Vector2(600f, 58f), Hex("BCE4FF"));
+        _shopStatusText.name = "Shop Status";
+        _shopWindow.gameObject.SetActive(false);
+    }
+
+    private void BindAuthoredShopWindow()
+    {
+        RectTransform panel = _shopWindow.Find("Supply Shop Panel") as RectTransform;
+        if (panel == null)
+        {
+            Debug.LogWarning("Authored Shop Window is missing 'Supply Shop Panel'.", _shopWindow);
+            return;
+        }
+
+        Transform wallet = panel.Find("Shop Wallet");
+        _shopGoldText = wallet != null ? wallet.GetComponentInChildren<TextMeshProUGUI>(true) : null;
+        _shopStatusText = FindAuthoredShopStatus(panel);
+
+        BindButton(panel.Find("X")?.GetComponent<Button>(), OpenBattleScreen);
+        BindShopPack(panel, "DAILY CACHE", "FREE", ClaimDailyCache);
+        BindShopPack(panel, "SURVIVOR PACK", "$0.99", () => ShowPaidPackPlaceholder("Survivor Pack"));
+        BindShopPack(panel, "WASTELAND PACK", "$2.99", () => ShowPaidPackPlaceholder("Wasteland Pack"));
+        BindShopPack(panel, "WARLORD PACK", "$7.99", () => ShowPaidPackPlaceholder("Warlord Pack"));
+    }
+
+    private static TextMeshProUGUI FindAuthoredShopStatus(RectTransform panel)
+    {
+        Transform named = panel.Find("Shop Status");
+        if (named != null && named.TryGetComponent(out TextMeshProUGUI status))
+            return status;
+
+        foreach (TextMeshProUGUI candidate in panel.GetComponentsInChildren<TextMeshProUGUI>(true))
+        {
+            RectTransform rect = candidate.rectTransform;
+            if (rect.anchorMin.y <= 0.01f && rect.sizeDelta.x >= 500f && rect.anchoredPosition.y <= 120f)
+                return candidate;
+        }
+        return null;
+    }
+
+    private static void BindShopPack(RectTransform panel, string cardName, string buttonName,
+        UnityEngine.Events.UnityAction action)
+    {
+        Transform card = panel.Find(cardName);
+        Button button = card != null ? card.Find(buttonName)?.GetComponent<Button>() : null;
+        BindButton(button, action);
+    }
+
+    private void AddShopPack(RectTransform panel, float y, string title, string reward, string price,
+        Color color, UnityEngine.Events.UnityAction action, bool daily = false)
+    {
+        RectTransform card = AddPanel(panel, title, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+            new Vector2(0f, y), new Vector2(620f, 166f), color);
+        Outline outline = card.gameObject.AddComponent<Outline>();
+        outline.effectColor = daily ? Green : Color.Lerp(color, Color.white, 0.35f);
+        outline.effectDistance = new Vector2(3f, -3f);
+        AddIcon(card, "Gold Icon", _goldIcon, new Vector2(-245f, 0f), new Vector2(82f, 82f));
+        AddText(card, title, 26, FontStyles.Bold, TextAlignmentOptions.Left,
+            new Vector2(0.5f, 0.5f), new Vector2(-75f, 29f), new Vector2(320f, 42f), Color.white);
+        AddText(card, reward, 18, FontStyles.Bold, TextAlignmentOptions.Left,
+            new Vector2(0.5f, 0.5f), new Vector2(-75f, -24f), new Vector2(330f, 38f), Hex("D8EDFF"));
+        Button buy = AddButton(card, price, new Vector2(1f, 0.5f), new Vector2(-92f, 0f),
+            new Vector2(160f, 72f), daily ? Green : Yellow, Navy, 22);
+        buy.onClick.AddListener(action);
+    }
+
+    private void ClaimDailyCache()
+    {
+        int today = UtcDay();
+        if (PlayerPrefs.GetInt(DailyShopClaimKey, -1) == today)
+        {
+            if (_shopStatusText != null) _shopStatusText.text = "DAILY CACHE ALREADY CLAIMED";
+            return;
+        }
+        PlayerPrefs.SetInt(DailyShopClaimKey, today);
+        PlayerPrefs.Save();
+        GoldWallet.Instance?.Add(500);
+        if (_shopStatusText != null) _shopStatusText.text = "+500 GOLD  •  COME BACK TOMORROW";
+        RefreshShopWindow();
+    }
+
+    private void ShowPaidPackPlaceholder(string pack)
+    {
+        if (_shopStatusText != null)
+            _shopStatusText.text = $"{pack.ToUpperInvariant()}  •  UNITY IAP NOT CONNECTED";
+    }
+
+    private static int UtcDay() => (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalDays;
+
+    private void RefreshShopWindow()
+    {
+        if (_shopGoldText != null)
+            _shopGoldText.text = (GoldWallet.Instance != null ? GoldWallet.Instance.Balance : 0).ToString("N0");
+    }
+
+    private void CloseShopWindow()
+    {
+        OpenBattleScreen();
     }
 
     private void OpenPetWindow()
@@ -548,31 +799,89 @@ public sealed class MainMenuManager : MonoBehaviour
         ShowFeatureWindow("PET", "PET SYSTEM\nCOMING SOON\n\nThis feature is not available in Endless Zombie yet.");
     }
 
-    private void OpenInventoryWindow()
-    {
-        // Weapons are the inventory items currently supported by Zombie.
-        OpenWeaponWindow();
-    }
-
     private void OpenShopWindow()
     {
-        ShowFeatureWindow("SHOP", "UPGRADE SHOP\n\nUse the MAX HP and INCOME cards on the Battle screen.\nWeapon purchases are available in ARMORY.");
+        if (_shopWindow == null || _starting) return;
+        if (_shopStatusText != null)
+            _shopStatusText.text = PlayerPrefs.GetInt(DailyShopClaimKey, -1) == UtcDay()
+                ? "DAILY CACHE CLAIMED"
+                : "FREE DAILY CACHE AVAILABLE";
+        RefreshShopWindow();
+        ShowScreen(MenuScreen.Shop);
     }
 
     private void ShowFeatureWindow(string title, string body)
     {
         if (_featureWindow == null || _starting) return;
-        if (_weaponWindow != null) _weaponWindow.gameObject.SetActive(false);
         _featureTitle.text = title;
         _featureBody.text = body;
-        _featureWindow.gameObject.SetActive(true);
-        _featureWindow.SetAsLastSibling();
+        ShowScreen(MenuScreen.Pet);
     }
 
     private void CloseFeatureWindow()
     {
-        if (_featureWindow != null)
-            _featureWindow.gameObject.SetActive(false);
+        OpenBattleScreen();
+    }
+
+    private void OpenBattleScreen()
+    {
+        if (_starting) return;
+        ShowScreen(MenuScreen.Battle);
+    }
+
+    private void ShowScreen(MenuScreen screen)
+    {
+        if (_featureWindow != null) _featureWindow.gameObject.SetActive(screen == MenuScreen.Pet);
+        if (_weaponWindow != null) _weaponWindow.gameObject.SetActive(screen == MenuScreen.Weapon);
+        if (_shopWindow != null) _shopWindow.gameObject.SetActive(screen == MenuScreen.Shop);
+
+        UpdateNavigationSelection((int)screen);
+        if (_navigation != null)
+            _navigation.SetAsLastSibling();
+    }
+
+    private void CacheNavigationTabs(RectTransform battle, RectTransform pet, RectTransform weapon, RectTransform shop)
+    {
+        _navigationTabs[0] = battle;
+        _navigationTabs[1] = pet;
+        _navigationTabs[2] = weapon;
+        _navigationTabs[3] = shop;
+        for (int i = 0; i < _navigationTabs.Length; i++)
+        {
+            RectTransform tab = _navigationTabs[i];
+            _navigationTabBaseScales[i] = tab != null ? tab.localScale : Vector3.one;
+            EnsureNavigationSelectionMarker(tab);
+        }
+    }
+
+    private void UpdateNavigationSelection(int selectedIndex)
+    {
+        for (int i = 0; i < _navigationTabs.Length; i++)
+        {
+            RectTransform tab = _navigationTabs[i];
+            if (tab == null) continue;
+            bool selected = i == selectedIndex;
+            tab.localScale = _navigationTabBaseScales[i] * (selected ? 1.1f : 1f);
+            Transform marker = tab.Find("Selection Marker");
+            if (marker != null) marker.gameObject.SetActive(selected);
+        }
+    }
+
+    private static void EnsureNavigationSelectionMarker(RectTransform tab)
+    {
+        if (tab == null || tab.Find("Selection Marker") != null) return;
+        RectTransform marker = AddPanel(tab, "Selection Marker", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
+            new Vector2(0f, 5f), new Vector2(72f, 7f), Hex("92A2FF"));
+        marker.SetAsLastSibling();
+        Image image = marker.GetComponent<Image>();
+        image.raycastTarget = false;
+    }
+
+    private static void ConfigureScreenRoot(RectTransform screen)
+    {
+        // Keep the persistent bottom navigation outside every content screen.
+        screen.offsetMin = new Vector2(0f, 176f);
+        screen.offsetMax = Vector2.zero;
     }
 
     private void PurchaseOrEquipWeapon(int index)
@@ -596,7 +905,7 @@ public sealed class MainMenuManager : MonoBehaviour
         {
             bool selected = MetaProgression.SelectedWeapon == card.Index;
             bool unlocked = MetaProgression.IsWeaponUnlocked(card.Index);
-            int cost = MetaProgression.WeaponCost(card.Index);
+            int cost = MetaProgression.WeaponCost(card.Index, card.Gun);
             bool affordable = balance >= cost;
 
             card.Price.text = unlocked ? "OWNED" : $"{cost:N0} GOLD";
@@ -620,7 +929,10 @@ public sealed class MainMenuManager : MonoBehaviour
 
     private UpgradeCardView AddUpgradeCard(RectTransform root, float x, StageUpgradeType type, string title, Color accent, Sprite iconSprite)
     {
-        RectTransform card = AddPanel(root, title, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, -450f), new Vector2(260f, 448f), BlueDark);
+        // Keep the cards in the same bottom coordinate space as Navigation.
+        // Navigation is 176 high; y=432 leaves a 32 px gap below a 448 high card.
+        // ResponsiveCanvasController then applies the same safe-area offset to both.
+        RectTransform card = AddPanel(root, title, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(x, 432f), new Vector2(260f, 448f), BlueDark);
         Outline outline = card.gameObject.AddComponent<Outline>();
         outline.effectColor = accent;
         outline.effectDistance = new Vector2(4f, -4f);
@@ -677,6 +989,7 @@ public sealed class MainMenuManager : MonoBehaviour
             _goldText.text = balance.ToString("N0");
         RefreshUpgradeCards();
         RefreshWeaponWindow();
+        RefreshShopWindow();
     }
 
     private void RefreshUpgradeCards()
@@ -723,7 +1036,8 @@ public sealed class MainMenuManager : MonoBehaviour
     private Button AddNavItem(RectTransform nav, float x, string label, Sprite iconSprite)
     {
         RectTransform tab = AddPanel(nav, label + " Tab", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
-            new Vector2(x, 0f), new Vector2(140f, 122f), Color.clear);
+            new Vector2(x, 0f), new Vector2(170f, 132f), Hex("111B38"));
+        AddNavOutline(tab, Hex("30436F"));
         Button button = tab.gameObject.AddComponent<Button>();
         button.targetGraphic = tab.GetComponent<Image>();
         AddIcon(tab, label + " Icon", iconSprite, new Vector2(0f, 19f), new Vector2(54f, 54f));

@@ -36,45 +36,53 @@ internal partial struct DamageDigitSystem : ISystem
         {
             // Entity might have been destroyed somewhere in between so check if it has LocalTransform
             if(!SystemAPI.HasComponent<LocalTransform>(damageTakenEvent.ValueRO.Entity)) continue;
-            
-            Entity digitEntity = digitEcb.Instantiate(entityReferences.ValueRO.DamageDigitPrefabEntity);
-            
-            // Set the digit's transform to mob's transform with an offset on Y axis.
+
+            int displayDamage = math.max(0, damageTakenEvent.ValueRO.Amount);
+            int digitCount = CountDigits(displayDamage);
+            int divisor = Pow10(digitCount - 1);
             LocalTransform mobTransform = SystemAPI.GetComponent<LocalTransform>(damageTakenEvent.ValueRO.Entity);
             LocalTransform digitPrefabTransform = SystemAPI.GetComponent<LocalTransform>(entityReferences.ValueRO.DamageDigitPrefabEntity);
-            
-            LocalTransform digitTransform = new LocalTransform
+
+            float criticalScale = damageTakenEvent.ValueRO.IsCritical ? 1.35f : 1f;
+            // Derive glyph spacing from the prefab scale so artists can resize
+            // Digit3D without multi-digit values becoming too loose or cramped.
+            float spacing = 0.57f * digitPrefabTransform.Scale * criticalScale;
+            float center = (digitCount - 1) * 0.5f;
+            for (int digitIndex = 0; digitIndex < digitCount; digitIndex++)
             {
-                Position = new float3(mobTransform.Position.x, mobTransform.Position.y + 1.5f, mobTransform.Position.z),
-                Rotation = quaternion.identity,
-                Scale = digitPrefabTransform.Scale * (damageTakenEvent.ValueRO.IsCritical ? 1.35f : 0.75f)
-            };
-            
-            digitEcb.SetComponent(digitEntity, digitTransform);
-            
-            // Adjust the physics velocity component to give the digit an initial upper force for a bounce effect. 
-            PhysicsVelocity velocity = SystemAPI.GetComponent<PhysicsVelocity>(entityReferences.ValueRO.DamageDigitPrefabEntity);
-            velocity.Linear.y = DIGIT_INITIAL_VELOCITY; 
-            digitEcb.SetComponent(digitEntity, velocity);
-            
-            
-            // Damage digits are visual feedback only. AoE explosions belong to
-            // explosive weapon projectiles (Rocket Launcher), never to UI digits.
-            DamageDigit damageDigitComponent = SystemAPI.GetComponent<DamageDigit>(entityReferences.ValueRO.DamageDigitPrefabEntity);
-            damageDigitComponent.DamageValue = damageTakenEvent.ValueRO.Amount;
-            damageDigitComponent.IsExplosive = false;
-            damageDigitComponent.IsCritical = damageTakenEvent.ValueRO.IsCritical;
-            damageDigitComponent.BaseScale = digitPrefabTransform.Scale *
-                                             (damageTakenEvent.ValueRO.IsCritical ? 1.35f : 1f);
-            damageDigitComponent.FeedbackTime = 0f;
-            digitEcb.SetComponent(digitEntity, damageDigitComponent);
-            
-            // Set the material property values.
-            digitEcb.SetComponent(digitEntity, new DigitValueMatOverride { DigitIndex = damageTakenEvent.ValueRO.Amount });
-            digitEcb.SetComponent(digitEntity, new DigitPulseMatOverride
-            {
-                Pulse = damageTakenEvent.ValueRO.IsCritical ? 1f : 0f,
-            });
+                int digit = divisor > 0 ? displayDamage / divisor % 10 : 0;
+                divisor = math.max(1, divisor / 10);
+                Entity digitEntity = digitEcb.Instantiate(entityReferences.ValueRO.DamageDigitPrefabEntity);
+                LocalTransform digitTransform = new LocalTransform
+                {
+                    Position = new float3(
+                        mobTransform.Position.x + (digitIndex - center) * spacing,
+                        mobTransform.Position.y + 1.5f,
+                        mobTransform.Position.z),
+                    Rotation = quaternion.identity,
+                    Scale = digitPrefabTransform.Scale * criticalScale
+                };
+                digitEcb.SetComponent(digitEntity, digitTransform);
+
+                PhysicsVelocity velocity = SystemAPI.GetComponent<PhysicsVelocity>(entityReferences.ValueRO.DamageDigitPrefabEntity);
+                velocity.Linear.y = DIGIT_INITIAL_VELOCITY;
+                digitEcb.SetComponent(digitEntity, velocity);
+
+                DamageDigit damageDigitComponent = SystemAPI.GetComponent<DamageDigit>(entityReferences.ValueRO.DamageDigitPrefabEntity);
+                damageDigitComponent.DamageValue = displayDamage;
+                damageDigitComponent.IsExplosive = false;
+                damageDigitComponent.IsCritical = damageTakenEvent.ValueRO.IsCritical;
+                damageDigitComponent.BaseScale = digitPrefabTransform.Scale * criticalScale;
+                damageDigitComponent.FeedbackTime = 0f;
+                digitEcb.SetComponent(digitEntity, damageDigitComponent);
+                // The shader atlas contains exactly one glyph per index (0-9), so
+                // multi-digit damage is rendered as several centered entities.
+                digitEcb.SetComponent(digitEntity, new DigitValueMatOverride { DigitIndex = digit });
+                digitEcb.SetComponent(digitEntity, new DigitPulseMatOverride
+                {
+                    Pulse = damageTakenEvent.ValueRO.IsCritical ? 1f : 0f,
+                });
+            }
         }
         
         digitEcb.Playback(state.EntityManager);
@@ -99,6 +107,24 @@ internal partial struct DamageDigitSystem : ISystem
                 ecb.DestroyEntity(entity);
             }
         }
+    }
+
+    private static int CountDigits(int value)
+    {
+        int count = 1;
+        while (value >= 10)
+        {
+            value /= 10;
+            count++;
+        }
+        return count;
+    }
+
+    private static int Pow10(int exponent)
+    {
+        int value = 1;
+        for (int i = 0; i < exponent; i++) value *= 10;
+        return value;
     }
     
     // Entity GetRootParent(Entity entity, ComponentLookup<Parent> parents)

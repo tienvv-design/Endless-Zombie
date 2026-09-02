@@ -31,6 +31,7 @@ public enum SoundLabel
     WeaponMinigun,
     WeaponGrenade,
     WeaponReload,
+    WeaponFlameStart,
 }
 
 [System.Serializable]

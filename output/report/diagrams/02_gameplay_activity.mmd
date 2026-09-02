@@ -1,0 +1,17 @@
+flowchart TD
+    A([Open Game]) --> B[Main Menu]
+    B --> C[Select stage, weapon, and upgrades]
+    C --> D[Load GameScene]
+    D --> E[Initialize Player, HUD, and ECS World]
+    E --> F[Begin Stage]
+    F --> G[Activate Wave]
+    G --> H[Schedule Spawn Entries]
+    H --> I[Instantiate Enemy Prefabs]
+    I --> J[Chase, Auto Attack, Damage, and XP]
+    J --> K{Player HP is zero?}
+    K -- Yes --> L([Game Over])
+    K -- No --> M{Wave cleared?}
+    M -- No --> J
+    M -- Yes --> N{Final wave?}
+    N -- No --> G
+    N -- Yes --> O([Win])

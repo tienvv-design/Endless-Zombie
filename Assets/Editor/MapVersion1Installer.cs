@@ -12,7 +12,8 @@ public static class MapVersion1Installer
     private const string SourcePath = "Assets/Map/source/ВЕРСИЯ1.fbx";
     private const string GeneratedFolder = "Assets/Map/Generated";
     private const string MaterialFolder = GeneratedFolder + "/Materials";
-    private const string PrefabPath = GeneratedFolder + "/Map_VERSION1.prefab";
+    private const string RuntimeMapFolder = "Assets/Resources/StageMaps";
+    private const string PrefabPath = RuntimeMapFolder + "/Map_VERSION1.prefab";
     private const string ScenePath = "Assets/Scenes/GameScene.unity";
     private const string SceneObjectName = "Stage Map - VERSION1";
     private const float TargetMapSize = 60f;
@@ -40,6 +41,7 @@ public static class MapVersion1Installer
 
         EnsureFolder("Assets/Map", "Generated");
         EnsureFolder(GeneratedFolder, "Materials");
+        EnsureFolder("Assets/Resources", "StageMaps");
         GameObject prefab = BuildPrefab(source);
         if (prefab == null) return;
         InstallIntoGameScene(prefab);

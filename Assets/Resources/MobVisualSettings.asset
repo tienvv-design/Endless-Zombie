@@ -53,6 +53,27 @@ MonoBehaviour:
   - {fileID: 7400000, guid: ac7444b1a35107f4c97d96522699ea14, type: 2}
   WalkLoopDuration: 2
   DistancePerWalkLoop: 2
+  HumanoidScale: 0.7
+  CorpseStayDuration: 6
+  CorpseGroundLift: 0.04
+  CorpseCleanupDuration: 1.25
+  MaxVisibleCorpses: 32
+  ZombieFatVisualPrefab: {fileID: 8902629820754341450, guid: 2718bb0b8f5a118478156bdaf0b0c0d2, type: 3}
+  ZombieFatLocomotionClip: {fileID: 7400000, guid: c2beba529a17d5d4c989b99b9f88446d, type: 2}
+  ZombieFatAttackClip: {fileID: 7400000, guid: ebe44242076fc104083a4f167792da62, type: 2}
+  ZombieFatExplosionVfx: {fileID: 115286, guid: 1840fb7e1dbec504083c1a026c4ec67e, type: 3}
+  ZombieFatExplosionSound: {fileID: 8300000, guid: d1e994545f2b53644801f47e40339508, type: 3}
+  ZombieSquatVisualPrefab: {fileID: 8433757641168380072, guid: 33e7313f2ff20bd41a3aed2cbe30de81, type: 3}
+  ZombieSquatLocomotionClip: {fileID: 7400000, guid: 5b4fe6c018d3c4749b6e4dda53b0c60c, type: 2}
+  ZombieSquatAttackClip: {fileID: 7400000, guid: 0458d0c85e4268949b9bb46857d8aeb3, type: 2}
+  ZombieTankVisualPrefab: {fileID: 276513900823161160, guid: bdef6c85e57de114dafd020c3e5281e9, type: 3}
+  ZombieTankLocomotionClip: {fileID: 7400000, guid: 3ff8f6aee13262c4d868b14d7b851a43, type: 2}
+  ZombieTankAttackClip: {fileID: 7400000, guid: 6d39cf1292d8795499d77a4d7394898b, type: 2}
+  ZombieWitchVisualPrefab: {fileID: 2726895607322768576, guid: 1ec967553bae7094a8323e9d501739a3, type: 3}
+  ZombieWitchAvatar: {fileID: 9000000, guid: 3b9c7af11dc31214096ca65dbcae7b33, type: 2}
+  ZombieWitchLocomotionClip: {fileID: 7400000, guid: 210582e2b3fd6b842b7c28848cafa662, type: 2}
+  ZombieWitchAttackClip: {fileID: 7400000, guid: a4c666e5cc7fe30468f96f242b0c1d56, type: 2}
+  SpecialZombieScale: 0.7
   DogMutantVisualPrefab: {fileID: 5166489295478566908, guid: bc404b57e8c59a146bdbedea659b5649, type: 3}
   DogMutantAnimatorController: {fileID: 9100000, guid: 115b86c178cd70243ae0456e11e2b31a, type: 2}
   DogMutantRunLoopDuration: 0.6666667

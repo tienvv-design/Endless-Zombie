@@ -1,0 +1,30 @@
+erDiagram
+    STAGE_CONFIG ||--|{ WAVE_DEFINITION : contains
+    WAVE_DEFINITION ||--|{ SPAWN_ENTRY : contains
+    SPAWN_ENTRY }o--|| ENEMY_CATALOG_ENTRY : references_by_EnemyId
+    ENEMY_CATALOG_ENTRY ||--|| ENTITY_PREFAB : resolves_to
+    GUN_CONFIG ||--|| WEAPON_MANAGER : initializes
+    MOB_VISUAL_SETTINGS ||--o{ MOB_VISUAL_INSTANCE : creates
+    PLAYER_PREFS ||--|| AUDIO_SETTINGS : stores
+    PLAYER_PREFS ||--|| GOLD_WALLET : stores
+    PLAYER_PREFS ||--|| META_PROGRESSION : stores
+
+    STAGE_CONFIG {
+      string StageId
+      float DefaultWaveDelay
+      int MaxAliveEnemies
+    }
+    WAVE_DEFINITION {
+      string WaveId
+      string WaveType
+      float WaveDelay
+    }
+    SPAWN_ENTRY {
+      string EnemyId
+      int Quantity
+      float SpawnInterval
+    }
+    ENEMY_CATALOG_ENTRY {
+      string EnemyId
+      EntityPrefab Prefab
+    }

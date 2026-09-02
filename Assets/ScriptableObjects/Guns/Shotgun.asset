@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponId: shotgun
   DisplayName: Shotgun
+  UnlockCost: 250
   Icon: {fileID: 0}
   HeldWeaponPrefab: {fileID: 8096054548853130690, guid: 86eca0eb86b38c445adff77b67993278, type: 3}
   ProjectilePrefab: {fileID: 1709254077376921, guid: 0fa188b35d794e5192a997555d0761aa, type: 3}
+  ProjectileVisual: 0
   HeldLocalPosition: {x: -0.015, y: 0.025, z: 0}
   HeldLocalEulerAngles: {x: -0, y: 90, z: 270}
   HeldLocalScale: {x: 0.8, y: 0.8, z: 0.8}
@@ -30,26 +32,27 @@ MonoBehaviour:
   PistolHandSpacing: 0.14
   PistolPoseHeightOffset: 0
   MuzzleVfxPrefab: {fileID: 1709254077376921, guid: 200dabfbb56d18440be007c9439ea6a8, type: 3}
-  ImpactVfxPrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 7573384248904154100, guid: ff593869a19cbf74b82a99c9776f54f0, type: 3}
   ExplosionVfxPrefab: {fileID: 0}
   ReloadVfxPrefab: {fileID: 0}
-  VfxLifetime: 1.25
+  VfxLifetime: 0.85
   MuzzleEffectLocalOffset: {x: 0, y: 0, z: 0}
-  MuzzleEffectScale: 1
+  MuzzleEffectScale: 0.5
+  ProjectileTracerScale: 0.4
   Archetype: 1
-  BaseDamage: 4
+  BaseDamage: 9
   BaseShotsPerSecond: 0.9
-  BaseProjectileCount: 6
+  BaseProjectileCount: 5
   BaseCriticalChance: 0.08
   BaseCriticalDamage: 1.5
-  BaseRange: 5
-  BaseProjectileSpeed: 12
+  BaseRange: 5.5
+  BaseProjectileSpeed: 25
   BasePierce: 0
-  BaseKnockback: 0.9
-  BaseSpreadAngle: 35
+  BaseKnockback: 1
+  BaseSpreadAngle: 28
   MinimumFireInterval: 0.15
   BaseMagazineSize: 6
-  BaseReloadDuration: 1.75
+  BaseReloadDuration: 1.7
   IsExplosive: 0
   ExplosionRadius: 0
   ExplosionDamageMultiplier: 1

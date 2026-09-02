@@ -91,7 +91,7 @@ public partial class MetaWeaponLoadoutSystem : SystemBase
             case 1: // Shotgun
                 gun.Archetype = GunArchetype.Shotgun;
                 DisableExplosion(ref gun);
-                gun.BaseDamage = 4; gun.BaseShotsPerSecond = 0.9f; gun.BaseProjectileCount = 6;
+                gun.BaseDamage = 6; gun.BaseShotsPerSecond = 0.9f; gun.BaseProjectileCount = 5;
                 gun.BaseCriticalChance = 0.08f; gun.BaseCriticalDamage = 1.5f;
                 gun.BaseAttackRange = 5f; gun.BaseProjectileSpeed = 12f; gun.BaseSpreadAngle = 24f;
                 gun.BaseKnockback = 1.2f;
@@ -100,7 +100,7 @@ public partial class MetaWeaponLoadoutSystem : SystemBase
             case 2: // Assault Rifle
                 gun.Archetype = GunArchetype.AssaultRifle;
                 DisableExplosion(ref gun);
-                gun.BaseDamage = 5; gun.BaseShotsPerSecond = 5.5f; gun.BaseProjectileCount = 1;
+                gun.BaseDamage = 7; gun.BaseShotsPerSecond = 5.2f; gun.BaseProjectileCount = 1;
                 gun.BaseCriticalChance = 0.08f; gun.BaseCriticalDamage = 1.6f;
                 gun.BaseAttackRange = 9f; gun.BaseProjectileSpeed = 18f; gun.BaseSpreadAngle = 4f;
                 gun.BaseKnockback = 0.25f;
@@ -108,7 +108,7 @@ public partial class MetaWeaponLoadoutSystem : SystemBase
                 break;
             case 3: // Rocket Launcher
                 gun.Archetype = GunArchetype.RocketLauncher;
-                gun.BaseDamage = 38; gun.BaseShotsPerSecond = 0.55f; gun.BaseProjectileCount = 1;
+                gun.BaseDamage = 56; gun.BaseShotsPerSecond = 0.48f; gun.BaseProjectileCount = 1;
                 gun.BaseCriticalChance = 0.05f; gun.BaseCriticalDamage = 1.5f;
                 gun.BaseAttackRange = 10f; gun.BaseProjectileSpeed = 9f; gun.BaseSpreadAngle = 0f;
                 gun.BaseKnockback = 1.5f;
@@ -119,7 +119,7 @@ public partial class MetaWeaponLoadoutSystem : SystemBase
             default: // Pistol
                 gun.Archetype = GunArchetype.Pistol;
                 DisableExplosion(ref gun);
-                gun.BaseDamage = 8; gun.BaseShotsPerSecond = 2f; gun.BaseProjectileCount = 1;
+                gun.BaseDamage = 11; gun.BaseShotsPerSecond = 2f; gun.BaseProjectileCount = 1;
                 gun.BaseCriticalChance = 0.15f; gun.BaseCriticalDamage = 1.75f;
                 gun.BaseAttackRange = 8f; gun.BaseProjectileSpeed = 14f; gun.BaseSpreadAngle = 0f;
                 gun.BaseKnockback = 0.5f;

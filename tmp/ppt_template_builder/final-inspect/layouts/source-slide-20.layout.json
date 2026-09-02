@@ -1,0 +1,920 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/zyxsni5k",
+    "id": "zyxsni5k",
+    "slide": 20,
+    "layoutId": "/ppt/slideLayouts/slideLayout2.xml",
+    "layoutName": "OBJECT",
+    "layoutType": "obj",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Office",
+    "colors": {
+      "accent1": "#4472C4",
+      "accent2": "#ED7D31",
+      "accent3": "#A5A5A5",
+      "accent4": "#FFC000",
+      "accent5": "#5B9BD5",
+      "accent6": "#70AD47",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#44546A",
+      "lt2": "#E7E6E6",
+      "hlink": "#0563C1",
+      "folHlink": "#954F72"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Calibri",
+      "Helvetica Neue"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout2.xml",
+      "name": "OBJECT",
+      "type": "obj",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/23",
+          "id": "23",
+          "name": "Google Shape;23;p18",
+          "bbox": [
+            88,
+            27.64,
+            1104,
+            69.67
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/24",
+          "id": "24",
+          "name": "Google Shape;24;p18",
+          "bbox": [
+            88,
+            112.76,
+            1104,
+            538.42
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/25",
+          "id": "25",
+          "name": "Google Shape;25;p18",
+          "bbox": [
+            1049.9,
+            667.33,
+            142.1,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "resolvedTextStyle": {
+                "alignment": "right"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›",
+                  "alignment": "right"
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout2.xml/26",
+          "id": "26",
+          "name": "Google Shape;26;p18",
+          "bbox": [
+            325.73,
+            681.23,
+            628.54,
+            38.77
+          ],
+          "geometry": "rect",
+          "text": "Team MoonStone – Legend From Below",
+          "textPreview": "Team MoonStone – Legend From Below",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Team MoonStone – Legend From Below",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Team MoonStone",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                },
+                {
+                  "index": 2,
+                  "text": " – ",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                },
+                {
+                  "index": 3,
+                  "text": "Legend From Below",
+                  "fontSize": 16,
+                  "typeface": "Helvetica Neue",
+                  "color": "#888888",
+                  "italic": true
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/16",
+          "id": "16",
+          "name": "Google Shape;10;p16",
+          "bbox": [
+            -1.82,
+            36.25,
+            1280,
+            49.92
+          ],
+          "contentType": "image/png",
+          "imageCrop": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          "asset": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 1828
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 1828
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/11",
+          "id": "11",
+          "name": "Google Shape;11;p16",
+          "bbox": [
+            88,
+            26.77,
+            1104,
+            71.17
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/12",
+          "id": "12",
+          "name": "Google Shape;12;p16",
+          "bbox": [
+            88,
+            110.85,
+            1104,
+            539.81
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/13",
+          "id": "13",
+          "name": "Google Shape;13;p16",
+          "bbox": [
+            88,
+            667.33,
+            148.19,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/14",
+          "id": "14",
+          "name": "Google Shape;14;p16",
+          "bbox": [
+            248.38,
+            667.33,
+            786.29,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/15",
+          "id": "15",
+          "name": "Google Shape;15;p16",
+          "bbox": [
+            1048.38,
+            667.33,
+            143.62,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "resolvedTextStyle": {
+                "alignment": "right"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›",
+                  "alignment": "right"
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        },
+        {
+          "order": 7,
+          "kind": "image",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/17",
+          "id": "17",
+          "name": "Picture 2",
+          "bbox": [
+            968.52,
+            36.25,
+            302.36,
+            45.35
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 17915
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 17915
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9gr2dozm",
+      "id": "184",
+      "name": "Google Shape;184;p13",
+      "bbox": [
+        17.12,
+        27.64,
+        1243.57,
+        69.67
+      ],
+      "geometry": "rect",
+      "text": "V. Installation Instructions",
+      "textPreview": "V. Installation Instructions",
+      "resolvedFontSize": 49.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 49.33,
+        "typeface": "Helvetica Neue",
+        "color": "lt1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "V. Installation Instructions"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "V. Installation Instructions",
+          "runs": [
+            {
+              "index": 1,
+              "text": "V. Installation Instructions",
+              "fontSize": 42.67
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 90000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8fy1kji1",
+      "id": "185",
+      "name": "Google Shape;185;p13",
+      "bbox": [
+        17.4,
+        112.76,
+        770.37,
+        568.1
+      ],
+      "geometry": "rect",
+      "text": "PREREQUISITES\nUnity Hub\nUnity Editor 6000.3.10f1\nAndroid Build Support\n\nINSTALLATION STEPS\n1. Open the Endless Zombie project in Unity Hub.\n2. Confirm URP, Entities/DOTS, and Input System packages.\n3. Open the main scene and test in Play Mode.\n4. Switch the build target to Android.\n5. Configure package name and player settings.\n6. Build the APK and install it on an Android device.",
+      "textPreview": "PREREQUISITES | Unity Hub | Unity Editor 6000.3.10f1 | Android Build Support |  | INSTALLATION STEPS | 1. Open the Endless Zombie project...",
+      "resolvedFontSize": 36.56,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 37.33,
+        "typeface": "Helvetica Neue",
+        "color": "#002060",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.98,
+        "autoFitLineSpaceReduction": 20000,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 25,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          },
+          {
+            "index": 2,
+            "text": "• PREREQUISITES"
+          },
+          {
+            "index": 3,
+            "text": ""
+          },
+          {
+            "index": 4,
+            "text": "Unity Hub"
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": "Unity Editor 6000.3.10f1"
+          },
+          {
+            "index": 7,
+            "text": ""
+          },
+          {
+            "index": 8,
+            "text": "Android Build Support"
+          },
+          {
+            "index": 9,
+            "text": ""
+          },
+          {
+            "index": 10,
+            "text": ""
+          },
+          {
+            "index": 11,
+            "text": ""
+          },
+          {
+            "index": 12,
+            "text": "• INSTALLATION STEPS"
+          },
+          {
+            "index": 13,
+            "text": ""
+          },
+          {
+            "index": 14,
+            "text": "1. Open the Endless Zombie project in Unity Hub."
+          },
+          {
+            "index": 15,
+            "text": ""
+          },
+          {
+            "index": 16,
+            "text": "2. Confirm URP, Entities/DOTS, and Input System"
+          },
+          {
+            "index": 17,
+            "text": "packages."
+          },
+          {
+            "index": 18,
+            "text": ""
+          },
+          {
+            "index": 19,
+            "text": "3. Open the main scene and test in Play Mode."
+          },
+          {
+            "index": 20,
+            "text": ""
+          },
+          {
+            "index": 21,
+            "text": "4. Switch the build target to Android."
+          },
+          {
+            "index": 22,
+            "text": ""
+          },
+          {
+            "index": 23,
+            "text": "5. Configure package name and player settings."
+          },
+          {
+            "index": 24,
+            "text": ""
+          },
+          {
+            "index": 25,
+            "text": "6. Build the APK and install it on an Android device."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "PREREQUISITES",
+          "runs": [
+            {
+              "index": 1,
+              "text": "PREREQUISITES",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 2,
+          "text": "Unity Hub",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Unity Hub"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 3,
+          "text": "Unity Editor 6000.3.10f1",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Unity Editor 6000.3.10f1"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 4,
+          "text": "Android Build Support",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Android Build Support"
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 6,
+          "text": "INSTALLATION STEPS",
+          "runs": [
+            {
+              "index": 1,
+              "text": "INSTALLATION STEPS",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 7,
+          "text": "1. Open the Endless Zombie project in Unity Hub.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "1. Open the Endless Zombie project in Unity Hub.",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 8,
+          "text": "2. Confirm URP, Entities/DOTS, and Input System packages.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "2. Confirm URP, Entities/DOTS, and Input System packages."
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 9,
+          "text": "3. Open the main scene and test in Play Mode.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "3. Open the main scene and test in Play Mode."
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 10,
+          "text": "4. Switch the build target to Android.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "4. Switch the build target to Android.",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 11,
+          "text": "5. Configure package name and player settings.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "5. Configure package name and player settings."
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 457200,
+          "indent": -406400,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 12,
+          "text": "6. Build the APK and install it on an Android device.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "6. Build the APK and install it on an Android device."
+            }
+          ],
+          "bulletCharacter": "•",
+          "marginLeft": 914400,
+          "indent": -381000,
+          "lineSpacingPercent": 90000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7epkbehg",
+      "id": "186",
+      "name": "Google Shape;186;p13",
+      "bbox": [
+        1118.6,
+        684.3,
+        142.1,
+        38.33
+      ],
+      "geometry": "rect",
+      "text": "20",
+      "textPreview": "20",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#888888",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "20"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "20",
+          "resolvedTextStyle": {
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "20",
+              "alignment": "right"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/nato3exs",
+      "id": "187",
+      "name": "Picture 2",
+      "bbox": [
+        801.62,
+        146.47,
+        424.06,
+        427.06
+      ],
+      "contentType": "image/png",
+      "asset": {
+        "assetId": "/ppt/media/image24.png",
+        "contentType": "image/png",
+        "byteLength": 275901
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image24.png",
+        "contentType": "image/png",
+        "byteLength": 275901
+      }
+    }
+  ],
+  "composeRuns": []
+}

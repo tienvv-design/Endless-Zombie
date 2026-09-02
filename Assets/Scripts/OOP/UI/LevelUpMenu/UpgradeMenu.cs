@@ -60,23 +60,23 @@ public class UpgradeMenu : MonoBehaviour, IGameLevelUp
 
         if (menuRect.parent is RectTransform parentRect)
         {
-            float width = Mathf.Min(1040f, Mathf.Max(620f, parentRect.rect.width - 64f));
-            float height = Mathf.Min(820f, Mathf.Max(680f, parentRect.rect.height - 80f));
+            float width = Mathf.Min(980f, Mathf.Max(680f, parentRect.rect.width - 72f));
+            float height = Mathf.Min(900f, Mathf.Max(720f, parentRect.rect.height - 96f));
             menuRect.sizeDelta = new Vector2(width, height);
         }
 
         // Reserve the upper area for the title and distribute all three cards
         // evenly in the remaining space on every aspect ratio.
-        layoutRect.anchorMin = new Vector2(0.08f, 0.07f);
-        layoutRect.anchorMax = new Vector2(0.92f, 0.79f);
+        layoutRect.anchorMin = new Vector2(0.07f, 0.06f);
+        layoutRect.anchorMax = new Vector2(0.93f, 0.81f);
         layoutRect.pivot = new Vector2(0.5f, 0.5f);
         layoutRect.anchoredPosition = Vector2.zero;
         layoutRect.sizeDelta = Vector2.zero;
 
         if (m_UpgradeVerticalLayoutGroup.TryGetComponent(out VerticalLayoutGroup layout))
         {
-            layout.padding = new RectOffset(8, 8, 6, 6);
-            layout.spacing = 22f;
+            layout.padding = new RectOffset(10, 10, 8, 8);
+            layout.spacing = 18f;
             layout.childAlignment = TextAnchor.MiddleCenter;
             layout.childControlWidth = true;
             layout.childControlHeight = true;

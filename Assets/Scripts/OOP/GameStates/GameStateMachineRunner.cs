@@ -38,6 +38,7 @@ namespace OOP.GameStates
             }
 
             WinMenu.EnsureExists();
+            GameOverMenu.EnsureExists();
 
             _factory = new GameStateFactory(this);
             _factory.WireStates();
@@ -95,6 +96,24 @@ namespace OOP.GameStates
             if (!_gameplayStarted || _gameOverTriggered || _winTriggered)
                 return;
             _gameState.SwitchState(_factory.GetGameState(GameStateType.Running));
+        }
+
+        public void DebugForceWin()
+        {
+            if (!_gameplayStarted)
+                BeginGameplay();
+            _gameOverTriggered = false;
+            _winTriggered = false;
+            HandleStageCompleted();
+        }
+
+        public void DebugForceLose()
+        {
+            if (!_gameplayStarted)
+                BeginGameplay();
+            _gameOverTriggered = false;
+            _winTriggered = false;
+            TriggerGameOver();
         }
 
         public void SetRunnerState(State state)

@@ -6,6 +6,7 @@ public sealed class StageConfig : ScriptableObject
 {
     public string StageId;
     [Min(0f)] public float DefaultWaveDelay = 3f;
+    [Min(0.1f)] public float AttackDistance = 1.2f;
     [Min(1)] public int MaxAliveEnemies = 100;
     [Header("Elite Modifiers")]
     public bool EnableEliteModifiers = true;
