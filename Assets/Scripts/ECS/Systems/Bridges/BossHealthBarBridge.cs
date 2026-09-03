@@ -61,11 +61,19 @@ public partial class BossHealthBarBridge : SystemBase
         m_Root.SetActive(false);
     }
 
+    private static Sprite s_WhiteSprite;
+    private static Sprite WhiteSprite => s_WhiteSprite != null
+        ? s_WhiteSprite
+        : (s_WhiteSprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f)));
+
     private static Image MakeImage(string name, Transform parent, Color color)
     {
         GameObject value = new(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
         value.transform.SetParent(parent, false);
-        Image image = value.GetComponent<Image>(); image.color = color; image.raycastTarget = false;
+        Image image = value.GetComponent<Image>();
+        image.sprite = WhiteSprite;
+        image.color = color;
+        image.raycastTarget = false;
         return image;
     }
 
